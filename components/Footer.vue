@@ -17,7 +17,7 @@
       </div>
 
       <div class="copy">
-        MADE BY APUS AGENCY
+        MADE BY APUS <span>AGENCY</span>
       </div>
     </div>
   </div>
@@ -105,6 +105,14 @@
   @media (max-width: 768px) {
     .share {
       margin-right: 19px;
+    }
+
+    .copy span {
+      display: none;
+    }
+
+    .right {
+      padding-left: 20px;
     }
   }
 

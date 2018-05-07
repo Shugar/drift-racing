@@ -1,5 +1,5 @@
 <template>
-  <section class="news">
+  <section class="videos">
     <Header />
     <div class="container">
       <div class="tags">
@@ -118,7 +118,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .news {
+  .videos {
     background: #683FFF;
     padding: 200px 0 80px;
   }
@@ -165,12 +165,13 @@
 
   .title {
     font-family: 'DIN Condensed', sans-serif;
-    line-height: normal;
-    font-size: 64px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 60px;
+    font-size: 48px;
     text-transform: uppercase;
     color: #FFFFFF;
     margin-bottom: 20px;
-    padding-right: 110px;
   }
 
   .videos-list {

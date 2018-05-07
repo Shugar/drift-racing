@@ -166,12 +166,13 @@
 
   .title {
     font-family: 'DIN Condensed', sans-serif;
-    line-height: normal;
-    font-size: 64px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 60px;
+    font-size: 48px;
     text-transform: uppercase;
     color: #FFFFFF;
     margin-bottom: 20px;
-    padding-right: 110px;
   }
 
   .news-list {
