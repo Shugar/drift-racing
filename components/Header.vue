@@ -5,14 +5,14 @@
       <div class="mobile-menu">
         <div class="mobile-menu__title">MENU</div>
         <div class="list">
-          <div class="list-item">BIO</div>
-          <div class="list-item">PHOTO</div>
-          <div class="list-item">CALENDAR</div>
-          <div class="list-item">VIDEO</div>
-          <div class="list-item">NEWS</div>
-          <div class="list-item">STORE</div>
-          <div class="list-item">PARTNERS</div>
-          <div class="list-item">CONTACT</div>
+          <nuxt-link to="/bio/" class="list-item">BIO</nuxt-link>
+          <nuxt-link to="/photo/" class="list-item">PHOTO</nuxt-link>
+          <nuxt-link to="/calendar/" class="list-item">CALENDAR</nuxt-link>
+          <nuxt-link to="/video/" class="list-item">VIDEO</nuxt-link>
+          <nuxt-link to="/news/" class="list-item">NEWS</nuxt-link>
+          <nuxt-link to="/store/" class="list-item">STORE</nuxt-link>
+          <nuxt-link to="/partners/" class="list-item">PARTNERS</nuxt-link>
+          <nuxt-link to="/contact/" class="list-item">CONTACT</nuxt-link>
         </div>
         <div class="language">
           RU — EN

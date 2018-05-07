@@ -187,7 +187,7 @@
 
   .tags {
     position: fixed;
-    top: 200px;
+    top: 290px;
     left: 100px;
   }
 
