@@ -248,6 +248,7 @@
   }
 
   .photo-item {
+    cursor: pointer;
     max-width: 240px;
     width: 100%;
     height: 140px;
