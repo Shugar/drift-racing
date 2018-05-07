@@ -1,6 +1,6 @@
 <template>
-  <div class="header">
-    <div v-if="isMenuOpened" class="mobile-nav">
+  <div class="header" :class="{ main: type === 'main' }">
+    <div v-if="isMenuOpened"  class="mobile-nav">
       <div class="mobile-space" @click="closeMenu()"></div>
       <div class="mobile-menu">
         <div class="mobile-menu__title">MENU</div>
@@ -53,6 +53,7 @@
 
 <script>
   export default {
+    props: ['type'],
     data () {
       return {
         isMenuOpened: false
@@ -84,6 +85,10 @@
     align-items: center;
     background: linear-gradient(180deg, #683FFF 0%, rgba(104, 63, 255, 0.8) 58.56%, rgba(104, 63, 255, 0) 100%);
     z-index: 10;
+
+    &.main {
+      background: transparent;
+    }
   }
 
   .left {
