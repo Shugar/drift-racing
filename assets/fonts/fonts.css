@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'Ailerons';
+    src: url('Ailerons.eot');
+    src: url('Ailerons.eot?#iefix') format('embedded-opentype'),
+        url('Ailerons.woff2') format('woff2'),
+        url('Ailerons.woff') format('woff'),
+        url('Ailerons.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DIN Condensed';
+    src: url('DINCondensed-Bold.eot');
+    src: url('DINCondensed-Bold.eot?#iefix') format('embedded-opentype'),
+        url('DINCondensed-Bold.woff2') format('woff2'),
+        url('DINCondensed-Bold.woff') format('woff'),
+        url('DINCondensed-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DIN Pro Medium';
+    src: url('DinProMedium.eot');
+    src: url('DinProMedium.eot?#iefix') format('embedded-opentype'),
+        url('DinProMedium.woff') format('woff'),
+        url('DinProMedium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
