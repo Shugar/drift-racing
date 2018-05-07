@@ -2,24 +2,31 @@
   <section class="photos">
     <Header />
     <div class="container">
+      <div class="title">PHOTO</div>
       <div class="tags">
-        <div class="tags-title">CHAMPIONSHIP</div>
-        <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="filterByTag(tag)">
-          #{{tag}}
+        <div class="tags-item">
+          <div class="tags-title">CHAMPIONSHIP</div>
+          <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="filterByTag(tag)">
+            #{{tag}}
+          </div>
         </div>
 
-        <div class="tags-title tags-country">COUNTRY</div>
-        <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="filterByTag(tag)">
-          #{{tag}}
+        <div class="tags-item">
+          <div class="tags-title tags-country">COUNTRY</div>
+          <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="filterByTag(tag)">
+            #{{tag}}
+          </div>
         </div>
       </div>
-      <div class="title">PHOTO</div>
       <div class="list">
         <div class="photo" v-for="(photo, index) in filteredPhotos" :key="index">
           <div class="photo-date">{{ photo.date }}</div>
           <div class="photo-title" v-html="photo.title"></div>
           <div class="photo-list">
-            <masonry :cols="4" :gutter="20" ref="my-masonry">
+            <masonry
+              :cols="{default: 4, 768: 2, 425: 1}"
+              :gutter="{default: '20px', 768: '40px', 425: '0px'}"
+              ref="my-masonry">
               <div class="photo-item"
                 v-for="(image, index) in photo.images"
                 :key="'image-' + index"
@@ -261,13 +268,67 @@
 
   @media (max-width: 768px) {
     .container {
-      display: block;
+      padding-left: 100px;
+
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+    }
+
+    .list {
+      flex: 0 0 100%;
+    }
+
+    .photo-title {
+      margin-bottom: 10px;
+    }
+
+    .photo-item {
+      max-width: 264px;
+      margin-bottom: 40px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .title {
+      flex: 1;
+    }
+
+    .tags {
+      flex: 1;
+      position: initial;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+    }
+
+    .tags-item {
+      flex: 1;
+
+      &:first-child {
+        margin-right: 60px;
+      }
+    }
+
+    .tags-country {
+      margin-top: 0;
     }
   }
 
   @media (max-width: 425px) {
     .container {
       padding: 0 50px;
+      display: block;
+    }
+
+    .photo-item {
+      margin-bottom: 20px;
+    }
+
+    .tags {
+      margin-bottom: 50px;
     }
   }
 </style>

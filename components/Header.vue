@@ -1,9 +1,33 @@
 <template>
   <div class="header">
+    <div v-if="isMenuOpened" class="mobile-nav">
+      <div class="mobile-space" @click="closeMenu()"></div>
+      <div class="mobile-menu">
+        <div class="mobile-menu__title">MENU</div>
+        <div class="list">
+          <div class="list-item">BIO</div>
+          <div class="list-item">PHOTO</div>
+          <div class="list-item">CALENDAR</div>
+          <div class="list-item">VIDEO</div>
+          <div class="list-item">NEWS</div>
+          <div class="list-item">STORE</div>
+          <div class="list-item">PARTNERS</div>
+          <div class="list-item">CONTACT</div>
+        </div>
+        <div class="language">
+          RU — EN
+        </div>
+        <div class="made">MADE BY APUS</div>
+      </div>
+    </div>
+
     <div class="left">
       <nuxt-link to="/">
         <div class="logo" />
       </nuxt-link>
+
+      <div class="menu-button" @click="openMenu()" />
+
       <div class="nav nav-left">
         <nuxt-link class="nav-item" to="/bio/">BIO</nuxt-link>
         <nuxt-link class="nav-item" to="/photo/">PHOTO</nuxt-link>
@@ -24,6 +48,26 @@
     </div>
   </div>
 </template>
+
+<script>
+  export default {
+    data () {
+      return {
+        isMenuOpened: false
+      }
+    },
+
+    methods: {
+      closeMenu () {
+        this.isMenuOpened = false
+      },
+
+      openMenu () {
+        this.isMenuOpened = true
+      }
+    }
+  }
+</script>
 
 <style lang="scss" scoped>
   .header {
@@ -102,6 +146,106 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: flex-end;
+  }
+
+  .mobile-nav {
+    display: none;
+  }
+
+  @media (max-width: 1024px) {
+    .nav,
+    .right {
+      display: none;
+    }
+
+    .left {
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .mobile-nav {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .menu-button {
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      background: url("../assets/images/menu-button.svg") no-repeat center / contain;
+    }
+
+    .mobile-space {
+      position: fixed;
+      width: 20%;
+      left: 0;
+      height: 100%;
+      background: rgba(51, 51, 51, 0.6);
+      z-index: 9999;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      width: 80%;
+      height: 100%;
+      z-index: 9999;
+      right: 0;
+      background: #000;
+      padding: 56px 76px;
+    }
+
+    .mobile-menu__title,
+    .made {
+      font-family: 'DIN Condensed', sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      line-height: 19px;
+      font-size: 24px;
+      text-transform: uppercase;
+      color: #683FFF;
+      margin-bottom: 20px;
+    }
+
+    .made {
+      margin-top: 20px;
+      margin-bottom: 0;
+    }
+
+    .language {
+      font-family: 'DIN Condensed', sans-serif;
+      margin-top: 62px;
+      font-style: normal;
+      font-weight: bold;
+      line-height: 24px;
+      font-size: 24px;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .menu-button {
+      top: 56px;
+    }
+
+    .mobile-menu {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+    }
+
+    .list-item {
+      font-family: 'DIN Condensed', sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      line-height: 22px;
+      font-size: 30px;
+      margin-bottom: 24px;
+    }
   }
 
   @media (max-width: 425px) {
