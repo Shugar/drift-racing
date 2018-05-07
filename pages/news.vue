@@ -2,15 +2,20 @@
   <section class="news">
     <Header />
     <div class="container">
+      <div class="title">NEWS</div>
       <div class="tags">
-        <div class="tags-title">TAGS</div>
-        <div class="tag" v-for="(tag, index) in tags" :key="index" @click="filterByTag(tag)">
-          #{{tag}}
+        <div class="tags-item">
+          <div class="tags-title">TAGS</div>
+          <div class="tag" v-for="(tag, index) in tags" :key="index" @click="filterByTag(tag)">
+            #{{tag}}
+          </div>
         </div>
       </div>
-      <div class="title">NEWS</div>
       <div class="news-list">
-        <masonry :cols="3" :gutter="60" ref="my-masonry">
+        <masonry
+          :cols="{default: 3, 768: 2, 425: 1}"
+          :gutter="{default: '60px', 768: '40px', 425: '0px'}"
+          ref="my-masonry">
           <div class="article" v-for="(article, index) in filteredArticles" :key="index">
             <div class="article-date">{{ article.date }}</div>
             <div class="article-title" v-html="article.title"></div>
@@ -137,7 +142,7 @@
 
   .tags {
     position: fixed;
-    top: 200px;
+    top: 290px;
     left: 100px;
   }
 
@@ -180,12 +185,12 @@
   }
 
   .article {
+    margin-bottom: 60px;
     cursor: pointer;
     max-width: 300px;
   }
 
   .article-date {
-    margin-bottom: 20px;
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -213,7 +218,7 @@
   }
 
   .article-preview {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     line-height: 25px;
     font-size: 18px;
     color: rgba(255, 255, 255, 0.7);
@@ -238,13 +243,61 @@
 
   @media (max-width: 768px) {
     .container {
-      display: block;
+      padding-left: 100px;
+
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+    }
+
+    .news-list {
+      margin-top: 40px;
+      margin-bottom: 60px;
+      flex: 0 0 100%;
+    }
+
+    .title {
+      flex: 1;
+    }
+
+    .tags {
+      flex: 1;
+      position: initial;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+    }
+
+    .tags-item {
+      flex: 1;
+
+      &:first-child {
+        margin-left: 20px;
+        margin-right: 60px;
+      }
+    }
+
+    .tags-country {
+      margin-top: 0;
     }
   }
 
   @media (max-width: 425px) {
     .container {
       padding: 0 50px;
+      display: block;
+    }
+
+    .video-item {
+      margin-bottom: 20px;
+    }
+
+    .tags {
+      margin-bottom: 50px;
+    }
+
+    .tags-item:first-child {
+      margin-left: 0;
     }
   }
 </style>
