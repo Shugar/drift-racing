@@ -138,7 +138,7 @@
 
   .tags {
     position: fixed;
-    top: 290px;
+    top: 280px;
     left: 100px;
   }
 
@@ -177,7 +177,7 @@
     font-size: 48px;
     text-transform: uppercase;
     color: #FFFFFF;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   .videos-list {

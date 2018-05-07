@@ -26,6 +26,8 @@
         <div class="logo" />
       </nuxt-link>
 
+      <span v-if="this.$route.name === 'store'" class="checkout">0 items — $ 0.00</span>
+
       <div class="menu-button" @click="openMenu()" />
 
       <div class="nav nav-left">
@@ -107,6 +109,10 @@
     background: url('~/assets/images/logo.svg') no-repeat center / contain;
   }
 
+  .checkout {
+    display: none;
+  }
+
   .nav {
     margin-top: 42px;
     width: 100%;
@@ -163,6 +169,10 @@
       justify-content: space-between;
     }
 
+    .logo {
+      margin-right: 40px;
+    }
+
     .mobile-nav {
       display: block;
       position: fixed;
@@ -177,6 +187,24 @@
       height: 28px;
       cursor: pointer;
       background: url("../assets/images/menu-button.svg") no-repeat center / contain;
+      margin-top: 40px;
+    }
+
+    .checkout {
+      margin-top: 50px;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: flex-start;
+
+      flex: 1;
+      font-family: 'DIN Condensed', sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      line-height: normal;
+      font-size: 20px;
+      text-align: right;
+      text-transform: uppercase;
+      color: #FFFFFF;
     }
 
     .mobile-space {
@@ -226,10 +254,6 @@
       color: #FFFFFF;
     }
 
-    .menu-button {
-      top: 56px;
-    }
-
     .mobile-menu {
       display: flex;
       flex-flow: column nowrap;
@@ -245,12 +269,18 @@
       line-height: 22px;
       font-size: 30px;
       margin-bottom: 24px;
+      text-decoration: none;
+      display: block;
     }
   }
 
   @media (max-width: 425px) {
     .header {
       padding: 0 50px;
+    }
+
+    .checkout {
+      display: none;
     }
 
     .logo {

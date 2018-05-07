@@ -2,12 +2,16 @@
   <section class="news">
     <Header />
     <div class="container">
-      <div class="title">NEWS</div>
+      <span class="checkout">0 items — $ 0.00</span>
+      <div class="title">
+        STORE
+        <span>0 items — $ 0.00</span>
+      </div>
       <div class="tags">
         <div class="tags-item">
-          <div class="tags-title">TAGS</div>
-          <div class="tag" v-for="(tag, index) in tags" :key="index" @click="filterByTag(tag)">
-            #{{tag}}
+          <div class="tags-title">CATEGORIES</div>
+          <div class="tag" v-for="(category, index) in categories" :key="index" @click="filterByCategory(category)">
+            #{{category}}
           </div>
         </div>
       </div>
@@ -16,19 +20,14 @@
           :cols="{default: 3, 768: 2, 425: 1}"
           :gutter="{default: '60px', 768: '40px', 425: '0px'}"
           ref="my-masonry">
-          <div class="article" v-for="(article, index) in filteredArticles" :key="index">
-            <div class="article-date">{{ article.date }}</div>
-            <div class="article-title" v-html="article.title"></div>
-            <div class="article-image"
-              v-if="article.image !== ''"
-              :style="{background: `url(${ article.image }) no-repeat center / cover`}" />
-            <div class="article-preview">{{ article.preview }}</div>
-            <div class="article-hashtags">
-              <div class="article-hashtag"
-                v-for="(hashtag, index) in article.hashtags"
-                :key="index">
-                #{{ hashtag }}
-              </div>
+          <div class="item" v-for="(item, index) in filteredGoods" :key="index">
+            <div class="item-image"
+              :style="{background: `url(${ item.image }) no-repeat center / cover`}" />
+            <div class="item-category">{{ item.category }}</div>
+            <div class="item-title" v-html="item.title"></div>
+            <div class="item-footer">
+              <div class="item-style">{{ item.style }}</div>
+              <div class="item-price">$ {{ item.price }}</div>
             </div>
           </div>
         </masonry>
@@ -42,82 +41,73 @@
   export default {
     data () {
       return {
-        filteredArticles: [],
-        articles: [
+        filteredGoods: [],
+        goods: [
           {
-            date: 'DEC 9 — 2017',
-            title: 'Sochi, closing of the<br>season 2017 RDS',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '/news/news-1.jpg',
-            hashtags: ['events', 'rds2018']
+            category: 'T-SHIRTS',
+            style: 'WHITE',
+            title: 'DRIFT IS MY THERAPY <br> men t-shirt',
+            image: '/store/store-1.jpg',
+            price: 100
           },
           {
-            date: 'DEC 7 — 2017',
-            title: 'MotorShow Bologna.<br>Italy 2-10 December',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '',
-            hashtags: ['garage']
+            category: 'T-SHIRTS',
+            style: 'BLACK',
+            title: 'FUCKING HERO STYLE <br> men t-shirt',
+            image: '/store/store-2.jpg',
+            price: 25
           },
           {
-            date: 'JAN 30 — 2016',
-            title: 'Life of championships<br>Chaper 5',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '/news/news-2.jpg',
-            hashtags: ['video']
+            category: 'T-SHIRTS',
+            style: 'WHITE',
+            title: 'BOOST ME <br> men t-shirt',
+            image: '/store/store-3.jpg',
+            price: 19
           },
           {
-            date: 'DEC 1 — 2017',
-            title: 'Life of championships<br>moscow raceway',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '',
-            hashtags: ['events', 'rds2018']
+            category: 'T-SHIRTS',
+            style: 'WHITE',
+            title: 'DRIFT IS MY THERAPY <br> men t-shirt',
+            image: '/store/store-4.jpg',
+            price: 14
           },
           {
-            date: 'DEC 3 — 2017',
-            title: 'Drift all<br>the time you got!',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '/news/news-3.jpg',
-            hashtags: ['events', 'rds2018']
+            category: 'T-SHIRTS',
+            style: 'BLACK',
+            title: 'FUCKING HERO STYLE <br> men t-shirt',
+            image: '/store/store-5.jpg',
+            price: 25
           },
           {
-            date: 'DEC 9 — 2017',
-            title: 'Sochi, closing of the season 2017 RDS',
-            preview: '',
-            image: '',
-            hashtags: ['events', 'rds2018']
+            category: 'T-SHIRTS',
+            style: 'WHITE',
+            title: 'BOOST ME <br> men t-shirt',
+            image: '/store/store-6.jpg',
+            price: 17
           },
-        ]
+        ],
       }
     },
 
     computed: {
-      tags () {
-        const hashtags = []
-        this.articles.map((article, index) => {
-          article.hashtags.map((tag, index) => {
-            hashtags.push(tag)
-          })
-        })
-
-        return [ ...new Set(hashtags) ]
+      categories () {
+        return [ ...new Set(this.goods.map(item => item.category)) ]
       }
     },
 
     methods: {
-      filterByTag (hashtag) {
-        this.filteredArticles = []
-        this.articles.map((article, index) => {
-          article.hashtags.map((tag, index) => {
-            if (hashtag === tag) {
-              this.filteredArticles.push(article)
-            }
-          })
+      filterByCategory (category) {
+        this.filteredGoods = []
+        this.goods.map((item, index) => {
+          if (category === item.category) {
+            this.filteredGoods.push(item)
+          }
         })
       }
     },
 
     mounted () {
-      this.filteredArticles = this.articles
+      this.filteredGoods = this.goods
     },
 
     components: {
@@ -177,20 +167,41 @@
     font-size: 48px;
     text-transform: uppercase;
     color: #FFFFFF;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .title span,
+  .checkout {
+    font-family: 'DIN Condensed', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 20px;
+    text-align: right;
+    text-transform: uppercase;
+    color: #FFFFFF;
+  }
+
+  .checkout {
+    display: none;
   }
 
   .news-list {
     margin-bottom: 100px;
   }
 
-  .article {
-    margin-bottom: 60px;
+  .item {
+    margin-bottom: 40px;
     cursor: pointer;
     max-width: 300px;
   }
 
-  .article-date {
+  .item-category {
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -200,14 +211,13 @@
     color: rgba(255, 255, 255, 0.8);
   }
 
-  .article-image {
+  .item-image {
     width: 100%;
     height: 180px;
     margin-bottom: 20px;
   }
 
-  .article-title {
-    margin-bottom: 10px;
+  .item-title {
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -217,28 +227,32 @@
     color: #FFFFFF;
   }
 
-  .article-preview {
-    margin-bottom: 10px;
-    line-height: 25px;
-    font-size: 18px;
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  .article-hashtags {
+  .item-footer {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
+    justify-content: space-between;
     align-items: center;
   }
 
-  .article-hashtag {
-    margin-right: 8px;
+  .item-style {
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
-    line-height: 29px;
-    font-size: 20px;
+    line-height: 52px;
+    font-size: 36px;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.8);
+  }
+
+  .item-price {
+    font-family: 'DIN Condensed', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 52px;
+    font-size: 36px;
+    text-align: right;
+    text-transform: uppercase;
+    color: #FFFFFF;
   }
 
   @media (max-width: 768px) {
@@ -258,6 +272,10 @@
 
     .title {
       flex: 1;
+
+      span {
+        display: none;
+      }
     }
 
     .tags {
@@ -286,6 +304,16 @@
     .container {
       padding: 0 50px;
       display: block;
+    }
+
+    .checkout {
+      display: block;
+      margin-bottom: 30px;
+      text-align: left;
+    }
+
+    .video-item {
+      margin-bottom: 20px;
     }
 
     .tags {

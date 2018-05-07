@@ -9,7 +9,8 @@
         <nuxt-link to="/news/">NEWS</nuxt-link><br>
         <nuxt-link to="/video/">VIDEO</nuxt-link><br>
         <nuxt-link to="/photo/">PHOTO</nuxt-link><br>
-        На странице PHOTO уже работает открытие картинок в модальном окне
+        <nuxt-link to="/partners/">PARTNERS</nuxt-link><br>
+        <nuxt-link to="/store/">STORE</nuxt-link><br>
       </div>
     </div>
   </section>
