@@ -1,21 +1,33 @@
 <template>
-  <div class="main_wrapper">
+  <div class="container">
     <Header type='main' />
-    <logo class="only-mobile"/>
     <div class="left-side">
       <transition name="fade">
-        <div class="left-side main-slider-container-img-1" v-if="count===1" key="1" />
-        <div class="left-side main-slider-container-img-2"  v-if="count===2" key="2" />
-        <div class="left-side main-slider-container-img-3"  v-if="count===3" key="3" />
-        <div class="left-side main-slider-container-img-4"  v-if="count===4" key="4" />
+        <div class="main-background main-slider-container-img-1" v-if="count===1" key="1" />
+        <div class="main-background main-slider-container-img-2"  v-if="count===2" key="2" />
+        <div class="main-background main-slider-container-img-3"  v-if="count===3" key="3" />
+        <div class="main-background main-slider-container-img-4"  v-if="count===4" key="4" />
       </transition>
     </div>
     <div class="right-side"></div>
-    <!-- <div class="main-slider-container">
-      <MainSlider :count="count" />
-  
+
+    <div class="content">
+      <div class="content__left"></div>
+      <div class="content__right">
+        <div>
+          <div class="slider">
+            <img src="@/assets/images/motorshow-img.png" key="1" v-if="count === 1" class="slider-photo">
+            <img src="@/assets/images/arrow_right.svg" class="slider-arrow" />
+          </div>
+          <div class="product">
+            <div class="product__name">DRIFT IS MY THERAPY men t-shirt</div>
+            <div class="product__descr">
+              <span class="product__color">WHITE</span> <span class="product__price">15$</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <MainNews />  -->
     <div class="footer__wrapper">
       <Footer />
     </div>
@@ -56,6 +68,27 @@
   }
 
   .main__wrapper {
+    position: relative;
+    display: flex;
+
+  }
+
+  .content {
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    &_left {
+      width: 60%;
+    }
+
+    &__right {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      width: 40%;
+    }
   }
 
   .footer__wrapper {
@@ -64,26 +97,31 @@
     bottom: 7%;
   }
 
-  .main_wrapper {
+  .container {
     position: relative;
-    display: flex;
-    flex-flow: row nowrap;
     height: 100vh;
-    /* padding-top: 140px; */
   }
 
   .left-side {
-    position: relative;
-    width: 58%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
     height: 100%;
     overflow: hidden;
+    padding-left: 100px;
+    z-index: 0;
   }
 
   .right-side {
-    width: 42%;
+    position: absolute;
+    width: 40%;
+    right: 0;
+    top: 0;
     height: 100%;
     background: #683FFF;
-
+    padding-right: 100px;
+    z-index: 0;
   }
 
   .main-slider-container {
@@ -110,6 +148,14 @@
     z-index: 0;
   }
 
+
+  .main-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
   .main-slider-container-img {
     position: absolute;
     top: 0;
@@ -154,6 +200,55 @@
     opacity: 0;
   }
 
+
+  .slider {
+    display: flex;
+
+      &-arrow {
+      cursor: pointer;
+      height: 100%;
+      width: auto;
+    }
+  }
+
+  .product {
+    font-family: 'DIN Condensed';
+    font-size: 36px;
+    margin-top: 40px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 200px;
+    width: 250px;
+    &__name {
+      width: 100%;
+    }
+
+    &__descr {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    &__color {
+      color: #E0E0E0;
+    }
+  }
+
+  //////////// 
+  @media (max-width: 1024px) {
+    .right-side {
+      display: none;
+    }
+
+    .content__right {
+      display: none;
+    }
+
+    .left-side {
+      width: 100%;
+    }
+  }
+
   @media (max-width: 1024px) {
     .main-slider-container {
       width: 100%;
@@ -161,3 +256,4 @@
     }
   }
 </style>
+
