@@ -4,10 +4,10 @@
     <div class="left-side">
       <transition name="fade">
         <div v-for="(item, index) in subTitle"
-             class="main-background"
-             :style="{background: `url(/home/car${index+1}.png) `}"
-             v-if="count === index"
-             :key="index" />
+          class="main-background"
+          :style="{background: `url(/home/car${index+1}.png) `}"
+          v-if="count === index"
+          :key="index" />
       </transition>
     </div>
     <div class="right-side"></div>
@@ -21,29 +21,30 @@
           </div>
           <div>
             <div class="big-text">
-             <div v-for="(item, index) in bigText[count]" :key="index" > {{ item }} </div> 
+            <div v-for="(item, index) in bigText[count]" :key="index" > {{ item }} </div>
             </div>
             <div class="slide-descr">{{ subTitle[count] }}</div>
             <div class="discover">{{ buttonText[count]}} </div>
           </div>
         </div>
       </div>
+
       <div class="content-right">
           <div class="slider-image__wrapper">
             <transition name="slide">
-                <img v-for="(item, index) in subTitle"
-                    class="slider-photo"
-                    v-if="count === index"
-                    :src="`/home/left-slider${index}.png`"
-                    :key="index">
+              <img v-for="(item, index) in subTitle"
+                class="slider-photo"
+                v-if="count === index"
+                :src="`/home/left-slider${index}.png`"
+                :key="index">
             </transition>
-          <img src="@/assets/images/arrow_right.svg" class="slider-arrow" />
           <div class="product">
             <div class="product__name">DRIFT IS MY THERAPY men t-shirt</div>
             <div class="product__descr">
               <span class="product__color">WHITE</span> <span class="product__price">15$</span>
             </div>
           </div>
+          <img src="@/assets/images/arrow_right.svg" class="slider-arrow" />
         </div>
       </div>
     </div>
@@ -143,16 +144,15 @@
 
       .big-text {
         font-family: 'Ailerons';
-        font-size: 80px;
-        line-height: 80px;
+        font-size: 116px;
+        line-height: 116px;
         width: 300px;
         margin-bottom: 40px;
-        margin-left: -9px;
       }
 
       .slide-descr {
         font-size: 24px;
-        max-width: 250px;
+        max-width: 260px;
         margin-bottom: 40px;
       }
 
@@ -254,24 +254,39 @@
     opacity: 0;
   }
 
-
   .slider {
     display: flex;
   }
 
-    slider-arrow {
-      position: relative;
-      cursor: pointer;
-      height: 100%;
-      width: auto;
-      z-index: 3;
-    }
+  .slider-arrow {
+    position: relative;
+    cursor: pointer;
+    height: 100%;
+    width: auto;
+    z-index: 3;
+  }
 
   .slider-image__wrapper {
     position: relative;
     overflow: hidden;
     width: inherit;
     height: 200px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+  }
+
+  .slider-photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    max-width: 320px;
+    width: 100%;
+    min-height: 200px;
+
+    background-size: cover;
   }
 
   .product {
@@ -298,7 +313,7 @@
   }
 
   .slide-enter-active, .slide-leave-active {
-    transition: transform 5s;
+    transition: transform .3s;
   }
 
   .slide-leave-to {
@@ -308,6 +323,7 @@
   .slide-enter {
     transform: translateX(100%);
   }
+
   //////////// MEDIA QUERRIES ////////////////
   @media (max-width: 1024px) {
     .main-slider-container {

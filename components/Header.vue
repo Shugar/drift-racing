@@ -192,7 +192,7 @@
       height: 28px;
       cursor: pointer;
       background: url("../assets/images/menu-button.svg") no-repeat center / contain;
-      margin-top: 40px;
+      margin-top: 30px;
     }
 
     .checkout {
