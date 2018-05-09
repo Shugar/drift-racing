@@ -2,7 +2,7 @@
   <section class="news">
     <Header />
     <div class="container">
-      <div class="back">back to news</div>
+      <nuxt-link to="/news/" class="back">back to news</nuxt-link>
       <div class="left">
         <div class="title">Sochi, closing of the<br /> season 2017 RDS</div>
         <div class="article">
@@ -163,6 +163,7 @@
   }
 
   .back {
+    text-decoration: none;
     color: #FFF;
     cursor: pointer;
   }
