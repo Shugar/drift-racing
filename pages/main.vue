@@ -3,22 +3,41 @@
     <Header type='main' />
     <div class="left-side">
       <transition name="fade">
-        <div class="main-background main-slider-container-img-1" v-if="count===1" key="1" />
-        <div class="main-background main-slider-container-img-2"  v-if="count===2" key="2" />
-        <div class="main-background main-slider-container-img-3"  v-if="count===3" key="3" />
-        <div class="main-background main-slider-container-img-4"  v-if="count===4" key="4" />
+        <div v-for="(item, index) in subTitle"
+             class="main-background"
+             :style="{background: `url(/home/car${index+1}.png) `}"
+             v-if="count === index"
+             :key="index" />
       </transition>
     </div>
     <div class="right-side"></div>
 
     <div class="content">
-      <div class="content__left"></div>
-      <div class="content__right">
-        <div>
-          <div class="slider">
-            <img src="@/assets/images/motorshow-img.png" key="1" v-if="count === 1" class="slider-photo">
-            <img src="@/assets/images/arrow_right.svg" class="slider-arrow" />
+      <div class="content-left">
+        <div class="content-left__wrapper">
+          <div class="button__wrapper">
+            <div class="next-slide-button" @click="nextSlide"> next up </div>
+            <div class="slide-name">{{ category[count] }}</div>
           </div>
+          <div>
+            <div class="big-text">
+             <div v-for="(item, index) in bigText[count]" :key="index" > {{ item }} </div> 
+            </div>
+            <div class="slide-descr">{{ subTitle[count] }}</div>
+            <div class="discover">{{ buttonText[count]}} </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-right">
+          <div class="slider-image__wrapper">
+            <transition name="slide">
+                <img v-for="(item, index) in subTitle"
+                    class="slider-photo"
+                    v-if="count === index"
+                    :src="`/home/left-slider${index}.png`"
+                    :key="index">
+            </transition>
+          <img src="@/assets/images/arrow_right.svg" class="slider-arrow" />
           <div class="product">
             <div class="product__name">DRIFT IS MY THERAPY men t-shirt</div>
             <div class="product__descr">
@@ -46,18 +65,45 @@
 
     data() {
       return {
-        count: 1
+        count: 0,
+        bigText: [
+          ['Drift', 'Is my', 'Therapy'],
+          ['Latest', 'Photos'],
+          ['New', 'videos'],
+          ['upcoming', 'events']
+        ],
+        subTitle: [
+          'Alexander Dmitrenko, pilot of the Russian Drift Series',
+          'Photos from our recent events',
+          'Newest videos right from the race track',
+          'Upcoming events with Alex D'
+        ],
+        buttonText: [
+          'Learn more',
+          'Discover',
+          'Discover',
+          'Discover'
+        ],
+        category: [
+          'photos',
+          'videos',
+          'calendar',
+          'bio'
+        ]
+      }
+    },
+
+    methods: {
+      nextSlide () {
+        if (this.count < 3) {
+          this.count++;
+        } else {
+          this.count = 0;
+        }
       }
     },
 
     mounted () {
-      this.$root.$on('nextSlide', () => {
-        if (this.count < 4) {
-          this.count++;
-        } else {
-          this.count = 1;
-        }
-      })
     }
   }
 </script>
@@ -78,16 +124,58 @@
     height: 100%;
     display: flex;
     justify-content: space-between;
+    color: #fff;
+    text-transform: uppercase;
 
-    &_left {
-      width: 60%;
+    &-left {
+      flex: 0 0 60%;
+      display: flex;
+      align-items: flex-end;
+      padding-left: 100px;
+      font-family: 'DIN Condensed';
+
+      &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 145px;
+      }
+
+      .big-text {
+        font-family: 'Ailerons';
+        font-size: 80px;
+        line-height: 80px;
+        width: 300px;
+        margin-bottom: 40px;
+        margin-left: -9px;
+      }
+
+      .slide-descr {
+        font-size: 24px;
+        max-width: 250px;
+        margin-bottom: 40px;
+      }
+
+      .button__wrapper {
+        margin-right: 120px;
+        width: 100px;
+      }
+
+      .next-slide-button {
+        font-size: 20px;
+      }
+
+      .slide-name {
+        font-size: 36px;
+        margin-bottom: 50px;
+      }
     }
 
-    &__right {
+    &-right {
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      width: 40%;
+      flex: 0 0 40%;
     }
   }
 
@@ -109,7 +197,6 @@
     width: 60%;
     height: 100%;
     overflow: hidden;
-    padding-left: 100px;
     z-index: 0;
   }
 
@@ -120,7 +207,6 @@
     top: 0;
     height: 100%;
     background: #683FFF;
-    padding-right: 100px;
     z-index: 0;
   }
 
@@ -155,45 +241,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-  }
-  .main-slider-container-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .main-slider-container-img-1 {
-    width: 100%;
-    background: url('../assets/images/car2.png') no-repeat;
     background-size: cover;
-    background-position: 7% 0;
-  }
-
-  .main-slider-container-img-2 {
-    width: 100%;
-    background: url('../assets/images/car1.png') no-repeat;
-    background-size: cover;
-    background-position: 7% 0;
-  }
-
-  .main-slider-container-img-3 {
-    width: 100%;
-    background: url('../assets/images/car3.png') no-repeat;
-    background-size: cover;
-    background-position: 7% 0;
-  }
-
-  .main-slider-container-img-4 {
-    width: 100%;
-    background: url('../assets/images/car4.png') no-repeat;
-    background-size: cover;
-    background-position: 7% 0;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   .fade-enter-active, .fade-more-leave-active {
-    transition: opacity .3s;
+    transition: opacity 1s;
   }
 
   .fade-enter, .fade-leave-to {
@@ -203,12 +257,21 @@
 
   .slider {
     display: flex;
+  }
 
-      &-arrow {
+    slider-arrow {
+      position: relative;
       cursor: pointer;
       height: 100%;
       width: auto;
+      z-index: 3;
     }
+
+  .slider-image__wrapper {
+    position: relative;
+    overflow: hidden;
+    width: inherit;
+    height: 200px;
   }
 
   .product {
@@ -234,25 +297,67 @@
     }
   }
 
-  //////////// 
+  .slide-enter-active, .slide-leave-active {
+    transition: transform 5s;
+  }
+
+  .slide-leave-to {
+    transform: translateX(-100%);
+  }
+
+  .slide-enter {
+    transform: translateX(100%);
+  }
+  //////////// MEDIA QUERRIES ////////////////
   @media (max-width: 1024px) {
+    .main-slider-container {
+      width: 100%;
+      min-height: auto;
+    }
+
     .right-side {
       display: none;
     }
 
-    .content__right {
+    .content-right {
+      position: relative;
       display: none;
+      overflow: hidden;
     }
+    .content-left {
+      // justify-content: center;
 
+    }
     .left-side {
       width: 100%;
     }
   }
 
-  @media (max-width: 1024px) {
-    .main-slider-container {
-      width: 100%;
-      min-height: auto;
+  @media (max-width: 768px) {
+    .content-left {
+
+      &__wrapper {
+        margin-bottom: 250px;
+      }
+      .button__wrapper {
+        margin-right: 19px;
+      }
+    }
+  }
+
+  @media (max-width: 425px) {
+    .content-left {
+      padding-left: 50px;
+      &__wrapper {
+        margin-bottom: 100px;
+      }
+      
+      .big-text {
+        width: 230px;
+      }
+      .button__wrapper {
+        display: none;
+      }
     }
   }
 </style>

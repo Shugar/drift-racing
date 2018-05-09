@@ -281,6 +281,7 @@
 
   @media (max-width: 425px) {
     .header {
+      position: absolute;
       padding: 0 50px;
     }
 
@@ -290,6 +291,7 @@
 
     .logo {
       margin-top: -20px;
+      width: 80px;
     }
 
     .nav {

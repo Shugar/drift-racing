@@ -3,10 +3,10 @@
     <div class="slider">
       <div class="slider-foto-wrapper">
         <transition name="fade">
-          <img src="@/assets/images/motorshow-img.png" key="1" v-if="count === 1" class="slider-foto">
+          <!-- <img src="@/assets/images/motorshow-img.png" key="1" v-if="count === 1" class="slider-foto">
           <img src="@/assets/images/t-shirt-white.png" key="2" v-if="count === 2" class="slider-foto">
           <img src="@/assets/images/pink-car.png" key="3" v-if="count === 3" class="slider-foto">
-          <img src="@/assets/images/t-shirt-black.png" key="4" v-if="count === 4" class="slider-foto">
+          <img src="@/assets/images/t-shirt-black.png" key="4" v-if="count === 4" class="slider-foto"> -->
         </transition>
       </div>
       <div class="slider-arrow__wrapper" @click="nextSlide">
