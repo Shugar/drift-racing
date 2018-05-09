@@ -47,12 +47,12 @@
       <div class="right mobile">
         <div class="previous-article">
           <div class="previous">
-            <div class="previous-image" :style="{background: `url(/calendar/event-2.png)`}" />
+            <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
             <div class="previous-date">JAN 30 — 2016</div>
             <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
           </div>
           <div class="previous">
-            <div class="previous-image" :style="{background: `url(/calendar/event-3.png)`}" />
+            <div class="previous-image" :style="{background: `url(/calendar/event-3.png) no-repeat center / cover`}" />
             <div class="previous-date">JAN 30 — 2016</div>
             <div class="previous-subtitle">3 stage RDS Grand prix 2018 Nizhny Novgorod</div>
           </div>
@@ -72,12 +72,12 @@
       <div class="right">
         <div class="previous-article">
           <div class="previous">
-            <div class="previous-image" :style="{background: `url(/calendar/event-2.png)`}" />
+            <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover `}" />
             <div class="previous-date">JAN 30 — 2016</div>
             <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
           </div>
           <div class="previous">
-            <div class="previous-image" :style="{background: `url(/calendar/event-3.png)`}" />
+            <div class="previous-image" :style="{background: `url(/calendar/event-3.png) no-repeat center / cover`}" />
             <div class="previous-date">JAN 30 — 2016</div>
             <div class="previous-subtitle">3 stage RDS Grand prix 2018 Nizhny Novgorod</div>
           </div>
@@ -425,16 +425,13 @@
     .container {
       display: block;
     }
-    
+
     .mobile {
       display: block;
     }
 
     .tags {
       display: none;
-      position: relative;
-      top: 0;
-      left: 0;
     }
 
     .title-wrapper {
@@ -445,6 +442,10 @@
         display: flex;
         flex-flow: row nowrap;
         align-items: flex-start;
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-left: 10px;
 
         &-item {
           &:first-child {
