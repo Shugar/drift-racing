@@ -1,7 +1,23 @@
 <template>
   <section class="calendar">
     <Header />
-    <div class="title">calendar</div>
+    <div class="title-wrapper">
+      <div class="title">calendar</div>
+      <div class="tags">
+        <div class="tags-item">
+          <div class="tags-title">championships</div>
+          <div class="tag" v-for="(tag, index) in tags.slice(0, 3)" :key="index" @click="filterByTag(tag)">
+            #{{tag}}
+          </div>
+        </div>
+        <div class="tags-item">
+          <div class="tags-title">country</div>
+          <div class="tag" v-for="(tag, index) in tags.slice(3, 6)" :key="index" @click="filterByTag(tag)">
+            #{{tag}}
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container">
       <div class="left">
         <div class="tags">
@@ -27,6 +43,20 @@
           </div>
           <div class="title">1 stage Grand Prix RDS 2018 Moscow</div>
           <div class="text">We are waiting for you on May 5 and 6 at the Moscow Raceway with the whole family.</div>
+        </div>
+      <div class="right mobile">
+        <div class="previous-article">
+          <div class="previous">
+            <div class="previous-image" :style="{background: `url(/calendar/event-2.png)`}" />
+            <div class="previous-date">JAN 30 — 2016</div>
+            <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
+          </div>
+          <div class="previous">
+            <div class="previous-image" :style="{background: `url(/calendar/event-3.png)`}" />
+            <div class="previous-date">JAN 30 — 2016</div>
+            <div class="previous-subtitle">3 stage RDS Grand prix 2018 Nizhny Novgorod</div>
+          </div>
+        </div>
         </div>
         <div class="article">
           <div class="img-fullwidth">
@@ -153,6 +183,18 @@
     align-content: center;
   }
 
+  .title-wrapper {
+    padding: 0 100px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: center;
+
+    .tags {
+      display: none;
+    }
+  }
+
   .left {
     padding-left: 220px;
     padding-bottom: 100px;
@@ -169,11 +211,17 @@
     position: relative;
   }
 
+  .mobile {
+    display: none;
+  }
+
   .article {
     max-width: 435px;
+    margin-bottom: 40px;
 
     .title {
       padding: 0;
+      margin-bottom: 10px;
     }
   }
 
@@ -228,7 +276,7 @@
 
   .tags {
       position: fixed;
-      top: 280px;
+      top: 310px;
       left: 100px;
     }
 
@@ -261,8 +309,8 @@
   }
 
   .title {
-    margin-bottom: 10px;
-    padding-left: 320px;
+    margin-bottom: 30px;
+    padding-left: 220px;
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -377,6 +425,39 @@
     .container {
       display: block;
     }
+    
+    .mobile {
+      display: block;
+    }
+
+    .tags {
+      display: none;
+      position: relative;
+      top: 0;
+      left: 0;
+    }
+
+    .title-wrapper {
+      justify-content: space-between;
+      margin-bottom: 40px;
+
+      .tags {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-start;
+
+        &-item {
+          &:first-child {
+            margin-bottom: 0;
+            margin-right: 60px;
+          }
+        }
+      }
+    }
+
+    .title {
+      padding: 0;
+    }
 
     .left {
       padding-left: 0;
@@ -422,6 +503,25 @@
       padding: 0 50px;
     }
 
+    .title-wrapper {
+      padding: 0 50px;
+      flex-flow: column nowrap;
+      
+      .tags {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        &-item {
+          &:first-child {
+            margin-bottom: 0;
+            margin-right: 30px;
+          }
+        }
+      }
+    }
+
     .back {
       display: block;
       position: initial;
@@ -429,7 +529,7 @@
     }
 
     .title {
-      margin-bottom: 10px;
+      margin-bottom: 30px;
       font-family: 'DIN Condensed', sans-serif;
       font-style: normal;
       font-weight: bold;
