@@ -1,57 +1,55 @@
 <template>
   <section class="calendar">
     <Header />
+    <div class="title">calendar</div>
     <div class="container">
       <div class="left">
-        <div class="title">Sochi, closing of the<br /> season 2017 RDS</div>
         <div class="tags">
           <div class="tags-item">
-            <div class="tags-title">TAGS</div>
-            <div class="tag" v-for="(tag, index) in tags" :key="index" @click="filterByTag(tag)">
+            <div class="tags-title">championships</div>
+            <div class="tag" v-for="(tag, index) in tags.slice(0, 3)" :key="index" @click="filterByTag(tag)">
+              #{{tag}}
+            </div>
+          </div>
+          <div class="tags-item">
+            <div class="tags-title">country</div>
+            <div class="tag" v-for="(tag, index) in tags.slice(3, 6)" :key="index" @click="filterByTag(tag)">
               #{{tag}}
             </div>
           </div>
         </div>
         <div class="article">
+          <div class="img-fullwidth">
+            <img src="/calendar/event-1.png" />
+          </div>
           <div class="info">
             <div class="date">DEC 9 — 2017</div>
-            <!-- <div class="tags">
-              <div class="tag">#EVENTS</div>
-              <div class="tag">#RDS2018</div>
-            </div> -->
           </div>
-          <div class="subtitle">Donec a tellus malesuada, gravida ligula sit amet, scelerisque neque.</div>
-          <div class="text">Duis eget efficitur ipsum, eget porttitor sapien. Proin justo est, tempus in sollicitudin ut, hendrerit non metus. Fusce volutpat mattis lorem, ac posuere lorem consequat accumsan.</div>
-          <div class="text">Praesent tempor, turpis sit amet auctor placerat, eros nisl viverra lorem, vel laoreet velit metus vel augue.</div>
+          <div class="title">1 stage Grand Prix RDS 2018 Moscow</div>
+          <div class="text">We are waiting for you on May 5 and 6 at the Moscow Raceway with the whole family.</div>
+        </div>
+        <div class="article">
           <div class="img-fullwidth">
-            <img src="/news/news-1.jpg" />
+            <img src="/calendar/event-1.png" />
           </div>
+          <div class="info">
+            <div class="date">DEC 9 — 2017</div>
+          </div>
+          <div class="title">1 stage Grand Prix RDS 2018 Moscow</div>
+          <div class="text">We are waiting for you on May 5 and 6 at the Moscow Raceway with the whole family.</div>
         </div>
       </div>
       <div class="right">
         <div class="previous-article">
-          <div class="previous-title">Previous news</div>
           <div class="previous">
-            <div class="previous-image" />
+            <div class="previous-image" :style="{background: `url(/calendar/event-2.png)`}" />
             <div class="previous-date">JAN 30 — 2016</div>
-            <div class="previous-subtitle">Life of championships<br> Chaper 5</div>
-            <div class="previous-preview">
-              Phasellus semper vehicula ornare. Donec ante ipsum, maximus ac auctor in, dapibus nec lorem.
-            </div>
-            <div class="previous-tags">
-              <div class="previous-tag">#VIDEO</div>
-            </div>
+            <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
           </div>
           <div class="previous">
-            <div class="previous-image" />
+            <div class="previous-image" :style="{background: `url(/calendar/event-3.png)`}" />
             <div class="previous-date">JAN 30 — 2016</div>
-            <div class="previous-subtitle">Life of championships<br> Chaper 5</div>
-            <div class="previous-preview">
-              Phasellus semper vehicula ornare. Donec ante ipsum, maximus ac auctor in, dapibus nec lorem.
-            </div>
-            <div class="previous-tags">
-              <div class="previous-tag">#VIDEO</div>
-            </div>
+            <div class="previous-subtitle">3 stage RDS Grand prix 2018 Nizhny Novgorod</div>
           </div>
         </div>
       </div>
@@ -71,42 +69,42 @@
             title: 'Sochi, closing of the<br>season 2017 RDS',
             preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             image: '/news/news-1.jpg',
-            hashtags: ['events', 'rds2018']
+            hashtags: ['D1 Grand prix']
           },
           {
             date: 'DEC 7 — 2017',
             title: 'MotorShow Bologna.<br>Italy 2-10 December',
             preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             image: '',
-            hashtags: ['garage']
+            hashtags: ['RDS 2018']
           },
           {
             date: 'JAN 30 — 2016',
             title: 'Life of championships<br>Chaper 5',
             preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             image: '/news/news-2.jpg',
-            hashtags: ['video']
+            hashtags: ['Formula D']
           },
           {
             date: 'DEC 1 — 2017',
             title: 'Life of championships<br>moscow raceway',
             preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             image: '',
-            hashtags: ['events', 'rds2018']
+            hashtags: ['Russia']
           },
           {
             date: 'DEC 3 — 2017',
             title: 'Drift all<br>the time you got!',
             preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             image: '/news/news-3.jpg',
-            hashtags: ['events', 'rds2018']
+            hashtags: ['Japan']
           },
           {
             date: 'DEC 9 — 2017',
             title: 'Sochi, closing of the season 2017 RDS',
             preview: '',
             image: '',
-            hashtags: ['events', 'rds2018']
+            hashtags: ['USA']
           },
         ]
       }
@@ -173,6 +171,10 @@
 
   .article {
     max-width: 435px;
+
+    .title {
+      padding: 0;
+    }
   }
 
   .previous-article {
@@ -197,17 +199,20 @@
 
   .tags {
     display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    &-item {
+      &:first-child {
+        margin-bottom: 40px;
+      }
+    }
   }
 
   .date {
     margin-right: 40px;
   }
 
-  .tag:first-child {
-    margin-right: 10px;
-  }
 
   .date,
   .tag,
@@ -257,6 +262,7 @@
 
   .title {
     margin-bottom: 10px;
+    padding-left: 320px;
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -290,6 +296,7 @@
     height: auto;
     width: 100%;
     max-width: 100%;
+    margin-bottom: 20px;
   }
 
   .previous-title {
@@ -311,7 +318,7 @@
     margin-bottom: 20px;
     height: 169px;
     width: 100%;
-    background: url('/news/news-3.jpg') no-repeat center / cover;
+    // background: url('/news/news-2.jpg') no-repeat center / cover;
   }
 
   .previous-date {
