@@ -41,7 +41,7 @@
               </div>
             </div>
             <div class="subtitle-wrapper">
-              <transition name="subtitle-animation">
+              <transition name="subtitle-animation" mode="out-in">
                 <div class="subtitle"
                   v-if="count === index"
                   v-for="(slide, index) in dummyLeftSlider"
@@ -58,7 +58,47 @@
       </div>
 
       <div class="right">
-
+        <div class="small-slider">
+          <transition name="small-slider-animation">
+            <div class="small-slider-row"
+              v-if="index === count"
+              v-for="(item, index) in dummyRightSlider"
+              :key="index">
+              <div class="small-slider-text">
+                <div class="small-slider-text-inner" v-html="item.title" />
+              </div>
+              <div class="small-slider-date"
+                v-if="index === count && (item.type === 'show' || item.type === 'news')"
+                v-for="(item, index) in dummyRightSlider"
+                :key="index">
+                <div class="small-slider-date-inner">
+                  {{ item.date }}
+                </div>
+              </div>
+            </div>
+            <div class="small-slider-row-2"
+                v-if="index === count"
+                v-for="(item, index) in dummyRightSlider"
+                :key="index">
+            </div>
+            <div class="small-slider-row-3"
+                v-if="index === count"
+                v-for="(item, index) in dummyRightSlider"
+                :key="index">
+              <div class="small-slider-gray">
+                <div class="small-slider-white-inner" v-if="type === 'show' || type === 'news'">
+                  {{ item.date }}
+                </div>
+                <div class="small-slider-gray-inner" v-if="index === count && type === 'store'">
+                  {{ item.style }}
+                </div>
+                <div class="small-slider-price" v-if="index === count && type === 'store'">
+                  {{ item.price }}
+                </div>
+              </div>
+            </div>
+          </transition>
+        </div>
       </div>
     </div>
     <div class="footer-wrapper">
@@ -104,14 +144,31 @@
             title: 'Motorshow',
             place: 'BOLOGNA. Italy',
             date: '2-10 December 2017',
-            publishing_date: 'DEC 9 — 2017'
+            publishing_date: 'DEC 9 — 2017',
+            image: '/slider/left-slider0.png'
           },
           {
             type: 'store',
             title: 'DRIFT IS MY THERAPY',
             category: 'MEN T-SHIRT',
             style: 'white',
-            price: 15
+            price: 15,
+            image: '/slider/left-slider1.png'
+          },
+          {
+            type: 'news',
+            title: 'SOCHI. Closing<br> of the season',
+            date: 'OCT 12 — 2017',
+            tags: ['2017 RDS'],
+            image: '/slider/left-slider2.png'
+          },
+          {
+            type: 'store',
+            title: 'FUCKING HERO STYLE',
+            category: 'MEN T-SHIRT',
+            style: 'BLACK',
+            price: 15,
+            image: '/slider/left-slider3.png'
           }
         ]
       }
@@ -129,6 +186,10 @@
       nextSlide () {
         return this.count === 3 ? this.count = 0 : this.count++
       }
+    },
+
+    mounted () {
+      setInterval(() => this.nextSlide(), 4000)
     }
   }
 </script>
