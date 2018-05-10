@@ -7,7 +7,7 @@
           <div v-for="(slide, index) in dummyLeftSlider"
             class="left-background"
             v-if="count === index"
-            :style="{background: `url(/home/car${index + 1}.png)`}"
+            :style="{background: `url(/home/car${index + 1}.png) no-repeat center / cover`}"
             :key="index" />
         </transition>
 
@@ -229,9 +229,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     z-index: 0;
 
     &:after {

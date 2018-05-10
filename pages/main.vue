@@ -5,7 +5,7 @@
       <transition name="fade">
         <div v-for="(item, index) in subTitle"
           class="main-background"
-          :style="{background: `url(/home/car${index+1}.png) `}"
+          :style="{background: `url(/home/car${index+1}.png) no-repeat center / cover`}"
           v-if="count === index"
           :key="index" />
       </transition>
@@ -241,9 +241,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
   }
 
   .fade-enter-active, .fade-more-leave-active {
