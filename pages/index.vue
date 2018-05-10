@@ -3,7 +3,7 @@
     <Header type="main" />
     <div class="container">
       <div class="left">
-        <transition name="fade">
+        <transition name="fade" mode="out-in">
           <div v-for="(slide, index) in dummyLeftSlider"
             class="left-background"
             v-if="count === index"
@@ -15,30 +15,33 @@
           <div class="next">
             <div class="next-button" @click="nextSlide()">NEXT UP</div>
             <div class="next-category">
+
               <transition name="category-animation">
+
                 <div class="next-category-inner"
                   v-if="count === index"
                   v-for="(slide, index) in dummyLeftSlider"
                   :key="index">
-                  {{ dummyLeftSlider[count].category }}
+                    {{ dummyLeftSlider[count].category }}
                 </div>
+
               </transition>
+
             </div>
           </div>
 
           <div class="text">
             <div class="title" v-for="(slide, index) in dummyLeftSlider"
-              v-if="count === index"
               :key="index">
-              <div class="title-inner"
-                v-for="(title, index) in slide.title"
-                :key="index">
-                <transition name="title-animation">
-                  <div class="title-absolute">
-                    {{ title }}
-                  </div>
-                </transition>
-              </div>
+                <div class="title-inner"
+                  v-for="(title, i) in slide.title"
+                  :key="i">
+                  <transition name="category-animation">
+                    <div v-if="count === index" class="title-absolute">
+                        {{ title }}
+                    </div>
+                  </transition>
+                </div>
             </div>
             <div class="subtitle-wrapper">
               <transition name="subtitle-animation" mode="out-in">
@@ -196,11 +199,11 @@
 
 <style lang="scss" scoped>
   .fade-enter-active, .fade-more-leave-active {
-    transition: opacity .3s ease;
+    transition: opacity .5s ease;
   }
 
   .fade-enter, .fade-leave-to {
-    opacity: 0.9;
+    opacity: 0.8;
   }
 
   .index {
@@ -328,15 +331,16 @@
   }
 
   .title-animation-enter-active, .title-animation-leave-active {
-    transition: transform .3s;
+    transition: transform .2s, opacity .2s ease;;
   }
 
   .title-animation-leave-to {
-    transform: translateY(-90px);
+    transform: translateY(100%);
+    opacity: 0;
   }
 
   .title-animation-enter {
-    transform: translateY(90px);
+    transform: translateY(-100%);
   }
 
   .title-inner {
@@ -356,6 +360,7 @@
 
   .title-absolute {
     position: absolute;
+    overflow: hidden;
     top: -37px;
     left: 0;
   }
