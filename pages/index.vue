@@ -32,11 +32,12 @@
 
           <div class="text">
             <div class="title" v-for="(slide, index) in dummyLeftSlider"
+              :style="{display: count === index ? 'block' : 'none'}"
               :key="index">
                 <div class="title-inner"
                   v-for="(title, i) in slide.title"
                   :key="i">
-                  <transition name="category-animation">
+                  <transition name="category-animation" mode="out-in">
                     <div v-if="count === index" class="title-absolute">
                         {{ title }}
                     </div>
