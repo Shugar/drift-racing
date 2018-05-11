@@ -4,12 +4,12 @@
     <div class="title-wrapper">
       <div class="tags">
         <div class="tags-item">
-          <div class="tag"><nuxt-link to="/calendar/" >back to calendar</nuxt-link></div>
+          <div class="tag"><nuxt-link to="/calendar/" >back to videos</nuxt-link></div>
         </div>
       </div>
     </div>
     <div class="container">
-      <div class="left">
+      <!-- <div class="left">
         <div class="tags">
           <div class="tags-item">
             <div class="tag"><nuxt-link to="/calendar/">back to calendar</nuxt-link></div>
@@ -26,7 +26,7 @@
           </div>
           <div class="text">Duis eget efficitur ipsum, eget porttitor sapien. Proin justo est, tempus in sollicitudin ut, hendrerit non metus. Fusce volutpat mattis lorem, ac posuere lorem consequat accumsan.</div>
         </div>
-      <!-- <div class="right mobile">
+       <div class="right mobile">
         <div class="previous-article">
           <div class="previous">
             <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
@@ -34,8 +34,8 @@
             <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
           </div>
         </div>
+      </div> 
       </div> -->
-      </div>
       <div class="right">
         <div class="previous-article">
           <div class="previous">
