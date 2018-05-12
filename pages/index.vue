@@ -62,59 +62,40 @@
       </div>
 
       <div class="right">
-        <div class="small-slider">
+        <div class="image-slider">
           <transition name='subtitle-animation'>
-            <div>
-              <div class="small-slider-left"
-                v-for="(item, index) in dummyRightSlider"
-                v-if="index === count"
-                :key="index">
-                <div class="small-slider-text" v-html="item.title"/>
-                <div class="small-slider-place" v-if="item.type === 'show'" v-html="item.place"/>
-                <div class="small-slider-category" v-if="item.type === 'store'" v-html="item.category"/>
-                <div class="small-slider-style" v-if="item.type === 'store'" v-html="item.style"/>
-                <div class="small-slider-event-date" v-if="item.type === 'show' || item.type === 'news'" v-html="item.date"/>
-              </div>
-              <div class="small-slider-right"
-                v-for="(item, index) in dummyRightSlider"
-                v-if="index === count"
-                :key="index">
-                <div class="small-slider-date" v-if="item.type === 'show' || item.type === 'news'" v-html="item.publishing_date"/>
-                <div class="small-slider-price" v-if="item.type === 'store'" v-html="item.price"/>
-              </div>
-            </div>
-          </transition>
-        </div>
-
-
-        <!-- <div class="small-slider">
-          <transition name="subtitle-animation">
-            <div class="small-slider-row"
+            <img class="image-slider-item" v-for="(item, index) in dummyRightSlider" 
+              :src="`${item.image}`" 
               v-if="index === count"
-              v-for="(item, index) in dummyRightSlider"
-              :key="index">
-              <div class="small-slider-text">
-                <div>
-                  <div class="small-slider-text-inner" v-html="item.title" />
-                  <div class="small-slider-text-inner" v-html="item.place" />
-                  <div class="small-slider-style-inner" v-html="item.style" v-if="item.type === 'store'" />
-                </div>
-              </div>
-              <div class="small-slider-style-price-inner">
-                <div class="small-slider-date"
-                  v-if="index === count && (item.type === 'show' || item.type === 'news')"
+              :key="index" />
+            </transition>
+          <div class="arrow" />
+        </div>
+        <div class="small-slider">
+            <div>
+              <transition name='subtitle-animation'>
+                <div class="small-slider-left"
+                  v-for="(item, index) in dummyRightSlider"
+                  v-if="index === count"
                   :key="index">
-                    {{ item.date }}
+                  <div class="small-slider-text" v-html="item.title"/>
+                  <div class="small-slider-place" v-if="item.type === 'show'" v-html="item.place"/>
+                  <div class="small-slider-category" v-if="item.type === 'store'" v-html="item.category"/>
+                  <div class="small-slider-style" v-if="item.type === 'store'" v-html="item.style"/>
+                  <div class="small-slider-event-date" v-if="item.type === 'show' || item.type === 'news'" v-html="item.date"/>
                 </div>
-                <div class="small-slider-price-inner" 
-                  v-if="index === count && item.type === 'store'"
+              </transition>
+              <transition name='subtitle-animation'>
+                <div class="small-slider-right"
+                  v-for="(item, index) in dummyRightSlider"
+                  v-if="index === count"
                   :key="index">
-                  {{ item.price }}
+                  <div class="small-slider-date" v-if="item.type === 'show' || item.type === 'news'" v-html="item.publishing_date"/>
+                  <div class="small-slider-price" v-if="item.type === 'store'" v-html="item.price"/>
                 </div>
-              </div>
+              </transition>
             </div>
-          </transition>
-        </div> -->
+        </div>
       </div>
     </div>
     <div class="footer-wrapper">
@@ -161,7 +142,7 @@
             place: 'BOLOGNA. Italy',
             date: '2-10 December 2017',
             publishing_date: 'DEC 9 — 2017',
-            image: '/slider/left-slider0.png'
+            image: '/home/left-slider0.png'
           },
           {
             type: 'store',
@@ -169,13 +150,13 @@
             category: 'MEN T-SHIRT',
             style: 'white',
             price: '$ 15',
-            image: '/slider/left-slider1.png'
+            image: '/home/left-slider1.png'
           },
           {
             type: 'news',
             title: 'SOCHI. Closing<br> of the season <br> 2017 RDS',
             publishing_date: 'OCT 12 — 2017',
-            image: '/slider/left-slider2.png'
+            image: '/home/left-slider2.png'
           },
           {
             type: 'store',
@@ -183,7 +164,7 @@
             category: 'MEN T-SHIRT',
             style: 'BLACK',
             price: '$ 15',
-            image: '/slider/left-slider3.png'
+            image: '/home/left-slider3.png'
           }
         ]
       }
@@ -211,11 +192,11 @@
 
 <style lang="scss" scoped>
   .fade-enter-active, .fade-more-leave-active {
-    transition: opacity .5s ease;
+    transition: opacity 1s ease;
   }
 
   .fade-enter, .fade-leave-to {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 
   .index {
@@ -321,7 +302,7 @@
   }
 
   .category-animation-enter-active, .category-animation-leave-active {
-    transition: transform .3s;
+    transition: transform .5s;
   }
 
   .category-animation-leave-to {
@@ -343,7 +324,7 @@
   }
 
   .title-animation-enter-active, .title-animation-leave-active {
-    transition: transform .2s, opacity .2s ease;;
+    transition: transform .4s, opacity .4s ease;;
   }
 
   .title-animation-leave-to {
@@ -400,7 +381,7 @@
   }
 
   .subtitle-animation-enter-active, .subtitle-animation-leave-active {
-    transition: transform .2s, opacity .2s ease;;
+    transition: transform .5s, opacity .5s ease;;
   }
 
   .subtitle-animation-leave-to {
@@ -443,7 +424,8 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-end;
-    padding-bottom: 120px;
+    padding-bottom: 132px;
+    padding-left: 100px;
   }
 
   .small-slider {
@@ -483,6 +465,7 @@
     }
     .small-slider-price {
       align-self: flex-end;
+      margin-bottom: -9px;
     }
   }
 
@@ -495,5 +478,30 @@
     width: 100%;
     position: absolute;
     bottom: 60px;
+  }
+
+  .image-slider {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+    width: 380px;
+    margin-bottom: 40px;
+  }
+
+  .arrow {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 60px;
+    background: url('/home/arrow-right.svg') no-repeat center / cover;
+  }
+
+  .image-slider-item {
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 60px);
+    left: 0;
+    top: 0;
   }
 </style>
