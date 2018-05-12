@@ -192,7 +192,7 @@
       height: 28px;
       cursor: pointer;
       background: url("../assets/images/menu-button.svg") no-repeat center / contain;
-      margin-top: 30px;
+      margin-top: 35px;
     }
 
     .checkout {
@@ -296,6 +296,10 @@
 
     .nav {
       display: none;
+    }
+
+    .menu-button {
+      margin-top: 8px;
     }
   }
 </style>

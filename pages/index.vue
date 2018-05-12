@@ -66,7 +66,7 @@
           <transition name='small-slider-animation'>
             <img class="image-slider-item" v-for="(item, index) in dummyRightSlider" 
               :src="`${item.image}`" 
-              v-if="index === count"
+              v-if="index === rightCount"
               :key="index" />
             </transition>
           <div class="arrow" />
@@ -76,7 +76,7 @@
               <transition name='small-slider-animation'>
                 <div class="small-slider-left"
                   v-for="(item, index) in dummyRightSlider"
-                  v-if="index === count"
+                  v-if="index === rightCount"
                   :key="index">
                   <div class="small-slider-text" v-html="item.title"/>
                   <div class="small-slider-place" v-if="item.type === 'show'" v-html="item.place"/>
@@ -88,7 +88,7 @@
               <transition name='small-slider-animation'>
                 <div class="small-slider-right"
                   v-for="(item, index) in dummyRightSlider"
-                  v-if="index === count"
+                  v-if="index === rightCount"
                   :key="index">
                   <div class="small-slider-date" v-if="item.type === 'show' || item.type === 'news'" v-html="item.publishing_date"/>
                   <div class="small-slider-price" v-if="item.type === 'store'" v-html="item.price"/>
@@ -109,6 +109,7 @@
     data () {
       return {
         count: 0,
+        rightCount: 0,
         dummyLeftSlider: [
           {
             title: ['Drift', 'Is my', 'Therapy'],
@@ -180,12 +181,18 @@
 
     methods: {
       nextSlide () {
-        return this.count === 3 ? this.count = 0 : this.count++
+        return this.count === 3 ? this.count = 0 : this.count++,
+      },
+      nextSlideRight () {
+        return this.rightCount === 3 ? this.rightCount = 0 : this.rightCount++
       }
     },
 
     mounted () {
-      setInterval(() => this.nextSlide(), 4000)
+      setInterval(() => this.nextSlide(), 4000),
+      setTimeout(() => {
+        setInterval(() => this.nextSlideRight(), 4000)
+      }, 2000)
     }
   }
 </script>
@@ -200,7 +207,9 @@
   }
 
   .index {
+    position: relative;
     height: 100vh;
+    min-height: 700px;
   }
 
   .container {
@@ -340,14 +349,14 @@
     position: relative;
     width: 100%;
     display: block;
-    height: 65px;
+    height: 70px;
     overflow: hidden;
     margin-bottom: 40px;
 
     font-family: 'Ailerons', sans-serif;
     color: #FFF;
     font-size: 90px;
-    line-height: 110px;
+    line-height: 115px;
     letter-spacing: 0px;
   }
 
@@ -488,6 +497,7 @@
   }
 
   .footer-wrapper {
+    z-index: 2;
     width: 100%;
     position: absolute;
     bottom: 60px;

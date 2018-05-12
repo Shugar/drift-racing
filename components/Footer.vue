@@ -71,6 +71,16 @@
     align-items: center;
   }
 
+  .socials-youtube,
+  .socials-facebook,
+  .socials-instagram {
+    transition: background-color .3s ease;
+    border-radius: 4.5px;
+    &:hover {
+      background-color: #673fff;
+    }
+  }
+
   .socials-youtube {
     background: url('~/assets/images/youtube.svg') no-repeat center / contain;
     width: 20px;
