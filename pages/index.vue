@@ -199,11 +199,11 @@
 
 <style lang="scss" scoped>
   .fade-enter-active, .fade-more-leave-active {
-    transition: opacity 1s ease;
+    transition: opacity .5s ease;
   }
 
   .fade-enter, .fade-leave-to {
-    opacity: 0.7;
+    opacity: 0.8;
   }
 
   .index {
