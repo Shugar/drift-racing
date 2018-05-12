@@ -20,15 +20,24 @@
             <div class="date">DEC 9 — 2017</div>
           </div>
           <div class="title">1 stage Grand Prix RDS 2018 Moscow</div>
-          <div class="text">We are waiting for you on May 5 and 6 at the Moscow Raceway with the whole family.</div>
           <div class="video-wrapper">
-            <!-- <img src="/calendar/event-1.png" /> -->
             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/3MkSDObecV0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
           <div class="text">Duis eget efficitur ipsum, eget porttitor sapien. Proin justo est, tempus in sollicitudin ut, hendrerit non metus. Fusce volutpat mattis lorem, ac posuere lorem consequat accumsan.</div>
         </div>
        <div class="right mobile">
         <div class="previous-article">
+          <div class="previous-title">Previous videos</div>
+          <div class="previous">
+            <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
+            <div class="previous-date">JAN 30 — 2016</div>
+            <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
+          </div>
+          <div class="previous">
+            <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
+            <div class="previous-date">JAN 30 — 2016</div>
+            <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
+          </div>
           <div class="previous">
             <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
             <div class="previous-date">JAN 30 — 2016</div>
@@ -205,6 +214,10 @@
     max-width: 350px;
   }
 
+  .previous-title {
+    margin-bottom: 20px;
+  }
+
   .back {
     position: absolute;
     left: 100px;
@@ -293,7 +306,7 @@
 
   .subtitle {
     margin-bottom: 20px;
-    font-family: 'DIN Pro', sans-serif;
+    font-family: 'DIN Pro Medium', sans-serif;
     font-style: normal;
     font-weight: bold;
     line-height: 37px;
@@ -303,12 +316,12 @@
 
   .text {
     margin-bottom: 20px;
-    font-family: 'DIN Pro', sans-serif;
+    font-family: 'DIN Pro Medium', sans-serif;
     font-style: normal;
     font-weight: 500;
     line-height: 28px;
     font-size: 18px;
-    max-width: 440px;
+    max-width: 480px;
     color: rgba(255, 255, 255, 0.8);
   }
 
@@ -365,7 +378,7 @@
 
   .previous-preview {
     margin-bottom: 20px;
-    font-family: 'DIN Pro', sans-serif;
+    font-family: 'DIN Pro Medium', sans-serif;
     font-style: normal;
     font-weight: 500;
     line-height: 28px;
@@ -522,7 +535,7 @@
     }
 
     .subtitle {
-      font-family: 'DIN Pro', sans-serif;
+      font-family: 'DIN Pro Medium', sans-serif;
       font-style: normal;
       font-weight: bold;
       line-height: 28px;

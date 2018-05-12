@@ -292,7 +292,7 @@
 
   .subtitle {
     margin-bottom: 20px;
-    font-family: 'DIN Pro', sans-serif;
+    font-family: 'DIN Pro Medium', sans-serif;
     font-style: normal;
     font-weight: bold;
     line-height: 37px;
@@ -302,7 +302,7 @@
 
   .text {
     margin-bottom: 20px;
-    font-family: 'DIN Pro', sans-serif;
+    font-family: 'DIN Pro Medium', sans-serif;
     font-style: normal;
     font-weight: 500;
     line-height: 28px;
@@ -363,7 +363,7 @@
 
   .previous-preview {
     margin-bottom: 20px;
-    font-family: 'DIN Pro', sans-serif;
+    font-family: 'DIN Pro Medium', sans-serif;
     font-style: normal;
     font-weight: 500;
     line-height: 28px;
@@ -512,7 +512,7 @@
     }
 
     .subtitle {
-      font-family: 'DIN Pro', sans-serif;
+      font-family: 'DIN Pro Medium', sans-serif;
       font-style: normal;
       font-weight: bold;
       line-height: 28px;
