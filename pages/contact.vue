@@ -6,9 +6,9 @@
         <div class="page-title">
           <div>contact</div>
           <div class="city">
-            <div class="city-item active">MOSCOW</div>
-            <div class="city-item">riga</div>
-            <div class="city-item">milano</div>
+            <div class="city-item" :class="{active : currentCity === 'moscow'}" @click="setCurrentCity('moscow')">moscow</div>
+            <div class="city-item" :class="{active : currentCity === 'riga'}" @click="setCurrentCity('riga')">riga</div>
+            <div class="city-item" :class="{active : currentCity === 'milano'}" @click="setCurrentCity('milano')">milano</div>
           </div>
         </div>
         <div class="contact-info">
@@ -34,6 +34,7 @@
   export default {
     data () {
       return {
+        currentCity: 'moscow',
         count: 0,
         dummyLeftSlider: [
           {
@@ -107,6 +108,9 @@
     methods: {
       nextSlide () {
         return this.count === 3 ? this.count = 0 : this.count++
+      },
+      setCurrentCity (city) {
+        return this.currentCity = city
       }
     },
 
