@@ -108,7 +108,7 @@
   export default {
     data () {
       return {
-        count: 3,
+        count: 0,
         dummyLeftSlider: [
           {
             title: ['Drift', 'Is my', 'Therapy'],
@@ -319,7 +319,7 @@
   }
 
   .title {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     width: 100%;
   }
 
@@ -340,14 +340,14 @@
     position: relative;
     width: 100%;
     display: block;
-    min-height: 82px;
+    height: 65px;
     overflow: hidden;
     margin-bottom: 40px;
 
     font-family: 'Ailerons', sans-serif;
     color: #FFF;
-    font-size: 118px;
-    line-height: 120px;
+    font-size: 90px;
+    line-height: 110px;
     letter-spacing: 0px;
   }
 
