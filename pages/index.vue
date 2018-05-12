@@ -63,7 +63,7 @@
 
       <div class="right">
         <div class="image-slider">
-          <transition name='subtitle-animation'>
+          <transition name='small-slider-animation'>
             <img class="image-slider-item" v-for="(item, index) in dummyRightSlider" 
               :src="`${item.image}`" 
               v-if="index === count"
@@ -73,7 +73,7 @@
         </div>
         <div class="small-slider">
             <div>
-              <transition name='subtitle-animation'>
+              <transition name='small-slider-animation'>
                 <div class="small-slider-left"
                   v-for="(item, index) in dummyRightSlider"
                   v-if="index === count"
@@ -85,7 +85,7 @@
                   <div class="small-slider-event-date" v-if="item.type === 'show' || item.type === 'news'" v-html="item.date"/>
                 </div>
               </transition>
-              <transition name='subtitle-animation'>
+              <transition name='small-slider-animation'>
                 <div class="small-slider-right"
                   v-for="(item, index) in dummyRightSlider"
                   v-if="index === count"
@@ -108,7 +108,7 @@
   export default {
     data () {
       return {
-        count: 0,
+        count: 3,
         dummyLeftSlider: [
           {
             title: ['Drift', 'Is my', 'Therapy'],
@@ -324,7 +324,7 @@
   }
 
   .title-animation-enter-active, .title-animation-leave-active {
-    transition: transform .4s, opacity .4s ease;;
+    transition: transform .4s, opacity .2s ease;;
   }
 
   .title-animation-leave-to {
@@ -381,7 +381,7 @@
   }
 
   .subtitle-animation-enter-active, .subtitle-animation-leave-active {
-    transition: transform .5s, opacity .5s ease;;
+    transition: transform .5s, opacity .3s ease;;
   }
 
   .subtitle-animation-leave-to {
@@ -426,6 +426,19 @@
     justify-content: flex-end;
     padding-bottom: 132px;
     padding-left: 100px;
+  }
+
+  .small-slider-animation-enter-active, .small-slider-animation-leave-active {
+    transition: transform .5s ease, opacity .3s ease;
+  }
+
+  .small-slider-animation-leave-to {
+    transform: translateX(110%);
+    opacity: 0;
+  }
+
+  .small-slider-animation-enter {
+    transform: translateX(-110%);
   }
 
   .small-slider {
@@ -503,5 +516,47 @@
     width: calc(100% - 60px);
     left: 0;
     top: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .right {
+      display: none;
+    }
+
+    .left {
+      flex: 0 0 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .slide {
+      padding-bottom: 258px;
+
+      .text {
+        margin-left: 70px;
+      }
+    }
+  }
+
+  @media (max-width: 425px) {
+    .left {
+      padding-left: 50px;
+    }
+
+    .slide {
+      padding-bottom: 110px;
+
+      .text {
+        margin: 0px;
+      }
+    }
+    .title-inner {
+      font-size: 100px;
+      margin-bottom: 30px;
+    }
+
+    .next {
+      display: none;
+    }
   }
 </style>
