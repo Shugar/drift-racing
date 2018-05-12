@@ -181,7 +181,7 @@
 
     methods: {
       nextSlide () {
-        return this.count === 3 ? this.count = 0 : this.count++,
+        return this.count === 3 ? this.count = 0 : this.count++
       },
       nextSlideRight () {
         return this.rightCount === 3 ? this.rightCount = 0 : this.rightCount++
@@ -192,7 +192,7 @@
       setInterval(() => this.nextSlide(), 4000),
       setTimeout(() => {
         setInterval(() => this.nextSlideRight(), 4000)
-      }, 2000)
+      }, 2000);
     }
   }
 </script>
