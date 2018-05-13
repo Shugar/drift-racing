@@ -102,7 +102,7 @@
       </div>
     </div>
     <div class="footer-wrapper">
-      <Footer />
+      <Footer type="main" />
     </div>
   </section>
 </template>

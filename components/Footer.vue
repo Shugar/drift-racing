@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <div class="left">
+    <div class="left" :class="{ mainLeft: type === 'main' }">
       <div class="share">
         SHARE
       </div>
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div class="right">
+    <div class="right" :class="{ mainRight: type === 'main' }">
       <div class="lang">
         RU — EN
       </div>
@@ -22,6 +22,13 @@
     </div>
   </div>
 </template>
+
+
+<script>
+export default {
+  props: ['type']
+}
+</script>
 
 <style lang="scss" scoped>
   .footer {
@@ -55,6 +62,10 @@
     align-items: center;
   }
 
+  .mainLeft {
+    flex: 0 0 55%;
+  }
+
   .right {
     padding-left: 50px;
     flex: 0 0 40%;
@@ -62,6 +73,11 @@
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .mainRight {
+    flex: 0 0 45%;
+    padding-left: 110px;
   }
 
   .socials {

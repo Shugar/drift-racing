@@ -114,6 +114,7 @@
     flex: 0 0 45%;
     padding-left: 60px;
   }
+  
   .logo {
     margin-right: 120px;
     width: 100px;
