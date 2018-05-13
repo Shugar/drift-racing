@@ -109,17 +109,14 @@
 
     .partner {
       margin-right: 0;
-      flex: 0 0 50%;
-
-      &:last-child {
-        margin-top: 60px;
-      }
+      flex: 0 0 51%;
+      margin-top: 60px;
     }
   }
 
   @media (max-width: 425px) {
     .container {
-      padding: 0 50px;
+      padding: 0 30px;
     }
 
     .partners,

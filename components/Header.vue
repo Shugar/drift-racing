@@ -272,6 +272,8 @@
       display: flex;
       flex-flow: column nowrap;
       justify-content: center;
+      // overflow-y: scroll;
+      // min-height: 666px;
     }
 
     .list-item {
@@ -291,7 +293,7 @@
   @media (max-width: 425px) {
     .header {
       position: absolute;
-      padding: 0 50px;
+      padding: 0 30px;
     }
 
     .checkout {

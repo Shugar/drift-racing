@@ -23,13 +23,15 @@
           :gutter="{default: '60px', 768: '40px', 425: '0px'}"
           ref="my-masonry">
           <div class="video" v-for="(video, index) in filteredVideos" :key="index">
-            <div class="video-image"
-              v-if="video.image !== ''"
-              :style="{background: `url(${ video.image }) no-repeat center / cover`}">
-              <div class="play-button" />
-            </div>
-            <div class="video-date">{{ video.date }}</div>
-            <div class="video-title" v-html="video.title"></div>
+            <nuxt-link to="/current-video/" >
+              <div class="video-image"
+                v-if="video.image !== ''"
+                :style="{background: `url(${ video.image }) no-repeat center / cover`}">
+                <div class="play-button" />
+              </div>
+              <div class="video-date">{{ video.date }}</div>
+              <div class="video-title" v-html="video.title"></div>
+            </nuxt-link>
           </div>
         </masonry>
       </div>
@@ -188,6 +190,10 @@
     margin-bottom: 50px;
     cursor: pointer;
     max-width: 300px;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   .video-date {
@@ -276,7 +282,7 @@
 
   @media (max-width: 425px) {
     .container {
-      padding: 0 50px;
+      padding: 0 30px;
       display: block;
     }
 

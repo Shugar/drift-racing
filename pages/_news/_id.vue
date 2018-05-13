@@ -325,7 +325,7 @@
     }
 
     .container {
-      padding: 0 50px;
+      padding: 0 30px;
     }
 
     .back {

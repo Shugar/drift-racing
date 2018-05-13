@@ -98,6 +98,8 @@
     right: 0;
     background: #000;
     padding: 56px 76px;
+    overflow-y: scroll;
+    min-height: 666px;
   }
 
   .mobile-menu__title,
@@ -117,7 +119,6 @@
   }
 
   .list {
-
   }
 
   .list-item {

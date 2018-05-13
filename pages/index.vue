@@ -67,12 +67,18 @@
       <div class="right">
         <div class="image-slider">
           <transition name='small-slider-animation'>
-            <img class="image-slider-item" v-for="(item, index) in dummyRightSlider" 
-              :src="`${item.image}`" 
+            <img class="image-slider-item" v-for="(item, index) in dummyRightSlider"
+              :src="`${item.image}`"
               v-if="index === rightCount"
               :key="index" />
             </transition>
-          <div class="arrow" />
+          <nuxt-link v-for="(item, index) in dummyRightSlider"
+              class="arrow"
+              v-if="index === rightCount"
+              :key="index"
+              :to="`${item.link}`">
+            <div class="arrow"/>
+          </nuxt-link>
         </div>
         <div class="small-slider">
             <div>
@@ -144,6 +150,7 @@
         dummyRightSlider: [
           {
             type: 'show',
+            link: '/calendar/1',
             title: 'Motorshow',
             place: 'BOLOGNA. Italy',
             date: '2-10 December 2017',
@@ -152,6 +159,7 @@
           },
           {
             type: 'store',
+            link: '/store',
             title: 'DRIFT IS MY THERAPY',
             category: 'MEN T-SHIRT',
             style: 'white',
@@ -160,12 +168,14 @@
           },
           {
             type: 'news',
+            link: '/news',
             title: 'SOCHI. Closing<br> of the season <br> 2017 RDS',
             publishing_date: 'OCT 12 — 2017',
             image: '/home/left-slider2.png'
           },
           {
             type: 'store',
+            link: '/store',
             title: 'FUCKING HERO STYLE',
             category: 'MEN T-SHIRT',
             style: 'BLACK',
@@ -576,7 +586,7 @@
 
   @media (max-width: 425px) {
     .left {
-      padding-left: 50px;
+      padding-left: 30px;
     }
 
     .slide {

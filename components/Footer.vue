@@ -144,7 +144,7 @@ export default {
 
   @media (max-width: 425px) {
     .footer {
-      padding: 0 50px;
+      padding: 0 30px;
     }
 
     .left {

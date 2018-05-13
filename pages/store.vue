@@ -302,7 +302,7 @@
 
   @media (max-width: 425px) {
     .container {
-      padding: 0 50px;
+      padding: 0 30px;
       display: block;
     }
 

@@ -472,11 +472,11 @@
     }
 
     .container {
-      padding: 0 50px;
+      padding: 0 30px;
     }
 
     .title-wrapper {
-      padding: 0 50px;
+      padding: 0 30px;
       flex-flow: column nowrap;
       
       .tags {

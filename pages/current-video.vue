@@ -4,7 +4,7 @@
     <div class="title-wrapper">
       <div class="tags">
         <div class="tags-item">
-          <div class="tag"><nuxt-link to="/videos/" >back to videos</nuxt-link></div>
+          <div class="tag"><nuxt-link to="/video/" >back to videos</nuxt-link></div>
         </div>
       </div>
     </div>
@@ -12,7 +12,7 @@
       <div class="left">
         <div class="tags">
           <div class="tags-item">
-            <div class="tag"><nuxt-link to="/videos/">back to videos</nuxt-link></div>
+            <div class="tag"><nuxt-link to="/video/">back to videos</nuxt-link></div>
           </div>
         </div>
         <div class="article">
@@ -495,11 +495,11 @@
     }
 
     .container {
-      padding: 0 50px;
+      padding: 0 30px;
     }
 
     .title-wrapper {
-      padding: 0 50px;
+      padding: 0 30px;
       flex-flow: column nowrap;
       
       .tags {
