@@ -185,12 +185,17 @@
     },
 
     methods: {
+      sliderInterval () {
+        this.nextSlideInterval = setInterval(this.nextSlide, 4000)
+      },
       nextSlide () {
         this.count === 3 ? this.count = 0 : this.count++
+
         clearInterval(this.nextSlideInterval)
+        this.sliderInterval()
+
         this.nextUpAnimation = false
-        // console.log(this.nextUpAnimation)
-        setInterval(() => this.nextUpAnimation = true, 1)
+        setInterval(() => this.nextUpAnimation = true, 0)
       },
       nextSlideRight () {
         return this.rightCount === 3 ? this.rightCount = 0 : this.rightCount++
@@ -198,7 +203,7 @@
     },
 
     mounted () {
-      this.nextSlideInterval = setInterval(this.nextSlide, 4000)
+      this.sliderInterval()
       setTimeout(() => {
         setInterval(() => this.nextSlideRight(), 3000)
       }, 1333)
