@@ -13,7 +13,10 @@
 
         <div class="slide">
           <div class="next">
-            <div class="next-button" @click="nextSlide()">NEXT UP</div>
+            <div class="next-button" @click="nextSlide()">
+              <div v-if="nextUpAnimation" class="next-button-background" />
+              NEXT UP
+            </div>
             <div class="next-category">
 
               <transition name="category-animation">
@@ -110,6 +113,8 @@
       return {
         count: 0,
         rightCount: 0,
+        timeInterval: 0,
+        nextUpAnimation: false,
         dummyLeftSlider: [
           {
             title: ['Drift', 'Is my', 'Therapy'],
@@ -180,8 +185,13 @@
     },
 
     methods: {
+      sliderInterval () {
+        this.timeInterval = setInterval(() => this.nextSlide(), 4000) 
+      },
       nextSlide () {
-        return this.count === 3 ? this.count = 0 : this.count++
+          this.nextUpAnimation = false,
+          this.nextUpAnimation = true,
+          this.count === 3 ? this.count = 0 : this.count++
       },
       nextSlideRight () {
         return this.rightCount === 3 ? this.rightCount = 0 : this.rightCount++
@@ -189,10 +199,11 @@
     },
 
     mounted () {
-      setInterval(() => this.nextSlide(), 4000),
+      this.nextUpAnimation = true,
+      this.sliderInterval(),
       setTimeout(() => {
         setInterval(() => this.nextSlideRight(), 4000)
-      }, 2000);
+      }, 2000)
     }
   }
 </script>
@@ -260,6 +271,7 @@
   }
 
   .next {
+    position: relative;
     width: 120px;
     margin-bottom: 50px;
     font-family: 'DIN Condensed', sans-serif;
@@ -270,6 +282,15 @@
     color: #FFFFFF;
   }
 
+@keyframes background {
+  from {
+    width: 0;
+  }
+  to {
+    width: calc(100% + 2px);
+  }
+}
+
   .next-button {
     margin-bottom: 5px;
     font-size: 20px;
@@ -278,7 +299,7 @@
     cursor: pointer;
     user-select: none;
 
-    &:before {
+    &-background {
       content: '';
       background: #683FFF;
       position: absolute;
@@ -287,8 +308,10 @@
       width: calc(100% + 2px);
       height: 18px;
       z-index: -1;
+      animation: background 4s;
     }
   }
+
 
   .next-category {
     font-size: 36px;
@@ -433,7 +456,7 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-end;
-    padding-bottom: 132px;
+    padding-bottom: 191px;
     padding-left: 100px;
   }
 

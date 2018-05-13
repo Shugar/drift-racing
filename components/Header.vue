@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <div class="left">
+    <div class="left" :class="{ mainLeft: type === 'main' }">
       <nuxt-link to="/">
         <div class="logo" />
       </nuxt-link>
@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div class="right">
+    <div class="right" :class="{ mainRight: type === 'main' }">
       <div class="nav nav-right">
         <nuxt-link class="nav-item" to="/news/">NEWS</nuxt-link>
         <nuxt-link class="nav-item" to="/store/">STORE</nuxt-link>
@@ -99,6 +99,10 @@
     align-items: center;
   }
 
+  .mainLeft {
+    flex: 0 0 55%;
+  }
+
   .right {
     flex: 0 0 40%;
     display: flex;
@@ -106,6 +110,10 @@
     align-items: flex-end;
   }
 
+  .mainRight {
+    flex: 0 0 45%;
+    padding-left: 60px;
+  }
   .logo {
     margin-right: 120px;
     width: 100px;
