@@ -114,7 +114,7 @@
         count: 0,
         rightCount: 0,
         timeInterval: 0,
-        nextUpAnimation: false,
+        nextUpAnimation: true,
         dummyLeftSlider: [
           {
             title: ['Drift', 'Is my', 'Therapy'],
@@ -187,6 +187,10 @@
     methods: {
       nextSlide () {
         this.count === 3 ? this.count = 0 : this.count++
+        clearInterval(this.nextSlideInterval)
+        this.nextUpAnimation = false
+        // console.log(this.nextUpAnimation)
+        setInterval(() => this.nextUpAnimation = true, 1)
       },
       nextSlideRight () {
         return this.rightCount === 3 ? this.rightCount = 0 : this.rightCount++
@@ -194,7 +198,7 @@
     },
 
     mounted () {
-      setInterval(() => this.nextSlide(), 4000)
+      this.nextSlideInterval = setInterval(this.nextSlide, 4000)
       setTimeout(() => {
         setInterval(() => this.nextSlideRight(), 3000)
       }, 1333)
