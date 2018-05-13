@@ -185,13 +185,8 @@
     },
 
     methods: {
-      sliderInterval () {
-        this.timeInterval = setInterval(() => this.nextSlide(), 4000) 
-      },
       nextSlide () {
-          this.nextUpAnimation = false,
-          this.nextUpAnimation = true,
-          this.count === 3 ? this.count = 0 : this.count++
+        this.count === 3 ? this.count = 0 : this.count++
       },
       nextSlideRight () {
         return this.rightCount === 3 ? this.rightCount = 0 : this.rightCount++
@@ -199,11 +194,10 @@
     },
 
     mounted () {
-      this.nextUpAnimation = true,
-      this.sliderInterval(),
+      setInterval(() => this.nextSlide(), 4000)
       setTimeout(() => {
-        setInterval(() => this.nextSlideRight(), 4000)
-      }, 2000)
+        setInterval(() => this.nextSlideRight(), 3000)
+      }, 1333)
     }
   }
 </script>
@@ -326,7 +320,7 @@
 
   .next-category-inner {
     position: absolute;
-    top: 0;
+    top: -1px;
     left: 0;
 
     font-size: 36px;
@@ -400,9 +394,9 @@
 
   .subtitle {
     position: absolute;
-    top: 0;
+    top: 3px;
     left: 0;
-    margin-bottom: 25px;
+    margin-bottom: 22px;
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -456,7 +450,7 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-end;
-    padding-bottom: 191px;
+    padding-bottom: 190px;
     padding-left: 100px;
   }
 
