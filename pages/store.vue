@@ -17,7 +17,7 @@
       </div>
       <div class="news-list">
         <masonry
-          :cols="{default: 3, 768: 2, 425: 1}"
+          :cols="{default: 3, 1024: 2, 425: 1}"
           :gutter="{default: '60px', 768: '40px', 425: '0px'}"
           ref="my-masonry">
           <div class="item" v-for="(item, index) in filteredGoods" :key="index">

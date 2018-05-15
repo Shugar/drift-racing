@@ -17,7 +17,7 @@
         <div class="language">
           RU — EN
         </div>
-        <div class="made">MADE BY APUS</div>
+        <div class="made">MADE BY APUS AGENCY</div>
       </div>
     </div>
 
