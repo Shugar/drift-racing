@@ -126,14 +126,14 @@ export default {
 
   .left {
     padding-left: 220px;
-    flex: 0 0 60%;
+    // flex: 0 0 60%;
 
     display: flex;
     flex-flow: column nowrap;
   }
 
   .right {
-    flex: 0 0 40%;
+    // flex: 0 0 40%;
     display: flex;
     flex-flow: column nowrap;
   }
@@ -212,7 +212,6 @@ export default {
 
   .numbers-item {
     margin-right: 40px;
-
     &:last-child {
       margin-right: 0;
     }
@@ -238,7 +237,13 @@ export default {
     color: rgba(255, 255, 255, 0.8);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
+    .numbers-item__digits {
+      font-size: 38px;
+    }
+  }
+
+  @media (max-width: 976px) {
     .container {
       display: block;
     }

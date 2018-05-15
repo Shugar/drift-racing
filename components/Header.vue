@@ -3,21 +3,23 @@
     <div v-if="isMenuOpened"  class="mobile-nav">
       <div class="mobile-space" @click="closeMenu()"></div>
       <div class="mobile-menu">
-        <div class="mobile-menu__title">MENU</div>
-        <div class="list">
-          <nuxt-link to="/bio/" class="list-item">BIO</nuxt-link>
-          <nuxt-link to="/photo/" class="list-item">PHOTO</nuxt-link>
-          <nuxt-link to="/calendar/" class="list-item">CALENDAR</nuxt-link>
-          <nuxt-link to="/video/" class="list-item">VIDEO</nuxt-link>
-          <nuxt-link to="/news/" class="list-item">NEWS</nuxt-link>
-          <nuxt-link to="/store/" class="list-item">STORE</nuxt-link>
-          <nuxt-link to="/partners/" class="list-item">PARTNERS</nuxt-link>
-          <nuxt-link to="/contact/" class="list-item">CONTACT</nuxt-link>
+        <div class="mobile-menu-content-wrapper">
+          <div class="mobile-menu__title">MENU</div>
+          <div class="list">
+            <nuxt-link to="/bio/" class="list-item">BIO</nuxt-link>
+            <nuxt-link to="/photo/" class="list-item">PHOTO</nuxt-link>
+            <nuxt-link to="/calendar/" class="list-item">CALENDAR</nuxt-link>
+            <nuxt-link to="/video/" class="list-item">VIDEO</nuxt-link>
+            <nuxt-link to="/news/" class="list-item">NEWS</nuxt-link>
+            <nuxt-link to="/store/" class="list-item">STORE</nuxt-link>
+            <nuxt-link to="/partners/" class="list-item">PARTNERS</nuxt-link>
+            <nuxt-link to="/contact/" class="list-item">CONTACT</nuxt-link>
+          </div>
+          <div class="language">
+            RU — EN
+          </div>
+          <div class="made">MADE BY APUS AGENCY</div>
         </div>
-        <div class="language">
-          RU — EN
-        </div>
-        <div class="made">MADE BY APUS AGENCY</div>
       </div>
     </div>
 
@@ -237,7 +239,12 @@
       z-index: 9999;
       right: 0;
       background: #000;
-      padding: 56px 76px;
+
+      &-content-wrapper {
+        padding: 56px 76px;
+        width: 100%;
+        overflow-y: scroll;
+      }
     }
 
     .mobile-menu__title,
