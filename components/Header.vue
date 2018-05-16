@@ -262,6 +262,7 @@
     .made {
       margin-top: 20px;
       margin-bottom: 0;
+      white-space: nowrap;
     }
 
     .language {
