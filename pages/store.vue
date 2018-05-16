@@ -20,6 +20,7 @@
           :cols="{default: 3, 1024: 2, 425: 1}"
           :gutter="{default: '60px', 768: '40px', 425: '0px'}"
           ref="my-masonry">
+          <nuxt-link to='/store/1'>
           <div class="item" v-for="(item, index) in filteredGoods" :key="index">
             <div class="item-image"
               :style="{background: `url(${ item.image }) no-repeat center / cover`}" />
@@ -30,6 +31,7 @@
               <div class="item-price">$ {{ item.price }}</div>
             </div>
           </div>
+          </nuxt-link>
         </masonry>
       </div>
     </div>
@@ -121,6 +123,10 @@
   .news {
     background: #683FFF;
     padding: 200px 0 80px;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   .container {
