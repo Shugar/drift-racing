@@ -50,14 +50,14 @@
     color: #FFFFFF;
   }
 
-  @media (max-width: 425px) {
+  @media (max-width: 812px) {
     .close {
       right: 50px;
       top: 50px;
     }
 
     .index {
-      bottom: 50px;
+      bottom: 25px;
     }
   }
 </style>
