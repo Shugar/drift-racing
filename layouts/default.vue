@@ -1,7 +1,7 @@
 <template>
   <div>
     <Lightbox />
-    <Preloader v-if="this.$store.state.entities === null" />
+    <Preloader v-if="this.$store.state.entities === null" :loaded="loaded"/>
     <nuxt v-else />
   </div>
 </template>
@@ -10,12 +10,22 @@
   import { createClient } from '~/plugins/contentful'
 
   export default {
+    data () {
+      return {
+        loaded: 100
+      }
+    },
+
     components: {
       Lightbox: () => import('@/components/Lightbox'),
       Preloader: () => import('@/components/Preloader'),
     },
 
     mounted () {
+      setInterval(() => {
+        this.loaded = this.loaded - Math.floor(Math.random() * 10)
+      }, 500)
+
       const client = createClient()
 
       client.getEntries()
