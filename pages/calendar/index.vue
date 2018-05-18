@@ -5,14 +5,14 @@
       <div class="title">calendar</div>
       <div class="tags">
         <div class="tags-item">
-          <div class="tags-title">championships</div>
-          <div class="tag" v-for="(tag, index) in tags.slice(0, 3)" :key="index" @click="filterByTag(tag)">
+          <div class="tags-title">CHAMPIONSHIP</div>
+          <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="filterByTag(tag)">
             #{{tag}}
           </div>
         </div>
         <div class="tags-item">
-          <div class="tags-title">country</div>
-          <div class="tag" v-for="(tag, index) in tags.slice(3, 6)" :key="index" @click="filterByTag(tag)">
+          <div class="tags-title tags-country">COUNTRY</div>
+          <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="filterByTag(tag)">
             #{{tag}}
           </div>
         </div>
@@ -22,68 +22,54 @@
       <div class="left">
         <div class="tags">
           <div class="tags-item">
-            <div class="tags-title">championships</div>
-            <div class="tag" v-for="(tag, index) in tags.slice(0, 3)" :key="index" @click="filterByTag(tag)">
+            <div class="tags-title">CHAMPIONSHIP</div>
+            <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="filterByTag(tag)">
               #{{tag}}
             </div>
           </div>
           <div class="tags-item">
-            <div class="tags-title">country</div>
-            <div class="tag" v-for="(tag, index) in tags.slice(3, 6)" :key="index" @click="filterByTag(tag)">
+            <div class="tags-title tags-country">COUNTRY</div>
+            <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="filterByTag(tag)">
               #{{tag}}
             </div>
           </div>
         </div>
-        <div class="article">
+
+        <div class="article" v-for="(article, index) in leftCalendar" :key="index">
           <div class="img-fullwidth">
-            <img src="/calendar/event-1.png" />
+            <img :src="'http://' + article.image.fields.file.url.slice(2)" />
           </div>
-          <div class="info">
-            <div class="date">DEC 9 — 2017</div>
-          </div>
-          <div class="title">1 stage Grand Prix RDS 2018 Moscow</div>
-          <div class="text">We are waiting for you on May 5 and 6 at the Moscow Raceway with the whole family.</div>
-        </div>
-      <div class="right mobile">
-        <div class="previous-article">
-          <div class="previous">
-            <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
-            <div class="previous-date">JAN 30 — 2016</div>
-            <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
-          </div>
-          <div class="previous">
-            <div class="previous-image" :style="{background: `url(/calendar/event-3.png) no-repeat center / cover`}" />
-            <div class="previous-date">JAN 30 — 2016</div>
-            <div class="previous-subtitle">3 stage RDS Grand prix 2018 Nizhny Novgorod</div>
-          </div>
-        </div>
-        </div>
-        <div class="article">
-          <div class="img-fullwidth">
-            <img src="/calendar/event-1.png" />
-          </div>
-          <div class="info">
-            <div class="date">DEC 9 — 2017</div>
-          </div>
-          <div class="title">1 stage Grand Prix RDS 2018 Moscow</div>
-          <div class="text">We are waiting for you on May 5 and 6 at the Moscow Raceway with the whole family.</div>
+          <div class="date">{{ article.date }}</div>
+          <div class="title">{{ article.title }}</div>
+          <div class="text">{{ article.preview }}</div>
         </div>
       </div>
       <div class="right">
         <div class="previous-article">
-          <div class="previous">
-            <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover `}" />
-            <div class="previous-date">JAN 30 — 2016</div>
-            <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
-          </div>
-          <div class="previous">
-            <div class="previous-image" :style="{background: `url(/calendar/event-3.png) no-repeat center / cover`}" />
-            <div class="previous-date">JAN 30 — 2016</div>
-            <div class="previous-subtitle">3 stage RDS Grand prix 2018 Nizhny Novgorod</div>
+          <div class="previous" v-for="(article, index) in rightCalendar" :key="index">
+            <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
+            <div class="previous-date">{{ article.date }}</div>
+            <div class="previous-subtitle">{{ article.title }}</div>
           </div>
         </div>
       </div>
     </div>
+
+
+    <div class="container container-mobile">
+      <div :class="{'previous': article.column === 'right', 'article': article.column === 'left'}" v-for="(article, index) in calendar" :key="index">
+        <div class="previous-image"
+          :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
+        <div :class="{'previous-date': article.column === 'right', 'date': article.column === 'left'}">
+          {{ article.date }}
+        </div>
+        <div :class="{'previous-subtitle': article.column === 'right', 'title': article.column === 'left'}">
+          {{ article.title }}
+        </div>
+        <div class="text" v-if="article.column === 'left'">{{ article.preview }}</div>
+      </div>
+    </div>
+
     <Footer />
   </section>
 </template>
@@ -141,24 +127,39 @@
     },
 
     computed: {
-      tags () {
-        const hashtags = []
-        this.articles.map((article, index) => {
-          article.hashtags.map((tag, index) => {
-            hashtags.push(tag)
-          })
-        })
-
-        return [ ...new Set(hashtags) ]
+      championshipTags () {
+        return [ ...new Set(this.calendar.map(article => article.championship )) ]
       },
 
-      fetchedCalendar () {
+      countryTags () {
+        return [ ...new Set(this.calendar.map(article => article.country )) ]
+      },
+
+      calendar () {
         return this.$store.state.entities.calendar
+      },
+
+      leftCalendar () {
+        const left = []
+        this.$store.state.entities.calendar.map(article => {
+          if (article.column === 'left') {
+            left.push(article)
+          }
+        })
+
+        return left
+      },
+
+      rightCalendar () {
+        const right = []
+        this.$store.state.entities.calendar.map(article => {
+          if (article.column === 'right') {
+            right.push(article)
+          }
+        })
+
+        return right
       }
-    },
-
-    methods: {
-
     },
 
     components: {
@@ -181,6 +182,10 @@
     display: flex;
     flex-flow: row nowrap;
     align-content: center;
+  }
+
+  .container-mobile {
+    display: none;
   }
 
   .title-wrapper {
@@ -211,10 +216,6 @@
     position: relative;
   }
 
-  .mobile {
-    display: none;
-  }
-
   .article {
     max-width: 435px;
     margin-bottom: 40px;
@@ -226,45 +227,26 @@
   }
 
   .previous-article {
-    // position: fixed;
-    // top: 200px;
     padding-left: 50px;
     max-width: 350px;
-  }
-
-  .back {
-    position: absolute;
-    left: 100px;
-    top: 0px;
-  }
-
-  .info {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    margin-bottom: 20px;
   }
 
   .tags {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
+  }
 
-    &-item {
-      &:first-child {
-        margin-bottom: 40px;
-      }
-    }
+  .tags-item:first-child {
+    margin-bottom: 40px;
   }
 
   .date {
-    margin-right: 40px;
+    margin-bottom: 20px;
   }
 
-
   .date,
-  .tag,
-  .back {
+  .tag {
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -300,11 +282,6 @@
     font-size: 20px;
     text-transform: uppercase;
     color: #FFFFFF;
-    cursor: pointer;
-  }
-
-  .back {
-    color: #FFF;
     cursor: pointer;
   }
 
@@ -366,7 +343,6 @@
     margin-bottom: 20px;
     height: 169px;
     width: 100%;
-    // background: url('/news/news-2.jpg') no-repeat center / cover;
   }
 
   .previous-date {
@@ -418,16 +394,14 @@
   }
 
   @media (max-width: 768px) {
-    .back {
-      display: none;
-    }
-
     .container {
-      display: block;
-    }
+      display: none;
 
-    .mobile {
-      display: block;
+      &.container-mobile {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+      }
     }
 
     .tags {
@@ -445,14 +419,11 @@
         position: relative;
         top: 0;
         left: 0;
-        margin-left: 10px;
+      }
 
-        &-item {
-          &:first-child {
-            margin-bottom: 0;
-            margin-right: 60px;
-          }
-        }
+      .tags-item:first-child {
+        margin-bottom: 0;
+        margin-right: 60px;
       }
     }
 
@@ -467,11 +438,16 @@
     }
 
     .right {
+      display: none;
+    }
+
+    .right {
       padding-bottom: 10px;
     }
 
     .article {
       max-width: initial;
+      // flex: 0 0 100%;
     }
 
     .previous-article {
@@ -507,26 +483,18 @@
     .title-wrapper {
       padding: 0 30px;
       flex-flow: column nowrap;
-      
+
       .tags {
         display: flex;
         flex-flow: row nowrap;
         align-items: flex-start;
         justify-content: flex-start;
-
-        &-item {
-          &:first-child {
-            margin-bottom: 0;
-            margin-right: 30px;
-          }
-        }
       }
-    }
 
-    .back {
-      display: block;
-      position: initial;
-      margin-bottom: 20px;
+      .tags-item:first-child {
+        margin-bottom: 0;
+        margin-right: 30px;
+      }
     }
 
     .title {
