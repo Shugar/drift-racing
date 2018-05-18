@@ -25,7 +25,9 @@
 
     <div class="left" :class="{ mainLeft: type === 'main' }">
       <nuxt-link to="/">
-        <div class="logo" />
+        <div class="logo" :class="{'isHeaderAnimated': isHeaderAnimated}">
+          <i></i><i></i>
+        </div>
       </nuxt-link>
 
       <span @click="$store.commit('toggleCheckout')" v-if="this.$route.name === 'store'" class="checkout">{{ productCount }} items — $ {{ productSum }}</span>
@@ -56,9 +58,16 @@
 <script>
   export default {
     props: ['type', 'count', 'productSum', 'productCount'],
+
     data () {
       return {
         isMenuOpened: false
+      }
+    },
+
+    computed: {
+      isHeaderAnimated () {
+        return this.$store.state.isHeaderAnimated
       }
     },
 
@@ -116,13 +125,49 @@
     flex: 0 0 45%;
     padding-left: 60px;
   }
-  
+
   .logo {
     margin-right: 120px;
     width: 100px;
     flex: 0 0 100px;
     height: 140px;
-    background: url('~/assets/images/logo.svg') no-repeat center / contain;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+
+    &.isHeaderAnimated i:last-child {
+      animation: logo 1.5s linear infinite;
+    }
+  }
+
+  .logo i {
+    position: absolute;
+    left: -3px;
+    top: 0;
+    width: 100px;
+    height: 140px;
+    background: url('~/assets/images/logo.svg') no-repeat center / cover;
+    transform: skewX(15deg);
+    overflow: hidden;
+  }
+
+  .logo i:last-child {
+    top: -1px;
+    left: -3px;
+    transform: skewX(15deg);
+  }
+
+
+  @keyframes logo {
+    0% {
+      transform: translate3d(-100px, 0, 0) skewX(15deg);
+      background-position-x: 100px
+    }
+
+    100% {
+      transform: translate3d(100px, 0, 0) skewX(15deg);
+      background-position-x: -100px
+    }
   }
 
   .checkout {

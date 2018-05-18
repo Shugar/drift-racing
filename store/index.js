@@ -8,10 +8,16 @@ const createStore = () => {
       lightboxIndex: null,
       entities: null,
       isCheckoutOpen: false,
-      checkoutList: []
+      checkoutList: [],
+      isHeaderAnimated: false
     },
 
     mutations: {
+      animateHeader (state) {
+        state.isHeaderAnimated = false
+        state.isHeaderAnimated = true
+      },
+
       fetchData (state, payload) {
         state.entities = payload
       },

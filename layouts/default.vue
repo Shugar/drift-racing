@@ -4,7 +4,7 @@
     <div class="preloader" v-if="!this.isReady">
       <Preloader :loaded="loaded"/>
     </div>
-    <nuxt />
+    <nuxt v-else />
   </div>
 </template>
 
@@ -19,19 +19,21 @@
       }
     },
 
+    watch: {
+      '$route': function (val) {
+        this.$store.commit('animateHeader')
+      },
+    },
+
     components: {
       Lightbox: () => import('@/components/Lightbox'),
       Preloader: () => import('@/components/Preloader'),
     },
 
-    mounted () {
+    created () {
       setInterval(() => {
         this.loaded = this.loaded - Math.floor(Math.random() * 10)
       }, 500)
-
-      setTimeout(() => {
-        this.isReady = true
-      }, 4000)
 
       const client = createClient()
 
@@ -51,6 +53,7 @@
           })
 
           this.$store.commit('fetchData', normalized)
+          this.isReady = true
         })
         .catch(console.error)
     }
