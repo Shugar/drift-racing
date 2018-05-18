@@ -7,7 +7,7 @@ const createStore = () => {
       lightboxLength: null,
       lightboxIndex: null,
       entities: null,
-      isCheckoutOpen: true,
+      isCheckoutOpen: false,
       checkoutList: []
     },
 
