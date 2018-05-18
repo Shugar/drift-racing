@@ -74,7 +74,9 @@
 
 <style lang="scss" scoped>
   .index {
+    position: relative;
     height: 100vh;
+    min-height: 700px;
   }
 
   .container {
@@ -102,7 +104,7 @@
   .page-title {
     font-size: 48px;
     margin-left: 220px;
-    margin-bottom: 144px;
+    margin-bottom: 90px;
   }
 
   .city {
@@ -143,9 +145,7 @@
     min-width: 256px;
     margin-bottom: 40px;
 
-    &:last-child {
-      margin-bottom: 0;
-    }
+
   }
 
   .contact {
@@ -162,6 +162,7 @@
   .contact-title {
     font-size: 24px;
     width: 160px;
+    opacity: 0.8;
   }
 
   .right {
@@ -201,21 +202,32 @@
     transform: translateY(110%);
   }
 
+@media (max-width: 1024px) {
+}
+
   @media (max-width: 768px) {
+
+    .index {
+      min-height: 100vh;
+      height: auto;
+    }
     .container {
       flex-flow: column nowrap;
+      height: 100%;
     }
 
     .left {
       flex-flow: row wrap;
       align-items: flex-end;
+      justify-content: flex-start;
       padding-bottom: 0;
-      flex: 0 0 50%;
+      height: 70%;
       min-width: auto;
+      padding-top: 0;
     }
 
     .right {
-      flex: 0 0 50%;
+      height: 550px;
     }
 
     .page-title {
@@ -238,41 +250,54 @@
       font-size: 24px;
     }
 
+    .contact-item {
+      display: flex;
+      flex-flow: row wrap;
+      margin-bottom: 30px;
+    }
+
     .contact-title {
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
   }
 
   @media (max-width: 425px) {
 
+    .index {
+      height: auto;
+    }
+
     .left {
-      flex: 0 0 85%;
+      // flex: 0 0 85%;
       padding-left: 55px;
       align-items: flex-start;
     }
 
     .right {
-      flex: 0 0 55%;
+      height: 400px;
     }
 
     .page-title {
-      margin: 0;
+      margin-top: 0;
       width: 100%;
       margin-top: 150px;
     }
 
     .contact-title {
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
 
     .contact-info {
       width: 100%;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      &:last-child {
+        margin-bottom: 15px;
+      }
     }
 
     .footer-wrapper {
       position: absolute;
-      bottom: -220px;
+      bottom: 40px;
     }
   }
 </style>
