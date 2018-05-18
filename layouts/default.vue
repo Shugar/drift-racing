@@ -4,7 +4,7 @@
     <div class="preloader" v-if="!this.isReady">
       <Preloader :loaded="loaded"/>
     </div>
-    <nuxt v-else />
+    <nuxt />
   </div>
 </template>
 
