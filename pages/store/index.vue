@@ -7,16 +7,18 @@
         STORE
         <span>0 items — $ 0.00</span>
       </div>
-      <!-- <div class="tags">
+      <div class="tags">
         <div class="tags-item">
           <div class="tags-title">CATEGORIES</div>
           <div class="tag" v-for="(category, index) in categories" :key="index" @click="filterByCategory(category)">
             #{{category}}
           </div>
         </div>
-      </div> -->
+      </div>
+
       <div class="news-list">
         <masonry
+          v-if="filteredGoods.length === 0"
           :cols="{default: 3, 1024: 2, 425: 1}"
           :gutter="{default: '60px', 768: '40px', 425: '0px'}"
           ref="my-masonry">
@@ -33,7 +35,25 @@
             </nuxt-link>
           </div>
         </masonry>
+        <masonry
+          :cols="{default: 3, 1024: 2, 425: 1}"
+          :gutter="{default: '60px', 768: '40px', 425: '0px'}"
+          ref="my-masonry">
+          <div class="item" v-for="(item, index) in filteredGoods" :key="index">
+            <nuxt-link :to="'/store/' + findItemByTitle(item.title)">
+              <div class="item-image"
+                :style="{background: `url(${ 'http://' + item.preview.fields.file.url.slice(2) }) no-repeat center / cover`}" />
+              <div class="item-category">{{ item.category }}</div>
+              <div class="item-title" v-html="item.title"></div>
+              <div class="item-footer">
+                <div class="item-style">{{ item.style }}</div>
+                <div class="item-price">$ {{ item.price }}</div>
+              </div>
+            </nuxt-link>
+          </div>
+        </masonry>
       </div>
+
     </div>
     <Footer />
   </section>
@@ -49,7 +69,7 @@
 
     computed: {
       categories () {
-        return [ ...new Set(this.goods.map(item => item.category)) ]
+        return [ ...new Set(this.store.map(item => item.category)) ]
       },
 
       store () {
@@ -60,16 +80,23 @@
     methods: {
       filterByCategory (category) {
         this.filteredGoods = []
-        this.goods.map((item, index) => {
+        this.store.map((item, index) => {
           if (category === item.category) {
             this.filteredGoods.push(item)
           }
         })
-      }
-    },
+      },
 
-    mounted () {
-      this.filteredGoods = this.goods
+      findItemByTitle (title) {
+        let result
+        this.store.map((item, index) => {
+          if (item.title === title) {
+            result = index
+          }
+        })
+
+        return result
+      }
     },
 
     components: {
