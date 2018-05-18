@@ -53,6 +53,7 @@
           })
 
           this.$store.commit('fetchData', normalized)
+          this.loaded = 0
           this.isReady = true
         })
         .catch(console.error)
