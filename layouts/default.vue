@@ -1,7 +1,9 @@
 <template>
   <div>
     <Lightbox />
-    <Preloader v-if="this.$store.state.entities === null" :loaded="loaded"/>
+    <div class="preloader" v-if="this.isReady">
+      <Preloader v-if="this.$store.state.entities === null" :loaded="loaded"/>
+    </div>
     <nuxt v-else />
   </div>
 </template>
@@ -12,7 +14,8 @@
   export default {
     data () {
       return {
-        loaded: 100
+        loaded: 100,
+        isReady: false
       }
     },
 
@@ -25,6 +28,10 @@
       setInterval(() => {
         this.loaded = this.loaded - Math.floor(Math.random() * 10)
       }, 500)
+
+      setTimeout(() => {
+        this.isReady = true
+      }, 4000)
 
       const client = createClient()
 
