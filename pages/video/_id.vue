@@ -23,7 +23,7 @@
           <div class="video-wrapper">
             <iframe width="100%" height="100%" :src="video.videoSource.replace('watch?v=', '/embed/')" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-          <div class="text">{{ video.description }}</div>
+          <div class="text">{{ video.text }}</div>
         </div>
       <div class="right mobile">
         <div class="previous-article">
