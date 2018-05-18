@@ -177,4 +177,26 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
+@media (max-width: 768px) {
+  .product-item {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .descr {
+    margin-left: 0;
+    width: 70%
+  }
+
+  .image {
+    margin-bottom: 20px;
+  }
+}
+.right {
+  width: 300px;
+}
+.left {
+  width: calc(100% - 300px);
+}
+
 </style>
