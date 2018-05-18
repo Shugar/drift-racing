@@ -4,17 +4,9 @@
     <div class="container">
       <div class="title">Partners</div>
       <div class="partners-list">
-        <div class="partner">
-          <div class="partner-name">OZ RACING</div>
-          <div class="partner-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-        </div>
-        <div class="partner">
-          <div class="partner-name">ESENGINES</div>
-          <div class="partner-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-        </div>
-        <div class="partner">
-          <div class="partner-name">SR</div>
-          <div class="partner-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        <div class="partner" v-for="(partner, index) in partners" :key="index">
+          <div class="partner-name">{{ partner.name }}</div>
+          <div class="partner-description">{{ partner.description }}</div>
         </div>
       </div>
     </div>
@@ -27,6 +19,12 @@
     components: {
       Header: () => import('@/components/Header'),
       Footer: () => import('@/components/Footer')
+    },
+
+    computed: {
+      partners () {
+        return this.$store.state.entities.partner
+      }
     }
   }
 </script>
@@ -67,14 +65,14 @@
     margin-bottom: 40px;
     flex: 1;
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
   }
 
   .partner {
-    margin-right: 60px;
-    flex: 1;
+    padding-right: 60px;
+    flex: 0 0 33%;
   }
 
   .partner-name {

@@ -2,22 +2,30 @@
   <section class="calendar" :class="{phone: isMobileInfoVisible}">
     <div class="background"></div>
     <div class="container">
-      <nuxt-link to="/store/"><div class="cross" /></nuxt-link>
-     <div class="product" :class="{'product-mobile': isMobileInfoVisible}" >
-       <div class="product-title">BOOST ME men t-shirt WHITE</div>
-       <div class="product-price">$ 15</div>
-       <div class="product-descr">Phasellus semper vehicula ornare. Donec ante ipsum, maximus ac auctor in, dapibus nec lorem.</div>
-       <div class="size-wrapper">
-         SIZE –
-        <select class="product-size">
-          <option value="s">s</option>
-          <option value="m" selected>m</option>
-          <option value="l">l</option>
-        </select>
-       </div>
-       <div class="add-to" :class="{white: isMobileInfoVisible}" >add to card</div>
-     </div>
-     <div class="about mobile" :class="{white: isMobileInfoVisible}" @click="toggleInfoMobile()">about product</div>
+      <nuxt-link to="/store/">
+        <div class="cross" />
+      </nuxt-link>
+    <div class="product" :class="{'product-mobile': isMobileInfoVisible}" >
+      <div class="product-title">
+        {{ store.title }} {{ store.gender }} {{ store.category }} {{ store.style }}
+      </div>
+      <div class="product-price">$ {{ store.price }}</div>
+      <div class="product-descr">
+        {{ store.description }}
+      </div>
+      <div class="size-wrapper">
+        SIZE –
+      <select class="product-size">
+        <option value="xs">xs</option>
+        <option value="s">s</option>
+        <option value="m" selected>m</option>
+        <option value="l">l</option>
+        <option value="xl">xl</option>
+      </select>
+      </div>
+      <div class="add-to" :class="{white: isMobileInfoVisible}" >add to card</div>
+    </div>
+    <div class="about mobile" :class="{white: isMobileInfoVisible}" @click="toggleInfoMobile()">about product</div>
     </div>
   </section>
 </template>
@@ -31,22 +39,19 @@
     },
 
     computed: {
+      store () {
+        return this.$store.state.entities.store[this.$route.params.id]
+      }
     },
 
     methods: {
       toggleInfo () {
         this.isInfoVisible = !this.isInfoVisible
       },
+
       toggleInfoMobile () {
         this.isMobileInfoVisible = !this.isMobileInfoVisible
       }
-    },
-
-    mounted () {
-
-    },
-
-    components: {
     },
 
     validate ({ params }) {

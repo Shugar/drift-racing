@@ -1,7 +1,8 @@
 <template>
   <div>
     <Lightbox />
-    <nuxt/>
+    <Preloader v-if="this.$store.state.entities === null" />
+    <nuxt v-else />
   </div>
 </template>
 
@@ -10,7 +11,8 @@
 
   export default {
     components: {
-      Lightbox: () => import('@/components/Lightbox')
+      Lightbox: () => import('@/components/Lightbox'),
+      Preloader: () => import('@/components/Preloader'),
     },
 
     mounted () {
@@ -40,6 +42,14 @@
 
 <style>
   @import '@/assets/fonts/fonts.css';
+
+  .fade-enter-active, .fade-more-leave-active {
+    transition: opacity 0.5s ease;
+  }
+
+  .fade-enter, .fade-leave-to {
+    opacity: 0.001;
+  }
 
   html {
     font-family: "DIN Pro Medium", sans-serif;

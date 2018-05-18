@@ -7,31 +7,31 @@
         STORE
         <span>0 items — $ 0.00</span>
       </div>
-      <div class="tags">
+      <!-- <div class="tags">
         <div class="tags-item">
           <div class="tags-title">CATEGORIES</div>
           <div class="tag" v-for="(category, index) in categories" :key="index" @click="filterByCategory(category)">
             #{{category}}
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="news-list">
         <masonry
           :cols="{default: 3, 1024: 2, 425: 1}"
           :gutter="{default: '60px', 768: '40px', 425: '0px'}"
           ref="my-masonry">
-          <nuxt-link to='/store/1'>
-          <div class="item" v-for="(item, index) in filteredGoods" :key="index">
-            <div class="item-image"
-              :style="{background: `url(${ item.image }) no-repeat center / cover`}" />
-            <div class="item-category">{{ item.category }}</div>
-            <div class="item-title" v-html="item.title"></div>
-            <div class="item-footer">
-              <div class="item-style">{{ item.style }}</div>
-              <div class="item-price">$ {{ item.price }}</div>
-            </div>
+          <div class="item" v-for="(item, index) in store" :key="index">
+            <nuxt-link :to="'/store/' + index">
+              <div class="item-image"
+                :style="{background: `url(${ 'http://' + item.preview.fields.file.url.slice(2) }) no-repeat center / cover`}" />
+              <div class="item-category">{{ item.category }}</div>
+              <div class="item-title" v-html="item.title"></div>
+              <div class="item-footer">
+                <div class="item-style">{{ item.style }}</div>
+                <div class="item-price">$ {{ item.price }}</div>
+              </div>
+            </nuxt-link>
           </div>
-          </nuxt-link>
         </masonry>
       </div>
     </div>
@@ -44,56 +44,16 @@
     data () {
       return {
         filteredGoods: [],
-        goods: [
-          {
-            category: 'T-SHIRTS',
-            style: 'WHITE',
-            title: 'DRIFT IS MY THERAPY <br> men t-shirt',
-            image: '/store/store-1.jpg',
-            price: 100
-          },
-          {
-            category: 'T-SHIRTS',
-            style: 'BLACK',
-            title: 'FUCKING HERO STYLE <br> men t-shirt',
-            image: '/store/store-2.jpg',
-            price: 25
-          },
-          {
-            category: 'T-SHIRTS',
-            style: 'WHITE',
-            title: 'BOOST ME <br> men t-shirt',
-            image: '/store/store-3.jpg',
-            price: 19
-          },
-          {
-            category: 'T-SHIRTS',
-            style: 'WHITE',
-            title: 'DRIFT IS MY THERAPY <br> men t-shirt',
-            image: '/store/store-4.jpg',
-            price: 14
-          },
-          {
-            category: 'T-SHIRTS',
-            style: 'BLACK',
-            title: 'FUCKING HERO STYLE <br> men t-shirt',
-            image: '/store/store-5.jpg',
-            price: 25
-          },
-          {
-            category: 'T-SHIRTS',
-            style: 'WHITE',
-            title: 'BOOST ME <br> men t-shirt',
-            image: '/store/store-6.jpg',
-            price: 17
-          },
-        ],
       }
     },
 
     computed: {
       categories () {
         return [ ...new Set(this.goods.map(item => item.category)) ]
+      },
+
+      store () {
+        return this.$store.state.entities.store
       }
     },
 

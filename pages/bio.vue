@@ -5,78 +5,44 @@
     <div class="container">
       <div class="tag">bio</div>
       <div class="left">
-        <div class="title">Story of the road</div>
+        <div class="title">{{ bio.leftColumnTitle }}</div>
         <div class="text">
-          Hello guys! My name is Alexander Dmitrenko. I am 25 years old and live in Moscow, Russia. I started practicing motosport professionally in 2016. 
-          <br><br>
-          While trying different disciplines out in Germany, Russia, Japan Driving Academy, i decided in favour of drifting.
+          {{ bio.leftText }}
         </div>
         <div class="img-fullwidth">
-          <img src="~/assets/images/bio-1.png" />
+          <img :src="'http://' + bio.leftImage.fields.file.url.slice(2)" />
         </div>
       </div>
       <div class="right">
-        <div class="title">During 2017</div>
+        <div class="title">{{ bio.rightColumnTitle }}</div>
         <div class="text">
-          During 2017 i took part in a few races of Russian Drift Series. In 2018 i have planes to participate in D1GP, Formula D Japan, Drift Masters, NEZ, HGK Drift Challenge and Russian Drift Series.
-          <br><br>
-          We have great plans for the next season, energy and the whole world! See you on a Race track!
+          {{ bio.rightText }}
         </div>
         <div class="img-fullwidth">
-          <img src="~/assets/images/bio-2.png" />
+          <img :src="'http://' + bio.rightImage.fields.file.url.slice(2)" />
         </div>
       </div>
     </div>
 
-    <!-- <div class="container container-image">
-      <div class="left">
-        <img src="~/assets/images/bio-1.png" />
-      </div>
-      <div class="right">
-        <img src="~/assets/images/bio-2.png" />
-      </div>
-    </div> -->
-
     <div class="container container-car">
       <div class="tag">cars</div>
-      <div class="left">
-        <div class="title">RACING car<br> BMW m3</div>
-        <img src="~/assets/images/car-1.jpg" />
+      <div class="left" v-for="(car, index) in bioCars" :key="index">
+        <div class="title">{{ car.title }}<br> {{ car.car }}</div>
+        <img :src="'http://' + car.image.fields.file.url.slice(2)" />
         <div class="text">
           The car was built at the end of the past especially for the current season in the Russian Drift Series and the European Drift Allstars Championship.
         </div>
         <div class="numbers">
           <div class="numbers-item">
-            <div class="numbers-item__digits">666</div>
+            <div class="numbers-item__digits">{{ car.hp }}</div>
             <div class="numbers-item__units">HP</div>
           </div>
           <div class="numbers-item">
-            <div class="numbers-item__digits">RWD</div>
+            <div class="numbers-item__digits">{{ car.drivetrain }}</div>
             <div class="numbers-item__units">DRIVETRAIN</div>
           </div>
           <div class="numbers-item">
-            <div class="numbers-item__digits">6.2 L</div>
-            <div class="numbers-item__units">ENGINE</div>
-          </div>
-        </div>
-      </div>
-      <div class="right">
-        <div class="title">Training car<br> BMW M5</div>
-        <img src="~/assets/images/car-2.jpg" />
-        <div class="text">
-          This is my training M5. Excellent and my favorite machine. E39 — a legend and in drift them very little.
-        </div>
-        <div class="numbers">
-          <div class="numbers-item">
-            <div class="numbers-item__digits">550</div>
-            <div class="numbers-item__units">HP</div>
-          </div>
-          <div class="numbers-item">
-            <div class="numbers-item__digits">RWD</div>
-            <div class="numbers-item__units">DRIVETRAIN</div>
-          </div>
-          <div class="numbers-item">
-            <div class="numbers-item__digits">4.9 L</div>
+            <div class="numbers-item__digits">{{ car.engine }}</div>
             <div class="numbers-item__units">ENGINE</div>
           </div>
         </div>
@@ -92,7 +58,17 @@ export default {
   components: {
     Header: () => import('@/components/Header'),
     Footer: () => import('@/components/Footer')
-  }
+  },
+
+  computed: {
+    bio () {
+      return this.$store.state.entities.bio[0]
+    },
+
+    bioCars () {
+      return this.$store.state.entities.bioCars
+    },
+  },
 }
 </script>
 
@@ -175,8 +151,22 @@ export default {
   }
 
   .container-car {
+    flex-flow: row wrap;
     align-content: center;
+  }
+
+  .container-car .left {
     margin-bottom: 100px;
+    padding-left: 130px;
+
+    &:nth-child(even) {
+      padding-left: 220px;
+
+      .title,
+      .text {
+        padding-left: 0;
+      }
+    }
   }
 
   .container-car img {
@@ -253,7 +243,7 @@ export default {
     }
 
     .left {
-      padding-left: 0;
+      padding-left: 0 !important;
     }
 
     .left,

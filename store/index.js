@@ -6,7 +6,7 @@ const createStore = () => {
       lightboxPhotoPath: '',
       lightboxLength: null,
       lightboxIndex: null,
-      entities: {}
+      entities: null
     },
 
     mutations: {
