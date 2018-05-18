@@ -17,16 +17,32 @@
           </div>
         </div>
       </div>
+      <div class="videos-list" v-if="filteredVideos.length === 0">
+        <masonry
+          :cols="{default: 3, 1024: 2, 425: 1}"
+          :gutter="{default: '60px', 768: '40px', 425: '0px'}"
+          ref="my-masonry">
+          <div class="video" v-for="(video, index) in fetchedVideos" :key="index">
+            <nuxt-link :to="'/video/' + index" >
+              <div class="video-image"
+                :style="{background: `url(${ 'http://' + video.video.fields.file.url.slice(2) }) no-repeat center / cover`}">
+                <div class="play-button" />
+              </div>
+              <div class="video-date">{{ video.date }}</div>
+              <div class="video-title" v-html="video.title"></div>
+            </nuxt-link>
+          </div>
+        </masonry>
+      </div>
       <div class="videos-list">
         <masonry
           :cols="{default: 3, 1024: 2, 425: 1}"
           :gutter="{default: '60px', 768: '40px', 425: '0px'}"
           ref="my-masonry">
           <div class="video" v-for="(video, index) in filteredVideos" :key="index">
-            <nuxt-link to="/current-video/" >
+            <nuxt-link :to="'/video/' + findItemByTitle(video.title)" >
               <div class="video-image"
-                v-if="video.image !== ''"
-                :style="{background: `url(${ video.image }) no-repeat center / cover`}">
+                :style="{background: `url(${ 'http://' + video.video.fields.file.url.slice(2) }) no-repeat center / cover`}">
                 <div class="play-button" />
               </div>
               <div class="video-date">{{ video.date }}</div>
@@ -47,75 +63,42 @@
         filteredVideos: [],
         championship: [],
         country: [],
-        videos: [
-          {
-            date: 'APR 1 — 2017',
-            title: '1 stage RDS Grand prix 2018 Moscow',
-            image: '/videos/video-1.jpg',
-            championship: 'D1 Grand prix',
-            country: 'Russia'
-          },
-          {
-            date: 'MAR 26 — 2018',
-            title: '2 stage RDS Grand prix 2018 Ryazan',
-            image: '/videos/video-2.jpg',
-            championship: 'D1 Grand prix',
-            country: 'Russia'
-          },
-          {
-            date: 'MAR 19 — 2018',
-            title: '3 stage RDS Grand prix 2018 Nizhny Novgorod',
-            image: '/videos/video-3.jpg',
-            championship: 'Formula D',
-            country: 'Japan'
-          },
-          {
-            date: 'FEB 22 — 2018',
-            title: '3 stage RDS Grand prix 2018 Nizhny Novgorod',
-            image: '/videos/video-4.jpg',
-            championship: 'Formula D',
-            country: 'Usa'
-          },
-          {
-            date: 'FEB 3 — 2018',
-            title: '3 stage RDS Grand prix 2018 Nizhny Novgorod',
-            image: '/videos/video-5.jpg',
-            championship: 'RDS 2018',
-            country: 'Japan'
-          },
-          {
-            date: 'JAN 16 — 2018',
-            title: '3 stage RDS Grand prix 2018 Nizhny Novgorod',
-            image: '/videos/video-6.jpg',
-            championship: 'RDS 2018',
-            country: 'Usa'
-          },
-        ]
       }
     },
 
     computed: {
       championshipTags () {
-        return [ ...new Set(this.videos.map(video => video.championship )) ]
+        return [ ...new Set(this.fetchedVideos.map(video => video.championship )) ]
       },
 
       countryTags () {
-        return [ ...new Set(this.videos.map(video => video.country )) ]
+        return [ ...new Set(this.fetchedVideos.map(video => video.country )) ]
+      },
+
+      fetchedVideos () {
+        return this.$store.state.entities.video
       }
     },
 
     methods: {
       filterByTag (hashtag) {
         this.filteredVideos = []
-        this.videos.map((video, index) => {
+        this.fetchedVideos.map((video, index) => {
           return (video.country === hashtag || video.championship === hashtag)
             && this.filteredVideos.push(video)
         })
-      }
-    },
+      },
 
-    mounted () {
-      this.filteredVideos = this.videos
+      findItemByTitle (title) {
+        let result
+        this.fetchedVideos.map((item, index) => {
+          if (item.title === title) {
+            result = index
+          }
+        })
+
+        return result
+      }
     },
 
     components: {

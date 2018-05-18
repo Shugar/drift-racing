@@ -20,7 +20,6 @@
 
       client.getEntries()
         .then(response => {
-          console.log(response.items)
           const entities = response.items.map((item, index) => {
             return {
               type: item.sys.contentType.sys.id,

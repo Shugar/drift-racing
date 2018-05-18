@@ -17,15 +17,15 @@
         </div>
         <div class="article">
           <div class="info">
-            <div class="date">DEC 9 — 2017</div>
+            <div class="date">{{ video.date }}</div>
           </div>
-          <div class="title">1 stage Grand Prix RDS 2018 Moscow</div>
+          <div class="title">{{ video.title }}</div>
           <div class="video-wrapper">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/3MkSDObecV0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe width="100%" height="100%" :src="video.videoSource.replace('watch?v=', '/embed/')" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-          <div class="text">Duis eget efficitur ipsum, eget porttitor sapien. Proin justo est, tempus in sollicitudin ut, hendrerit non metus. Fusce volutpat mattis lorem, ac posuere lorem consequat accumsan.</div>
+          <div class="text">{{ video.description }}</div>
         </div>
-       <div class="right mobile">
+      <div class="right mobile">
         <div class="previous-article">
           <div class="previous-title">Previous videos</div>
           <div class="previous">
@@ -44,22 +44,8 @@
             <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
           </div>
         </div>
-      </div> 
       </div>
-      <!-- <div class="right">
-        <div class="previous-article">
-          <div class="previous">
-            <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
-            <div class="previous-date">JAN 30 — 2016</div>
-            <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
-          </div>
-          <div class="previous">
-            <div class="previous-image" :style="{background: `url(/calendar/event-3.png) no-repeat center / cover `}" />
-            <div class="previous-date">JAN 30 — 2016</div>
-            <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
-          </div>
-        </div>
-      </div> -->
+      </div>
     </div>
     <Footer />
   </section>
@@ -67,75 +53,10 @@
 
 <script>
   export default {
-    data () {
-      return {
-        filteredArticles: [],
-        articles: [
-          {
-            date: 'DEC 9 — 2017',
-            title: 'Sochi, closing of the<br>season 2017 RDS',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '/news/news-1.jpg',
-            hashtags: ['D1 Grand prix']
-          },
-          {
-            date: 'DEC 7 — 2017',
-            title: 'MotorShow Bologna.<br>Italy 2-10 December',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '',
-            hashtags: ['RDS 2018']
-          },
-          {
-            date: 'JAN 30 — 2016',
-            title: 'Life of championships<br>Chaper 5',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '/news/news-2.jpg',
-            hashtags: ['Formula D']
-          },
-          {
-            date: 'DEC 1 — 2017',
-            title: 'Life of championships<br>moscow raceway',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '',
-            hashtags: ['Russia']
-          },
-          {
-            date: 'DEC 3 — 2017',
-            title: 'Drift all<br>the time you got!',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '/news/news-3.jpg',
-            hashtags: ['Japan']
-          },
-          {
-            date: 'DEC 9 — 2017',
-            title: 'Sochi, closing of the season 2017 RDS',
-            preview: '',
-            image: '',
-            hashtags: ['USA']
-          },
-        ]
-      }
-    },
-
     computed: {
-      tags () {
-        const hashtags = []
-        this.articles.map((article, index) => {
-          article.hashtags.map((tag, index) => {
-            hashtags.push(tag)
-          })
-        })
-
-        return [ ...new Set(hashtags) ]
+      video () {
+        return this.$store.state.entities.video[this.$route.params.id]
       }
-    },
-
-    methods: {
-
-    },
-
-    mounted () {
-
     },
 
     components: {
@@ -143,10 +64,10 @@
       Footer: () => import('@/components/Footer')
     },
 
-    // validate ({ params }) {
-    //   // Must be a number
-    //   return /^\d+$/.test(params.id)
-    // }
+    validate ({ params }) {
+      // Must be a number
+      return /^\d+$/.test(params.id)
+    }
   }
 </script>
 
