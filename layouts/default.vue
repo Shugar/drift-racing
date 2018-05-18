@@ -2,7 +2,7 @@
   <div>
     <Lightbox />
     <div class="preloader" v-if="!this.isReady">
-      <Preloader v-if="this.$store.state.entities === null" :loaded="loaded"/>
+      <Preloader :loaded="loaded"/>
     </div>
     <nuxt v-else />
   </div>
