@@ -54,7 +54,7 @@
 
           this.$store.commit('fetchData', normalized)
           this.loaded = 0
-          this.isReady = true
+          setTimeout(() => { this.isReady = true }, 300)
         })
         .catch(console.error)
     }

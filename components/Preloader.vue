@@ -72,13 +72,6 @@
     background: #000
   }
 
-  .preload_hide {
-    transition: opacity .25s ease .25s;
-    opacity: 0;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    filter: alpha(opacity=0)
-  }
-
   @keyframes preload-sign {
     0% {
       transform: translate3d(-160px, 0, 0) skewX(15deg);
@@ -107,6 +100,8 @@
     left: 0;
     right: 0;
     transform: translate3d(-100%, 0, 0);
+    transition: transform .3s ease;
+    will-change: transform;
   }
 
   #nprogress .peg {
