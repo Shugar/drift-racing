@@ -1,6 +1,6 @@
 <template>
   <section class="calendar" :class="{phone: isMobileInfoVisible}">
-    <div class="background"></div>
+    <div class="background" :style="{ background: 'url(http://' + store.full.fields.file.url.slice(2) + ') no-repeat center / cover'}"></div>
     <div class="container">
       <nuxt-link to="/store/">
         <div class="cross" />
