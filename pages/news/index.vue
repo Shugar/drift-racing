@@ -6,10 +6,33 @@
       <div class="tags">
         <div class="tags-item">
           <div class="tags-title">TAGS</div>
-          <div class="tag" v-for="(tag, index) in tags" :key="index" @click="filterByTag(tag)">
+          <div class="tag" v-for="(tag, index) in tags" :key="index" @click="filterByTag(tag.trim())">
             #{{tag}}
           </div>
         </div>
+      </div>
+      <div class="news-list" v-if="filteredArticles.length === 0">
+        <masonry
+          :cols="{default: 3, 1024: 2, 425: 1}"
+          :gutter="{default: '60px', 768: '40px', 425: '0px'}"
+          ref="my-masonry">
+          <div class="article" v-for="(article, index) in fetchedNews" :key="index">
+            <nuxt-link :to="'/news/' + index">
+              <div class="article-date">{{ article.date }}</div>
+              <div class="article-title" v-html="article.title"></div>
+              <div class="article-image"
+                :style="{background: `url(${ 'http://' + article.media.fields.file.url.slice(2) }) no-repeat center / cover`}" />
+              <div class="article-preview">{{ article.preview }}</div>
+              <div class="article-hashtags">
+                <div class="article-hashtag"
+                  v-for="(hashtag, index) in article.tags"
+                  :key="index">
+                  #{{ hashtag.trim() }}
+                </div>
+              </div>
+            </nuxt-link>
+          </div>
+        </masonry>
       </div>
       <div class="news-list">
         <masonry
@@ -17,19 +40,20 @@
           :gutter="{default: '60px', 768: '40px', 425: '0px'}"
           ref="my-masonry">
           <div class="article" v-for="(article, index) in filteredArticles" :key="index">
-            <div class="article-date">{{ article.date }}</div>
-            <div class="article-title" v-html="article.title"></div>
-            <div class="article-image"
-              v-if="article.image !== ''"
-              :style="{background: `url(${ article.image }) no-repeat center / cover`}" />
-            <div class="article-preview">{{ article.preview }}</div>
-            <div class="article-hashtags">
-              <div class="article-hashtag"
-                v-for="(hashtag, index) in article.hashtags"
-                :key="index">
-                #{{ hashtag }}
+            <nuxt-link :to="'/news/' + findItemByTitle(article.title)">
+              <div class="article-date">{{ article.date }}</div>
+              <div class="article-title" v-html="article.title"></div>
+              <div class="article-image"
+                :style="{background: `url(${ 'http://' + article.media.fields.file.url.slice(2) }) no-repeat center / cover`}" />
+              <div class="article-preview">{{ article.preview }}</div>
+              <div class="article-hashtags">
+                <div class="article-hashtag"
+                  v-for="(hashtag, index) in article.tags"
+                  :key="index">
+                  #{{ hashtag.trim() }}
+                </div>
               </div>
-            </div>
+            </nuxt-link>
           </div>
         </masonry>
       </div>
@@ -43,81 +67,53 @@
     data () {
       return {
         filteredArticles: [],
-        articles: [
-          {
-            date: 'DEC 9 — 2017',
-            title: 'Sochi, closing of the<br>season 2017 RDS',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '/news/news-1.jpg',
-            hashtags: ['events', 'rds2018']
-          },
-          {
-            date: 'DEC 7 — 2017',
-            title: 'MotorShow Bologna.<br>Italy 2-10 December',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '',
-            hashtags: ['garage']
-          },
-          {
-            date: 'JAN 30 — 2016',
-            title: 'Life of championships<br>Chaper 5',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '/news/news-2.jpg',
-            hashtags: ['video']
-          },
-          {
-            date: 'DEC 1 — 2017',
-            title: 'Life of championships<br>moscow raceway',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '',
-            hashtags: ['events', 'rds2018']
-          },
-          {
-            date: 'DEC 3 — 2017',
-            title: 'Drift all<br>the time you got!',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '/news/news-3.jpg',
-            hashtags: ['events', 'rds2018']
-          },
-          {
-            date: 'DEC 9 — 2017',
-            title: 'Sochi, closing of the season 2017 RDS',
-            preview: '',
-            image: '',
-            hashtags: ['events', 'rds2018']
-          },
-        ]
       }
     },
 
     computed: {
       tags () {
         const hashtags = []
-        this.articles.map((article, index) => {
-          article.hashtags.map((tag, index) => {
-            hashtags.push(tag)
+        this.fetchedNews.map((article, index) => {
+          article.tags.map((tag, index) => {
+            hashtags.push(tag.trim())
           })
         })
 
         return [ ...new Set(hashtags) ]
+      },
+
+      fetchedNews () {
+        return this.$store.state.entities.news.map(article => {
+          return {
+            ...article,
+            tags: article.tags.replace(' ', '').split(',')
+          }
+        })
       }
     },
 
     methods: {
       filterByTag (hashtag) {
         this.filteredArticles = []
-        this.articles.map((article, index) => {
-          article.hashtags.map((tag, index) => {
+        this.fetchedNews.map((article, index) => {
+          article.tags.map((tag, index) => {
             if (hashtag === tag) {
               this.filteredArticles.push(article)
             }
           })
         })
-      }
-    },
+      },
 
-    mounted () {
-      this.filteredArticles = this.articles
+      findItemByTitle (title) {
+        let result
+        this.fetchedNews.map((item, index) => {
+          if (item.title === title) {
+            result = index
+          }
+        })
+
+        return result
+      }
     },
 
     components: {
@@ -188,6 +184,10 @@
     margin-bottom: 60px;
     cursor: pointer;
     max-width: 300px;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   .article-date {

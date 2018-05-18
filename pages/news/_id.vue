@@ -4,47 +4,44 @@
     <div class="container">
       <nuxt-link to="/news/" class="back">back to news</nuxt-link>
       <div class="left">
-        <div class="title">Sochi, closing of the<br /> season 2017 RDS</div>
+        <div class="title">{{ article.title }}</div>
         <div class="article">
           <div class="info">
-            <div class="date">DEC 9 — 2017</div>
+            <div class="date">{{ article.date }}</div>
             <div class="tags">
-              <div class="tag">#EVENTS</div>
-              <div class="tag">#RDS2018</div>
+              <div class="tag" v-for="(tag, index) in article.tags" :key="index">
+                #{{ tag.trim() }}
+              </div>
             </div>
           </div>
-          <div class="subtitle">Donec a tellus malesuada, gravida ligula sit amet, scelerisque neque.</div>
-          <div class="text">Duis eget efficitur ipsum, eget porttitor sapien. Proin justo est, tempus in sollicitudin ut, hendrerit non metus. Fusce volutpat mattis lorem, ac posuere lorem consequat accumsan.</div>
-          <div class="text">Praesent tempor, turpis sit amet auctor placerat, eros nisl viverra lorem, vel laoreet velit metus vel augue.</div>
-          <div class="img-fullwidth">
-            <img src="/news/news-1.jpg" />
+          <div class="subtitle">{{ article.subtitle }}</div>
+          <div class="text article-text">
+            <vue-markdown>
+              {{ article.text }}
+            </vue-markdown>
           </div>
+          <!-- <div class="img-fullwidth">
+            <img src="/news/news-1.jpg" />
+          </div> -->
         </div>
       </div>
       <div class="right">
         <div class="previous-article">
           <div class="previous-title">Previous news</div>
-          <div class="previous">
-            <div class="previous-image" />
-            <div class="previous-date">JAN 30 — 2016</div>
-            <div class="previous-subtitle">Life of championships<br> Chaper 5</div>
-            <div class="previous-preview">
-              Phasellus semper vehicula ornare. Donec ante ipsum, maximus ac auctor in, dapibus nec lorem.
-            </div>
-            <div class="previous-tags">
-              <div class="previous-tag">#VIDEO</div>
-            </div>
-          </div>
-          <div class="previous">
-            <div class="previous-image" />
-            <div class="previous-date">JAN 30 — 2016</div>
-            <div class="previous-subtitle">Life of championships<br> Chaper 5</div>
-            <div class="previous-preview">
-              Phasellus semper vehicula ornare. Donec ante ipsum, maximus ac auctor in, dapibus nec lorem.
-            </div>
-            <div class="previous-tags">
-              <div class="previous-tag">#VIDEO</div>
-            </div>
+          <div class="previous" v-for="(item, index) in news" :key="index">
+            <nuxt-link :to="'/news/' + findItemByTitle(item.title)">
+              <div class="previous-image" />
+              <div class="previous-date">{{ item.date }}</div>
+              <div class="previous-subtitle">{{ item.title }}</div>
+              <div class="previous-preview">
+                {{ item.text.length > 92 ? item.text.slice(0, 89) + '...' : item.text }}
+              </div>
+              <div class="previous-tags">
+                <div class="previous-tag" v-for="(tag, index) in item.tags" :key="index">
+                  #{{ tag }}
+                </div>
+              </div>
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -54,24 +51,66 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
+  import VueMarkdown from 'vue-markdown'
 
+  export default {
+    computed: {
+      article () {
+        return this.$store.state.entities.news.map(article => {
+          return {
+            ...article,
+            tags: article.tags.replace(' ', '').split(',')
+          }
+        })[this.$route.params.id]
+      },
+
+      news () {
+        const array = this.$store.state.entities.news.map(article => {
+          return {
+            ...article,
+            tags: article.tags.replace(' ', '').split(',')
+          }
+        })
+
+        if (array.length > 2) {
+          console.log(
+          )
+          return [
+            array[array.length - 1],
+            array[array.length - 2]
+          ]
+        } else {
+          return array[0]
+        }
+      },
+
+      fetchedNews () {
+        return this.$store.state.entities.news.map(article => {
+          return {
+            ...article,
+            tags: article.tags.replace(' ', '').split(',')
+          }
+        })
       }
     },
 
     methods: {
+      findItemByTitle (title) {
+        let result
+        this.fetchedNews.map((item, index) => {
+          if (item.title === title) {
+            result = index
+          }
+        })
 
-    },
-
-    mounted () {
-
+        return result
+      }
     },
 
     components: {
       Header: () => import('@/components/Header'),
-      Footer: () => import('@/components/Footer')
+      Footer: () => import('@/components/Footer'),
+      VueMarkdown
     },
 
     validate ({ params }) {
@@ -146,8 +185,12 @@
     margin-right: 40px;
   }
 
-  .tag:first-child {
+  .tag {
     margin-right: 10px;
+  }
+
+  .tag:last-child {
+    margin-right: 0;
   }
 
   .date,
@@ -218,6 +261,10 @@
 
   .previous {
     margin-bottom: 40px;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   .previous-image {
@@ -266,6 +313,7 @@
   }
 
   .previous-tag {
+    margin-right: 10px;
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -273,6 +321,10 @@
     font-size: 20px;
     text-transform: uppercase;
     color: #FFFFFF;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 
   @media (max-width: 768px) {
@@ -364,6 +416,29 @@
 
     .previous {
       flex: 0 0 100%;
+    }
+  }
+</style>
+
+
+<style lang="scss">
+  .article-text {
+    pre,
+    code {
+      margin-bottom: 20px;
+      white-space: initial;
+      font-family: 'DIN Pro Medium', sans-serif !important;
+    }
+
+    p {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    img {
+      height: auto;
+      width: 100%;
+      max-width: 100%;
     }
   }
 </style>

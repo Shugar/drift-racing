@@ -150,14 +150,14 @@
         })
 
         return [ ...new Set(hashtags) ]
+      },
+
+      fetchedCalendar () {
+        return this.$store.state.entities.calendar
       }
     },
 
     methods: {
-
-    },
-
-    mounted () {
 
     },
 
