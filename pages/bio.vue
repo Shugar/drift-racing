@@ -137,7 +137,7 @@ export default {
   .right .title,
   .right .text {
     padding-right: 0;
-    padding-left: 50px;
+    padding-left: 62px;
   }
 
   .img-fullwidth {
