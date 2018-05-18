@@ -1,7 +1,7 @@
 <template>
   <section class="calendar" :class="{phone: isMobileInfoVisible}">
     <div class="background" :style="{ background: 'url(http://' + store.full.fields.file.url.slice(2) + ') no-repeat center / cover'}"></div>
-    <div class="container">
+    <div class="container" >
       <nuxt-link to="/store/">
         <div class="cross" />
       </nuxt-link>
@@ -66,7 +66,7 @@
     background: #683FFF;
     // padding: 200px 0 80px;
     position: relative;
-    height: 100vh;
+    height: 100%;
     min-height: 700px;
   }
 
@@ -83,6 +83,7 @@
     justify-content: flex-end;
     align-items: center;
   }
+
 
   .background {
     position: absolute;
@@ -112,7 +113,8 @@
     color: #fff;
     width: 300px;
     font-size: 64px;
-    margin-top: 150px;
+    margin-top: 210px;
+    margin-right: 15%;
   }
 
   .product-title {
@@ -182,7 +184,7 @@
       position: absolute;
       top: -1.6px;
       left: -1px;
-      width: calc(100% + 2px);  
+      width: calc(100% + 2px);
       height: calc(100% - 1px);
       z-index: -1;
     }
@@ -192,12 +194,19 @@
     position: absolute;
     bottom: 80px;
     z-index: 3;
+    cursor: pointer;
+    display: none;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
 
-    .calendar {
-      min-height: auto;
+    .about {
+      display: block;
+    }
+
+
+    .product {
+      margin-right: 0;
     }
 
     .product-mobile {
@@ -213,6 +222,12 @@
     }
   }
 
+  @media (max-width: 768px) {
+    .calendar {
+      min-height: 100vh;
+    }
+  }
+
   @media (max-width: 425px) {
     .background {
       background: url(/store/product-mobile.png) -50px;
@@ -221,8 +236,8 @@
     }
 
     .calendar {
-      // height: 100%;
       overflow: hidden;
+      height: 100vh;
     }
     
     .phone {
