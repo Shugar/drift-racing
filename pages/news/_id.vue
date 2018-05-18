@@ -25,7 +25,7 @@
           </div> -->
         </div>
       </div>
-      <div class="right">
+      <div class="right" v-if="news.length > 0">
         <div class="previous-article">
           <div class="previous-title">Previous news</div>
           <div class="previous" v-for="(item, index) in news" :key="index">
@@ -72,15 +72,15 @@
           }
         })
 
-        if (array.length > 2) {
-          console.log(
-          )
+        if (this.$route.params.id > 1) {
           return [
-            array[array.length - 1],
-            array[array.length - 2]
+            array[this.$route.params.id - 1],
+            array[this.$route.params.id - 2]
           ]
+        } else if (this.$route.params.id > 0) {
+          return [ array[0] ]
         } else {
-          return array[0]
+          return []
         }
       },
 

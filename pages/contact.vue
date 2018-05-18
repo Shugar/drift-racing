@@ -6,26 +6,35 @@
         <div class="page-title">
           <div>contact</div>
           <div class="city">
-            <div class="city-item" :class="{active : currentCity === 'moscow'}" @click="setCurrentCity('moscow')">moscow</div>
-            <div class="city-item" :class="{active : currentCity === 'riga'}" @click="setCurrentCity('riga')">riga</div>
-            <div class="city-item" :class="{active : currentCity === 'milano'}" @click="setCurrentCity('milano')">milano</div>
+            <div class="city-item"
+              v-for="(item, index) in contact"
+              :key="index"
+              :class="{active : currentCity === item.city }"
+              @click="setCurrentCity(item.city)">
+              {{ item.city }}
+            </div>
           </div>
         </div>
-        <div class="contact-info">
-          <div class="contact-title">connect with us</div>
-          <div class="contact">
-            <a :href="'mailto:' + contact.email">{{ contact.email }}</a>
-            <br/>
-            <a :href="'tel:' + contact.number">{{ contact.number }}</a>
+        <div class="contact-item"
+          v-for="(item, index) in contact"
+          :key="index"
+          v-if="currentCity === item.city">
+          <div class="contact-info">
+            <div class="contact-title">connect with us</div>
+            <div class="contact">
+              <a :href="'mailto:' + item.email">{{ item.email }}</a>
+              <br/>
+              <a :href="'tel:' + item.number">{{ item.number }}</a>
+            </div>
+          </div>
+          <div class="contact-info">
+            <div class="contact-title">location</div>
+            <div class="contact">
+              {{ item.address }}
+            </div>
           </div>
         </div>
-        <div class="contact-info">
-          <div class="contact-title">location</div>
-          <div class="contact">
-            {{ contact.address }}
-          </div>
         </div>
-      </div>
       <div class="right">
         <div class="right-background" :style="{background: `url(/contact/map.png) no-repeat center / cover`}"/>
       </div>
@@ -51,7 +60,7 @@
 
     computed: {
       contact () {
-        return this.$store.state.entities.contact[0]
+        return this.$store.state.entities.contact
       }
     },
 
@@ -78,7 +87,6 @@
     flex: 0 0 55%;
     min-width: 728px;
     position: relative;
-    padding-left: 100px;
     // padding-bottom: 230px;
     background: #683FFF;
     display: flex;
@@ -87,11 +95,13 @@
     font-family: 'DIN Condensed';
     text-transform: uppercase;
     color: #fff;
-
+    padding: 180px 0 140px;
+    padding-left: 100px;
   }
+
   .page-title {
     font-size: 48px;
-    margin-left: 240px;
+    margin-left: 220px;
     margin-bottom: 144px;
   }
 
@@ -140,7 +150,7 @@
 
   .contact {
     font-size: 36px;
-    margin-left: 80px;
+    margin-left: 60px;
     max-width: 310px;
 
     a {
@@ -163,7 +173,7 @@
     justify-content: flex-end;
     padding-bottom: 120px;
 
-     .right-background {
+    .right-background {
       position: absolute;
       top: 0;
       left: 0;
