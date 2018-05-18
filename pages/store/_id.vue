@@ -23,7 +23,7 @@
         <option value="xl">xl</option>
       </select>
       </div>
-      <div class="add-to" :class="{white: isMobileInfoVisible}" >add to card</div>
+      <div class="add-to" @click="$store.commit('addProductToCart', store)" :class="{white: isMobileInfoVisible}" >add to card</div>
     </div>
     <div class="about mobile" :class="{white: isMobileInfoVisible}" @click="toggleInfoMobile()">about product</div>
     </div>
