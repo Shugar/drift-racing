@@ -15,12 +15,8 @@
           </div>
         </div>
       </div>
-<<<<<<< Updated upstream:pages/store/index.vue
 
       <div class="news-list">
-=======
-      <div class="product-list">
->>>>>>> Stashed changes:pages/store.vue
         <masonry
           v-if="filteredGoods.length === 0"
           :cols="{default: 3, 1024: 2, 425: 1}"

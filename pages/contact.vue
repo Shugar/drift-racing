@@ -76,13 +76,14 @@
 
   .left {
     flex: 0 0 55%;
+    min-width: 728px;
     position: relative;
     padding-left: 100px;
-    padding-bottom: 230px;
+    // padding-bottom: 230px;
     background: #683FFF;
     display: flex;
     flex-flow: column nowrap;
-    justify-content: flex-end;
+    justify-content: center;
     font-family: 'DIN Condensed';
     text-transform: uppercase;
     color: #fff;
@@ -131,6 +132,10 @@
     width: 560px;
     min-width: 256px;
     margin-bottom: 40px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   .contact {
@@ -196,6 +201,7 @@
       align-items: flex-end;
       padding-bottom: 0;
       flex: 0 0 50%;
+      min-width: auto;
     }
 
     .right {
@@ -212,6 +218,9 @@
     .contact-info {
       flex-flow: column nowrap;
       width: 50%;
+      &:last-child {
+        margin-bottom: 40px;
+      }
     }
 
     .contact {
