@@ -1,11 +1,12 @@
 <template>
   <section class="store">
-    <Header />
+    <Header :productCount="productCount" :productSum="productSum"/>
+    <Checkout v-if="$store.state.isCheckoutOpen" />
     <div class="container">
-      <span class="checkout">0 items — $ 0.00</span>
+      <span @click="$store.commit('toggleCheckout')" class="checkout">{{ productCount }} items — $ {{ productSum }}</span>
       <div class="title">
         STORE
-        <span>0 items — $ 0.00</span>
+        <span @click="$store.commit('toggleCheckout')">{{ productCount }} items — $ {{ productSum }}</span>
       </div>
       <div class="tags">
         <div class="tags-item">
@@ -53,7 +54,6 @@
           </div>
         </masonry>
       </div>
-
     </div>
     <Footer />
   </section>
@@ -68,6 +68,23 @@
     },
 
     computed: {
+      productCount () {
+        return this.$store.state.checkoutList.length
+      },
+
+      productSum () {
+        const products = this.$store.state.checkoutList
+        let sum =0
+        if (this.productCount > 0) {
+          return (
+            products.reduce((acc, p) => {
+              return acc + p.price
+            }, 0)
+          )
+        } else {
+          return 0
+        }
+      },
       categories () {
         return [ ...new Set(this.store.map(item => item.category)) ]
       },
@@ -101,6 +118,7 @@
 
     components: {
       Header: () => import('@/components/Header'),
+      Checkout: () => import('@/components/Checkout'),
       Footer: () => import('@/components/Footer')
     }
   }
@@ -172,6 +190,7 @@
 
   .title span,
   .checkout {
+    cursor: pointer;
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -250,11 +269,8 @@
     color: #FFFFFF;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
 
-    .store {
-
-    }
     .container {
       padding-left: 100px;
 

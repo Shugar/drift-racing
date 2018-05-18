@@ -6,7 +6,9 @@ const createStore = () => {
       lightboxPhotoPath: '',
       lightboxLength: null,
       lightboxIndex: null,
-      entities: null
+      entities: null,
+      isCheckoutOpen: true,
+      checkoutList: []
     },
 
     mutations: {
@@ -24,6 +26,13 @@ const createStore = () => {
         state.lightboxPhotoPath = ''
         state.lightboxLength = null
         state.lightboxIndex = null
+      },
+
+      toggleCheckout (state) {
+        state.isCheckoutOpen = !state.isCheckoutOpen
+      },
+      addProductToCart (state, payload) {
+        state.checkoutList = [...state.checkoutList, payload ]
       }
     }
   })

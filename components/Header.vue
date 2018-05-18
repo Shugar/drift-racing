@@ -28,7 +28,7 @@
         <div class="logo" />
       </nuxt-link>
 
-      <span v-if="this.$route.name === 'store'" class="checkout">0 items — $ 0.00</span>
+      <span @click="$store.commit('toggleCheckout')" v-if="this.$route.name === 'store'" class="checkout">{{ productCount }} items — $ {{ productSum }}</span>
 
       <div class="menu-button" @click="openMenu()" />
 
@@ -55,7 +55,7 @@
 
 <script>
   export default {
-    props: ['type', 'count'],
+    props: ['type', 'count', 'productSum', 'productCount'],
     data () {
       return {
         isMenuOpened: false
