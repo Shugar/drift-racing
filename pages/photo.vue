@@ -3,7 +3,7 @@
     <Header />
     <div class="container">
       <div class="title">PHOTO</div>
-      <div class="tags">
+      <div class="tags" v-if="fetchedPhotos">
         <div class="tags-item">
           <div class="tags-title">CHAMPIONSHIP</div>
           <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="filterByTag(tag)">
@@ -18,28 +18,56 @@
           </div>
         </div>
       </div>
-      <div class="list">
-        <div class="photo" v-for="(photo, index) in filteredPhotos" :key="index">
-          <div class="photo-date">{{ photo.date }}</div>
-          <div class="photo-title" v-html="photo.title"></div>
-          <div class="photo-list">
-            <masonry
-              :cols="{default: 4, 768: 2, 425: 1}"
-              :gutter="{default: '20px', 768: '40px', 425: '0px'}"
-              ref="my-masonry">
-              <div class="photo-item"
-                v-for="(image, index) in photo.images"
-                :key="'image-' + index"
-                @click="$store.commit('openLightbox', {
-                  path: image,
-                  index: index,
-                  length: photo.images.length
-                })"
-                :style="{background: `url(${ image }) no-repeat center / cover`}" />
-            </masonry>
+
+      <transition name="fade">
+        <div class="list" v-if="filteredPhotos.length === 0">
+          <div class="photo" v-for="(photo, index) in fetchedPhotos" :key="index">
+            <div class="photo-date">{{ photo.date }}</div>
+            <div class="photo-title" v-html="photo.title"></div>
+            <div class="photo-list">
+              <masonry
+                :cols="{default: 4, 768: 2, 425: 1}"
+                :gutter="{default: '20px', 768: '40px', 425: '0px'}"
+                ref="my-masonry">
+                <div class="photo-item"
+                  v-for="(image, index) in photo.photos"
+                  v-if="image.fields"
+                  :key="'image-' + index"
+                  @click="$store.commit('openLightbox', {
+                    path: 'http://' + image.fields.file.url.slice(2),
+                    index: index,
+                    length: photo.photos.length
+                  })"
+                  :style="{background: `url(${ 'http://' + image.fields.file.url }) no-repeat center / cover`}" />
+              </masonry>
+            </div>
           </div>
         </div>
-      </div>
+
+        <div class="list" v-else>
+          <div class="photo" v-for="(photo, index) in filteredPhotos" :key="index">
+            <div class="photo-date">{{ photo.date }}</div>
+            <div class="photo-title" v-html="photo.title"></div>
+            <div class="photo-list">
+              <masonry
+                :cols="{default: 4, 768: 2, 425: 1}"
+                :gutter="{default: '20px', 768: '40px', 425: '0px'}"
+                ref="my-masonry">
+                <div class="photo-item"
+                  v-for="(image, index) in photo.photos"
+                  v-if="image.fields"
+                  :key="'image-' + index"
+                  @click="$store.commit('openLightbox', {
+                    path: 'http://' + image.fields.file.url.slice(2),
+                    index: index,
+                    length: photo.photos.length
+                  })"
+                  :style="{background: `url(${ 'http://' + image.fields.file.url }) no-repeat center / cover`}" />
+              </masonry>
+            </div>
+          </div>
+        </div>
+      </transition>
     </div>
     <Footer />
   </section>
@@ -51,118 +79,32 @@
       return {
         filteredPhotos: [],
         championship: [],
-        country: [],
-        photos: [
-          {
-            date: 'APR 1 — 2017',
-            title: '1 stage RDS Grand prix 2018 Moscow',
-            images: [
-              '/videos/video-1.jpg',
-              '/videos/video-2.jpg',
-              '/videos/video-3.jpg',
-              '/videos/video-4.jpg',
-              '/videos/video-5.jpg',
-              '/videos/video-6.jpg'
-            ],
-            championship: 'D1 Grand prix',
-            country: 'Russia'
-          },
-          {
-            date: 'MAR 26 — 2018',
-            title: '2 stage RDS Grand prix 2018 Ryazan',
-            images: [
-              '/videos/video-1.jpg',
-              '/videos/video-2.jpg',
-              '/videos/video-3.jpg',
-              '/videos/video-4.jpg',
-              '/videos/video-5.jpg',
-              '/videos/video-6.jpg'
-            ],
-            championship: 'D1 Grand prix',
-            country: 'Russia'
-          },
-          {
-            date: 'MAR 19 — 2018',
-            title: '3 stage RDS Grand prix 2018 Nizhny Novgorod',
-            images: [
-              '/videos/video-1.jpg',
-              '/videos/video-2.jpg',
-              '/videos/video-3.jpg',
-              '/videos/video-4.jpg',
-              '/videos/video-5.jpg',
-              '/videos/video-6.jpg'
-            ],
-            championship: 'Formula D',
-            country: 'Japan'
-          },
-          {
-            date: 'FEB 22 — 2018',
-            title: '3 stage RDS Grand prix 2018 Nizhny Novgorod',
-            images: [
-              '/videos/video-1.jpg',
-              '/videos/video-2.jpg',
-              '/videos/video-3.jpg',
-              '/videos/video-4.jpg',
-              '/videos/video-5.jpg',
-              '/videos/video-6.jpg'
-            ],
-            championship: 'Formula D',
-            country: 'Usa'
-          },
-          {
-            date: 'FEB 3 — 2018',
-            title: '3 stage RDS Grand prix 2018 Nizhny Novgorod',
-            images: [
-              '/videos/video-1.jpg',
-              '/videos/video-2.jpg',
-              '/videos/video-3.jpg',
-              '/videos/video-4.jpg',
-              '/videos/video-5.jpg',
-              '/videos/video-6.jpg'
-            ],
-            championship: 'RDS 2018',
-            country: 'Japan'
-          },
-          {
-            date: 'JAN 16 — 2018',
-            title: '3 stage RDS Grand prix 2018 Nizhny Novgorod',
-            images: [
-              '/videos/video-1.jpg',
-              '/videos/video-2.jpg',
-              '/videos/video-3.jpg',
-              '/videos/video-4.jpg',
-              '/videos/video-5.jpg',
-              '/videos/video-6.jpg'
-            ],
-            championship: 'RDS 2018',
-            country: 'Usa'
-          },
-        ]
+        country: []
       }
     },
 
     computed: {
+      fetchedPhotos () {
+        return this.$store.state.entities.photo
+      },
+
       championshipTags () {
-        return [ ...new Set(this.photos.map(video => video.championship )) ]
+        return [ ...new Set(this.fetchedPhotos.map(photo => photo.championship )) ]
       },
 
       countryTags () {
-        return [ ...new Set(this.photos.map(video => video.country )) ]
+        return [ ...new Set(this.fetchedPhotos.map(photo => photo.country )) ]
       }
     },
 
     methods: {
       filterByTag (hashtag) {
         this.filteredPhotos = []
-        this.photos.map((video, index) => {
-          return (video.country === hashtag || video.championship === hashtag)
-            && this.filteredPhotos.push(video)
+        this.fetchedPhotos.map((photo, index) => {
+          return (photo.country === hashtag || photo.championship === hashtag)
+            && this.filteredPhotos.push(photo)
         })
       }
-    },
-
-    mounted () {
-      this.filteredPhotos = this.photos
     },
 
     components: {
@@ -173,12 +115,26 @@
 </script>
 
 <style lang="scss" scoped>
+  .fade-enter-active, .fade-more-leave-active {
+    transition: opacity .5s ease;
+  }
+
+  .fade-enter, .fade-leave-to {
+    opacity: 0.8;
+  }
+
   .photos {
     background: #683FFF;
     padding: 200px 0 80px;
+    min-height: 100vh;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
   }
 
   .container {
+    flex: 1;
     position: relative;
     padding: 0 100px;
 

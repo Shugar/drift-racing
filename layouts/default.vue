@@ -6,9 +6,34 @@
 </template>
 
 <script>
+  import { createClient } from '~/plugins/contentful'
+
   export default {
     components: {
       Lightbox: () => import('@/components/Lightbox')
+    },
+
+    mounted () {
+      const client = createClient()
+
+      client.getEntries()
+        .then(response => {
+          const entities = response.items.map((item, index) => {
+            return {
+              type: item.sys.contentType.sys.id,
+              ...item.fields
+            }
+          })
+
+          const normalized = {}
+          const normalizedEntities = entities.map((item, index) => {
+            normalized[item.type] = normalized[item.type] || []
+            normalized[item.type].push(item)
+          })
+
+          this.$store.commit('fetchData', normalized)
+        })
+        .catch(console.error)
     }
   }
 </script>

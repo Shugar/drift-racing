@@ -5,10 +5,15 @@ const createStore = () => {
     state: {
       lightboxPhotoPath: '',
       lightboxLength: null,
-      lightboxIndex: null
+      lightboxIndex: null,
+      entities: {}
     },
 
     mutations: {
+      fetchData (state, payload) {
+        state.entities = payload
+      },
+
       openLightbox (state, payload) {
         state.lightboxPhotoPath = payload.path
         state.lightboxLength = payload.length

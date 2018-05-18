@@ -1,6 +1,6 @@
 <template>
   <section class="index">
-    <Header type="main" />
+    <Header type="main" :count="count" />
     <div class="container">
       <div class="left">
         <transition name="fade" mode="out-in">
@@ -385,7 +385,7 @@
     position: relative;
     width: 100%;
     display: block;
-    height: 70px;
+    min-height: 74px;
     overflow: hidden;
     margin-bottom: 40px;
 

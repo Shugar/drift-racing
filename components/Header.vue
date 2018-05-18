@@ -33,10 +33,10 @@
       <div class="menu-button" @click="openMenu()" />
 
       <div class="nav nav-left">
-        <nuxt-link class="nav-item" to="/bio/">BIO</nuxt-link>
-        <nuxt-link class="nav-item" to="/photo/">PHOTO</nuxt-link>
-        <nuxt-link class="nav-item" to="/video/">VIDEO</nuxt-link>
-        <nuxt-link class="nav-item" to="/calendar/">CALENDAR</nuxt-link>
+        <nuxt-link class="nav-item" to="/bio/" :class="{'nuxt-link-active': count === 0}">BIO</nuxt-link>
+        <nuxt-link class="nav-item" to="/photo/" :class="{'nuxt-link-active': count === 1}">PHOTO</nuxt-link>
+        <nuxt-link class="nav-item" to="/video/" :class="{'nuxt-link-active': count === 2}">VIDEO</nuxt-link>
+        <nuxt-link class="nav-item" to="/calendar/" :class="{'nuxt-link-active': count === 3}">CALENDAR</nuxt-link>
       </div>
     </div>
 
@@ -55,7 +55,7 @@
 
 <script>
   export default {
-    props: ['type'],
+    props: ['type', 'count'],
     data () {
       return {
         isMenuOpened: false
