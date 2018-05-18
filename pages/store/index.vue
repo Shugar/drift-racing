@@ -1,5 +1,5 @@
 <template>
-  <section class="news">
+  <section class="store">
     <Header />
     <div class="container">
       <span class="checkout">0 items — $ 0.00</span>
@@ -15,8 +15,12 @@
           </div>
         </div>
       </div>
+<<<<<<< Updated upstream:pages/store/index.vue
 
       <div class="news-list">
+=======
+      <div class="product-list">
+>>>>>>> Stashed changes:pages/store.vue
         <masonry
           v-if="filteredGoods.length === 0"
           :cols="{default: 3, 1024: 2, 425: 1}"
@@ -107,7 +111,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .news {
+  .store {
     background: #683FFF;
     padding: 200px 0 80px;
   }
@@ -184,7 +188,7 @@
     display: none;
   }
 
-  .news-list {
+  .product-list {
     margin-bottom: 100px;
   }
 
