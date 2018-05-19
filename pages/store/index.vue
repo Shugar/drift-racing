@@ -74,7 +74,7 @@
 
       productSum () {
         const products = this.$store.state.checkoutList
-        let sum =0
+        let sum = 0
         if (this.productCount > 0) {
           return (
             products.reduce((acc, p) => {
