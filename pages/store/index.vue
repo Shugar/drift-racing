@@ -9,8 +9,8 @@
         <span @click="$store.commit('toggleCheckout')">{{ productCount }} items — $ {{ productSum }}</span>
       </div>
       <div class="tags">
+        <div class="tags-title">CATEGORIES</div>
         <div class="tags-item">
-          <div class="tags-title">CATEGORIES</div>
           <div class="tag" v-for="(category, index) in categories" :key="index" @click="filterByCategory(category)">
             #{{category}}
           </div>
@@ -297,16 +297,21 @@
       flex: 1;
       position: initial;
       display: flex;
-      flex-flow: row nowrap;
+      flex-flow: column nowrap;
       justify-content: space-between;
+      margin-left: 43px;
+      margin-top: 32px;
     }
 
     .tags-item {
       flex: 1;
+      display: flex;
+      flex-flow: column wrap;
+      max-height: 105px;
 
       &:first-child {
         margin-left: 20px;
-        margin-right: 60px;
+        // margin-right: 60px;
       }
     }
 
@@ -338,9 +343,12 @@
 
     .tags {
       margin-bottom: 50px;
+      margin-left: 0;
     }
 
-    .tags-item:first-child {
+    
+
+    .tags-item {
       margin-left: 0;
     }
   }

@@ -355,7 +355,7 @@
 
     .logo {
       margin-top: -20px;
-      width: 80px;
+      width: 100px;
     }
 
     .nav {

@@ -4,6 +4,7 @@
     <div class="container">
       <nuxt-link to="/news/" class="back">back to news</nuxt-link>
       <div class="left">
+        <nuxt-link to="/news/" class="back">back to news</nuxt-link>
         <div class="title">{{ article.title }}</div>
         <div class="article">
           <div class="info">
@@ -142,6 +143,10 @@
 
     display: flex;
     flex-flow: column nowrap;
+
+    .back {
+      display: none;
+    }
   }
 
   .right {
@@ -340,6 +345,13 @@
       padding-left: 0;
       padding-bottom: 0;
       margin-bottom: 50px;
+      .back {
+        position: relative;
+        top: 0;
+        left: 0;
+        display: block;
+        margin-bottom: 30px;
+      }
     }
 
     .right {
