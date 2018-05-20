@@ -34,7 +34,11 @@ module.exports = {
     },
     {
       src: '~/plugins/googleMap'
-    }
+    },
+    {
+      src: '~/plugins/vueTouch',
+      ssr: false
+    },
   ],
 
   env: {

@@ -1,5 +1,7 @@
 <template>
   <div
+    v-touch:swipe.left="next"
+    v-touch:swipe.right="prev"
     v-if="photo !== null"
     class="lightbox"
     :style="{background: 'url(' + photo.path + ') no-repeat center / cover'}">

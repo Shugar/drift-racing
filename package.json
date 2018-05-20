@@ -19,7 +19,8 @@
     "sass-loader": "^7.0.1",
     "vue-markdown": "^2.2.4",
     "vue-masonry-css": "^1.0.1",
-    "vue2-google-maps": "^0.9.7"
+    "vue2-google-maps": "^0.9.7",
+    "vue2-touch-events": "^1.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
