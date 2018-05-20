@@ -19,7 +19,7 @@
             </div>
             <div class="next-category">
 
-              <transition name="category-animation">
+              <transition :name="'category-' + direction + '-animation'">
 
                 <div class="next-category-inner"
                   v-if="count === index"
@@ -40,7 +40,7 @@
                 <div class="title-inner"
                   v-for="(title, i) in slide.title"
                   :key="i">
-                  <transition name="category-animation" mode="out-in">
+                  <transition :name="'category-' + direction + '-animation'" mode="out-in">
                     <div v-if="count === index" class="title-absolute">
                         {{ title }}
                     </div>
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="subtitle-wrapper">
-              <transition name="subtitle-animation" mode="out-in">
+              <transition :name="'subtitle-' + direction + '-animation'" mode="out-in">
                 <div class="subtitle"
                   v-if="count === index"
                   v-for="(slide, index) in dummyLeftSlider"
@@ -66,7 +66,7 @@
 
       <div class="right">
         <div class="image-slider">
-          <transition name='small-slider-animation'>
+          <transition :name="'small-slider-' + direction + '-animation'">
             <img class="image-slider-item" v-for="(item, index) in rightSlider"
               :src="`${'http://' + (item.image || item.preview || item.media ).fields.file.url.slice(2)}`"
               v-if="index === rightCount"
@@ -82,7 +82,7 @@
         </div>
         <div class="small-slider">
             <div>
-              <transition name='small-slider-animation'>
+              <transition :name="'small-slider-' + direction + '-animation'">
                 <div class="small-slider-left"
                   v-for="(item, index) in rightSlider"
                   v-if="index === rightCount"
@@ -94,7 +94,7 @@
                   <div class="small-slider-event-date" v-if="item.type === 'calendar' || item.type === 'news'" v-html="item.date"/>
                 </div>
               </transition>
-              <transition name='small-slider-animation'>
+              <transition :name="'small-slider-' + direction + '-animation'">
                 <div class="small-slider-right"
                   v-for="(item, index) in rightSlider"
                   v-if="index === rightCount"
@@ -119,6 +119,7 @@
       return {
         count: 0,
         rightCount: 0,
+        direction: 'top',
         timeInterval: 0,
         nextUpAnimation: true,
         dummyLeftSlider: [
@@ -150,43 +151,7 @@
             link: '/bio/',
             category: 'bio'
           }
-        ],
-        // dummyRightSlider: [
-        //   {
-        //     type: 'show',
-        //     link: '/calendar/1',
-        //     title: 'Motorshow',
-        //     place: 'BOLOGNA. Italy',
-        //     date: '2-10 December 2017',
-        //     publishing_date: 'DEC 9 — 2017',
-        //     image: '/home/left-slider0.png'
-        //   },
-        //   {
-        //     type: 'store',
-        //     link: '/store',
-        //     title: 'DRIFT IS MY THERAPY',
-        //     category: 'MEN T-SHIRT',
-        //     style: 'white',
-        //     price: '$ 15',
-        //     image: '/home/left-slider1.png'
-        //   },
-        //   {
-        //     type: 'news',
-        //     link: '/news',
-        //     title: 'SOCHI. Closing<br> of the season <br> 2017 RDS',
-        //     publishing_date: 'OCT 12 — 2017',
-        //     image: '/home/left-slider2.png'
-        //   },
-        //   {
-        //     type: 'store',
-        //     link: '/store',
-        //     title: 'FUCKING HERO STYLE',
-        //     category: 'MEN T-SHIRT',
-        //     style: 'BLACK',
-        //     price: '$ 15',
-        //     image: '/home/left-slider3.png'
-        //   }
-        // ]
+        ]
       }
     },
 
@@ -203,7 +168,19 @@
         this.nextSlideInterval = setInterval(this.nextSlide, 4000)
       },
 
+      prevSlide () {
+        this.direction = 'bottom'
+        this.count === 0 ? this.count = 3 : this.count--
+
+        clearInterval(this.nextSlideInterval)
+        this.sliderInterval()
+
+        this.nextUpAnimation = false
+        setTimeout(() => this.nextUpAnimation = true, 0)
+      },
+
       nextSlide () {
+        this.direction = 'top'
         this.count === 3 ? this.count = 0 : this.count++
 
         clearInterval(this.nextSlideInterval)
@@ -215,20 +192,60 @@
 
       nextSlideRight () {
         return this.rightCount === 3 ? this.rightCount = 0 : this.rightCount++
+      },
+
+      prevSlideRight () {
+        return this.rightCount === 0 ? this.rightCount = 3 : this.rightCount--
+      },
+
+      handleScroll (e) {
+        if (e.deltaY < 0) {
+          this.prevSlideRight()
+          this.prevSlide()
+        }
+
+        if (e.deltaY > 0) {
+          this.nextSlideRight()
+          this.nextSlide()
+        }
+      },
+
+      handleKeypress (e) {
+        if (e.keyCode === 37) {
+          this.prevSlideRight()
+          this.prevSlide()
+        }
+
+        if (e.keyCode === 39) {
+          this.nextSlideRight()
+          this.nextSlide()
+        }
       }
     },
-
 
     computed: {
       rightSlider () {
         return this.$store.state.entities.rightSlider
       }
     },
+
     mounted () {
       this.sliderInterval()
-      setTimeout(() => {
-        setInterval(() => this.nextSlideRight(), 3000)
-      }, 1333)
+      setInterval(() => this.nextSlideRight(), 4000)
+    },
+
+    created () {
+      if (process.browser) {
+        window.addEventListener('wheel', this.handleScroll);
+        window.addEventListener('keyup', this.handleKeypress);
+      }
+    },
+
+    destroyed () {
+      if (process.browser) {
+        window.removeEventListener('wheel', this.handleScroll);
+        window.removeEventListener('keyup', this.handleKeypress);
+      }
     }
   }
 </script>
@@ -307,14 +324,14 @@
     color: #FFFFFF;
   }
 
-@keyframes background {
-  from {
-    width: 0;
+  @keyframes background {
+    from {
+      width: 0;
+    }
+    to {
+      width: calc(100% + 2px);
+    }
   }
-  to {
-    width: calc(100% + 2px);
-  }
-}
 
   .next-button {
     margin-bottom: 5px;
@@ -358,16 +375,28 @@
     color: #fff;
   }
 
-  .category-animation-enter-active, .category-animation-leave-active {
+  .category-top-animation-enter-active, .category-top-animation-leave-active {
     transition: transform .5s;
   }
 
-  .category-animation-leave-to {
+  .category-top-animation-leave-to {
     transform: translateY(-110%);
   }
 
-  .category-animation-enter {
+  .category-top-animation-enter {
     transform: translateY(110%);
+  }
+
+  .category-bottom-animation-enter-active, .category-bottom-animation-leave-active {
+    transition: transform .5s;
+  }
+
+  .category-bottom-animation-leave-to {
+    transform: translateY(110%);
+  }
+
+  .category-bottom-animation-enter {
+    transform: translateY(-110%);
   }
 
   .text {
@@ -378,19 +407,6 @@
   .title {
     margin-bottom: 30px;
     width: 100%;
-  }
-
-  .title-animation-enter-active, .title-animation-leave-active {
-    transition: transform .4s, opacity .2s ease;;
-  }
-
-  .title-animation-leave-to {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-
-  .title-animation-enter {
-    transform: translateY(-100%);
   }
 
   .title-inner {
@@ -437,24 +453,37 @@
     color: #F2F2F2;
   }
 
-  .subtitle-animation-enter-active, .subtitle-animation-leave-active {
+  .subtitle-top-animation-enter-active, .subtitle-top-animation-leave-active {
     transition: transform .5s, opacity .3s ease;;
   }
 
-  .subtitle-animation-leave-to {
+  .subtitle-top-animation-leave-to {
     transform: translateX(100%);
     opacity: 0;
   }
 
-  .subtitle-animation-enter {
+  .subtitle-top-animation-enter {
     transform: translateX(-100%);
+  }
+
+  .subtitle-bottom-animation-enter-active, .subtitle-bottom-animation-leave-active {
+    transition: transform .5s, opacity .3s ease;;
+  }
+
+  .subtitle-bottom-animation-leave-to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  .subtitle-bottom-animation-enter {
+    transform: translateX(100%);
   }
 
   .button {
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
-    line-height: 29px;
+    line-height: 20px;
     font-size: 20px;
     text-transform: uppercase;
     color: #FFFFFF;
@@ -466,10 +495,10 @@
       content: '';
       background: #683FFF;
       position: absolute;
-      top: 2px;
-      left: -1px;
-      width: calc(100% + 2px);
-      height: 18px;
+      top: -3px;
+      left: -2px;
+      width: calc(100% + 4px);
+      height: 20px;
       z-index: -1;
     }
   }
@@ -486,16 +515,29 @@
     padding-left: 100px;
   }
 
-  .small-slider-animation-enter-active, .small-slider-animation-leave-active {
+  .small-slider-top-animation-enter-active, .small-slider-top-animation-leave-active {
     transition: transform .5s ease, opacity .3s ease;
   }
 
-  .small-slider-animation-leave-to {
+  .small-slider-top-animation-leave-to {
     transform: translateX(110%);
     opacity: 0;
   }
 
-  .small-slider-animation-enter {
+  .small-slider-top-animation-enter {
+    transform: translateX(-110%);
+  }
+
+  .small-slider-bottom-animation-enter-active, .small-slider-bottom-animation-leave-active {
+    transition: transform .5s ease, opacity .3s ease;
+  }
+
+  .small-slider-bottom-animation-leave-to {
+    transform: translateX(110%);
+    opacity: 0;
+  }
+
+  .small-slider-bottom-animation-enter {
     transform: translateX(-110%);
   }
 
