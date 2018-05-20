@@ -13,7 +13,7 @@
 
     <div class="right" :class="{ mainRight: type === 'main' }">
       <div class="lang">
-        RU — EN
+        <span>RU</span> — <span class="lang-active">EN</span>
       </div>
 
       <div class="copy">
@@ -126,6 +126,21 @@ export default {
     font-size: 20px;
     text-transform: uppercase;
     color: #E0E0E0;
+  }
+
+  .lang span {
+    color: #E0E0E0;
+    transition: color .2s ease;
+    will-change: color;
+    cursor: pointer;
+  }
+
+  .lang span:hover {
+    color: #FFF;
+  }
+
+  .lang-active {
+    color: #FFF;
   }
 
   @media (max-width: 768px) {

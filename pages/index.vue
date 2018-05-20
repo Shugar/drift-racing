@@ -56,9 +56,9 @@
                   v-html="slide.subtitle" />
               </transition>
             </div>
-            <div class="button">
+            <nuxt-link class="button" :to="dummyLeftSlider[count].link">
               {{ dummyLeftSlider[count].button }}
-            </div>
+            </nuxt-link>
           </div>
 
         </div>
@@ -126,24 +126,28 @@
             title: ['Drift', 'Is my', 'Therapy'],
             subtitle: 'Alexander Dmitrenko, pilot of<br> the Russian Drift Series',
             button: 'Learn more',
+            link: '/photo/',
             category: 'photos'
           },
           {
             title: ['Latest', 'Photos'],
             subtitle: 'Photos from our<br> recent events',
             button: 'Discover',
+            link: '/video/',
             category: 'videos'
           },
           {
             title: ['New', 'videos'],
             subtitle: 'Newest videos right<br> from the race track',
             button: 'Discover',
+            link: '/calendar/',
             category: 'calendar'
           },
           {
             title: ['upcoming', 'events'],
             subtitle: 'Upcoming events<br> with Alex D',
             button: 'Discover',
+            link: '/bio/',
             category: 'bio'
           }
         ],
@@ -198,6 +202,7 @@
       sliderInterval () {
         this.nextSlideInterval = setInterval(this.nextSlide, 4000)
       },
+
       nextSlide () {
         this.count === 3 ? this.count = 0 : this.count++
 
@@ -205,8 +210,9 @@
         this.sliderInterval()
 
         this.nextUpAnimation = false
-        setInterval(() => this.nextUpAnimation = true, 0)
+        setTimeout(() => this.nextUpAnimation = true, 0)
       },
+
       nextSlideRight () {
         return this.rightCount === 3 ? this.rightCount = 0 : this.rightCount++
       }
@@ -448,6 +454,7 @@
     color: #FFFFFF;
     position: relative;
     display: inline-block;
+    text-decoration: none;
 
     &:before {
       content: '';

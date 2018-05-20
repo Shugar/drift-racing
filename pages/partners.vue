@@ -107,7 +107,8 @@
 
     .partner {
       margin-right: 0;
-      flex: 0 0 51%;
+      flex: 0 0 50%;
+      padding-right: 16px;
       margin-top: 60px;
     }
   }
@@ -126,6 +127,7 @@
     .partner,
     .partner:last-child {
       margin-top: 40px;
+      padding-right: 0;
     }
 
     .partner:first-child {

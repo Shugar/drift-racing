@@ -36,7 +36,24 @@
         </div>
         </div>
       <div class="right">
-        <div class="right-background" :style="{background: `url(/contact/map.png) no-repeat center / cover`}"/>
+        <!-- <div class="right-background" :style="{background: `url(/contact/map.png) no-repeat center / cover`}"/> -->
+        <GmapMap
+          :center="{lat: 55.8538053, lng: 37.5195491}"
+          :zoom="17"
+          :options="{disableDefaultUI: true, styles: styles}"
+          ref="mapRef"
+          style="width: 100%; height: 100%"
+        >
+          <GmapMarker
+            :key="index"
+            v-for="(m, index) in markers"
+            :position="m.position"
+            :icon="'/contact/marker.svg'"
+            :clickable="true"
+            :draggable="true"
+            @click="center=m.position"
+          />
+        </GmapMap>
       </div>
     </div>
     <div class="footer-wrapper">
@@ -49,7 +66,175 @@
   export default {
     data () {
       return {
-        currentCity: 'moscow'
+        currentCity: 'moscow',
+        markers: [],
+        styles: [
+          {
+            "featureType": "all",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "saturation": 36
+              },
+              {
+                "color": "#000000"
+              },
+              {
+                "lightness": 40
+              }
+            ]
+          },
+          {
+            "featureType": "all",
+            "elementType": "labels.text.stroke",
+            "stylers": [
+              {
+                "visibility": "on"
+              },
+              {
+                "color": "#000000"
+              },
+              {
+                "lightness": 16
+              }
+            ]
+          },
+          {
+            "featureType": "all",
+            "elementType": "labels.icon",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "color": "#000000"
+              },
+              {
+                "lightness": 20
+              }
+            ]
+          },
+          {
+            "featureType": "administrative",
+            "elementType": "geometry.stroke",
+            "stylers": [
+              {
+                "color": "#000000"
+              },
+              {
+                "lightness": 17
+              },
+              {
+                "weight": 1.2
+              }
+            ]
+          },
+          {
+            "featureType": "landscape",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#000000"
+              },
+              {
+                "lightness": 20
+              }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#000000"
+              },
+              {
+                "lightness": 21
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "color": "#000000"
+              },
+              {
+                "lightness": 17
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "geometry.stroke",
+            "stylers": [
+              {
+                "color": "#000000"
+              },
+              {
+                "lightness": 29
+              },
+              {
+                "weight": 0.2
+              }
+            ]
+          },
+          {
+            "featureType": "road.arterial",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#000000"
+              },
+              {
+                "lightness": 18
+              }
+            ]
+          },
+          {
+            "featureType": "road.local",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#000000"
+              },
+              {
+                "lightness": 16
+              }
+            ]
+          },
+          {
+            "featureType": "transit",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#000000"
+              },
+              {
+                "lightness": 19
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#000000"
+              },
+              {
+                "lightness": 17
+              }
+            ]
+          }
+        ]
       }
     },
 
@@ -64,9 +249,36 @@
       }
     },
 
+    mounted () {
+      this.$refs.mapRef.$mapPromise.then((map) => {
+        this.contact.map((item, index) => {
+          if (item.city === this.currentCity) {
+            map.panTo({
+              lat: item.mapLat,
+              lng: item.mapLng
+            })
+          }
+
+          this.markers.push({
+            position: { lat: item.mapLat, lng: item.mapLng }
+          })
+        })
+      })
+    },
+
     methods: {
       setCurrentCity (city) {
-        return this.currentCity = city
+        this.currentCity = city
+        this.$refs.mapRef.$mapPromise.then((map) => {
+          this.contact.map((item, index) => {
+            if (item.city === city) {
+              map.panTo({
+                lat: item.mapLat,
+                lng: item.mapLng
+              })
+            }
+          })
+        })
       }
     }
   }
@@ -144,8 +356,6 @@
     width: 560px;
     min-width: 256px;
     margin-bottom: 40px;
-
-
   }
 
   .contact {
@@ -172,7 +382,7 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-end;
-    padding-bottom: 120px;
+    background: #333333;
 
     .right-background {
       position: absolute;
@@ -228,6 +438,7 @@
 
     .right {
       height: 550px;
+
     }
 
     .page-title {
@@ -299,5 +510,16 @@
       position: absolute;
       bottom: 40px;
     }
+  }
+</style>
+
+<style lang="scss">
+  .gmnoprint,
+  .gm-style-cc {
+    display: none !important;
+  }
+
+  .vue-map div a div img {
+    display: none;
   }
 </style>

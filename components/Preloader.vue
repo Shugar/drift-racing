@@ -41,25 +41,26 @@
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
     width: 160px;
-    height: 200px
+    height: 121.22px;
   }
 
   .preload__sign i {
     position: absolute;
     left: 0;
     top: 0;
-    width: 160px;
-    height: 200px;
-    background: url('~/assets/images/logo.svg') no-repeat center / cover;
+    width: 189px;
+    height: 121.22px;
+    background: url('~/assets/images/logo-icon.svg') no-repeat center / contain;
     transform: translate3d(0, 0, 0) skewX(15deg);
-    overflow: hidden
+    overflow: hidden;
   }
 
   .preload__sign i:last-child {
-    top: -1px;
+    top: -4.8px;
     left: 0;
-    transform: translate3d(-1.44px, 0, 0) skewX(15deg);
     animation: preload-sign 1.5s linear infinite;
+    height: 127.02px;
+    transform: translate3d(-1.44px, 0, 0) skewX(15deg);
   }
 
   .preload__sign i:last-child:after {
@@ -67,20 +68,20 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: -2px;
     height: 5.8px;
     background: #000
   }
 
   @keyframes preload-sign {
     0% {
-      transform: translate3d(-160px, 0, 0) skewX(15deg);
-      background-position-x: 160px
+      transform: translate3d(-189px, 0, 0) skewX(15deg);
+      background-position-x: 189px
     }
 
     100% {
-      transform: translate3d(160px, 0, 0) skewX(15deg);
-      background-position-x: -160px
+      transform: translate3d(189px, 0, 0) skewX(15deg);
+      background-position-x: -189px
     }
   }
 

@@ -3,9 +3,7 @@ import Vuex from 'vuex'
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      lightboxPhotoPath: '',
-      lightboxLength: null,
-      lightboxIndex: null,
+      lightbox: null,
       entities: null,
       isCheckoutOpen: false,
       checkoutList: [],
@@ -23,15 +21,15 @@ const createStore = () => {
       },
 
       openLightbox (state, payload) {
-        state.lightboxPhotoPath = payload.path
-        state.lightboxLength = payload.length
-        state.lightboxIndex = payload.index
+        state.lightbox = {
+          path: payload.path,
+          index: payload.index,
+          photos: payload.photos
+        }
       },
 
       closeLightbox (state) {
-        state.lightboxPhotoPath = ''
-        state.lightboxLength = null
-        state.lightboxIndex = null
+        state.lightbox = null
       },
 
       toggleCheckout (state) {
