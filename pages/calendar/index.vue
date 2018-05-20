@@ -6,13 +6,13 @@
       <div class="tags">
         <div class="tags-item">
           <div class="tags-title">CHAMPIONSHIP</div>
-          <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="filterByTag(tag)">
+          <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="setTag(tag)">
             #{{tag}}
           </div>
         </div>
         <div class="tags-item">
           <div class="tags-title tags-country">COUNTRY</div>
-          <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="filterByTag(tag)">
+          <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="setCountry(tag)">
             #{{tag}}
           </div>
         </div>
@@ -23,19 +23,19 @@
         <div class="tags">
           <div class="tags-item">
             <div class="tags-title">CHAMPIONSHIP</div>
-            <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="filterByTag(tag)">
+            <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="setTag(tag)">
               #{{tag}}
             </div>
           </div>
           <div class="tags-item">
             <div class="tags-title tags-country">COUNTRY</div>
-            <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="filterByTag(tag)">
+            <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="setCountry(tag)">
               #{{tag}}
             </div>
           </div>
         </div>
 
-        <div class="article" v-for="(article, index) in leftCalendar" :key="index">
+        <div class="article" v-for="(article, index) in (events.length > 0 ? events : leftCalendar)" :key="index">
           <div class="img-fullwidth">
             <img :src="'http://' + article.image.fields.file.url.slice(2)" />
           </div>
@@ -78,51 +78,18 @@
   export default {
     data () {
       return {
-        filteredArticles: [],
-        articles: [
-          {
-            date: 'DEC 9 — 2017',
-            title: 'Sochi, closing of the<br>season 2017 RDS',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '/news/news-1.jpg',
-            hashtags: ['D1 Grand prix']
-          },
-          {
-            date: 'DEC 7 — 2017',
-            title: 'MotorShow Bologna.<br>Italy 2-10 December',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '',
-            hashtags: ['RDS 2018']
-          },
-          {
-            date: 'JAN 30 — 2016',
-            title: 'Life of championships<br>Chaper 5',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '/news/news-2.jpg',
-            hashtags: ['Formula D']
-          },
-          {
-            date: 'DEC 1 — 2017',
-            title: 'Life of championships<br>moscow raceway',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '',
-            hashtags: ['Russia']
-          },
-          {
-            date: 'DEC 3 — 2017',
-            title: 'Drift all<br>the time you got!',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '/news/news-3.jpg',
-            hashtags: ['Japan']
-          },
-          {
-            date: 'DEC 9 — 2017',
-            title: 'Sochi, closing of the season 2017 RDS',
-            preview: '',
-            image: '',
-            hashtags: ['USA']
-          },
-        ]
+        events: []
+      }
+    },
+
+    methods: {
+      setTag (tag) {
+        const events = this.leftCalendar
+        this.events = events.filter(article => { return article.championship === tag })
+      },
+      setCountry (tag) {
+        const events = this.leftCalendar
+        this.events = events.filter(article => { return article.country === tag } )
       }
     },
 
@@ -146,7 +113,6 @@
             left.push(article)
           }
         })
-
         return left
       },
 
