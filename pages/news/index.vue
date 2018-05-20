@@ -282,13 +282,16 @@
     .tags-item {
       flex: 1;
       display: flex;
-      flex-flow: column wrap;
-      max-height: 105px;
+      flex-flow: row wrap;
 
       &:first-child {
         margin-left: 20px;
         // margin-right: 60px;
       }
+    }
+
+    .tag {
+      width: 130px;
     }
 
     .tags-country {

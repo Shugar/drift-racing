@@ -67,12 +67,12 @@
       <div class="right">
         <div class="image-slider">
           <transition name='small-slider-animation'>
-            <img class="image-slider-item" v-for="(item, index) in dummyRightSlider"
-              :src="`${item.image}`"
+            <img class="image-slider-item" v-for="(item, index) in rightSlider"
+              :src="`${'http://' + (item.image || item.preview || item.media ).fields.file.url.slice(2)}`"
               v-if="index === rightCount"
               :key="index" />
             </transition>
-          <nuxt-link v-for="(item, index) in dummyRightSlider"
+          <nuxt-link v-for="(item, index) in rightSlider"
               class="arrow"
               v-if="index === rightCount"
               :key="index"
@@ -84,23 +84,23 @@
             <div>
               <transition name='small-slider-animation'>
                 <div class="small-slider-left"
-                  v-for="(item, index) in dummyRightSlider"
+                  v-for="(item, index) in rightSlider"
                   v-if="index === rightCount"
                   :key="index">
                   <div class="small-slider-text" v-html="item.title"/>
-                  <div class="small-slider-place" v-if="item.type === 'show'" v-html="item.place"/>
+                  <!-- <div class="small-slider-place" v-if="item.type === 'calendar'" v-html="item.place"/> -->
                   <div class="small-slider-category" v-if="item.type === 'store'" v-html="item.category"/>
                   <div class="small-slider-style" v-if="item.type === 'store'" v-html="item.style"/>
-                  <div class="small-slider-event-date" v-if="item.type === 'show' || item.type === 'news'" v-html="item.date"/>
+                  <div class="small-slider-event-date" v-if="item.type === 'calendar' || item.type === 'news'" v-html="item.date"/>
                 </div>
               </transition>
               <transition name='small-slider-animation'>
                 <div class="small-slider-right"
-                  v-for="(item, index) in dummyRightSlider"
+                  v-for="(item, index) in rightSlider"
                   v-if="index === rightCount"
                   :key="index">
-                  <div class="small-slider-date" v-if="item.type === 'show' || item.type === 'news'" v-html="item.publishing_date"/>
-                  <div class="small-slider-price" v-if="item.type === 'store'" v-html="item.price"/>
+                  <div class="small-slider-date" v-if="item.type === 'calendar' || item.type === 'news'" v-html="item.date"/>
+                  <div class="small-slider-price" v-if="item.type === 'store'">$ {{ item.price }}</div>
                 </div>
               </transition>
             </div>
@@ -151,42 +151,42 @@
             category: 'bio'
           }
         ],
-        dummyRightSlider: [
-          {
-            type: 'show',
-            link: '/calendar/1',
-            title: 'Motorshow',
-            place: 'BOLOGNA. Italy',
-            date: '2-10 December 2017',
-            publishing_date: 'DEC 9 — 2017',
-            image: '/home/left-slider0.png'
-          },
-          {
-            type: 'store',
-            link: '/store',
-            title: 'DRIFT IS MY THERAPY',
-            category: 'MEN T-SHIRT',
-            style: 'white',
-            price: '$ 15',
-            image: '/home/left-slider1.png'
-          },
-          {
-            type: 'news',
-            link: '/news',
-            title: 'SOCHI. Closing<br> of the season <br> 2017 RDS',
-            publishing_date: 'OCT 12 — 2017',
-            image: '/home/left-slider2.png'
-          },
-          {
-            type: 'store',
-            link: '/store',
-            title: 'FUCKING HERO STYLE',
-            category: 'MEN T-SHIRT',
-            style: 'BLACK',
-            price: '$ 15',
-            image: '/home/left-slider3.png'
-          }
-        ]
+        // dummyRightSlider: [
+        //   {
+        //     type: 'show',
+        //     link: '/calendar/1',
+        //     title: 'Motorshow',
+        //     place: 'BOLOGNA. Italy',
+        //     date: '2-10 December 2017',
+        //     publishing_date: 'DEC 9 — 2017',
+        //     image: '/home/left-slider0.png'
+        //   },
+        //   {
+        //     type: 'store',
+        //     link: '/store',
+        //     title: 'DRIFT IS MY THERAPY',
+        //     category: 'MEN T-SHIRT',
+        //     style: 'white',
+        //     price: '$ 15',
+        //     image: '/home/left-slider1.png'
+        //   },
+        //   {
+        //     type: 'news',
+        //     link: '/news',
+        //     title: 'SOCHI. Closing<br> of the season <br> 2017 RDS',
+        //     publishing_date: 'OCT 12 — 2017',
+        //     image: '/home/left-slider2.png'
+        //   },
+        //   {
+        //     type: 'store',
+        //     link: '/store',
+        //     title: 'FUCKING HERO STYLE',
+        //     category: 'MEN T-SHIRT',
+        //     style: 'BLACK',
+        //     price: '$ 15',
+        //     image: '/home/left-slider3.png'
+        //   }
+        // ]
       }
     },
 
@@ -218,6 +218,12 @@
       }
     },
 
+
+    computed: {
+      rightSlider () {
+        return this.$store.state.entities.rightSlider
+      }
+    },
     mounted () {
       this.sliderInterval()
       setTimeout(() => {
@@ -505,6 +511,10 @@
 
     overflow: hidden;
     position: relative;
+
+    &-text {
+      width: 65%;
+    }
   }
 
 

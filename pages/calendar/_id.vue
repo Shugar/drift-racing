@@ -17,36 +17,22 @@
         </div>
         <div class="article">
           <div class="info">
-            <div class="date">DEC 9 — 2017</div>
+            <div class="date">{{ article.date }}</div>
           </div>
-          <div class="title">1 stage Grand Prix RDS 2018 Moscow</div>
-          <div class="text">We are waiting for you on May 5 and 6 at the Moscow Raceway with the whole family.</div>
+          <div class="title"> {{ article.title}} </div>
+          <div class="text"> {{ article.preview}} </div>
           <div class="img-fullwidth">
             <img src="/calendar/event-1.png" />
           </div>
-          <div class="text">Duis eget efficitur ipsum, eget porttitor sapien. Proin justo est, tempus in sollicitudin ut, hendrerit non metus. Fusce volutpat mattis lorem, ac posuere lorem consequat accumsan.</div>
+          <div class="text" v-html="article.text" />
         </div>
-      <!-- <div class="right mobile">
-        <div class="previous-article">
-          <div class="previous">
-            <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
-            <div class="previous-date">JAN 30 — 2016</div>
-            <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
-          </div>
-        </div>
-      </div> -->
       </div>
       <div class="right">
         <div class="previous-article">
-          <div class="previous">
-            <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
-            <div class="previous-date">JAN 30 — 2016</div>
-            <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
-          </div>
-          <div class="previous">
-            <div class="previous-image" :style="{background: `url(/calendar/event-3.png) no-repeat center / cover `}" />
-            <div class="previous-date">JAN 30 — 2016</div>
-            <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
+          <div v-for="(item, index) in previous" :key="index" class="previous">
+            <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover`}" />
+            <div class="previous-date"> {{ item.date }} </div>
+            <div class="previous-subtitle"> {{ item.title }} </div>
           </div>
         </div>
       </div>
@@ -57,57 +43,36 @@
 
 <script>
   export default {
-    data () {
-      return {
-        filteredArticles: [],
-        articles: [
-          {
-            date: 'DEC 9 — 2017',
-            title: 'Sochi, closing of the<br>season 2017 RDS',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '/news/news-1.jpg',
-            hashtags: ['D1 Grand prix']
-          },
-          {
-            date: 'DEC 7 — 2017',
-            title: 'MotorShow Bologna.<br>Italy 2-10 December',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '',
-            hashtags: ['RDS 2018']
-          },
-          {
-            date: 'JAN 30 — 2016',
-            title: 'Life of championships<br>Chaper 5',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '/news/news-2.jpg',
-            hashtags: ['Formula D']
-          },
-          {
-            date: 'DEC 1 — 2017',
-            title: 'Life of championships<br>moscow raceway',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '',
-            hashtags: ['Russia']
-          },
-          {
-            date: 'DEC 3 — 2017',
-            title: 'Drift all<br>the time you got!',
-            preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: '/news/news-3.jpg',
-            hashtags: ['Japan']
-          },
-          {
-            date: 'DEC 9 — 2017',
-            title: 'Sochi, closing of the season 2017 RDS',
-            preview: '',
-            image: '',
-            hashtags: ['USA']
-          },
-        ]
-      }
-    },
-
     computed: {
+      article () {
+        return this.$store.state.entities.calendar.map(article => {
+          return {
+            ...article
+          }
+        })[this.$route.params.id]
+      },
+
+
+      previous () {
+        const array = this.$store.state.entities.news.map(article => {
+          return {
+            ...article,
+            tags: article.tags.replace(' ', '').split(',')
+          }
+        })
+
+        if (this.$route.params.id > 1) {
+          return [
+            array[this.$route.params.id - 1],
+            array[this.$route.params.id - 2]
+          ]
+        } else if (this.$route.params.id > 0) {
+          return [ array[0] ]
+        } else {
+          return []
+        }
+      },
+
       tags () {
         const hashtags = []
         this.articles.map((article, index) => {

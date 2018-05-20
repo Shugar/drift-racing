@@ -94,6 +94,7 @@
     },
 
     computed: {
+
       championshipTags () {
         return [ ...new Set(this.calendar.map(article => article.championship )) ]
       },
@@ -105,6 +106,7 @@
       calendar () {
         return this.$store.state.entities.calendar
       },
+
 
       leftCalendar () {
         const left = []
