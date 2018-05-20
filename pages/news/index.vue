@@ -127,9 +127,14 @@
   .news {
     background: #683FFF;
     padding: 200px 0 80px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    min-height: 100vh;
   }
 
   .container {
+    flex: 1;
     position: relative;
     padding: 0 100px;
 
@@ -242,6 +247,10 @@
   }
 
   @media (max-width: 768px) {
+    .news {
+      display: block;
+    }
+
     .container {
       padding-left: 100px;
 

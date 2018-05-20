@@ -89,6 +89,7 @@
     text-align: left;
     overflow-y: scroll;
   }
+
   .right-wrapper {
     // height: 100%;
     padding: 0 40px;
@@ -191,12 +192,14 @@ input::-webkit-inner-spin-button {
   .image {
     margin-bottom: 20px;
   }
-}
-.right {
-  width: 300px;
-}
-.left {
-  width: calc(100% - 300px);
+
+  .right {
+    width: 300px;
+  }
+
+  .left {
+    width: calc(100% - 300px);
+  }
 }
 
 </style>

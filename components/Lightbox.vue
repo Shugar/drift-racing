@@ -3,6 +3,8 @@
     :class="{'lightbox': true, 'lightbox-visible': $store.state.lightboxPhotoPath !== ''}"
     :style="{background: 'url(' + $store.state.lightboxPhotoPath + ') no-repeat center / cover'}">
     <div class="close" @click="$store.commit('closeLightbox')" />
+    <div class="prev" @click="prev()" />
+    <div class="next" @click="next()" />
     <div class="index">
       {{ $store.state.lightboxIndex + 1 }}/{{ $store.state.lightboxLength }}
     </div>
@@ -10,7 +12,23 @@
 </template>
 
 <script>
+  export default {
+    data () {
+      return {
+        index: this.$store.state.lighboxIndex
+      }
+    },
 
+    methods: {
+      prev () {
+        this.$store.state.lighboxIndex
+      },
+
+      next () {
+
+      }
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -36,6 +54,26 @@
     cursor: pointer;
   }
 
+  .prev,
+  .next {
+    width: 28px;
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
+  .prev {
+    background: url('~/assets/images/left.svg') no-repeat center / contain;
+    left: 100px;
+  }
+
+  .next {
+    background: url('~/assets/images/right.svg') no-repeat center / contain;
+    right: 100px;
+  }
+
   .index {
     position: absolute;
     left: 50%;
@@ -58,6 +96,14 @@
 
     .index {
       bottom: 25px;
+    }
+
+    .prev {
+      left: 50px;
+    }
+
+    .next {
+      right: 50px;
     }
   }
 </style>

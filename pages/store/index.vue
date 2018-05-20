@@ -129,7 +129,10 @@
     background: #683FFF;
     padding: 200px 0 80px;
     height: 100%;
+
     min-height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
   }
 
   a {
@@ -139,7 +142,7 @@
   .container {
     position: relative;
     padding: 0 100px;
-
+    flex: 1;
     padding-left: 320px;
   }
 

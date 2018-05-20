@@ -18,7 +18,7 @@
           <div class="language">
             RU — EN
           </div>
-          <div class="made">MADE BY APUS AGENCY</div>
+          <div class="made"><span>MADE BY</span> APUS AGENCY</div>
         </div>
       </div>
     </div>
@@ -241,6 +241,7 @@
       left: 0;
       width: 100%;
       height: 100%;
+      z-index: 10;
     }
 
     .menu-button {
@@ -364,6 +365,10 @@
 
     .menu-button {
       margin-top: 8px;
+    }
+
+    .made span {
+      display: none;
     }
   }
 </style>
