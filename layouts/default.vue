@@ -46,10 +46,14 @@
             }
           })
 
-          const normalized = {}
+          const normalized = { rightSlider: [] }
           const normalizedEntities = entities.map((item, index) => {
             normalized[item.type] = normalized[item.type] || []
             normalized[item.type].push(item)
+
+            if (item.inRightSlider) {
+              normalized.rightSlider.push(item)
+            }
           })
 
           this.$store.commit('fetchData', normalized)
