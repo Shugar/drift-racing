@@ -382,6 +382,7 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-end;
+    background: #333333;
 
     .right-background {
       position: absolute;
@@ -437,6 +438,7 @@
 
     .right {
       height: 550px;
+
     }
 
     .page-title {

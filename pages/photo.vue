@@ -60,7 +60,7 @@
                   @click="$store.commit('openLightbox', {
                     path: 'http://' + image.fields.file.url.slice(2),
                     index: index,
-                    length: photo.photos.length
+                    photos: photo.photos
                   })"
                   :style="{background: `url(${ 'http://' + image.fields.file.url }) no-repeat center / cover`}" />
               </masonry>
