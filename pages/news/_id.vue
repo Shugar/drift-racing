@@ -137,6 +137,7 @@
   }
 
   .left {
+    position: relative;
     padding-left: 220px;
     padding-bottom: 100px;
     flex: 0 0 60%;
@@ -332,6 +333,7 @@
     }
   }
 
+  
   @media (max-width: 768px) {
     .back {
       display: none;
@@ -345,13 +347,6 @@
       padding-left: 0;
       padding-bottom: 0;
       margin-bottom: 50px;
-      .back {
-        position: relative;
-        top: 0;
-        left: 0;
-        display: block;
-        margin-bottom: 30px;
-      }
     }
 
     .right {

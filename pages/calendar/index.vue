@@ -36,21 +36,23 @@
         </div>
 
         <div class="article" v-for="(article, index) in (events.length > 0 ? events : leftCalendar)" :key="index">
-          <div class="img-fullwidth">
-            <img :src="'http://' + article.image.fields.file.url.slice(2)" />
-          </div>
-          <div class="date">{{ article.date }}</div>
-          <div class="title">{{ article.title }}</div>
-          <div class="text">{{ article.preview }}</div>
+          <nuxt-link class="hui" :to="'/calendar/' + index">
+            <div class="img-fullwidth">
+              <img :src="'http://' + article.image.fields.file.url.slice(2)" />
+            </div>
+            <div class="date">{{ article.date }}</div>
+            <div class="title">{{ article.title }}</div>
+            <div class="text">{{ article.preview }}</div>
+          </nuxt-link>
         </div>
       </div>
       <div class="right">
         <div class="previous-article">
-          <div class="previous" v-for="(article, index) in rightCalendar" :key="index">
-            <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
-            <div class="previous-date">{{ article.date }}</div>
-            <div class="previous-subtitle">{{ article.title }}</div>
-          </div>
+            <nuxt-link class="previous" v-for="(article, index) in rightCalendar" :to="'/calendar/' + index" :key="index">
+              <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
+              <div class="previous-date">{{ article.date }}</div>
+              <div class="previous-subtitle">{{ article.title }}</div>
+            </nuxt-link>
         </div>
       </div>
     </div>
@@ -58,15 +60,17 @@
 
     <div class="container container-mobile">
       <div :class="{'previous': article.column === 'right', 'article': article.column === 'left'}" v-for="(article, index) in calendar" :key="index">
-        <div class="previous-image"
-          :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
-        <div :class="{'previous-date': article.column === 'right', 'date': article.column === 'left'}">
-          {{ article.date }}
-        </div>
-        <div :class="{'previous-subtitle': article.column === 'right', 'title': article.column === 'left'}">
-          {{ article.title }}
-        </div>
-        <div class="text" v-if="article.column === 'left'">{{ article.preview }}</div>
+        <nuxt-link class="hui" :to="'/calendar/' + index">
+          <div class="previous-image"
+            :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
+          <div :class="{'previous-date': article.column === 'right', 'date': article.column === 'left'}">
+            {{ article.date }}
+          </div>
+          <div :class="{'previous-subtitle': article.column === 'right', 'title': article.column === 'left'}">
+            {{ article.title }}
+          </div>
+          <div class="text" v-if="article.column === 'left'">{{ article.preview }}</div>
+        </nuxt-link>
       </div>
     </div>
 
@@ -143,6 +147,9 @@
     padding: 200px 0 80px;
   }
 
+  a {
+    text-decoration: none;
+  }
   .container {
     position: relative;
     padding: 0 100px;
@@ -187,6 +194,8 @@
   .article {
     max-width: 435px;
     margin-bottom: 40px;
+    cursor: pointer;
+    text-decoration: none;
 
     .title {
       padding: 0;

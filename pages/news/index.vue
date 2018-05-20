@@ -40,7 +40,7 @@
           :gutter="{default: '60px', 768: '40px', 425: '0px'}"
           ref="my-masonry">
           <div class="article" v-for="(article, index) in filteredArticles" :key="index">
-            <nuxt-link :to="'/news/' + findItemByTitle(article.title)">
+            <nuxt-link :to="'/news/' + index">
               <div class="article-date">{{ article.date }}</div>
               <div class="article-title" v-html="article.title"></div>
               <div class="article-image"

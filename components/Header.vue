@@ -29,9 +29,11 @@
           <i></i><i></i>
         </div>
       </nuxt-link>
+      <div class="back-to news" v-if="this.$route.path === `/news/${this.$route.params.id}`"><nuxt-link to='/news/'>BACK TO NEWS</nuxt-link></div>
+      <div class="back-to" v-if="this.$route.path === `/calendar/${this.$route.params.id}`"><nuxt-link to='/calendar/'>BACK TO CALENDAR</nuxt-link></div>
+      <div class="back-to" v-if="this.$route.path === `/vi deo/${this.$route.params.id}`"><nuxt-link to='/video/'>BACK TO VIDEOS</nuxt-link></div>
 
       <span @click="$store.commit('toggleCheckout')" v-if="this.$route.name === 'store'" class="checkout">{{ productCount }} items — $ {{ productSum }}</span>
-
       <div class="menu-button" @click="openMenu()" />
 
       <div class="nav nav-left">
@@ -84,6 +86,9 @@
 </script>
 
 <style lang="scss" scoped>
+  a {
+    text-decoration: none;
+  }
   .header {
     position: fixed;
     top: 0;
@@ -100,6 +105,10 @@
     &.main {
       background: transparent;
     }
+  }
+
+  .back-to {
+    display: none;
   }
 
   .left {
@@ -230,6 +239,23 @@
       justify-content: space-between;
     }
 
+    .back-to {
+      display: block;
+      width: 100%;
+      margin-top: 47px;
+      font-family: 'DIN Condensed', sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      line-height: 35px;
+      font-size: 24px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .news {
+      display: none;
+    }
+
     .logo {
       margin-right: 40px;
     }
@@ -344,7 +370,17 @@
     }
   }
 
+  @media (max-width: 768px) {
+    .news {
+      display: block;
+    }
+  }
   @media (max-width: 425px) {
+    .back-to {
+      display: none;
+    }
+
+
     .header {
       position: absolute;
       padding: 0 30px;

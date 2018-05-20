@@ -4,7 +4,7 @@
     <div class="title-wrapper">
       <div class="tags">
         <div class="tags-item">
-          <div class="tag"><nuxt-link to="/calendar/" >back to calendar</nuxt-link></div>
+          <div class="tag"><nuxt-link to="/calendar/">back to calendar</nuxt-link></div>
         </div>
       </div>
     </div>
@@ -29,11 +29,12 @@
       </div>
       <div class="right">
         <div class="previous-article">
-          <div v-for="(item, index) in previous" :key="index" class="previous">
+          <div class="previous-title"> PREVIOUS EVENT </div>
+          <nuxt-link  v-for="(item, index) in previous" :to="'/calendar/' + index" :key="index" class="previous">
             <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover`}" />
             <div class="previous-date"> {{ item.date }} </div>
             <div class="previous-subtitle"> {{ item.title }} </div>
-          </div>
+          </nuxt-link>
         </div>
       </div>
     </div>
@@ -43,6 +44,11 @@
 
 <script>
   export default {
+
+    mounted () {
+      console.log('@@@@@@@@@@@@@@@@@@', previous)
+    },
+
     computed: {
       article () {
         return this.$store.state.entities.calendar.map(article => {
@@ -60,7 +66,6 @@
             tags: article.tags.replace(' ', '').split(',')
           }
         })
-
         if (this.$route.params.id > 1) {
           return [
             array[this.$route.params.id - 1],
@@ -72,6 +77,7 @@
           return []
         }
       },
+
 
       tags () {
         const hashtags = []
@@ -352,13 +358,13 @@
     color: #FFFFFF;
   }
 
-  @media (max-width: 768px) {
-    .back {
-      display: none;
-    }
-
+  @media (max-width: 1024px) {
     .container {
       display: block;
+    }
+
+    .back {
+      display: none;
     }
 
     .mobile {
@@ -374,19 +380,17 @@
       margin-bottom: 0px;
 
       .tags {
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: flex-start;
-        position: relative;
-        top: 0;
-        left: 0;
+        // display: none;
+        // display: flex;
+        // flex-flow: row nowrap;
+        // align-items: flex-start;
+        // position: relative;
+        // top: 0;
+        // left: 0;
         // margin-left: 10px;
 
         &-item {
-          &:first-child {
-            margin-bottom: 0;
-            margin-right: 60px;
-          }
+          display: none;
         }
       }
     }
@@ -419,7 +423,7 @@
     }
 
     .previous-title {
-      flex: 0 0 100%;
+      display: none;
     }
 
     .previous {
@@ -459,6 +463,15 @@
       }
     }
 
+    .tags {
+      display: block;
+      position: inherit;
+
+      .tag {
+        margin: 0;
+      }
+    }
+
     .back {
       display: block;
       position: initial;
@@ -485,9 +498,6 @@
       color: #FFFFFF;
     }
 
-    .tags {
-      display: none;
-    }
 
     .date {
       margin-bottom: 0px;
