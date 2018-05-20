@@ -257,11 +257,11 @@
               lat: item.mapLat,
               lng: item.mapLng
             })
-
-            this.markers.push({
-              position: { lat: item.mapLat, lng: item.mapLng }
-            })
           }
+
+          this.markers.push({
+            position: { lat: item.mapLat, lng: item.mapLng }
+          })
         })
       })
     },

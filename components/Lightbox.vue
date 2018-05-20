@@ -1,31 +1,46 @@
 <template>
   <div
-    :class="{'lightbox': true, 'lightbox-visible': $store.state.lightboxPhotoPath !== ''}"
-    :style="{background: 'url(' + $store.state.lightboxPhotoPath + ') no-repeat center / cover'}">
+    v-if="photo !== null"
+    class="lightbox"
+    :style="{background: 'url(' + photo.path + ') no-repeat center / cover'}">
     <div class="close" @click="$store.commit('closeLightbox')" />
     <div class="prev" @click="prev()" />
     <div class="next" @click="next()" />
     <div class="index">
-      {{ $store.state.lightboxIndex + 1 }}/{{ $store.state.lightboxLength }}
+      {{ photo.index + 1 }}/{{ photo.photos.length }}
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    data () {
-      return {
-        index: this.$store.state.lighboxIndex
-      }
-    },
-
     methods: {
       prev () {
-        this.$store.state.lighboxIndex
+        const index = this.photo.index <= 0 ?
+          this.photo.photos.length - 1 : this.photo.index - 1
+
+        this.$store.commit('openLightbox', {
+          path: 'http://' + this.photo.photos[index].fields.file.url.slice(2),
+          index: index,
+          photos: this.photo.photos
+        })
       },
 
       next () {
+        const index = (this.photo.photos.length - 1) <= this.photo.index ?
+          0 : this.photo.index + 1
 
+        this.$store.commit('openLightbox', {
+          path: 'http://' + this.photo.photos[index].fields.file.url.slice(2),
+          index: index,
+          photos: this.photo.photos
+        })
+      }
+    },
+
+    computed: {
+      photo () {
+        return this.$store.state.lightbox
       }
     }
   }
@@ -37,11 +52,7 @@
     height: 100%;
     width: 100%;
     z-index: 11;
-    display: none;
-
-    &.lightbox-visible {
-      display: block;
-    }
+    display: block;
   }
 
   .close {
@@ -100,10 +111,16 @@
 
     .prev {
       left: 50px;
+      top: initial;
+      bottom: 36px;
+      transform: none;
     }
 
     .next {
       right: 50px;
+      bottom: 36px;
+      top: initial;
+      transform: none;
     }
   }
 </style>
