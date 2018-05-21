@@ -24,13 +24,15 @@
           <div class="img-fullwidth">
             <img src="/calendar/event-1.png" />
           </div>
-          <div class="text" v-html="article.text" />
+          <div class="text">
+            <vue-markdown> {{ article.text}} </vue-markdown>
+          </div>
         </div>
       </div>
       <div class="right">
-        <div class="previous-article">
+        <div class="previous-article" v-if="previous.length > 0">
           <div class="previous-title"> PREVIOUS EVENT </div>
-          <nuxt-link  v-for="(item, index) in previous" :to="'/calendar/' + index" :key="index" class="previous">
+          <nuxt-link  v-for="(item, index) in previous" :to="'/calendar/' + findItemByTitle(item.title)" :key="index" class="previous">
             <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover`}" />
             <div class="previous-date"> {{ item.date }} </div>
             <div class="previous-subtitle"> {{ item.title }} </div>
@@ -43,12 +45,9 @@
 </template>
 
 <script>
+  import VueMarkdown from 'vue-markdown'
+
   export default {
-
-    mounted () {
-      console.log('@@@@@@@@@@@@@@@@@@', previous)
-    },
-
     computed: {
       article () {
         return this.$store.state.entities.calendar.map(article => {
@@ -60,10 +59,10 @@
 
 
       previous () {
-        const array = this.$store.state.entities.news.map(article => {
+        const array = this.$store.state.entities.calendar.map(article => {
           return {
             ...article,
-            tags: article.tags.replace(' ', '').split(',')
+            tags: article.championship.replace(' ', '').split(',')
           }
         })
         if (this.$route.params.id > 1) {
@@ -71,7 +70,7 @@
             array[this.$route.params.id - 1],
             array[this.$route.params.id - 2]
           ]
-        } else if (this.$route.params.id > 0) {
+        } else if (this.$route.params.id > 0  ) {
           return [ array[0] ]
         } else {
           return []
@@ -81,7 +80,7 @@
 
       tags () {
         const hashtags = []
-        this.articles.map((article, index) => {
+        this.article.map((event, index) => {
           article.hashtags.map((tag, index) => {
             hashtags.push(tag)
           })
@@ -91,17 +90,24 @@
       }
     },
 
+
     methods: {
+      findItemByTitle (title) {
+        let result
+        this.$store.state.entities.calendar.map((item, index) => {
+          if (item.title === title) {
+            result = index
+          }
+        })
 
-    },
-
-    mounted () {
-
+        return result
+      }
     },
 
     components: {
       Header: () => import('@/components/Header'),
-      Footer: () => import('@/components/Footer')
+      Footer: () => import('@/components/Footer'),
+      VueMarkdown
     },
 
     validate ({ params }) {

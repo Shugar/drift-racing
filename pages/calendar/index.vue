@@ -48,7 +48,7 @@
       </div>
       <div class="right">
         <div class="previous-article">
-            <nuxt-link class="previous" v-for="(article, index) in rightCalendar" :to="'/calendar/' + index" :key="index">
+            <nuxt-link class="previous" v-for="(article, index) in (rightEvents.length > 0 ? rightEvents : rightCalendar)" :to="'/calendar/' + findItemByTitle(article.title)" :key="index">
               <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
               <div class="previous-date">{{ article.date }}</div>
               <div class="previous-subtitle">{{ article.title }}</div>
@@ -60,7 +60,7 @@
 
     <div class="container container-mobile">
       <div :class="{'previous': article.column === 'right', 'article': article.column === 'left'}" v-for="(article, index) in calendar" :key="index">
-        <nuxt-link class="hui" :to="'/calendar/' + index">
+        <nuxt-link class="hui" :to="'/calendar/' + findItemByTitle(article.title)">
           <div class="previous-image"
             :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
           <div :class="{'previous-date': article.column === 'right', 'date': article.column === 'left'}">
@@ -82,18 +82,34 @@
   export default {
     data () {
       return {
-        events: []
+        events: [],
+        rightEvents: []
       }
     },
 
     methods: {
       setTag (tag) {
         const events = this.leftCalendar
+        const rightEvents = this.rightCalendar
         this.events = events.filter(article => { return article.championship === tag })
+        this.rightEvents = rightEvents.filter(article => { return article.championship === tag })
       },
       setCountry (tag) {
         const events = this.leftCalendar
+        const rightEvents = this.rightCalendar
         this.events = events.filter(article => { return article.country === tag } )
+        this.rightEvents = rightEvents.filter(article => { return article.country === tag } )
+      },
+
+      findItemByTitle (title) {
+        let result
+        this.calendar.map((item, index) => {
+          if (item.title === title) {
+            result = index
+          }
+        })
+
+        return result
       }
     },
 

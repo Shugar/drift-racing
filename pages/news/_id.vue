@@ -19,9 +19,6 @@
               {{ article.text }}
             </vue-markdown>
           </div>
-          <!-- <div class="img-fullwidth">
-            <img src="/news/news-1.jpg" />
-          </div> -->
         </div>
       </div>
       <div class="right" v-if="news.length > 0">
