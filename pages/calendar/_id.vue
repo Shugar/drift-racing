@@ -170,9 +170,14 @@
   .calendar {
     background: #683FFF;
     padding: 200px 0 80px;
+
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
   }
 
   .container {
+    flex: 1;
     position: relative;
     padding: 0 100px;
 
@@ -195,7 +200,7 @@
 
   .left {
     padding-left: 220px;
-    padding-bottom: 100px;
+    padding-bottom: 30px;
     flex: 0 0 60%;
 
     display: flex;
