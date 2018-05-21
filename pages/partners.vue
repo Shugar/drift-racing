@@ -2,13 +2,35 @@
   <section class="partners">
     <Header />
     <div class="container">
-      <div class="title">Partners</div>
-      <div class="partners-list">
-        <div class="partner" v-for="(partner, index) in partners" :key="index">
-          <div class="partner-name">{{ partner.name }}</div>
-          <div class="partner-description">{{ partner.description }}</div>
-        </div>
-      </div>
+      <u-animate
+        name="fadeInUp"
+        delay="0s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="false"
+      >
+        <div class="title">Partners</div>
+      </u-animate>
+      <u-animate-container class="partners-list">
+        <u-animate
+          name="fadeInUp"
+          delay="0.5s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="false"
+        >
+          <div class="partners-list">
+            <div class="partner" v-for="(partner, index) in partners" :key="index">
+              <div class="partner-name">{{ partner.name }}</div>
+              <div class="partner-description">{{ partner.description }}</div>
+            </div>
+          </div>
+        </u-animate>
+      </u-animate-container>
     </div>
     <Footer />
   </section>

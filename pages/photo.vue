@@ -2,72 +2,100 @@
   <section class="photos">
     <Header />
     <div class="container">
-      <div class="title">PHOTO</div>
-      <div class="tags" v-if="fetchedPhotos">
-        <div class="tags-item">
-          <div class="tags-title">CHAMPIONSHIP</div>
-          <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="filterByTag(tag)">
-            #{{tag}}
+      <u-animate
+        name="fadeInUp"
+        delay="0s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="false"
+      >
+        <div class="title">PHOTO</div>
+      </u-animate>
+      <u-animate
+        name="fadeIn"
+        delay="0s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="false"
+      >
+        <div class="tags" v-if="fetchedPhotos">
+          <div class="tags-item">
+            <div class="tags-title">CHAMPIONSHIP</div>
+            <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="filterByTag(tag)">
+              #{{tag}}
+            </div>
+          </div>
+
+          <div class="tags-item">
+            <div class="tags-title tags-country">COUNTRY</div>
+            <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="filterByTag(tag)">
+              #{{tag}}
+            </div>
           </div>
         </div>
+      </u-animate>
 
-        <div class="tags-item">
-          <div class="tags-title tags-country">COUNTRY</div>
-          <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="filterByTag(tag)">
-            #{{tag}}
-          </div>
+      <div class="list" v-if="filteredPhotos.length === 0">
+        <div class="photo" v-for="(photo, index) in fetchedPhotos" :key="index">
+          <u-animate
+            name="fadeInUp"
+            :delay="0.5 + (index - 0.7 * index) + 's'"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
+            <div class="photo-date">{{ photo.date }}</div>
+            <div class="photo-title" v-html="photo.title"></div>
+            <div class="photo-list">
+              <masonry
+                :cols="{default: 4, 768: 2, 425: 1}"
+                :gutter="{default: '20px', 768: '40px', 425: '0px'}"
+                ref="my-masonry">
+                <div class="photo-item"
+                  v-for="(image, index) in photo.photos"
+                  v-if="image.fields"
+                  :key="'image-' + index"
+                  @click="$store.commit('openLightbox', {
+                    path: 'http://' + image.fields.file.url.slice(2),
+                    index: index,
+                    photos: photo.photos
+                  })"
+                  :style="{background: `url(${ 'http://' + image.fields.file.url }) no-repeat center / cover`}" />
+              </masonry>
+            </div>
+          </u-animate>
         </div>
       </div>
 
-      <transition name="fade">
-        <div class="list" v-if="filteredPhotos.length === 0">
-          <div class="photo" v-for="(photo, index) in fetchedPhotos" :key="index">
-            <div class="photo-date">{{ photo.date }}</div>
-            <div class="photo-title" v-html="photo.title"></div>
-            <div class="photo-list">
-              <masonry
-                :cols="{default: 4, 768: 2, 425: 1}"
-                :gutter="{default: '20px', 768: '40px', 425: '0px'}"
-                ref="my-masonry">
-                <div class="photo-item"
-                  v-for="(image, index) in photo.photos"
-                  v-if="image.fields"
-                  :key="'image-' + index"
-                  @click="$store.commit('openLightbox', {
-                    path: 'http://' + image.fields.file.url.slice(2),
-                    index: index,
-                    photos: photo.photos
-                  })"
-                  :style="{background: `url(${ 'http://' + image.fields.file.url }) no-repeat center / cover`}" />
-              </masonry>
-            </div>
+      <div class="list" v-else>
+        <div class="photo" v-for="(photo, index) in filteredPhotos" :key="index">
+          <div class="photo-date">{{ photo.date }}</div>
+          <div class="photo-title" v-html="photo.title"></div>
+          <div class="photo-list">
+            <masonry
+              :cols="{default: 4, 768: 2, 425: 1}"
+              :gutter="{default: '20px', 768: '40px', 425: '0px'}"
+              ref="my-masonry">
+              <div class="photo-item"
+                v-for="(image, index) in photo.photos"
+                v-if="image.fields"
+                :key="'image-' + index"
+                @click="$store.commit('openLightbox', {
+                  path: 'http://' + image.fields.file.url.slice(2),
+                  index: index,
+                  photos: photo.photos
+                })"
+                :style="{background: `url(${ 'http://' + image.fields.file.url }) no-repeat center / cover`}" />
+            </masonry>
           </div>
         </div>
-
-        <div class="list" v-else>
-          <div class="photo" v-for="(photo, index) in filteredPhotos" :key="index">
-            <div class="photo-date">{{ photo.date }}</div>
-            <div class="photo-title" v-html="photo.title"></div>
-            <div class="photo-list">
-              <masonry
-                :cols="{default: 4, 768: 2, 425: 1}"
-                :gutter="{default: '20px', 768: '40px', 425: '0px'}"
-                ref="my-masonry">
-                <div class="photo-item"
-                  v-for="(image, index) in photo.photos"
-                  v-if="image.fields"
-                  :key="'image-' + index"
-                  @click="$store.commit('openLightbox', {
-                    path: 'http://' + image.fields.file.url.slice(2),
-                    index: index,
-                    photos: photo.photos
-                  })"
-                  :style="{background: `url(${ 'http://' + image.fields.file.url }) no-repeat center / cover`}" />
-              </masonry>
-            </div>
-          </div>
-        </div>
-      </transition>
+      </div>
     </div>
     <Footer />
   </section>

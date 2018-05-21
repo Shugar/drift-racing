@@ -39,6 +39,10 @@ module.exports = {
       src: '~/plugins/vueTouch',
       ssr: false
     },
+    {
+      src: '~/plugins/vueWow',
+      ssr: false
+    },
   ],
 
   env: {

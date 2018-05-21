@@ -2,38 +2,68 @@
   <section class="news">
     <Header />
     <div class="container">
-      <div class="title">NEWS</div>
-      <div class="tags">
-        <div class="tags-title">TAGS</div>
-        <div class="tags-item">
-          <div class="tag" v-for="(tag, index) in tags" :key="index" @click="filterByTag(tag.trim())">
-            #{{tag}}
+      <u-animate
+        name="fadeInUp"
+        delay="0s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="false"
+      >
+        <div class="title">NEWS</div>
+      </u-animate>
+      <u-animate
+        name="fadeIn"
+        delay="0s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="false"
+      >
+        <div class="tags">
+          <div class="tags-title">TAGS</div>
+          <div class="tags-item">
+            <div class="tag" v-for="(tag, index) in tags" :key="index" @click="filterByTag(tag.trim())">
+              #{{tag}}
+            </div>
           </div>
         </div>
-      </div>
-      <div class="news-list" v-if="filteredArticles.length === 0">
-        <masonry
-          :cols="{default: 3, 1024: 2, 425: 1}"
-          :gutter="{default: '60px', 768: '40px', 425: '0px'}"
-          ref="my-masonry">
-          <div class="article" v-for="(article, index) in fetchedNews" :key="index">
-            <nuxt-link :to="'/news/' + index">
-              <div class="article-date">{{ article.date }}</div>
-              <div class="article-title" v-html="article.title"></div>
-              <div class="article-image"
-                :style="{background: `url(${ 'http://' + article.media.fields.file.url.slice(2) }) no-repeat center / cover`}" />
-              <div class="article-preview">{{ article.preview }}</div>
-              <div class="article-hashtags">
-                <div class="article-hashtag"
-                  v-for="(hashtag, index) in article.tags"
-                  :key="index">
-                  #{{ hashtag.trim() }}
+      </u-animate>
+      <u-animate
+        name="fadeInUp"
+        delay="0.5s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="false"
+      >
+        <div class="news-list" v-if="filteredArticles.length === 0">
+          <masonry
+            :cols="{default: 3, 1024: 2, 425: 1}"
+            :gutter="{default: '60px', 768: '40px', 425: '0px'}"
+            ref="my-masonry">
+            <div class="article" v-for="(article, index) in fetchedNews" :key="index">
+              <nuxt-link :to="'/news/' + index">
+                <div class="article-date">{{ article.date }}</div>
+                <div class="article-title" v-html="article.title"></div>
+                <div class="article-image"
+                  :style="{background: `url(${ 'http://' + article.media.fields.file.url.slice(2) }) no-repeat center / cover`}" />
+                <div class="article-preview">{{ article.preview }}</div>
+                <div class="article-hashtags">
+                  <div class="article-hashtag"
+                    v-for="(hashtag, index) in article.tags"
+                    :key="index">
+                    #{{ hashtag.trim() }}
+                  </div>
                 </div>
-              </div>
-            </nuxt-link>
-          </div>
-        </masonry>
-      </div>
+              </nuxt-link>
+            </div>
+          </masonry>
+        </div>
+      </u-animate>
       <div class="news-list">
         <masonry
           :cols="{default: 3, 1024: 2, 425: 1}"
