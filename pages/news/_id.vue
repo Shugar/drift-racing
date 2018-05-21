@@ -77,7 +77,7 @@
           <div class="previous" v-for="(item, index) in news" :key="index">
             <u-animate
               name="fadeInUp"
-              delay="0s"
+              delay="1.5s"
               duration="0.8s"
               :iteration="1"
               :offset="0"
@@ -88,7 +88,7 @@
             </u-animate>
             <u-animate
               name="fadeInUp"
-              delay="1.5s"
+              delay="2s"
               duration="0.8s"
               :iteration="1"
               :offset="0"
