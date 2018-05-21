@@ -20,7 +20,7 @@
             <div class="date">{{ article.date }}</div>
           </div>
           <div class="title"> {{ article.title}} </div>
-          <div class="text">
+          <div class="calendar-text text">
             <vue-markdown> {{ article.text}} </vue-markdown>
           </div>
         </div>
@@ -507,6 +507,29 @@
 
     .previous {
       flex: 0 0 100%;
+    }
+  }
+</style>
+
+
+<style lang="scss">
+  .calendar-text {
+    pre,
+    code {
+      margin-bottom: 20px;
+      white-space: initial;
+      font-family: 'DIN Pro Medium', sans-serif !important;
+    }
+
+    p {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    img {
+      height: auto;
+      width: 100%;
+      max-width: 100%;
     }
   }
 </style>
