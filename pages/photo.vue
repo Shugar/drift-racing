@@ -282,6 +282,8 @@
 
     .photo-item {
       margin-bottom: 20px;
+      max-width: initial;
+      height: 160px;
     }
 
     .tags {

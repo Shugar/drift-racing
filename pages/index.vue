@@ -114,6 +114,19 @@
 </template>
 
 <script>
+  function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+      var context = this, args = arguments;
+      clearTimeout(timeout);
+      timeout = setTimeout(function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      }, wait);
+      if (immediate && !timeout) func.apply(context, args);
+    };
+  }
+
   export default {
     data () {
       return {
@@ -176,6 +189,7 @@
         this.sliderInterval()
 
         this.nextUpAnimation = false
+        this.prevSlideRight()
         setTimeout(() => this.nextUpAnimation = true, 0)
       },
 
@@ -187,6 +201,7 @@
         this.sliderInterval()
 
         this.nextUpAnimation = false
+        this.nextSlideRight()
         setTimeout(() => this.nextUpAnimation = true, 0)
       },
 
@@ -236,14 +251,24 @@
 
     created () {
       if (process.browser) {
-        window.addEventListener('wheel', this.handleScroll);
+        var fired = false
+        const self = this
+
+        window.addEventListener('wheel', function (e) {
+          if (!fired) {
+            fired = true
+            self.handleScroll(e)
+            setTimeout(() => {
+              fired = false
+            }, 1000)
+          }
+        }, true)
         window.addEventListener('keyup', this.handleKeypress);
       }
     },
 
     destroyed () {
       if (process.browser) {
-        window.removeEventListener('wheel', this.handleScroll);
         window.removeEventListener('keyup', this.handleKeypress);
       }
     }

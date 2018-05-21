@@ -89,7 +89,9 @@
   a {
     text-decoration: none;
   }
+
   .header {
+    overflow: hidden;
     position: fixed;
     top: 0;
     left: 0;
