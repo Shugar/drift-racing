@@ -153,31 +153,42 @@
 
   .logo i {
     position: absolute;
-    left: -3px;
-    top: 0;
-    width: 100px;
-    height: 140px;
-    background: url('~/assets/images/logo.svg') no-repeat center / cover;
-    transform: skewX(15deg);
+    left: 24px;
+    bottom: 33px;
+    width: 53px;
+    height: 34px;
+    background: url('~/assets/images/logo-icon.svg') no-repeat center / contain;
+    transform: translate3d(0, 0, 0) skewX(15deg);
     overflow: hidden;
   }
 
   .logo i:last-child {
-    top: -1px;
-    left: -3px;
-    transform: skewX(15deg);
+    bottom: 32.8px;
+    height: 37.7px;
+    transform: translate3d(-1.44px, 0, 0) skewX(15deg);
+    background-position-x: 53px;
+    will-change: transform, background-position-x;
   }
 
+  .logo i:last-child:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 3.8px;
+    background: #000
+  }
 
   @keyframes logo {
     0% {
-      transform: translate3d(-100px, 0, 0) skewX(15deg);
-      background-position-x: 100px
+      transform: translate3d(-53px, 0, 0) skewX(15deg);
+      background-position-x: 53px;
     }
 
     100% {
-      transform: translate3d(100px, 0, 0) skewX(15deg);
-      background-position-x: -100px
+      transform: translate3d(53px, 0, 0) skewX(15deg);
+      background-position-x: -53px;
     }
   }
 

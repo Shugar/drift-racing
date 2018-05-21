@@ -21,7 +21,10 @@
 
     watch: {
       '$route': function (val) {
-        this.$store.commit('animateHeader')
+        this.$store.commit('animateHeader', true)
+        setTimeout(() => {
+          this.$store.commit('animateHeader', false)
+        }, 1500)
       },
     },
 

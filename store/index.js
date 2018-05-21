@@ -11,9 +11,8 @@ const createStore = () => {
     },
 
     mutations: {
-      animateHeader (state) {
-        state.isHeaderAnimated = false
-        state.isHeaderAnimated = true
+      animateHeader (state, payload) {
+        state.isHeaderAnimated = payload
       },
 
       fetchData (state, payload) {
