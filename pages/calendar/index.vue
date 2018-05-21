@@ -36,7 +36,7 @@
         </div>
 
         <div class="article" v-for="(article, index) in (events.length > 0 ? events : leftCalendar)" :key="index">
-          <nuxt-link class="hui" :to="'/calendar/' + index">
+          <nuxt-link :to="'/calendar/' + findItemByTitle(article.title)">
             <div class="img-fullwidth">
               <img :src="'http://' + article.image.fields.file.url.slice(2)" />
             </div>
