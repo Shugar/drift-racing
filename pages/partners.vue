@@ -9,7 +9,7 @@
         :iteration="1"
         :offset="0"
         animateClass="animated"
-        :begin="false"
+        :begin="true"
       >
         <div class="title">Partners</div>
       </u-animate>
@@ -21,7 +21,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
         >
           <div class="partners-list">
             <div class="partner" v-for="(partner, index) in partners" :key="index">
@@ -32,7 +32,17 @@
         </u-animate>
       </u-animate-container>
     </div>
-    <Footer />
+    <u-animate
+      name="fadeInUp"
+      delay="1s"
+      duration="0.8s"
+      :iteration="1"
+      :offset="0"
+      animateClass="animated"
+      :begin="true"
+    >
+      <Footer />
+    </u-animate>>
   </section>
 </template>
 
@@ -70,7 +80,7 @@
   .partners {
     min-height: 100vh;
     background: #683FFF;
-    padding: 200px 0 80px;
+    padding: 200px 0 60px;
 
     display: flex;
     flex-flow: column nowrap;

@@ -1,13 +1,13 @@
 <template>
-  <div class="footer">
+  <div class="footer" :class="{ 'isNotHome': $route.name !== '/'}">
     <div class="left" :class="{ mainLeft: type === 'main' }">
       <div class="share">
         SHARE
       </div>
       <div class="socials">
-        <a href="#" class="socials-youtube"></a>
-        <a href="#" class="socials-instagram"></a>
-        <a href="#" class="socials-facebook"></a>
+        <a href="https://www.youtube.com/c/AlexDProDrift" class="socials-youtube"></a>
+        <a href="https://www.instagram.com/alexd_prodrift/ " class="socials-instagram"></a>
+        <a href="https://vk.com/alexd_prodrift " class="socials-facebook"></a>
       </div>
     </div>
 
@@ -38,6 +38,7 @@ export default {
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+    z-index: 6;
   }
 
   .share {
@@ -51,7 +52,7 @@ export default {
     line-height: normal;
     font-size: 20px;
     text-transform: uppercase;
-    color: #E0E0E0;
+    color: #FFF;
   }
 
   .left {
@@ -87,13 +88,33 @@ export default {
     align-items: center;
   }
 
-  .socials-youtube,
-  .socials-facebook,
-  .socials-instagram {
+  .socials-youtube:before,
+  .socials-facebook:before,
+  .socials-instagram:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    z-index: -1;
+
     transition: background-color .3s ease;
-    border-radius: 4.5px;
-    &:hover {
-      background-color: #673fff;
+    will-change: background-color;
+  }
+
+  .socials-youtube:hover:before,
+  .socials-facebook:hover:before,
+  .socials-instagram:hover:before {
+    background-color: #673fff;
+  }
+
+  .isNotHome {
+    .socials-youtube:hover:before,
+    .socials-facebook:hover:before,
+    .socials-instagram:hover:before {
+      background-color: #000;
     }
   }
 
@@ -102,6 +123,7 @@ export default {
     width: 20px;
     height: 20px;
     margin-right: 20px;
+    position: relative;
   }
 
   .socials-instagram {
@@ -109,12 +131,14 @@ export default {
     width: 20px;
     height: 20px;
     margin-right: 20px;
+    position: relative;
   }
 
   .socials-facebook {
     background: url('~/assets/images/facebook.svg') no-repeat center / contain;
     width: 20px;
     height: 20px;
+    position: relative;
   }
 
   .lang,

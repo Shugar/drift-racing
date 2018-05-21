@@ -2,3 +2,7 @@
   transform: translateY(50px);
   opacity: 0;
 }
+
+.isPurpleAnimating {
+  transform: translateX(0);
+}

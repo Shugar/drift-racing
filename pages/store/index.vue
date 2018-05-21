@@ -10,7 +10,7 @@
         :iteration="1"
         :offset="0"
         animateClass="animated"
-        :begin="false"
+        :begin="true"
       >
         <span @click="$store.commit('toggleCheckout')" class="checkout">{{ productCount }} items — $ {{ productSum }}</span>
         <div class="title">
@@ -26,7 +26,7 @@
         :iteration="1"
         :offset="0"
         animateClass="animated"
-        :begin="false"
+        :begin="true"
       >
         <div class="tags">
           <div class="tags-title">CATEGORIES</div>
@@ -45,7 +45,7 @@
         :iteration="1"
         :offset="0"
         animateClass="animated"
-        :begin="false"
+        :begin="true"
       >
         <div class="news-list">
           <masonry
@@ -93,7 +93,7 @@
       :iteration="1"
       :offset="0"
       animateClass="animated"
-      :begin="false"
+      :begin="true"
     >
       <Footer />
     </u-animate>>

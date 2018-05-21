@@ -2,6 +2,7 @@
   <section class="index">
     <Header type="main" />
     <div class="container">
+      <div class="left-background" :class="{'isPurpleChanging': isPurpleChanging}" />
       <div class="left" :class="{'isAnimating': isChanging }">
         <div class="page-title">
           <u-animate
@@ -11,7 +12,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div>contact</div>
           </u-animate>
@@ -22,7 +23,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div class="city">
               <div class="city-item"
@@ -46,7 +47,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div class="contact-info">
               <div class="contact-title">connect with us</div>
@@ -64,7 +65,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div class="contact-info">
               <div class="contact-title">location</div>
@@ -109,6 +110,7 @@
         currentCity: 'moscow',
         markers: [],
         isChanging: false,
+        isPurpleChanging: false,
         styles: [
           {
             "featureType": "all",
@@ -291,6 +293,8 @@
     },
 
     mounted () {
+      this.isPurpleChanging = true
+
       this.isChanging = false
       this.$refs.mapRef.$mapPromise.then((map) => {
         this.contact.map((item, index) => {
@@ -310,6 +314,7 @@
 
     beforeRouteLeave(to, from, next) {
       this.isChanging = true
+      this.isPurpleChanging = false
       setTimeout(() => next(), 500)
     },
 
@@ -345,6 +350,24 @@
     background: #683FFF;
   }
 
+  .left-background {
+    width: 100%;
+    height: 100%;
+    background: #683FFF;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(0%);
+    z-index: 4;
+
+    transition: transform 1s ease;
+    will-change: transform;
+  }
+
+  .isPurpleChanging {
+    transform: translateX(-55%);
+  }
+
   .left {
     flex: 0 0 55%;
     min-width: 728px;
@@ -358,6 +381,7 @@
     color: #fff;
     padding: 180px 0 140px;
     padding-left: 100px;
+    z-index: 6;
 
 
     transition: transform .5s ease, opacity .5s ease;
@@ -463,10 +487,10 @@
     transform: translateY(110%);
   }
 
-// @media (max-width: 1024px) {
-// }
-
   @media (max-width: 1024px) {
+    .left-background {
+      display: none;
+    }
 
     .index {
       min-height: 100vh;

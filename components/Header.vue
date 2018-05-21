@@ -166,7 +166,7 @@
     bottom: 33px;
     width: 53px;
     height: 34px;
-    background: url('~/assets/images/logo-icon.svg') no-repeat center / contain;
+    background: url('~/assets/images/logo-big.svg') no-repeat center / contain;
     transform: translate3d(0, 0, 0) skewX(15deg);
     overflow: hidden;
   }

@@ -10,7 +10,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
         >
         <div class="tag">bio</div>
       </u-animate>
@@ -22,7 +22,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
         >
           <div class="title">{{ bio.leftColumnTitle }}</div>
         </u-animate>
@@ -33,26 +33,26 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
         >
           <div class="text">
             {{ bio.leftText }}
           </div>
         </u-animate>
 
-        <u-animate
-          name="fadeInUp"
-          delay="1.6s"
-          duration="0.8s"
-          :iteration="1"
-          :offset="0"
-          animateClass="animated"
-          :begin="false"
-        >
-          <div class="img-fullwidth">
+        <u-animate-container class="img-fullwidth">
+          <u-animate
+            name="fadeInUp"
+            delay="1.6s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="true"
+          >
             <img :src="'http://' + bio.leftImage.fields.file.url.slice(2)" />
-          </div>
-        </u-animate>
+          </u-animate>
+        </u-animate-container>
       </div>
       <div class="right">
         <u-animate
@@ -62,7 +62,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
         >
           <div class="title">{{ bio.rightColumnTitle }}</div>
         </u-animate>
@@ -73,49 +73,69 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
         >
           <div class="text">
             {{ bio.rightText }}
           </div>
         </u-animate>
-        <u-animate
-          name="fadeInUp"
-          delay="1.6s"
+        <u-animate-container class="img-fullwidth">
+          <u-animate
+            name="fadeInUp"
+            delay="1.6s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="true"
+          >
+            <img :src="'http://' + bio.rightImage.fields.file.url.slice(2)" />
+          </u-animate>
+        </u-animate-container>
+      </div>
+    </div>
+    <div class="container container-car">
+      <u-animate
+          name="fadeIn"
+          delay="0s"
           duration="0.8s"
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
         >
-          <div class="img-fullwidth">
-            <img :src="'http://' + bio.rightImage.fields.file.url.slice(2)" />
+        <div class="tag">cars</div>
+      </u-animate>
+      <div class="left" v-for="(car, index) in bioCars" :key="index">
+        <u-animate
+          name="fadeInUp"
+          delay="1.8s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="true"
+        >
+          <div class="title">{{ car.title }}<br> {{ car.car }}</div>
+          <img :src="'http://' + car.image.fields.file.url.slice(2)" />
+          <div class="text">
+            The car was built at the end of the past especially for the current season in the Russian Drift Series and the European Drift Allstars Championship.
+          </div>
+          <div class="numbers">
+            <div class="numbers-item">
+              <div class="numbers-item__digits">{{ car.hp }}</div>
+              <div class="numbers-item__units">HP</div>
+            </div>
+            <div class="numbers-item">
+              <div class="numbers-item__digits">{{ car.drivetrain }}</div>
+              <div class="numbers-item__units">DRIVETRAIN</div>
+            </div>
+            <div class="numbers-item">
+              <div class="numbers-item__digits">{{ car.engine }}</div>
+              <div class="numbers-item__units">ENGINE</div>
+            </div>
           </div>
         </u-animate>
-      </div>
-    </div>
-    <div class="container container-car">
-      <div class="tag">cars</div>
-      <div class="left" v-for="(car, index) in bioCars" :key="index">
-        <div class="title">{{ car.title }}<br> {{ car.car }}</div>
-        <img :src="'http://' + car.image.fields.file.url.slice(2)" />
-        <div class="text">
-          The car was built at the end of the past especially for the current season in the Russian Drift Series and the European Drift Allstars Championship.
-        </div>
-        <div class="numbers">
-          <div class="numbers-item">
-            <div class="numbers-item__digits">{{ car.hp }}</div>
-            <div class="numbers-item__units">HP</div>
-          </div>
-          <div class="numbers-item">
-            <div class="numbers-item__digits">{{ car.drivetrain }}</div>
-            <div class="numbers-item__units">DRIVETRAIN</div>
-          </div>
-          <div class="numbers-item">
-            <div class="numbers-item__digits">{{ car.engine }}</div>
-            <div class="numbers-item__units">ENGINE</div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -189,9 +209,8 @@ export default {
   }
 
   .left {
-    margin-left: 220px;
+    padding-left: 220px;
     // flex: 0 0 60%;
-    width: calc(50% - 220px);
 
 
     display: flex;
@@ -212,6 +231,10 @@ export default {
     color: #FFFFFF;
     margin-bottom: 20px;
     padding-right: 110px;
+  }
+
+  .right .img-fullwidth {
+    margin-top: 75px;
   }
 
   .text {
@@ -247,10 +270,10 @@ export default {
 
   .container-car .left {
     margin-bottom: 100px;
-    // padding-left: 130px;
+    padding-left: 130px;
 
     &:nth-child(even) {
-      margin-left: 220px;
+      padding-left: 220px;
 
       .title,
       .text {
@@ -319,13 +342,48 @@ export default {
   }
 
   @media (max-width: 1024px) {
+    .tag {
+      display: none;
+    }
 
     .numbers-item__digits {
       font-size: 38px;
     }
+
+    .left {
+      padding-left: 0;
+    }
+
+
+    .container-car .left:nth-child(even),
+    .container-car .left {
+      padding-left: 0;
+    }
+
+    .container-car .left {
+      margin-right: 77px;
+    }
+
+    .container-car .left:nth-child(odd) {
+      margin-right: 0;
+    }
+
+    .container-car img {
+      max-width: 360px;
+    }
   }
 
   @media (max-width: 976px) {
+    .left {
+      padding-left: 0;
+    }
+
+    .container-car .left:nth-child(even),
+    .container-car .left {
+      padding-left: 0;
+      margin-right: 0;
+    }
+
     .container {
       display: block;
     }

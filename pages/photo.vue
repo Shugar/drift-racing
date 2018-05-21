@@ -9,7 +9,7 @@
         :iteration="1"
         :offset="0"
         animateClass="animated"
-        :begin="false"
+        :begin="true"
       >
         <div class="title">PHOTO</div>
       </u-animate>
@@ -20,7 +20,7 @@
         :iteration="1"
         :offset="0"
         animateClass="animated"
-        :begin="false"
+        :begin="true"
       >
         <div class="tags" v-if="fetchedPhotos">
           <div class="tags-item">
@@ -48,7 +48,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div class="photo-date">{{ photo.date }}</div>
             <div class="photo-title" v-html="photo.title"></div>

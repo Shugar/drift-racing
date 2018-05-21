@@ -9,7 +9,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false">
+          :begin="true">
         <div class="title">VIDEO</div>
       </u-animate>
       <u-animate
@@ -19,7 +19,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false">
+          :begin="true">
         <div class="tags">
           <div class="tags-item">
             <div class="tags-title">CHAMPIONSHIP</div>
@@ -43,7 +43,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
         >
         <div class="videos-list" v-if="filteredVideos.length === 0">
           <masonry
