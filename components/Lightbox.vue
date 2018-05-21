@@ -36,6 +36,18 @@
         }
 
         this.$store.commit('openLightbox', result)
+      },
+
+      handleKeypress (e) {
+        if (this.photo !== null) {
+          if (e.keyCode === 37) {
+            this.prev()
+          }
+
+          if (e.keyCode === 39) {
+            this.next()
+          }
+        }
       }
     },
 
@@ -43,6 +55,10 @@
       photo () {
         return this.$store.state.lightbox
       }
+    },
+
+    mounted () {
+      window.addEventListener('keyup', this.handleKeypress)
     }
   }
 </script>

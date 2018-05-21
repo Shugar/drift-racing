@@ -38,6 +38,7 @@ export default {
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+    z-index: 6;
   }
 
   .share {

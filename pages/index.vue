@@ -74,8 +74,9 @@
         </div>
       </div>
 
+      <div class="right-background" :class="{'isPurpleAnimating': isChanging}" />
       <div class="right">
-        <div class="image-slider">
+        <div class="image-slider" :class="{'isSliderHiding': isChanging}">
           <transition :name="'small-slider-' + direction + '-animation'">
             <img class="image-slider-item" v-for="(item, index) in rightSlider"
               :src="`${'http://' + (item.image || item.preview || item.media ).fields.file.url.slice(2)}`"
@@ -90,7 +91,7 @@
             <div class="arrow"/>
           </nuxt-link>
         </div>
-        <div class="small-slider">
+        <div class="small-slider" :class="{'isSliderHiding': isChanging}">
             <div>
               <transition :name="'small-slider-' + direction + '-animation'">
                 <div class="small-slider-left"
@@ -117,7 +118,7 @@
         </div>
       </div>
     </div>
-    <div class="footer-wrapper">
+    <div class="footer-wrapper" :class="{'isFooterHiding': isChanging}">
       <Footer type="main" />
     </div>
   </section>
@@ -143,6 +144,7 @@
         count: 0,
         rightCount: 0,
         direction: 'top',
+        isChanging: false,
         timeInterval: 0,
         nextUpAnimation: true,
         dummyLeftSlider: [
@@ -254,7 +256,13 @@
       }
     },
 
+    beforeRouteLeave(to, from, next) {
+      this.isChanging = true
+      setTimeout(() => next(), 1000)
+    },
+
     mounted () {
+      this.isChanging = false
       this.sliderInterval()
       setInterval(() => this.nextSlideRight(), 4000)
     },
@@ -660,6 +668,28 @@
     padding-left: 100px;
   }
 
+  .right-background {
+    width: 100%;
+    transform: translateX(55%);
+    background: #683FFF;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: transform 1s ease 0.3s;
+    will-change: transform;
+    z-index: 5;
+  }
+
+  .isSliderHiding,
+  .isFooterHiding {
+    opacity: 0;
+  }
+
+  .isPurpleAnimating {
+    transform: translateX(0);
+  }
+
   .small-slider-top-animation-enter-active, .small-slider-top-animation-leave-active {
     transition: transform .5s ease, opacity .3s ease;
   }
@@ -698,6 +728,10 @@
 
     overflow: hidden;
     position: relative;
+    z-index: 6;
+
+    transition: opacity .4s ease;
+    will-change: opacity;
 
     &-text {
       width: 65%;
@@ -737,10 +771,12 @@
   }
 
   .footer-wrapper {
-    z-index: 2;
+    z-index: 6;
     width: 100%;
     position: absolute;
     bottom: 60px;
+    transition: opacity .4s ease .2s;
+    will-change: opacity;
   }
 
   .image-slider {
@@ -749,6 +785,9 @@
     height: 200px;
     width: 380px;
     margin-bottom: 40px;
+    z-index: 6;
+    transition: opacity .4s ease;
+    will-change: opacity;
   }
 
   .arrow {

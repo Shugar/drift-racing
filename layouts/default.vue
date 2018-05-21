@@ -83,6 +83,10 @@
     opacity: 0;
   }
 
+  .isPurpleAnimating {
+    transform: translateX(0);
+  }
+
   html {
     font-family: "DIN Pro Medium", sans-serif;
     -ms-text-size-adjust: 100%;
