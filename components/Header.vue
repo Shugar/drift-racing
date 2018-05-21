@@ -218,6 +218,10 @@
     padding-left: 50px;
   }
 
+  .main .nav-right {
+    padding-left: 52px;
+  }
+
   .nav-item {
     font-family: 'DIN Condensed', sans-serif;
     line-height: normal;
