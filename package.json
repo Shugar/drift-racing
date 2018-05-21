@@ -15,7 +15,7 @@
   "dependencies": {
     "contentful": "^6.1.0",
     "node-sass": "^4.9.0",
-    "nuxt": "^1.0.0",
+    "nuxt": "^1.4.0",
     "sass-loader": "^7.0.1",
     "v-wow": "^1.2.1",
     "vue-markdown": "^2.2.4",

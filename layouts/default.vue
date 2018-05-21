@@ -67,7 +67,6 @@
     }
   }
 </script>
-
 <style>
   @import '@/assets/fonts/fonts.css';
 
@@ -77,6 +76,11 @@
 
   .fade-enter, .fade-leave-to {
     opacity: 0.001;
+  }
+
+  .isAnimating {
+    transform: translateY(50px);
+    opacity: 0;
   }
 
   html {
@@ -1625,8 +1629,8 @@
   @-webkit-keyframes fadeInUp {
     from {
       opacity: 0;
-      -webkit-transform: translate3d(0, 100%, 0);
-      transform: translate3d(0, 100%, 0);
+      -webkit-transform: translate3d(0, 50px, 0);
+      transform: translate3d(0, 50px, 0);
     }
 
     to {
@@ -1639,8 +1643,8 @@
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      -webkit-transform: translate3d(0, 100%, 0);
-      transform: translate3d(0, 100%, 0);
+      -webkit-transform: translate3d(0, 50px, 0);
+      transform: translate3d(0, 50px, 0);
     }
 
     to {

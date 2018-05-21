@@ -1,7 +1,7 @@
 <template>
   <section class="news">
     <Header />
-    <div class="container">
+    <div class="container" :class="{'isAnimating': isChanging}">
       <u-animate
         name="fadeInUp"
         delay="0s"
@@ -97,6 +97,7 @@
     data () {
       return {
         filteredArticles: [],
+        isChanging: false,
       }
     },
 
@@ -146,6 +147,15 @@
       }
     },
 
+    mounted () {
+      this.isChanging = false
+    },
+
+    beforeRouteLeave(to, from, next) {
+      this.isChanging = true
+      setTimeout(() => next(), 500)
+    },
+
     components: {
       Header: () => import('@/components/Header'),
       Footer: () => import('@/components/Footer')
@@ -169,11 +179,14 @@
     padding: 0 100px;
 
     padding-left: 320px;
+
+    transition: transform .5s ease, opacity .5s ease;
+    will-change: transform, opacity;
   }
 
   .tags {
     position: fixed;
-    top: 280px;
+    top: 80px;
     left: 100px;
   }
 

@@ -2,7 +2,7 @@
   <section class="index">
     <Header type="main" />
     <div class="container">
-      <div class="left">
+      <div class="left" :class="{'isAnimating': isChanging }">
         <div class="page-title">
           <u-animate
             name="fadeInUp"
@@ -108,6 +108,7 @@
       return {
         currentCity: 'moscow',
         markers: [],
+        isChanging: false,
         styles: [
           {
             "featureType": "all",
@@ -290,6 +291,7 @@
     },
 
     mounted () {
+      this.isChanging = false
       this.$refs.mapRef.$mapPromise.then((map) => {
         this.contact.map((item, index) => {
           if (item.city === this.currentCity) {
@@ -304,6 +306,11 @@
           })
         })
       })
+    },
+
+    beforeRouteLeave(to, from, next) {
+      this.isChanging = true
+      setTimeout(() => next(), 500)
     },
 
     methods: {
@@ -335,6 +342,7 @@
     height: 100%;
     display: flex;
     flex-flow: row nowrap;
+    background: #683FFF;
   }
 
   .left {
@@ -342,7 +350,6 @@
     min-width: 728px;
     position: relative;
     // padding-bottom: 230px;
-    background: #683FFF;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -351,6 +358,10 @@
     color: #fff;
     padding: 180px 0 140px;
     padding-left: 100px;
+
+
+    transition: transform .5s ease, opacity .5s ease;
+    will-change: transform, opacity;
   }
 
   .page-title {

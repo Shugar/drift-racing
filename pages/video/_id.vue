@@ -1,25 +1,9 @@
 <template>
-  <section class="calendar">
+  <section class="calendar" ref="mySubComponent">
     <Header />
-    <div class="title-wrapper">
-      <u-animate
-        name="fadeIn"
-        delay="0s"
-        duration="0.8s"
-        :iteration="1"
-        :offset="0"
-        animateClass="animated"
-        :begin="false"
-      >
-        <div class="tags">
-          <div class="tags-item">
-            <div class="tag"><nuxt-link to="/video/" >back to videos</nuxt-link></div>
-          </div>
-        </div>
-      </u-animate>
-    </div>
-    <div class="container">
-      <div class="left">
+    <div class="wrappe">
+
+      <div class="title-wrapper">
         <u-animate
           name="fadeIn"
           delay="0s"
@@ -31,14 +15,15 @@
         >
           <div class="tags">
             <div class="tags-item">
-              <div class="tag"><nuxt-link to="/video/">back to videos</nuxt-link></div>
+              <div class="tag"><nuxt-link to="/video/" >back to videos</nuxt-link></div>
             </div>
           </div>
         </u-animate>
-        
-        <div class="article">
+      </div>
+      <div class="container">
+        <div class="left">
           <u-animate
-            name="fadeInUp"
+            name="fadeIn"
             delay="0s"
             duration="0.8s"
             :iteration="1"
@@ -46,56 +31,74 @@
             animateClass="animated"
             :begin="false"
           >
-            <div class="info">
-              <div class="date">{{ video.date }}</div>
+            <div class="tags">
+              <div class="tags-item">
+                <div class="tag"><nuxt-link to="/video/">back to videos</nuxt-link></div>
+              </div>
             </div>
           </u-animate>
-          <u-animate
-            name="fadeInUp"
-            delay="0.5s"
-            duration="0.8s"
-            :iteration="1"
-            :offset="0"
-            animateClass="animated"
-            :begin="false"
-          >
-            <div class="title">{{ video.title }}</div>
-          </u-animate>
-          <u-animate
-            name="fadeInUp"
-            delay="1s"
-            duration="0.8s"
-            :iteration="1"
-            :offset="0"
-            animateClass="animated"
-            :begin="false"
-          >
-            <div class="video-wrapper">
-              <iframe width="100%" height="100%" :src="video.videoSource.replace('watch?v=', '/embed/')" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          
+          <div class="article">
+            <u-animate
+              name="fadeInUp"
+              delay="0s"
+              duration="0.8s"
+              :iteration="1"
+              :offset="0"
+              animateClass="animated"
+              :begin="false"
+            >
+              <div class="info">
+                <div class="date">{{ video.date }}</div>
+              </div>
+            </u-animate>
+            <u-animate
+              name="fadeInUp"
+              delay="0.5s"
+              duration="0.8s"
+              :iteration="1"
+              :offset="0"
+              animateClass="animated"
+              :begin="false"
+            >
+              <div class="title">{{ video.title }}</div>
+            </u-animate>
+            <u-animate
+              name="fadeInUp"
+              delay="1s"
+              duration="0.8s"
+              :iteration="1"
+              :offset="0"
+              animateClass="animated"
+              :begin="false"
+            >
+              <div class="video-wrapper">
+                <iframe width="100%" height="100%" :src="video.videoSource.replace('watch?v=', '/embed/')" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              </div>
+              <div class="text">{{ video.text }}</div>
+            </u-animate>
+          </div>
+        <div class="right mobile">
+          <div class="previous-article">
+            <div class="previous-title">Previous videos</div>
+            <div class="previous">
+              <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
+              <div class="previous-date">JAN 30 — 2016</div>
+              <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
             </div>
-            <div class="text">{{ video.text }}</div>
-          </u-animate>
-        </div>
-      <div class="right mobile">
-        <div class="previous-article">
-          <div class="previous-title">Previous videos</div>
-          <div class="previous">
-            <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
-            <div class="previous-date">JAN 30 — 2016</div>
-            <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
-          </div>
-          <div class="previous">
-            <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
-            <div class="previous-date">JAN 30 — 2016</div>
-            <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
-          </div>
-          <div class="previous">
-            <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
-            <div class="previous-date">JAN 30 — 2016</div>
-            <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
+            <div class="previous">
+              <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
+              <div class="previous-date">JAN 30 — 2016</div>
+              <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
+            </div>
+            <div class="previous">
+              <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
+              <div class="previous-date">JAN 30 — 2016</div>
+              <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
+            </div>
           </div>
         </div>
-      </div>
+        </div>
       </div>
     </div>
     <Footer />
@@ -104,6 +107,12 @@
 
 <script>
   export default {
+    data () {
+      return {
+        isChanging: false
+      }
+    },
+
     computed: {
       video () {
         return this.$store.state.entities.video[this.$route.params.id]
@@ -113,6 +122,16 @@
     components: {
       Header: () => import('@/components/Header'),
       Footer: () => import('@/components/Footer')
+    },
+
+    mounted () {
+      this.isChanging = false
+    },
+
+    watch: {
+      '$route' (to, from) {
+        this.isChanging = true
+      }
     },
 
     validate ({ params }) {
@@ -135,6 +154,11 @@
     display: flex;
     flex-flow: row nowrap;
     align-content: center;
+  }
+
+  .wrapper {
+    transition: transform .5s ease, opacity .5s ease;
+    will-change: transform, opacity;
   }
 
   .title-wrapper {
