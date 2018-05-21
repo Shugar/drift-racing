@@ -24,14 +24,20 @@
     </div>
 
     <div class="left" :class="{ mainLeft: type === 'main' }">
-      <nuxt-link to="/">
+      <nuxt-link to="/" class="logo-link">
         <div class="logo" :class="{'isHeaderAnimated': isHeaderAnimated}">
           <i></i><i></i>
         </div>
       </nuxt-link>
-      <div class="back-to news" v-if="this.$route.path === `/news/${this.$route.params.id}`"><nuxt-link to='/news/'>BACK TO NEWS</nuxt-link></div>
-      <div class="back-to" v-if="this.$route.path === `/calendar/${this.$route.params.id}`"><nuxt-link to='/calendar/'>BACK TO CALENDAR</nuxt-link></div>
-      <div class="back-to" v-if="this.$route.path === `/vi deo/${this.$route.params.id}`"><nuxt-link to='/video/'>BACK TO VIDEOS</nuxt-link></div>
+      <div class="back-to news" v-if="this.$route.path === `/news/${this.$route.params.id}`">
+        <nuxt-link to='/news/'>BACK TO NEWS</nuxt-link>
+      </div>
+      <div class="back-to" v-if="this.$route.path === `/calendar/${this.$route.params.id}`">
+        <nuxt-link to='/calendar/'>BACK TO CALENDAR</nuxt-link>
+      </div>
+      <div class="back-to" v-if="this.$route.path === `/video/${this.$route.params.id}`">
+        <nuxt-link to='/video/'>BACK TO VIDEO</nuxt-link>
+      </div>
 
       <span @click="$store.commit('toggleCheckout')" v-if="this.$route.name === 'store'" class="checkout">{{ productCount }} items — $ {{ productSum }}</span>
       <div class="menu-button" @click="openMenu()" />
@@ -137,8 +143,11 @@
     padding-left: 60px;
   }
 
-  .logo {
+  .logo-link {
     margin-right: 120px;
+  }
+
+  .logo {
     width: 100px;
     flex: 0 0 100px;
     height: 140px;
@@ -269,7 +278,7 @@
       display: none;
     }
 
-    .logo {
+    .logo-link {
       margin-right: 40px;
     }
 
@@ -384,16 +393,12 @@
   }
 
   @media (max-width: 768px) {
-    .news {
+    .back-to {
       display: block;
     }
   }
+
   @media (max-width: 425px) {
-    .back-to {
-      display: none;
-    }
-
-
     .header {
       position: absolute;
       padding: 0 30px;
@@ -403,9 +408,17 @@
       display: none;
     }
 
+    .logo-link {
+      margin-right: 32px;
+    }
+
     .logo {
       margin-top: -20px;
       width: 100px;
+    }
+
+    .back-to {
+      margin-top: 16px;
     }
 
     .nav {

@@ -2,9 +2,7 @@
   <section class="news">
     <Header />
     <div class="container">
-      <nuxt-link to="/news/" class="back">back to news</nuxt-link>
       <div class="left">
-        <nuxt-link to="/news/" class="back">back to news</nuxt-link>
         <div class="title">{{ article.title }}</div>
         <div class="article">
           <div class="info">
@@ -144,10 +142,6 @@
 
     display: flex;
     flex-flow: column nowrap;
-
-    .back {
-      display: none;
-    }
   }
 
   .right {
@@ -166,12 +160,6 @@
     // top: 200px;
     padding-left: 50px;
     max-width: 350px;
-  }
-
-  .back {
-    position: absolute;
-    left: 100px;
-    top: 0px;
   }
 
   .info {
@@ -200,8 +188,7 @@
   }
 
   .date,
-  .tag,
-  .back {
+  .tag {
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -209,12 +196,6 @@
     font-size: 24px;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.8);
-  }
-
-  .back {
-    text-decoration: none;
-    color: #FFF;
-    cursor: pointer;
   }
 
   .title {
