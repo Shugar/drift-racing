@@ -4,6 +4,11 @@ module.exports = {
   /*
   ** Headers of the page
   */
+
+  css: [
+    'assets/main.css'
+  ],
+
   head: {
     title: 'Drift',
     meta: [
@@ -15,6 +20,8 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+
+  transition: 'go',
   /*
   ** Customize the progress bar color
   */

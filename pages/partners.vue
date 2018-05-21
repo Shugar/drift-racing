@@ -1,7 +1,7 @@
 <template>
   <section class="partners">
     <Header />
-    <div class="container">
+    <div class="container" :class="{'isAnimating': isChanging}">
       <u-animate
         name="fadeInUp"
         delay="0s"
@@ -43,6 +43,21 @@
       Footer: () => import('@/components/Footer')
     },
 
+    data () {
+      return {
+        isChanging: false,
+      }
+    },
+
+    mounted () {
+      this.isChanging = false
+    },
+
+    beforeRouteLeave(to, from, next) {
+      this.isChanging = true
+      setTimeout(() => next(), 500)
+    },
+
     computed: {
       partners () {
         return this.$store.state.entities.partner
@@ -71,6 +86,8 @@
 
     display: flex;
     flex-flow: column nowrap;
+    transition: transform .5s ease, opacity .5s ease;
+    will-change: transform, opacity;
   }
 
   .title {

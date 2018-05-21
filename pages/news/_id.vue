@@ -1,7 +1,18 @@
 <template>
   <section class="news">
     <Header />
-    <div class="container">
+    <div class="container" :class="{'isAnimating': isChanging}">
+      <u-animate
+        name="fadeIn"
+        delay="0s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="false"
+      >
+        <nuxt-link to="/news/" class="back">back to news</nuxt-link>
+      </u-animate>
       <div class="left">
         <u-animate
           name="fadeInUp"
@@ -110,6 +121,12 @@
   import VueMarkdown from 'vue-markdown'
 
   export default {
+    data () {
+      return {
+        isChanging: false
+      }
+    },
+
     computed: {
       article () {
         return this.$store.state.entities.news.map(article => {
@@ -163,6 +180,15 @@
       }
     },
 
+    mounted () {
+      this.isChanging = false
+    },
+
+    beforeRouteUpdate(to, from, next) {
+      this.isChanging = true
+      setTimeout(() => next(), 500)
+    },
+
     components: {
       Header: () => import('@/components/Header'),
       Footer: () => import('@/components/Footer'),
@@ -189,6 +215,9 @@
     display: flex;
     flex-flow: row nowrap;
     align-content: center;
+
+    transition: transform .5s ease, opacity .5s ease;
+    will-change: transform, opacity;
   }
 
   .left {
@@ -245,7 +274,8 @@
   }
 
   .date,
-  .tag {
+  .tag,
+  .back {
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -253,6 +283,17 @@
     font-size: 24px;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.8);
+  }
+
+  .back {
+    position: absolute;
+    left: 100px;
+    top: 0px;
+    z-index: 2;
+    text-decoration: none;
+    color: #FFF;
+    text-transform: uppercase;
+    cursor: pointer;
   }
 
   .title {
@@ -426,7 +467,7 @@
     }
 
     .back {
-      display: block;
+      display: none;
       position: initial;
       margin-bottom: 20px;
     }

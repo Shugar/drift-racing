@@ -2,7 +2,7 @@
   <section class="bio">
     <Header />
 
-    <div class="container">
+    <div class="container" :class="{'isAnimating': isChanging}">
       <u-animate
           name="fadeIn"
           delay="0s"
@@ -125,6 +125,12 @@
 
 <script>
 export default {
+  data () {
+    return {
+      isChanging: false
+    }
+  },
+
   components: {
     Header: () => import('@/components/Header'),
     Footer: () => import('@/components/Footer')
@@ -139,6 +145,15 @@ export default {
       return this.$store.state.entities.bioCars
     },
   },
+
+  mounted () {
+    this.isChanging = false
+  },
+
+  beforeRouteLeave(to, from, next) {
+    this.isChanging = true
+    setTimeout(() => next(), 500)
+  }
 }
 </script>
 
@@ -155,6 +170,9 @@ export default {
     display: flex;
     flex-flow: row nowrap;
     align-content: center;
+
+    transition: transform .5s ease, opacity .5s ease;
+    will-change: transform, opacity;
   }
 
   .tag {
