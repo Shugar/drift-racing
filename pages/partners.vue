@@ -9,7 +9,7 @@
         :iteration="1"
         :offset="0"
         animateClass="animated"
-        :begin="false"
+        :begin="true"
       >
         <div class="title">Partners</div>
       </u-animate>
@@ -21,7 +21,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
         >
           <div class="partners-list">
             <div class="partner" v-for="(partner, index) in partners" :key="index">
@@ -39,7 +39,7 @@
       :iteration="1"
       :offset="0"
       animateClass="animated"
-      :begin="false"
+      :begin="true"
     >
       <Footer />
     </u-animate>>

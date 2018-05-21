@@ -11,7 +11,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
         >
           <div class="tags">
             <div class="tags-item">
@@ -29,7 +29,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div class="tags">
               <div class="tags-item">
@@ -46,7 +46,7 @@
               :iteration="1"
               :offset="0"
               animateClass="animated"
-              :begin="false"
+              :begin="true"
             >
               <div class="info">
                 <div class="date">{{ video.date }}</div>
@@ -59,7 +59,7 @@
               :iteration="1"
               :offset="0"
               animateClass="animated"
-              :begin="false"
+              :begin="true"
             >
               <div class="title">{{ video.title }}</div>
             </u-animate>
@@ -70,7 +70,7 @@
               :iteration="1"
               :offset="0"
               animateClass="animated"
-              :begin="false"
+              :begin="true"
             >
               <div class="video-wrapper">
                 <iframe width="100%" height="100%" :src="video.videoSource.replace('watch?v=', '/embed/')" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

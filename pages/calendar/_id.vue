@@ -10,7 +10,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
         >
           <div class="tags">
             <div class="tags-item">
@@ -26,7 +26,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div class="info">
               <div class="date">{{ article.date }}</div>
@@ -39,7 +39,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div class="title"> {{ article.title }} </div>
           </u-animate>
@@ -50,7 +50,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div class="calendar-text text">
               <vue-markdown> {{ article.text}} </vue-markdown>
@@ -67,7 +67,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div class="previous-title"> PREVIOUS EVENT </div>
           </u-animate>
@@ -79,7 +79,7 @@
               :iteration="1"
               :offset="0"
               animateClass="animated"
-              :begin="false"
+              :begin="true"
             >
               <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover`}" />
               <div class="previous-date"> {{ item.date }} </div>

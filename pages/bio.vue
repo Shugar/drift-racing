@@ -10,7 +10,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
         >
         <div class="tag">bio</div>
       </u-animate>
@@ -22,7 +22,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
         >
           <div class="title">{{ bio.leftColumnTitle }}</div>
         </u-animate>
@@ -33,7 +33,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
         >
           <div class="text">
             {{ bio.leftText }}
@@ -48,7 +48,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <img :src="'http://' + bio.leftImage.fields.file.url.slice(2)" />
           </u-animate>
@@ -62,7 +62,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
         >
           <div class="title">{{ bio.rightColumnTitle }}</div>
         </u-animate>
@@ -73,7 +73,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
         >
           <div class="text">
             {{ bio.rightText }}
@@ -87,7 +87,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <img :src="'http://' + bio.rightImage.fields.file.url.slice(2)" />
           </u-animate>
@@ -95,27 +95,47 @@
       </div>
     </div>
     <div class="container container-car">
-      <div class="tag">cars</div>
+      <u-animate
+          name="fadeIn"
+          delay="0s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="true"
+        >
+        <div class="tag">cars</div>
+      </u-animate>
       <div class="left" v-for="(car, index) in bioCars" :key="index">
-        <div class="title">{{ car.title }}<br> {{ car.car }}</div>
-        <img :src="'http://' + car.image.fields.file.url.slice(2)" />
-        <div class="text">
-          The car was built at the end of the past especially for the current season in the Russian Drift Series and the European Drift Allstars Championship.
-        </div>
-        <div class="numbers">
-          <div class="numbers-item">
-            <div class="numbers-item__digits">{{ car.hp }}</div>
-            <div class="numbers-item__units">HP</div>
+        <u-animate
+          name="fadeInUp"
+          :delay="1.8 + index - 0.5 + 's'"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="true"
+        >
+          <div class="title">{{ car.title }}<br> {{ car.car }}</div>
+          <img :src="'http://' + car.image.fields.file.url.slice(2)" />
+          <div class="text">
+            The car was built at the end of the past especially for the current season in the Russian Drift Series and the European Drift Allstars Championship.
           </div>
-          <div class="numbers-item">
-            <div class="numbers-item__digits">{{ car.drivetrain }}</div>
-            <div class="numbers-item__units">DRIVETRAIN</div>
+          <div class="numbers">
+            <div class="numbers-item">
+              <div class="numbers-item__digits">{{ car.hp }}</div>
+              <div class="numbers-item__units">HP</div>
+            </div>
+            <div class="numbers-item">
+              <div class="numbers-item__digits">{{ car.drivetrain }}</div>
+              <div class="numbers-item__units">DRIVETRAIN</div>
+            </div>
+            <div class="numbers-item">
+              <div class="numbers-item__digits">{{ car.engine }}</div>
+              <div class="numbers-item__units">ENGINE</div>
+            </div>
           </div>
-          <div class="numbers-item">
-            <div class="numbers-item__digits">{{ car.engine }}</div>
-            <div class="numbers-item__units">ENGINE</div>
-          </div>
-        </div>
+        </u-animate>
       </div>
     </div>
 

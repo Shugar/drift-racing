@@ -12,7 +12,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div>contact</div>
           </u-animate>
@@ -23,7 +23,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div class="city">
               <div class="city-item"
@@ -47,7 +47,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div class="contact-info">
               <div class="contact-title">connect with us</div>
@@ -65,7 +65,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div class="contact-info">
               <div class="contact-title">location</div>

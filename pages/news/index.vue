@@ -9,7 +9,7 @@
         :iteration="1"
         :offset="0"
         animateClass="animated"
-        :begin="false"
+        :begin="true"
       >
         <div class="title">NEWS</div>
       </u-animate>
@@ -20,7 +20,7 @@
         :iteration="1"
         :offset="0"
         animateClass="animated"
-        :begin="false"
+        :begin="true"
       >
         <div class="tags">
           <div class="tags-title">TAGS</div>
@@ -38,7 +38,7 @@
         :iteration="1"
         :offset="0"
         animateClass="animated"
-        :begin="false"
+        :begin="true"
       >
         <div class="news-list" v-if="filteredArticles.length === 0">
           <masonry

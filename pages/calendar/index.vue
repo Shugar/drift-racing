@@ -10,7 +10,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
           >
           <div class="title">calendar</div>
         </u-animate>
@@ -21,7 +21,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
           <div class="tags">
             <div class="tags-item">
@@ -48,7 +48,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div class="tags">
               <div class="tags-item">
@@ -74,7 +74,7 @@
               :iteration="1"
               :offset="0"
               animateClass="animated"
-              :begin="false"
+              :begin="true"
             >
               <nuxt-link :to="'/calendar/' + findItemByTitle(article.title)">
                 <div class="img-fullwidth">
@@ -97,7 +97,7 @@
                     :iteration="1"
                     :offset="0"
                     animateClass="animated"
-                    :begin="false"
+                    :begin="true"
                   >
                     <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
                     <div class="previous-date">{{ article.date }}</div>
@@ -269,6 +269,7 @@
 
   .right {
     flex: 0 0 40%;
+    padding-bottom: 40px;
     display: flex;
     flex-flow: column nowrap;
     position: relative;

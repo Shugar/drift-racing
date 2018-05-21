@@ -9,7 +9,7 @@
         :iteration="1"
         :offset="0"
         animateClass="animated"
-        :begin="false"
+        :begin="true"
       >
         <nuxt-link to="/news/" class="back">back to news</nuxt-link>
       </u-animate>
@@ -21,7 +21,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
+          :begin="true"
         >
           <div class="title">{{ article.title }}</div>
         </u-animate>
@@ -33,7 +33,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div class="info">
               <div class="date">{{ article.date }}</div>
@@ -51,7 +51,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div class="subtitle">{{ article.subtitle }}</div>
           </u-animate>
@@ -62,7 +62,7 @@
             :iteration="1"
             :offset="0"
             animateClass="animated"
-            :begin="false"
+            :begin="true"
           >
             <div class="text article-text">
               <vue-markdown>
@@ -82,7 +82,7 @@
               :iteration="1"
               :offset="0"
               animateClass="animated"
-              :begin="false"
+              :begin="true"
             >
               <div class="previous-title">Previous news</div>
             </u-animate>
@@ -93,7 +93,7 @@
               :iteration="1"
               :offset="0"
               animateClass="animated"
-              :begin="false"
+              :begin="true"
             >
               <nuxt-link :to="'/news/' + findItemByTitle(item.title)">
                 <div class="previous-image" />
