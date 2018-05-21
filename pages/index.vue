@@ -3,7 +3,7 @@
     <Header type="main" :count="count" />
     <div class="container">
       <div class="left">
-        <transition name="fade" mode="out-in">
+        <transition name="fade" mode="out-in" appear>
           <div v-for="(slide, index) in dummyLeftSlider"
             class="left-background"
             v-if="count === index"
@@ -13,13 +13,15 @@
 
         <div class="slide">
           <div class="next">
-            <div class="next-button" @click="nextSlide()">
-              <div v-if="nextUpAnimation" class="next-button-background" />
-              NEXT UP
-            </div>
+            <transition name="next-fade" appear>
+              <div class="next-button" @click="nextSlide()">
+                <div v-if="nextUpAnimation" class="next-button-background" />
+                NEXT UP
+              </div>
+            </transition>
             <div class="next-category">
 
-              <transition :name="'category-' + direction + '-animation'">
+              <transition :name="'category-' + direction + '-animation'" appear>
 
                 <div class="next-category-inner"
                   v-if="count === index"
@@ -40,7 +42,7 @@
                 <div class="title-inner"
                   v-for="(title, i) in slide.title"
                   :key="i">
-                  <transition :name="'category-' + direction + '-animation'" mode="out-in">
+                  <transition :name="'category-' + direction + '-animation'" mode="out-in" appear>
                     <div v-if="count === index" class="title-absolute">
                         {{ title }}
                     </div>
@@ -48,7 +50,11 @@
                 </div>
             </div>
             <div class="subtitle-wrapper">
-              <transition :name="'subtitle-' + direction + '-animation'" mode="out-in">
+              <transition :name="'subtitle-' + direction + '-animation'"
+                mode="out-in"
+                appear
+                appear-class="subtitle-top-appear-animation-enter"
+                appear-active-class="subtitle-top-appear-animation-enter-active">
                 <div class="subtitle"
                   v-if="count === index"
                   v-for="(slide, index) in dummyLeftSlider"
@@ -56,9 +62,13 @@
                   v-html="slide.subtitle" />
               </transition>
             </div>
-            <nuxt-link class="button" :to="dummyLeftSlider[count].link">
-              {{ dummyLeftSlider[count].button }}
-            </nuxt-link>
+            <div class="button-wrapper">
+              <transition name="button-top-animation" appear>
+                <nuxt-link class="button" :to="dummyLeftSlider[count].link">
+                  {{ dummyLeftSlider[count].button }}
+                </nuxt-link>
+              </transition>
+            </div>
           </div>
 
         </div>
@@ -284,6 +294,15 @@
     opacity: 0.8;
   }
 
+  .next-fade-enter-active, .next-fade-leave-active {
+    transition: opacity .3s ease;
+  }
+
+  .next-fade-enter, .next-fade-leave-to
+  /* .component-fade-leave-active до версии 2.1.8 */ {
+    opacity: 0;
+  }
+
   .index {
     position: relative;
     height: 100vh;
@@ -400,6 +419,27 @@
     color: #fff;
   }
 
+  .button-wrapper {
+    overflow-y: hidden;
+    padding-left: 2px;
+  }
+
+  .button-top-animation-enter-active, .button-top-animation-leave-active {
+    transition: transform .5s;
+    transition-delay: .3s;
+  }
+
+  .button-top-animation-leave-to {
+    transform: translateY(-120%);
+    transition-delay: .3s;
+  }
+
+  .button-top-animation-enter {
+    transform: translateY(120%);
+    transition-delay: .3s;
+  }
+
+
   .category-top-animation-enter-active, .category-top-animation-leave-active {
     transition: transform .5s;
   }
@@ -478,8 +518,22 @@
     color: #F2F2F2;
   }
 
+  .subtitle-top-appear-animation-enter-active, .subtitle-top-appear-animation-leave-active {
+    transition: transform .5s, opacity .3s ease;
+    transition-delay: .3s;
+  }
+
+  .subtitle-top-appear-animation-leave-to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  .subtitle-top-appear-animation-enter {
+    transform: translateX(-100%);
+  }
+
   .subtitle-top-animation-enter-active, .subtitle-top-animation-leave-active {
-    transition: transform .5s, opacity .3s ease;;
+    transition: transform .5s, opacity .3s ease;
   }
 
   .subtitle-top-animation-leave-to {
@@ -492,7 +546,7 @@
   }
 
   .subtitle-bottom-animation-enter-active, .subtitle-bottom-animation-leave-active {
-    transition: transform .5s, opacity .3s ease;;
+    transition: transform .5s, opacity .3s ease;
   }
 
   .subtitle-bottom-animation-leave-to {
