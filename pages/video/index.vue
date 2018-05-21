@@ -9,11 +9,9 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
-        >
+          :begin="false">
         <div class="title">VIDEO</div>
       </u-animate>
-
       <u-animate
           name="fadeIn"
           delay="0s"
@@ -21,8 +19,7 @@
           :iteration="1"
           :offset="0"
           animateClass="animated"
-          :begin="false"
-        >
+          :begin="false">
         <div class="tags">
           <div class="tags-item">
             <div class="tags-title">CHAMPIONSHIP</div>
@@ -55,8 +52,8 @@
             ref="my-masonry">
             <div class="video" v-for="(video, index) in fetchedVideos" :key="index">
               <nuxt-link :to="'/video/' + index" >
-                <div class="video-image"
-                  :style="{background: `url(${ 'http://' + video.video.fields.file.url.slice(2) }) no-repeat center / cover`}">
+                <div class="video-image">
+                  <div class="video-placeholder" />
                   <div class="play-button" />
                 </div>
                 <div class="video-date">{{ video.date }}</div>
@@ -245,6 +242,30 @@
     height: 180px;
     margin-bottom: 15px;
     position: relative;
+    background: url('/videos/tumbnails/drift.gif') no-repeat center / cover;
+    transition: all 5s ease-in-out;
+
+    &:hover {
+      .play-button {
+        opacity: 0;
+      }
+    }
+  }
+
+  .video-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/videos/tumbnails/drift.png') no-repeat center / cover;
+
+    opacity: 1;
+    transition: opacity .3s ease-in-out;
+
+    &:hover {
+      opacity: 0;
+    }
   }
 
   .play-button {
