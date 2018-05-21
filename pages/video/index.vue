@@ -1,39 +1,71 @@
 <template>
   <section class="videos">
     <Header />
-    <div class="container">
-      <div class="title">VIDEO</div>
-      <div class="tags">
-        <div class="tags-item">
-          <div class="tags-title">CHAMPIONSHIP</div>
-          <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="filterByTag(tag)">
-            #{{tag}}
+    <div class="container" :class="{'isAnimating': isChanging}">
+      <u-animate
+          name="fadeInUp"
+          delay="0s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="false"
+        >
+        <div class="title">VIDEO</div>
+      </u-animate>
+
+      <u-animate
+          name="fadeIn"
+          delay="0s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="false"
+        >
+        <div class="tags">
+          <div class="tags-item">
+            <div class="tags-title">CHAMPIONSHIP</div>
+            <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="filterByTag(tag)">
+              #{{tag}}
+            </div>
+          </div>
+          <div class="tags-item">
+            <div class="tags-title tags-country">COUNTRY</div>
+            <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="filterByTag(tag)">
+              #{{tag}}
+            </div>
           </div>
         </div>
-        <div class="tags-item">
-          <div class="tags-title tags-country">COUNTRY</div>
-          <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="filterByTag(tag)">
-            #{{tag}}
-          </div>
+      </u-animate>
+
+      <u-animate
+          name="fadeInUp"
+          delay="0.5s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="false"
+        >
+        <div class="videos-list" v-if="filteredVideos.length === 0">
+          <masonry
+            :cols="{default: 3, 1024: 2, 425: 1}"
+            :gutter="{default: '60px', 768: '40px', 425: '0px'}"
+            ref="my-masonry">
+            <div class="video" v-for="(video, index) in fetchedVideos" :key="index">
+              <nuxt-link :to="'/video/' + index" >
+                <div class="video-image"
+                  :style="{background: `url(${ 'http://' + video.video.fields.file.url.slice(2) }) no-repeat center / cover`}">
+                  <div class="play-button" />
+                </div>
+                <div class="video-date">{{ video.date }}</div>
+                <div class="video-title" v-html="video.title"></div>
+              </nuxt-link>
+            </div>
+          </masonry>
         </div>
-      </div>
-      <div class="videos-list" v-if="filteredVideos.length === 0">
-        <masonry
-          :cols="{default: 3, 1024: 2, 425: 1}"
-          :gutter="{default: '60px', 768: '40px', 425: '0px'}"
-          ref="my-masonry">
-          <div class="video" v-for="(video, index) in fetchedVideos" :key="index">
-            <nuxt-link :to="'/video/' + index" >
-              <div class="video-image"
-                :style="{background: `url(/videos/drift.gif) no-repeat center / cover`}">
-                <div class="play-button" />
-              </div>
-              <div class="video-date">{{ video.date }}</div>
-              <div class="video-title" v-html="video.title"></div>
-            </nuxt-link>
-          </div>
-        </masonry>
-      </div>
+      </u-animate>
       <div class="videos-list">
         <masonry
           :cols="{default: 3, 1024: 2, 425: 1}"
@@ -63,9 +95,10 @@
         filteredVideos: [],
         championship: [],
         country: [],
+        isChanging: false,
       }
     },
-// :style="{background: `url(${ 'http://' + video.video.fields.file.url.slice(2) }) no-repeat center / cover`}"> 
+
     computed: {
       championshipTags () {
         return [ ...new Set(this.fetchedVideos.map(video => video.championship )) ]
@@ -101,6 +134,16 @@
       }
     },
 
+
+    mounted () {
+      this.isChanging = false
+    },
+
+    beforeRouteLeave(to, from, next) {
+      this.isChanging = true
+      setTimeout(() => next(), 500)
+    },
+
     components: {
       Header: () => import('@/components/Header'),
       Footer: () => import('@/components/Footer')
@@ -124,11 +167,13 @@
     padding: 0 100px;
 
     padding-left: 320px;
+    transition: transform .5s ease, opacity .5s ease;
+    will-change: transform, opacity;
   }
 
   .tags {
     position: fixed;
-    top: 280px;
+    top: 80px;
     left: 100px;
   }
 

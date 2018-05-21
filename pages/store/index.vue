@@ -3,59 +3,100 @@
     <Header :productCount="productCount" :productSum="productSum"/>
     <Checkout v-if="$store.state.isCheckoutOpen" />
     <div class="container">
-      <span @click="$store.commit('toggleCheckout')" class="checkout">{{ productCount }} items — $ {{ productSum }}</span>
-      <div class="title">
-        STORE
-        <span @click="$store.commit('toggleCheckout')">{{ productCount }} items — $ {{ productSum }}</span>
-      </div>
-      <div class="tags">
-        <div class="tags-title">CATEGORIES</div>
-        <div class="tags-item">
-          <div class="tag" v-for="(category, index) in categories" :key="index" @click="filterByCategory(category)">
-            #{{category}}
+      <u-animate
+        name="fadeInUp"
+        delay="0s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="false"
+      >
+        <span @click="$store.commit('toggleCheckout')" class="checkout">{{ productCount }} items — $ {{ productSum }}</span>
+        <div class="title">
+          STORE
+          <span @click="$store.commit('toggleCheckout')">{{ productCount }} items — $ {{ productSum }}</span>
+        </div>
+      </u-animate>
+
+      <u-animate
+        name="fadeIn"
+        delay="0s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="false"
+      >
+        <div class="tags">
+          <div class="tags-title">CATEGORIES</div>
+          <div class="tags-item">
+            <div class="tag" v-for="(category, index) in categories" :key="index" @click="filterByCategory(category)">
+              #{{category}}
+            </div>
           </div>
         </div>
-      </div>
+      </u-animate>
 
-      <div class="news-list">
-        <masonry
-          v-if="filteredGoods.length === 0"
-          :cols="{default: 3, 1024: 2, 425: 1}"
-          :gutter="{default: '60px', 768: '40px', 425: '0px'}"
-          ref="my-masonry">
-          <div class="item" v-for="(item, index) in store" :key="index">
-            <nuxt-link :to="'/store/' + index">
-              <div class="item-image"
-                :style="{background: `url(${ 'http://' + item.preview.fields.file.url.slice(2) }) no-repeat center / cover`}" />
-              <div class="item-category">{{ item.category }}</div>
-              <div class="item-title" v-html="item.title"></div>
-              <div class="item-footer">
-                <div class="item-style">{{ item.style }}</div>
-                <div class="item-price">$ {{ item.price }}</div>
-              </div>
-            </nuxt-link>
-          </div>
-        </masonry>
-        <masonry
-          :cols="{default: 3, 1024: 2, 425: 1}"
-          :gutter="{default: '60px', 768: '40px', 425: '0px'}"
-          ref="my-masonry">
-          <div class="item" v-for="(item, index) in filteredGoods" :key="index">
-            <nuxt-link :to="'/store/' + findItemByTitle(item.title)">
-              <div class="item-image"
-                :style="{background: `url(${ 'http://' + item.preview.fields.file.url.slice(2) }) no-repeat center / cover`}" />
-              <div class="item-category">{{ item.category }}</div>
-              <div class="item-title" v-html="item.title"></div>
-              <div class="item-footer">
-                <div class="item-style">{{ item.style }}</div>
-                <div class="item-price">$ {{ item.price }}</div>
-              </div>
-            </nuxt-link>
-          </div>
-        </masonry>
-      </div>
+      <u-animate
+        name="fadeInUp"
+        delay="0.5s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="false"
+      >
+        <div class="news-list">
+          <masonry
+            v-if="filteredGoods.length === 0"
+            :cols="{default: 3, 1024: 2, 425: 1}"
+            :gutter="{default: '60px', 768: '40px', 425: '0px'}"
+            ref="my-masonry">
+            <div class="item" v-for="(item, index) in store" :key="index">
+              <nuxt-link :to="'/store/' + index">
+                <div class="item-image"
+                  :style="{background: `url(${ 'http://' + item.preview.fields.file.url.slice(2) }) no-repeat center / cover`}" />
+                <div class="item-category">{{ item.category }}</div>
+                <div class="item-title" v-html="item.title"></div>
+                <div class="item-footer">
+                  <div class="item-style">{{ item.style }}</div>
+                  <div class="item-price">$ {{ item.price }}</div>
+                </div>
+              </nuxt-link>
+            </div>
+          </masonry>
+          <masonry
+            :cols="{default: 3, 1024: 2, 425: 1}"
+            :gutter="{default: '60px', 768: '40px', 425: '0px'}"
+            ref="my-masonry">
+            <div class="item" v-for="(item, index) in filteredGoods" :key="index">
+              <nuxt-link :to="'/store/' + findItemByTitle(item.title)">
+                <div class="item-image"
+                  :style="{background: `url(${ 'http://' + item.preview.fields.file.url.slice(2) }) no-repeat center / cover`}" />
+                <div class="item-category">{{ item.category }}</div>
+                <div class="item-title" v-html="item.title"></div>
+                <div class="item-footer">
+                  <div class="item-style">{{ item.style }}</div>
+                  <div class="item-price">$ {{ item.price }}</div>
+                </div>
+              </nuxt-link>
+            </div>
+          </masonry>
+        </div>
+      </u-animate>
     </div>
-    <Footer />
+    <u-animate
+      name="fadeInUp"
+      delay="1s"
+      duration="0.8s"
+      :iteration="1"
+      :offset="0"
+      animateClass="animated"
+      :begin="false"
+    >
+      <Footer />
+    </u-animate>>
   </section>
 </template>
 
@@ -127,7 +168,7 @@
 <style lang="scss" scoped>
   .store {
     background: #683FFF;
-    padding: 200px 0 80px;
+    padding: 200px 0 40px;
     height: 100%;
 
     min-height: 100vh;

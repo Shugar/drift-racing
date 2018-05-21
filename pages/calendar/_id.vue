@@ -1,41 +1,90 @@
 <template>
   <section class="calendar">
     <Header />
-    <div class="title-wrapper">
-      <div class="tags">
-        <div class="tags-item">
-          <div class="tag"><nuxt-link to="/calendar/">back to calendar</nuxt-link></div>
-        </div>
-      </div>
-    </div>
     <div class="container">
       <div class="left">
-        <div class="tags">
-          <div class="tags-item">
-            <div class="tag"><nuxt-link to="/calendar/">back to calendar</nuxt-link></div>
+        <u-animate
+          name="fadeIn"
+          delay="0s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="false"
+        >
+          <div class="tags">
+            <div class="tags-item">
+              <div class="tag"><nuxt-link to="/calendar/">back to calendar</nuxt-link></div>
+            </div>
           </div>
-        </div>
+        </u-animate>
         <div class="article">
-          <div class="info">
-            <div class="date">{{ article.date }}</div>
-          </div>
-          <div class="title"> {{ article.title}} </div>
-          <div class="text"> {{ article.preview}} </div>
-          <div class="img-fullwidth">
-            <img src="/calendar/event-1.png" />
-          </div>
-          <div class="text">
-            <vue-markdown> {{ article.text}} </vue-markdown>
-          </div>
+          <u-animate
+            name="fadeInUp"
+            delay="0s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
+            <div class="info">
+              <div class="date">{{ article.date }}</div>
+            </div>
+          </u-animate>
+          <u-animate
+            name="fadeInUp"
+            delay="0.5s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
+            <div class="title"> {{ article.title }} </div>
+          </u-animate>
+          <u-animate
+            name="fadeInUp"
+            delay="1s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
+            <div class="calendar-text text">
+              <vue-markdown> {{ article.text}} </vue-markdown>
+            </div>
+          </u-animate>
         </div>
       </div>
       <div class="right">
         <div class="previous-article" v-if="previous.length > 0">
-          <div class="previous-title"> PREVIOUS EVENT </div>
+          <u-animate
+            name="fadeInUp"
+            delay="0s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
+            <div class="previous-title"> PREVIOUS EVENT </div>
+          </u-animate>
           <nuxt-link  v-for="(item, index) in previous" :to="'/calendar/' + findItemByTitle(item.title)" :key="index" class="previous">
-            <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover`}" />
-            <div class="previous-date"> {{ item.date }} </div>
-            <div class="previous-subtitle"> {{ item.title }} </div>
+            <u-animate
+              name="fadeInUp"
+              :delay="1 + (index + 0.2) + 's'"
+              duration="0.8s"
+              :iteration="1"
+              :offset="0"
+              animateClass="animated"
+              :begin="false"
+            >
+              <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover`}" />
+              <div class="previous-date"> {{ item.date }} </div>
+              <div class="previous-subtitle"> {{ item.title }} </div>
+            </u-animate>
           </nuxt-link>
         </div>
       </div>
@@ -511,6 +560,29 @@
 
     .previous {
       flex: 0 0 100%;
+    }
+  }
+</style>
+
+
+<style lang="scss">
+  .calendar-text {
+    pre,
+    code {
+      margin-bottom: 20px;
+      white-space: initial;
+      font-family: 'DIN Pro Medium', sans-serif !important;
+    }
+
+    p {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    img {
+      height: auto;
+      width: 100%;
+      max-width: 100%;
     }
   }
 </style>

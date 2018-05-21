@@ -2,24 +2,26 @@
   <section class="calendar">
     <Header />
     <div class="title-wrapper">
-      <div class="title">calendar</div>
-      <div class="tags">
-        <div class="tags-item">
-          <div class="tags-title">CHAMPIONSHIP</div>
-          <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="setTag(tag)">
-            #{{tag}}
-          </div>
-        </div>
-        <div class="tags-item">
-          <div class="tags-title tags-country">COUNTRY</div>
-          <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="setCountry(tag)">
-            #{{tag}}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="left">
+      <u-animate
+          name="fadeInUp"
+          delay="0s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="false"
+        >
+        <div class="title">calendar</div>
+      </u-animate>
+      <u-animate
+          name="fadeIn"
+          delay="0s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="false"
+        >
         <div class="tags">
           <div class="tags-item">
             <div class="tags-title">CHAMPIONSHIP</div>
@@ -34,29 +36,76 @@
             </div>
           </div>
         </div>
+      </u-animate>
+    </div>
+    <div class="container">
+      <div class="left">
+        <u-animate
+          name="fadeIn"
+          delay="0s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="false"
+        >
+          <div class="tags">
+            <div class="tags-item">
+              <div class="tags-title">CHAMPIONSHIP</div>
+              <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="setTag(tag)">
+                #{{tag}}
+              </div>
+            </div>
+            <div class="tags-item">
+              <div class="tags-title tags-country">COUNTRY</div>
+              <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="setCountry(tag)">
+                #{{tag}}
+              </div>
+            </div>
+          </div>
+        </u-animate>
 
         <div class="article" v-for="(article, index) in (events.length > 0 ? events : leftCalendar)" :key="index">
-          <nuxt-link :to="'/calendar/' + findItemByTitle(article.title)">
-            <div class="img-fullwidth">
-              <img :src="'http://' + article.image.fields.file.url.slice(2)" />
-            </div>
-            <div class="date">{{ article.date }}</div>
-            <div class="title">{{ article.title }}</div>
-            <div class="text">{{ article.preview }}</div>
-          </nuxt-link>
+          <u-animate
+            name="fadeInUp"
+            :delay="0.8 + (index - 0.5) + 's'"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
+            <nuxt-link :to="'/calendar/' + findItemByTitle(article.title)">
+              <div class="img-fullwidth">
+                <img :src="'http://' + article.image.fields.file.url.slice(2)" />
+              </div>
+              <div class="date">{{ article.date }}</div>
+              <div class="title">{{ article.title }}</div>
+              <div class="text">{{ article.preview }}</div>
+            </nuxt-link>
+          </u-animate>
         </div>
       </div>
       <div class="right">
         <div class="previous-article">
             <nuxt-link class="previous" v-for="(article, index) in (rightEvents.length > 0 ? rightEvents : rightCalendar)" :to="'/calendar/' + findItemByTitle(article.title)" :key="index">
-              <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
-              <div class="previous-date">{{ article.date }}</div>
-              <div class="previous-subtitle">{{ article.title }}</div>
+                <u-animate
+                  name="fadeInUp"
+                  :delay="0.9 + (index - 0.5) + 's'"
+                  duration="0.8s"
+                  :iteration="1"
+                  :offset="0"
+                  animateClass="animated"
+                  :begin="false"
+                >
+                  <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
+                  <div class="previous-date">{{ article.date }}</div>
+                  <div class="previous-subtitle">{{ article.title }}</div>
+                </u-animate>
             </nuxt-link>
         </div>
       </div>
     </div>
-
 
     <div class="container container-mobile">
       <div :class="{'previous': article.column === 'right', 'article': article.column === 'left'}" v-for="(article, index) in calendar" :key="index">

@@ -2,28 +2,79 @@
   <section class="calendar">
     <Header />
     <div class="title-wrapper">
-      <div class="tags">
-        <div class="tags-item">
-          <div class="tag"><nuxt-link to="/video/" >back to videos</nuxt-link></div>
+      <u-animate
+        name="fadeIn"
+        delay="0s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="false"
+      >
+        <div class="tags">
+          <div class="tags-item">
+            <div class="tag"><nuxt-link to="/video/" >back to videos</nuxt-link></div>
+          </div>
         </div>
-      </div>
+      </u-animate>
     </div>
     <div class="container">
       <div class="left">
-        <div class="tags">
-          <div class="tags-item">
-            <div class="tag"><nuxt-link to="/video/">back to videos</nuxt-link></div>
+        <u-animate
+          name="fadeIn"
+          delay="0s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="false"
+        >
+          <div class="tags">
+            <div class="tags-item">
+              <div class="tag"><nuxt-link to="/video/">back to videos</nuxt-link></div>
+            </div>
           </div>
-        </div>
+        </u-animate>
+        
         <div class="article">
-          <div class="info">
-            <div class="date">{{ video.date }}</div>
-          </div>
-          <div class="title">{{ video.title }}</div>
-          <div class="video-wrapper">
-            <iframe width="100%" height="100%" :src="video.videoSource.replace('watch?v=', '/embed/')" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-          <div class="text">{{ video.text }}</div>
+          <u-animate
+            name="fadeInUp"
+            delay="0s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
+            <div class="info">
+              <div class="date">{{ video.date }}</div>
+            </div>
+          </u-animate>
+          <u-animate
+            name="fadeInUp"
+            delay="0.5s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
+            <div class="title">{{ video.title }}</div>
+          </u-animate>
+          <u-animate
+            name="fadeInUp"
+            delay="1s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
+            <div class="video-wrapper">
+              <iframe width="100%" height="100%" :src="video.videoSource.replace('watch?v=', '/embed/')" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <div class="text">{{ video.text }}</div>
+          </u-animate>
         </div>
       <div class="right mobile">
         <div class="previous-article">

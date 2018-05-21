@@ -3,41 +3,101 @@
     <Header />
     <div class="container">
       <div class="left">
-        <div class="title">{{ article.title }}</div>
+        <u-animate
+          name="fadeInUp"
+          delay="0s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="false"
+        >
+          <div class="title">{{ article.title }}</div>
+        </u-animate>
         <div class="article">
-          <div class="info">
-            <div class="date">{{ article.date }}</div>
-            <div class="tags">
-              <div class="tag" v-for="(tag, index) in article.tags" :key="index">
-                #{{ tag.trim() }}
+          <u-animate
+            name="fadeInUp"
+            delay="0.5s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
+            <div class="info">
+              <div class="date">{{ article.date }}</div>
+              <div class="tags">
+                <div class="tag" v-for="(tag, index) in article.tags" :key="index">
+                  #{{ tag.trim() }}
+                </div>
               </div>
             </div>
-          </div>
-          <div class="subtitle">{{ article.subtitle }}</div>
-          <div class="text article-text">
-            <vue-markdown>
-              {{ article.text }}
-            </vue-markdown>
-          </div>
+          </u-animate>
+          <u-animate
+            name="fadeInUp"
+            delay="1s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
+            <div class="subtitle">{{ article.subtitle }}</div>
+          </u-animate>
+          <u-animate
+            name="fadeInUp"
+            delay="1.5s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
+            <div class="text article-text">
+              <vue-markdown>
+                {{ article.text }}
+              </vue-markdown>
+            </div>
+          </u-animate>
         </div>
       </div>
       <div class="right" v-if="news.length > 0">
         <div class="previous-article">
-          <div class="previous-title">Previous news</div>
           <div class="previous" v-for="(item, index) in news" :key="index">
-            <nuxt-link :to="'/news/' + findItemByTitle(item.title)">
-              <div class="previous-image" />
-              <div class="previous-date">{{ item.date }}</div>
-              <div class="previous-subtitle">{{ item.title }}</div>
-              <div class="previous-preview">
-                {{ item.text.length > 92 ? item.text.slice(0, 89) + '...' : item.text }}
-              </div>
-              <div class="previous-tags">
-                <div class="previous-tag" v-for="(tag, index) in item.tags" :key="index">
-                  #{{ tag }}
+            <u-animate
+              name="fadeInUp"
+              delay="0s"
+              duration="0.8s"
+              :iteration="1"
+              :offset="0"
+              animateClass="animated"
+              :begin="false"
+            >
+              <div class="previous-title">Previous news</div>
+            </u-animate>
+            <u-animate
+              name="fadeInUp"
+              delay="1.5s"
+              duration="0.8s"
+              :iteration="1"
+              :offset="0"
+              animateClass="animated"
+              :begin="false"
+            >
+              <nuxt-link :to="'/news/' + findItemByTitle(item.title)">
+                <div class="previous-image" />
+                <div class="previous-date">{{ item.date }}</div>
+                <div class="previous-subtitle">{{ item.title }}</div>
+                <div class="previous-preview">
+                  {{ item.text.length > 92 ? item.text.slice(0, 89) + '...' : item.text }}
                 </div>
-              </div>
-            </nuxt-link>
+                <div class="previous-tags">
+                  <div class="previous-tag" v-for="(tag, index) in item.tags" :key="index">
+                    #{{ tag }}
+                  </div>
+                </div>
+              </nuxt-link>
+            </u-animate>
           </div>
         </div>
       </div>

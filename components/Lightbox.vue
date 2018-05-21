@@ -1,13 +1,13 @@
 <template>
   <div
-    v-touch:swipe.left="next()"
-    v-touch:swipe.right="prev()"
+    v-touch:swipe.left="next"
+    v-touch:swipe.right="prev"
     v-if="photo !== null"
     class="lightbox"
     :style="{background: 'url(' + photo.path + ') no-repeat center / cover'}">
     <div class="close" @click="$store.commit('closeLightbox')" />
-    <div class="prev" @click="prev()" />
-    <div class="next" @click="next()" />
+    <div class="prev" @click="prev" />
+    <div class="next" @click="next" />
     <div class="index">
       {{ photo.index + 1 }}/{{ photo.photos.length }}
     </div>
@@ -18,8 +18,7 @@
   export default {
     methods: {
       prev () {
-        const index = this.photo.index <= 0 ?
-          this.photo.photos.length - 1 : this.photo.index - 1
+        const index = this.photo.index <= 0 ? this.photo.photos.length - 1 : this.photo.index - 1
 
         this.$store.commit('openLightbox', {
           path: 'http://' + this.photo.photos[index].fields.file.url.slice(2),
@@ -29,14 +28,14 @@
       },
 
       next () {
-        const index = (this.photo.photos.length - 1) <= this.photo.index ?
-          0 : this.photo.index + 1
-
-        this.$store.commit('openLightbox', {
+        const index = (this.photo.photos.length - 1) <= this.photo.index ? 0 : this.photo.index + 1
+        const result = {
           path: 'http://' + this.photo.photos[index].fields.file.url.slice(2),
           index: index,
           photos: this.photo.photos
-        })
+        }
+
+        this.$store.commit('openLightbox', result)
       }
     },
 

@@ -3,27 +3,97 @@
     <Header />
 
     <div class="container">
-      <div class="tag">bio</div>
+      <u-animate
+          name="fadeIn"
+          delay="0s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="false"
+        >
+        <div class="tag">bio</div>
+      </u-animate>
       <div class="left">
-        <div class="title">{{ bio.leftColumnTitle }}</div>
-        <div class="text">
-          {{ bio.leftText }}
-        </div>
-        <div class="img-fullwidth">
-          <img :src="'http://' + bio.leftImage.fields.file.url.slice(2)" />
-        </div>
+        <u-animate
+          name="fadeInUp"
+          delay="0s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="false"
+        >
+          <div class="title">{{ bio.leftColumnTitle }}</div>
+        </u-animate>
+        <u-animate
+          name="fadeInUp"
+          delay="0.8s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="false"
+        >
+          <div class="text">
+            {{ bio.leftText }}
+          </div>
+        </u-animate>
+
+        <u-animate
+          name="fadeInUp"
+          delay="1.6s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="false"
+        >
+          <div class="img-fullwidth">
+            <img :src="'http://' + bio.leftImage.fields.file.url.slice(2)" />
+          </div>
+        </u-animate>
       </div>
       <div class="right">
-        <div class="title">{{ bio.rightColumnTitle }}</div>
-        <div class="text">
-          {{ bio.rightText }}
-        </div>
-        <div class="img-fullwidth">
-          <img :src="'http://' + bio.rightImage.fields.file.url.slice(2)" />
-        </div>
+        <u-animate
+          name="fadeInUp"
+          delay="0s"
+          duration="1.1s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="false"
+        >
+          <div class="title">{{ bio.rightColumnTitle }}</div>
+        </u-animate>
+        <u-animate
+          name="fadeInUp"
+          delay="0.8s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="false"
+        >
+          <div class="text">
+            {{ bio.rightText }}
+          </div>
+        </u-animate>
+        <u-animate
+          name="fadeInUp"
+          delay="1.6s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="false"
+        >
+          <div class="img-fullwidth">
+            <img :src="'http://' + bio.rightImage.fields.file.url.slice(2)" />
+          </div>
+        </u-animate>
       </div>
     </div>
-
     <div class="container container-car">
       <div class="tag">cars</div>
       <div class="left" v-for="(car, index) in bioCars" :key="index">

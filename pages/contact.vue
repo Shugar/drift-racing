@@ -4,37 +4,77 @@
     <div class="container">
       <div class="left">
         <div class="page-title">
-          <div>contact</div>
-          <div class="city">
-            <div class="city-item"
-              v-for="(item, index) in contact"
-              :key="index"
-              :class="{active : currentCity === item.city }"
-              @click="setCurrentCity(item.city)">
-              {{ item.city }}
+          <u-animate
+            name="fadeInUp"
+            delay="0s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
+            <div>contact</div>
+          </u-animate>
+          <u-animate
+            name="fadeInUp"
+            delay="0.5s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
+            <div class="city">
+              <div class="city-item"
+                v-for="(item, index) in contact"
+                :key="index"
+                :class="{active : currentCity === item.city }"
+                @click="setCurrentCity(item.city)">
+                {{ item.city }}
+              </div>
             </div>
-          </div>
+          </u-animate>
         </div>
         <div class="contact-item"
           v-for="(item, index) in contact"
           :key="index"
           v-if="currentCity === item.city">
-          <div class="contact-info">
-            <div class="contact-title">connect with us</div>
-            <div class="contact">
-              <a :href="'mailto:' + item.email">{{ item.email }}</a>
-              <br/>
-              <a :href="'tel:' + item.number">{{ item.number }}</a>
+          <u-animate
+            name="fadeInUp"
+            delay="1s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
+            <div class="contact-info">
+              <div class="contact-title">connect with us</div>
+              <div class="contact">
+                <a :href="'mailto:' + item.email">{{ item.email }}</a>
+                <br/>
+                <a :href="'tel:' + item.number">{{ item.number }}</a>
+              </div>
             </div>
-          </div>
-          <div class="contact-info">
-            <div class="contact-title">location</div>
-            <div class="contact">
-              {{ item.address }}
+          </u-animate>
+          <u-animate
+            name="fadeInUp"
+            delay="1.5s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
+            <div class="contact-info">
+              <div class="contact-title">location</div>
+              <div class="contact">
+                {{ item.address }}
+              </div>
             </div>
-          </div>
+          </u-animate>
         </div>
-        </div>
+      </div>
       <div class="right">
         <!-- <div class="right-background" :style="{background: `url(/contact/map.png) no-repeat center / cover`}"/> -->
         <GmapMap
