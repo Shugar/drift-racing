@@ -25,7 +25,7 @@
           <div class="video" v-for="(video, index) in fetchedVideos" :key="index">
             <nuxt-link :to="'/video/' + index" >
               <div class="video-image"
-                :style="{background: `url(${ 'http://' + video.video.fields.file.url.slice(2) }) no-repeat center / cover`}">
+                :style="{background: `url(/videos/drift.gif) no-repeat center / cover`}">
                 <div class="play-button" />
               </div>
               <div class="video-date">{{ video.date }}</div>
@@ -65,7 +65,7 @@
         country: [],
       }
     },
-
+// :style="{background: `url(${ 'http://' + video.video.fields.file.url.slice(2) }) no-repeat center / cover`}"> 
     computed: {
       championshipTags () {
         return [ ...new Set(this.fetchedVideos.map(video => video.championship )) ]

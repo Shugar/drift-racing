@@ -5,9 +5,9 @@
       <div class="left">
         <transition name="fade" mode="out-in" appear>
           <div v-for="(slide, index) in dummyLeftSlider"
+            :class="'left-background-'+`${index + 1}`"
             class="left-background"
             v-if="count === index"
-            :style="{background: `url(/home/car${index + 1}.png) no-repeat center / cover`}"
             :key="index" />
         </transition>
 
@@ -345,6 +345,72 @@
       z-index: 0;
     }
   }
+
+  .left-background-1 {
+    background: url('/static/home/left-slider/main-1.jpg') no-repeat center / cover;
+  }
+  .left-background-2 {
+    background: url('/static/home/left-slider/main-2.jpg') no-repeat center / cover;
+  }
+  .left-background-3 {
+      background: url('/static/home/left-slider/main-3.jpg') no-repeat center / cover;
+  }
+  .left-background-4 {
+      background: url('/static/home/left-slider/main-4.jpg') no-repeat center / cover;
+  }
+
+
+@media only screen and (max-width: 1024px) {
+  .left-background-1 {
+    background: url('/static/home/left-slider/main-mob-1.jpg') no-repeat center / cover;
+  }
+  .left-background-2 {
+    background: url('/static/home/left-slider/main-mob-2.jpg') no-repeat center / cover;
+  }
+  .left-background-3 {
+      background: url('/static/home/left-slider/main-mob-3.jpg') no-repeat center / cover;
+  }
+  .left-background-4 {
+      background: url('/static/home/left-slider/main-mob-4.jpg') no-repeat center / cover;
+  }
+}
+
+
+@media	only screen and (-webkit-min-device-pixel-ratio: 1.3),
+        only screen and (-o-min-device-pixel-ratio: 13/10),
+        only screen and (min-resolution: 120dpi) {
+
+        .left-background-1 {
+          background: url('/static/home/left-slider/main-1@2x.jpg') no-repeat center / cover;
+        }
+        .left-background-2 {
+          background: url('/static/home/left-slider/main-2@2x.jpg') no-repeat center / cover;
+        }
+        .left-background-3 {
+            background: url('/static/home/left-slider/main-3@2x.jpg') no-repeat center / cover;
+        }
+        .left-background-4 {
+            background: url('/static/home/left-slider/main-4@2x.jpg') no-repeat center / cover;
+        }
+    }
+
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+       only screen and (min-resolution: 192dpi),
+       only screen and (max-width: 1024px) {
+      .left-background-1 {
+        background: url('/static/home/left-slider/main-mob-1@2x.jpg') no-repeat center / cover;
+      }
+      .left-background-2 {
+        background: url('/static/home/left-slider/main-mob-2@2x.jpg') no-repeat center / cover;
+      }
+      .left-background-3 {
+          background: url('/static/home/left-slider/main-mob-3@2x.jpg') no-repeat center / cover;
+      }
+      .left-background-4 {
+          background: url('/static/home/left-slider/main-mob-4@2x.jpg') no-repeat center / cover;
+      }
+    }
 
   .slide {
     padding-bottom: 130px;
