@@ -314,6 +314,7 @@
   .index {
     position: relative;
     height: 100vh;
+    overflow: hidden;
     min-height: 700px;
   }
 
@@ -808,7 +809,8 @@
   }
 
   @media (max-width: 1024px) {
-    .right {
+    .right,
+    .right-background {
       display: none;
     }
 
