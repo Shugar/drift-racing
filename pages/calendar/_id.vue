@@ -20,10 +20,6 @@
             <div class="date">{{ article.date }}</div>
           </div>
           <div class="title"> {{ article.title}} </div>
-          <div class="text"> {{ article.preview}} </div>
-          <div class="img-fullwidth">
-            <img src="/calendar/event-1.png" />
-          </div>
           <div class="text">
             <vue-markdown> {{ article.text}} </vue-markdown>
           </div>
