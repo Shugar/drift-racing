@@ -40,19 +40,19 @@
           </div>
         </u-animate>
 
-        <u-animate
-          name="fadeInUp"
-          delay="1.6s"
-          duration="0.8s"
-          :iteration="1"
-          :offset="0"
-          animateClass="animated"
-          :begin="false"
-        >
-          <div class="img-fullwidth">
+        <u-animate-container class="img-fullwidth">
+          <u-animate
+            name="fadeInUp"
+            delay="1.6s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
             <img :src="'http://' + bio.leftImage.fields.file.url.slice(2)" />
-          </div>
-        </u-animate>
+          </u-animate>
+        </u-animate-container>
       </div>
       <div class="right">
         <u-animate
@@ -79,19 +79,19 @@
             {{ bio.rightText }}
           </div>
         </u-animate>
-        <u-animate
-          name="fadeInUp"
-          delay="1.6s"
-          duration="0.8s"
-          :iteration="1"
-          :offset="0"
-          animateClass="animated"
-          :begin="false"
-        >
-          <div class="img-fullwidth">
+        <u-animate-container class="img-fullwidth">
+          <u-animate
+            name="fadeInUp"
+            delay="1.6s"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="false"
+          >
             <img :src="'http://' + bio.rightImage.fields.file.url.slice(2)" />
-          </div>
-        </u-animate>
+          </u-animate>
+        </u-animate-container>
       </div>
     </div>
     <div class="container container-car">
@@ -189,9 +189,8 @@ export default {
   }
 
   .left {
-    margin-left: 220px;
+    padding-left: 220px;
     // flex: 0 0 60%;
-    width: calc(50% - 220px);
 
 
     display: flex;
@@ -212,6 +211,10 @@ export default {
     color: #FFFFFF;
     margin-bottom: 20px;
     padding-right: 110px;
+  }
+
+  .right .img-fullwidth {
+    margin-top: 75px;
   }
 
   .text {
@@ -247,10 +250,10 @@ export default {
 
   .container-car .left {
     margin-bottom: 100px;
-    // padding-left: 130px;
+    padding-left: 130px;
 
     &:nth-child(even) {
-      margin-left: 220px;
+      padding-left: 220px;
 
       .title,
       .text {
@@ -319,13 +322,48 @@ export default {
   }
 
   @media (max-width: 1024px) {
+    .tag {
+      display: none;
+    }
 
     .numbers-item__digits {
       font-size: 38px;
     }
+
+    .left {
+      padding-left: 0;
+    }
+
+
+    .container-car .left:nth-child(even),
+    .container-car .left {
+      padding-left: 0;
+    }
+
+    .container-car .left {
+      margin-right: 77px;
+    }
+
+    .container-car .left:nth-child(odd) {
+      margin-right: 0;
+    }
+
+    .container-car img {
+      max-width: 360px;
+    }
   }
 
   @media (max-width: 976px) {
+    .left {
+      padding-left: 0;
+    }
+
+    .container-car .left:nth-child(even),
+    .container-car .left {
+      padding-left: 0;
+      margin-right: 0;
+    }
+
     .container {
       display: block;
     }
