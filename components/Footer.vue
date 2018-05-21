@@ -1,5 +1,5 @@
 <template>
-  <div class="footer" :class="{ 'isNotHome': $route.name !== '/'}">
+  <div class="footer" :class="{ 'isHome': $route.path === '/'}">
     <div class="left" :class="{ mainLeft: type === 'main' }">
       <div class="share">
         SHARE
@@ -107,14 +107,14 @@ export default {
   .socials-youtube:hover:before,
   .socials-facebook:hover:before,
   .socials-instagram:hover:before {
-    background-color: #673fff;
+    background-color: #000;
   }
 
-  .isNotHome {
+  .isHome {
     .socials-youtube:hover:before,
     .socials-facebook:hover:before,
     .socials-instagram:hover:before {
-      background-color: #000;
+      background-color: #673fff;
     }
   }
 
