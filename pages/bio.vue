@@ -109,7 +109,7 @@
       <div class="left" v-for="(car, index) in bioCars" :key="index">
         <u-animate
           name="fadeInUp"
-          :delay="1.8 + index - 0.5 + 's'"
+          delay="1.8s"
           duration="0.8s"
           :iteration="1"
           :offset="0"

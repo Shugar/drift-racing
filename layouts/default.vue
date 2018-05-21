@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div class="font_preload">
+      <span style="font-family: 'DIN Pro Medium', Arial, sans-serif;"></span>
+      <span style="font-family: 'Ailerons', Arial, sans-serif;"></span>
+    </div>
     <Lightbox />
     <div class="preloader" v-if="!this.isReady">
       <Preloader :loaded="loaded"/>
@@ -69,6 +73,15 @@
 </script>
 <style>
   @import '@/assets/fonts/fonts.css';
+
+  .fonts-preload {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    top: 0;
+  }
 
   .fade-enter-active, .fade-more-leave-active {
     transition: opacity 0.5s ease;

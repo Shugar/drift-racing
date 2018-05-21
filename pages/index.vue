@@ -331,7 +331,7 @@
 
     display: flex;
     flex-flow: column nowrap;
-    justify-content: flex-end;
+    justify-content: center;
   }
 
   .left-background {
@@ -422,7 +422,7 @@
     }
 
   .slide {
-    padding-bottom: 130px;
+    padding-top: 70px;
     position: relative;
     z-index: 1;
 
@@ -664,8 +664,7 @@
     flex: 0 0 45%;
     display: flex;
     flex-flow: column nowrap;
-    justify-content: flex-end;
-    padding-bottom: 190px;
+    justify-content: center;
     padding-left: 100px;
   }
 
@@ -821,8 +820,6 @@
 
   @media (max-width: 768px) {
     .slide {
-      padding-bottom: 258px;
-
       .text {
         margin-left: 70px;
       }
@@ -835,8 +832,6 @@
     }
 
     .slide {
-      padding-bottom: 110px;
-
       .text {
         margin: 0px;
       }
