@@ -101,8 +101,10 @@ export default {
   }
 
   .left {
-    padding-left: 220px;
+    margin-left: 220px;
     // flex: 0 0 60%;
+    width: calc(50% - 220px);
+
 
     display: flex;
     flex-flow: column nowrap;
@@ -157,10 +159,10 @@ export default {
 
   .container-car .left {
     margin-bottom: 100px;
-    padding-left: 130px;
+    // padding-left: 130px;
 
     &:nth-child(even) {
-      padding-left: 220px;
+      margin-left: 220px;
 
       .title,
       .text {
@@ -202,6 +204,7 @@ export default {
 
   .numbers-item {
     margin-right: 40px;
+    white-space: nowrap;
     &:last-child {
       margin-right: 0;
     }
@@ -228,6 +231,7 @@ export default {
   }
 
   @media (max-width: 1024px) {
+
     .numbers-item__digits {
       font-size: 38px;
     }
@@ -243,7 +247,8 @@ export default {
     }
 
     .left {
-      padding-left: 0 !important;
+      margin-left: 0 !important;
+      width: inherit;
     }
 
     .left,
