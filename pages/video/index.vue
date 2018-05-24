@@ -52,7 +52,7 @@
             ref="my-masonry">
             <div class="video" v-for="(video, index) in fetchedVideos" :key="index">
               <nuxt-link :to="'/video/' + index" >
-                <div class="video-image">
+                <div class="video-image" :style="{background: 'url( http://' + video.gif.fields.file.url.slice(2) + ') no-repeat center / cover'}">
                   <div class="video-placeholder" />
                   <div class="play-button" />
                 </div>
