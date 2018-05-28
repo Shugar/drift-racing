@@ -96,7 +96,7 @@
       :begin="true"
     >
       <Footer />
-    </u-animate>>
+    </u-animate>
   </section>
 </template>
 

@@ -98,7 +98,17 @@
       </div>
     </div>
     <div class="footer-wrapper">
-      <Footer />
+      <u-animate
+        name="fadeInUp"
+        delay="1s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="true"
+      >
+        <Footer />
+      </u-animate>
     </div>
   </section>
 </template>

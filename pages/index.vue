@@ -64,7 +64,10 @@
             </div>
             <div class="button-wrapper">
               <transition name="button-top-animation" appear>
-                <nuxt-link class="button" :to="dummyLeftSlider[count].link">
+                <nuxt-link class="button" :to="dummyLeftSlider[count].link"
+                  v-if="count === index"
+                  v-for="(slide, index) in dummyLeftSlider"
+                  :key="index">
                   {{ dummyLeftSlider[count].button }}
                 </nuxt-link>
               </transition>
@@ -190,7 +193,7 @@
 
     methods: {
       sliderInterval () {
-        this.nextSlideInterval = setInterval(this.nextSlide, 4000)
+        this.nextSlideInterval = setInterval(this.nextSlide, 2000)
       },
 
       prevSlide () {
@@ -264,7 +267,7 @@
     mounted () {
       this.isChanging = false
       this.sliderInterval()
-      setInterval(() => this.nextSlideRight(), 4000)
+      // setInterval(() => this.nextSlideRight(), 2000)
     },
 
     created () {
@@ -469,7 +472,7 @@
       width: calc(100% + 2px);
       height: 18px;
       z-index: -1;
-      animation: background 4s;
+      animation: background 2s;
     }
   }
 
@@ -497,26 +500,43 @@
   .button-wrapper {
     overflow-y: hidden;
     padding-left: 2px;
+    position: relative;
+    min-height: 23px;
+
+    .button {
+      position: absolute;
+      left: 2px;
+      top: 3px;
+
+      &:before {
+        transition: background .2s ease;
+        will-change: background;
+      }
+
+      &:hover:before {
+        background: transparent !important;
+      }
+    }
   }
 
   .button-top-animation-enter-active, .button-top-animation-leave-active {
     transition: transform .5s;
-    transition-delay: .3s;
+    transition-delay: .1s;
   }
 
   .button-top-animation-leave-to {
     transform: translateY(-120%);
-    transition-delay: .3s;
+    transition-delay: .1s;
   }
 
   .button-top-animation-enter {
     transform: translateY(120%);
-    transition-delay: .3s;
+    transition-delay: .1s;
   }
 
 
   .category-top-animation-enter-active, .category-top-animation-leave-active {
-    transition: transform .5s;
+    transition: transform .5s ease-in;
   }
 
   .category-top-animation-leave-to {
@@ -528,7 +548,7 @@
   }
 
   .category-bottom-animation-enter-active, .category-bottom-animation-leave-active {
-    transition: transform .5s;
+    transition: transform .5s ease-in;
   }
 
   .category-bottom-animation-leave-to {
@@ -676,7 +696,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    transition: transform 1s ease 0.3s;
+    transition: transform 1s ease-out 0.3s;
     will-change: transform;
     z-index: 5;
   }

@@ -56,11 +56,12 @@
   }
 
   .preload__sign i:last-child {
-    top: -4.8px;
-    left: 0;
+    top: -6.8px;
+    left: -3px;
+    width: 192px;
     animation: preload-sign 1.5s linear infinite;
     height: 127.02px;
-    transform: translate3d(-1.44px, 0, 0) skewX(15deg);
+    transform: translate3d(0, 0, 0) skewX(15deg);
   }
 
   .preload__sign i:last-child:after {
@@ -75,13 +76,13 @@
 
   @keyframes preload-sign {
     0% {
-      transform: translate3d(-189px, 0, 0) skewX(15deg);
-      background-position-x: 189px
+      transform: translate3d(-180px, 0, 0) skewX(15deg);
+      background-position-x: 180px
     }
 
     100% {
-      transform: translate3d(189px, 0, 0) skewX(15deg);
-      background-position-x: -189px
+      transform: translate3d(180px, 0, 0) skewX(15deg);
+      background-position-x: -180px
     }
   }
 

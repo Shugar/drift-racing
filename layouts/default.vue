@@ -49,6 +49,7 @@
           const entities = response.items.map((item, index) => {
             return {
               type: item.sys.contentType.sys.id,
+              locale: item.sys.locale,
               ...item.fields
             }
           })

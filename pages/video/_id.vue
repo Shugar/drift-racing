@@ -101,7 +101,17 @@
         </div>
       </div>
     </div>
-    <Footer />
+    <u-animate
+      name="fadeInUp"
+      delay="1s"
+      duration="0.8s"
+      :iteration="1"
+      :offset="0"
+      animateClass="animated"
+      :begin="true"
+    >
+      <Footer />
+    </u-animate>
   </section>
 </template>
 

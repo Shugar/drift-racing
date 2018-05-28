@@ -166,15 +166,15 @@
     bottom: 33px;
     width: 53px;
     height: 34px;
-    background: url('~/assets/images/logo-big.svg') no-repeat center / contain;
+    background: url('~/assets/images/logo-icon.svg') no-repeat center / contain;
     transform: translate3d(0, 0, 0) skewX(15deg);
     overflow: hidden;
   }
 
   .logo i:last-child {
-    bottom: 32.8px;
+    bottom: 33.8px;
     height: 37.7px;
-    transform: translate3d(-1.44px, 0, 0) skewX(15deg);
+    transform: translate3d(0, 0, 0) skewX(15deg);
     background-position-x: 53px;
     will-change: transform, background-position-x;
   }
@@ -191,13 +191,13 @@
 
   @keyframes logo {
     0% {
-      transform: translate3d(-53px, 0, 0) skewX(15deg);
-      background-position-x: 53px;
+      transform: translate3d(-45px, 0, 0) skewX(15deg);
+      background-position-x: 45px;
     }
 
     100% {
-      transform: translate3d(53px, 0, 0) skewX(15deg);
-      background-position-x: -53px;
+      transform: translate3d(45px, 0, 0) skewX(15deg);
+      background-position-x: -45px;
     }
   }
 
@@ -233,6 +233,30 @@
 
     transition: color .2s ease;
     will-change: color;
+
+    position: relative;
+    overflow: hidden;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 100%;
+      background: #FFF;
+      transform: translateX(-110%);
+      transition: transform .2s ease;
+      will-change: transform;
+    }
+
+    &:hover {
+      color: #FFF;
+
+      &:before {
+        transform: translateX(0);
+      }
+    }
 
     &:last-child {
       margin-right: 0;

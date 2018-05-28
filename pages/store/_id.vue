@@ -6,24 +6,74 @@
         <div class="cross" />
       </nuxt-link>
     <div class="product" :class="{'product-mobile': isMobileInfoVisible}" >
-      <div class="product-title">
-        {{ store.title }} {{ store.gender }} {{ store.category }} {{ store.style }}
-      </div>
-      <div class="product-price">$ {{ store.price }}</div>
-      <div class="product-descr">
-        {{ store.description }}
-      </div>
-      <div class="size-wrapper">
-        SIZE –
-      <select class="product-size">
-        <option value="xs">xs</option>
-        <option value="s">s</option>
-        <option value="m" selected>m</option>
-        <option value="l">l</option>
-        <option value="xl">xl</option>
-      </select>
-      </div>
-      <div class="add-to" @click="$store.commit('addProductToCart', store)" :class="{white: isMobileInfoVisible}" >add to card</div>
+      <u-animate
+        name="fadeInUp"
+        delay="0s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="true"
+      >
+        <div class="product-title">
+          {{ store.title }} {{ store.gender }} {{ store.category }} {{ store.style }}
+        </div>
+      </u-animate>
+      <u-animate
+        name="fadeInUp"
+        delay="0.5s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="true"
+      >
+        <div class="product-price">$ {{ store.price }}</div>
+      </u-animate>
+      <u-animate
+        name="fadeInUp"
+        delay="1s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="true"
+      >
+        <div class="product-descr">
+          {{ store.description }}
+        </div>
+      </u-animate>
+      <u-animate
+        name="fadeInUp"
+        delay="1.5s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="true"
+      >
+        <div class="size-wrapper">
+          SIZE –
+          <select class="product-size">
+            <option value="xs">xs</option>
+            <option value="s">s</option>
+            <option value="m" selected>m</option>
+            <option value="l">l</option>
+            <option value="xl">xl</option>
+          </select>
+        </div>
+      </u-animate>
+      <u-animate
+        name="fadeInUp"
+        delay="2s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="true"
+      >
+        <div class="add-to" @click="$store.commit('addProductToCart', store)" :class="{white: isMobileInfoVisible}" >add to card</div>
+      </u-animate>
     </div>
     <div class="about mobile" :class="{white: isMobileInfoVisible}" @click="toggleInfoMobile()">about product</div>
     </div>
@@ -113,7 +163,7 @@
     color: #fff;
     width: 300px;
     font-size: 64px;
-    margin-top: 210px;
+    margin-top: 80px;
     margin-right: 15%;
   }
 
