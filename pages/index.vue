@@ -511,7 +511,7 @@
       width: calc(100% + 2px);
       height: 18px;
       z-index: -1;
-      animation: background 2s;
+      animation: background 8s;
     }
   }
 
@@ -612,13 +612,13 @@
     position: relative;
     width: 100%;
     display: block;
-    min-height: 74px;
+    min-height: 80px;
     overflow: hidden;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 
     font-family: 'Ailerons', sans-serif;
     color: #FFF;
-    font-size: 90px;
+    font-size: 110px;
     line-height: 115px;
     letter-spacing: 0px;
   }
@@ -626,7 +626,7 @@
   .title-absolute {
     position: absolute;
     overflow: hidden;
-    top: -37px;
+    top: -33px;
     left: 0;
   }
 
