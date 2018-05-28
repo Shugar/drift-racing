@@ -7,10 +7,15 @@ const createStore = () => {
       entities: null,
       isCheckoutOpen: false,
       checkoutList: [],
-      isHeaderAnimated: false
+      isHeaderAnimated: false,
+      locale: 'en'
     },
 
     mutations: {
+      setLocale (state, payload) {
+        state.locale = payload
+      },
+
       animateHeader (state, payload) {
         state.isHeaderAnimated = payload
       },

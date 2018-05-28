@@ -13,7 +13,7 @@
 
     <div class="right" :class="{ mainRight: type === 'main' }">
       <div class="lang">
-        <span>RU</span> — <span class="lang-active">EN</span>
+        <span :class="{'lang-active': locale === 'ru'}" @click="setRU()">RU</span> — <span :class="{'lang-active': locale === 'en'}" @click="setEN()">EN</span>
       </div>
 
       <div class="copy">
@@ -26,7 +26,23 @@
 
 <script>
 export default {
-  props: ['type']
+  props: ['type'],
+
+  methods: {
+    setRU () {
+      this.$store.commit('setLocale', 'ru')
+    },
+
+    setEN () {
+      this.$store.commit('setLocale', 'en')
+    }
+  },
+
+  computed: {
+    locale () {
+      return this.$store.state.locale
+    }
+  }
 }
 </script>
 
@@ -164,7 +180,7 @@ export default {
   }
 
   .lang-active {
-    color: #FFF;
+    color: #FFF !important;
   }
 
   @media (max-width: 768px) {
