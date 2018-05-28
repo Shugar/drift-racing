@@ -193,7 +193,7 @@
 
     methods: {
       sliderInterval () {
-        this.nextSlideInterval = setInterval(this.nextSlide, 2000)
+        this.nextSlideInterval = setInterval(this.nextSlide, 8000)
       },
 
       prevSlide () {
@@ -267,7 +267,7 @@
     mounted () {
       this.isChanging = false
       this.sliderInterval()
-      // setInterval(() => this.nextSlideRight(), 2000)
+      // setInterval(() => this.nextSlideRight(), 8000)
     },
 
     created () {

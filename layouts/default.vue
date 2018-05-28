@@ -30,6 +30,16 @@
           this.$store.commit('animateHeader', false)
         }, 1500)
       },
+
+      '$store.state.locale': function () {
+        this.fetchData()
+      }
+    },
+
+    computed: {
+      locale () {
+        return this.$store.state.locale
+      }
     },
 
     components: {
@@ -37,38 +47,56 @@
       Preloader: () => import('@/components/Preloader'),
     },
 
+    methods: {
+      fetchData () {
+        const client = createClient()
+
+        client.getEntries()
+          .then(response => {
+            const entities = response.items.map((item, index) => {
+              if (item.fields.locale === undefined) {
+                return {
+                  type: item.sys.contentType.sys.id,
+                  locale: 'en',
+                  ...item.fields
+                }
+              }
+
+              if (item.fields.locale === 'ru') {
+                return {
+                  type: item.sys.contentType.sys.id,
+                  locale: item.fields.locale,
+                  ...item.fields
+                }
+              }
+            })
+
+            const normalized = { rightSlider: [] }
+            const normalizedEntities = entities.map((item, index) => {
+              normalized[item.type] = normalized[item.type] || []
+              if (item.locale === this.locale) {
+                normalized[item.type].push(item)
+              }
+
+              if (item.inRightSlider) {
+                normalized.rightSlider.push(item)
+              }
+            })
+
+            this.$store.commit('fetchData', normalized)
+            this.loaded = 0
+            setTimeout(() => { this.isReady = true }, 300)
+          })
+          .catch(console.error)
+      }
+    },
+
     created () {
       setInterval(() => {
         this.loaded = this.loaded - Math.floor(Math.random() * 10)
       }, 500)
 
-      const client = createClient()
-
-      client.getEntries()
-        .then(response => {
-          const entities = response.items.map((item, index) => {
-            return {
-              type: item.sys.contentType.sys.id,
-              locale: item.sys.locale,
-              ...item.fields
-            }
-          })
-
-          const normalized = { rightSlider: [] }
-          const normalizedEntities = entities.map((item, index) => {
-            normalized[item.type] = normalized[item.type] || []
-            normalized[item.type].push(item)
-
-            if (item.inRightSlider) {
-              normalized.rightSlider.push(item)
-            }
-          })
-
-          this.$store.commit('fetchData', normalized)
-          this.loaded = 0
-          setTimeout(() => { this.isReady = true }, 300)
-        })
-        .catch(console.error)
+      this.fetchData()
     }
   }
 </script>
