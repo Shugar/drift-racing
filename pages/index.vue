@@ -102,16 +102,17 @@
         <div class="small-slider" :class="{'isSliderHiding': isChanging}">
             <div>
               <transition :name="'small-slider-' + direction + '-animation'">
-                <div class="small-slider-left"
+                <nuxt-link class="small-slider-left"
                   v-for="(item, index) in rightSlider"
                   v-if="index === rightCount"
+                  :to="rightSliderLink(item)"
                   :key="index">
                   <div class="small-slider-text" v-html="item.title"/>
                   <!-- <div class="small-slider-place" v-if="item.type === 'calendar'" v-html="item.place"/> -->
                   <div class="small-slider-category" v-if="item.type === 'store'" v-html="item.category"/>
                   <div class="small-slider-style" v-if="item.type === 'store'" v-html="item.style"/>
                   <div class="small-slider-event-date" v-if="item.type === 'calendar' || item.type === 'news'" v-html="item.date"/>
-                </div>
+                </nuxt-link>
               </transition>
               <transition :name="'small-slider-' + direction + '-animation'">
                 <div class="small-slider-right"
@@ -802,6 +803,7 @@
     color: #e5e5e5;
   }
   .small-slider-left {
+    color: #fff;
     position: absolute;
     left: 0;
     overflow: hidden;
