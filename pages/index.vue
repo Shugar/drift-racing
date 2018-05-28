@@ -90,7 +90,7 @@
               class="arrow"
               v-if="index === rightCount"
               :key="index"
-              :to="`${item.link}`">
+              :to="rightSliderLink(item)">
             <div class="arrow"/>
           </nuxt-link>
         </div>
@@ -250,6 +250,16 @@
           this.nextSlideRight()
           this.nextSlide()
         }
+      },
+
+      rightSliderLink (sliderItem) {
+        let link
+        this.$store.state.entities[sliderItem.type].map((item, index) => {
+          if (sliderItem.title === item.title ) {
+            return link = '/' + sliderItem.type + '/' + index
+          }
+        })
+        return link
       }
     },
 
