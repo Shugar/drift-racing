@@ -81,11 +81,16 @@
       <div class="right">
         <div class="image-slider" :class="{'isSliderHiding': isChanging}">
           <transition :name="'small-slider-' + direction + '-animation'">
-            <img class="image-slider-item" v-for="(item, index) in rightSlider"
-              :src="`${'http://' + (item.image || item.preview || item.media ).fields.file.url.slice(2)}`"
-              v-if="index === rightCount"
-              :key="index" />
-            </transition>
+            <nuxt-link v-for="(item, index) in rightSlider"
+                v-if="index === rightCount"
+                class="image-slider-item link"
+                :key="index"
+                :to="rightSliderLink(item)">
+              <img class="image-slider-item"
+                :src="`${'http://' + (item.image || item.preview || item.media ).fields.file.url.slice(2)}`"
+                />
+            </nuxt-link>
+          </transition>
           <nuxt-link v-for="(item, index) in rightSlider"
               class="arrow"
               v-if="index === rightCount"
@@ -858,6 +863,10 @@
     width: calc(100% - 60px);
     left: 0;
     top: 0;
+  }
+
+  .link {
+    width: 100%;
   }
 
   @media (max-width: 1024px) {
