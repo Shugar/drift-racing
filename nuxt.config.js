@@ -51,6 +51,10 @@ module.exports = {
       src: '~/plugins/vueWow',
       ssr: false
     },
+    {
+      src: '~/plugins/vueSocialSharing',
+      ssr: false
+    },
   ],
 
   env: {
