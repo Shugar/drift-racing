@@ -220,55 +220,55 @@
       prevSlide () {
         this.direction = 'bottom'
         this.count === 0 ? this.count = 3 : this.count--
-
+        this.rightCount === 0 ? this.rightCount = 3 : this.rightCount--
         clearInterval(this.nextSlideInterval)
         this.sliderInterval()
 
         this.nextUpAnimation = false
-        this.prevSlideRight()
+        // this.prevSlideRight()
         setTimeout(() => this.nextUpAnimation = true, 0)
       },
 
       nextSlide () {
         this.direction = 'top'
         this.count === 3 ? this.count = 0 : this.count++
-
+        this.rightCount === 3 ? this.rightCount = 0 : this.rightCount++
         clearInterval(this.nextSlideInterval)
         this.sliderInterval()
 
         this.nextUpAnimation = false
-        this.nextSlideRight()
+        // this.nextSlideRight()
         setTimeout(() => this.nextUpAnimation = true, 0)
       },
 
-      nextSlideRight () {
-        return this.rightCount === 3 ? this.rightCount = 0 : this.rightCount++
-      },
+      // nextSlideRight () {
+      //   return this.rightCount === 3 ? this.rightCount = 0 : this.rightCount++
+      // },
 
-      prevSlideRight () {
-        return this.rightCount === 0 ? this.rightCount = 3 : this.rightCount--
-      },
+      // prevSlideRight () {
+      //   return this.rightCount === 0 ? this.rightCount = 3 : this.rightCount--
+      // },
 
       handleScroll (e) {
         if (e.deltaY < 0) {
-          this.prevSlideRight()
+          // this.prevSlideRight()
           this.prevSlide()
         }
 
         if (e.deltaY > 0) {
-          this.nextSlideRight()
+          // this.nextSlideRight()
           this.nextSlide()
         }
       },
 
       handleKeypress (e) {
         if (e.keyCode === 37) {
-          this.prevSlideRight()
+          // this.prevSlideRight()
           this.prevSlide()
         }
 
         if (e.keyCode === 39) {
-          this.nextSlideRight()
+          // this.nextSlideRight()
           this.nextSlide()
         }
       },
