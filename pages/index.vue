@@ -246,22 +246,16 @@
 
     head () {
       return {
-        title: this.title,
-        metaInfo: {
-          meta: [
-            { name: 'description', content: 'qweqweqweqwe' },
-            { name: 'keywords', content: 'qweqweqweqwe,qweqweqwe,qweqweqwe,qwe' },
-            { hid: 'og:url', property: 'og:url', content: 'https://wavestream.io/' },
-            { hid: 'og:type', property: 'og:type', content: 'article '},
-            { hid: 'og:title', property: 'og:title', content: 'Wavestream' },
-            {
-              hid: 'og:description',
-              property: 'og:description',
-              content:
-                'An unparralled music platform utilizing Web 3.0 technology to create the world’s most interactive streaming experience.',
-            },
-          ]
-        }
+        title: this.meta.title,
+        meta: [
+          { name: 'description', content: this.meta.description },
+          { name: 'keywords', content: this.meta.keywords },
+          { hid: 'og:type', property: 'og:type', content: 'article'},
+          { hid: 'og:url', property: 'og:url', content: this.meta.facebook_url },
+          { hid: 'og:image', property: 'og:image', content: this.meta.facebook_image },
+          { hid: 'og:title', property: 'og:title', content: this.meta.facebook_title },
+          { hid: 'og:description', property: 'og:description', content: this.meta.facebook_description },
+        ]
       }
     },
 
@@ -348,6 +342,10 @@
     computed: {
       rightSlider () {
         return this.$store.state.entities.rightSlider
+      },
+
+      meta () {
+        return this.$store.state.meta[this.$store.state.locale][this.$route.name]
       }
     },
 
@@ -376,6 +374,7 @@
             }, 1000)
           }
         }, true)
+
         window.addEventListener('keyup', this.handleKeypress);
       }
     },

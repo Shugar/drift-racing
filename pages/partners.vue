@@ -59,6 +59,21 @@
       }
     },
 
+    head () {
+      return {
+        title: this.meta.title,
+        meta: [
+          { name: 'description', content: this.meta.description },
+          { name: 'keywords', content: this.meta.keywords },
+          { hid: 'og:type', property: 'og:type', content: 'article'},
+          { hid: 'og:url', property: 'og:url', content: this.meta.facebook_url },
+          { hid: 'og:image', property: 'og:image', content: this.meta.facebook_image },
+          { hid: 'og:title', property: 'og:title', content: this.meta.facebook_title },
+          { hid: 'og:description', property: 'og:description', content: this.meta.facebook_description },
+        ]
+      }
+    },
+
     mounted () {
       this.isChanging = false
     },
@@ -71,6 +86,10 @@
     computed: {
       partners () {
         return this.$store.state.entities.partner
+      },
+
+      meta () {
+        return this.$store.state.meta[this.$store.state.locale][this.$route.name]
       }
     }
   }

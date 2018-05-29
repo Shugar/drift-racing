@@ -5,6 +5,7 @@ const createStore = () => {
     state: {
       lightbox: null,
       entities: null,
+      meta: null,
       isCheckoutOpen: false,
       checkoutList: [],
       isHeaderAnimated: false,
@@ -22,6 +23,10 @@ const createStore = () => {
 
       fetchData (state, payload) {
         state.entities = payload
+      },
+
+      fetchMeta (state, payload) {
+        state.meta = payload
       },
 
       openLightbox (state, payload) {

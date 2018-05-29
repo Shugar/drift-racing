@@ -72,10 +72,15 @@
             })
 
             const normalized = { rightSlider: [] }
+            const meta = {}
             const normalizedEntities = entities.map((item, index) => {
               normalized[item.type] = normalized[item.type] || []
               if (item.locale === this.locale) {
                 normalized[item.type].push(item)
+              }
+
+              if (item.type === 'meta') {
+                meta[item.locale] = item
               }
 
               if (item.inRightSlider) {
@@ -83,6 +88,7 @@
               }
             })
 
+            this.$store.commit('fetchMeta', meta)
             this.$store.commit('fetchData', normalized)
             this.loaded = 0
             setTimeout(() => { this.isReady = true }, 300)
