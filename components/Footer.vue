@@ -1,7 +1,30 @@
 <template>
   <div class="footer" :class="{ 'isHome': $route.path === '/'}">
     <div class="left" :class="{ mainLeft: type === 'main' }">
-      <div class="share">
+      <div @click="toggleSharing()" class="share">
+        <div v-if="isSharingActive" class="sharing">
+          <div class="sharing-title">Tell your friends in</div>
+          <div class="sharing-socials">
+            <social-sharing url="https://drift-racing.com/"
+              title="DRIFT"
+              description="DRIFT decrtiption"
+              quote="Drift quote"
+              hashtags="drift, cars, sport, racing"
+              inline-template>
+              <div>
+                  <network network="facebook">
+                    <i class="fa fa-facebook"></i> Facebook
+                  </network>
+                  <network network="twitter">
+                    <i class="fa fa-twitter"></i> Twitter
+                  </network>
+                  <network network="vk">
+                    <i class="fa fa-vk"></i> vk.com
+                  </network>
+              </div>
+            </social-sharing>
+          </div>
+        </div>
         SHARE
       </div>
       <div class="socials">
@@ -27,10 +50,19 @@
 <script>
 export default {
   props: ['type'],
+  data () {
+    return {
+      isSharingActive: false
+    }
+  },
 
   methods: {
     setRU () {
       this.$store.commit('setLocale', 'ru')
+    },
+
+    toggleSharing () {
+      this.isSharingActive = !this.isSharingActive
     },
 
     setEN () {
@@ -58,6 +90,9 @@ export default {
   }
 
   .share {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
     margin-right: 120px;
     width: 100px;
     flex: 0 0 100px;
@@ -69,6 +104,37 @@ export default {
     font-size: 20px;
     text-transform: uppercase;
     color: #FFF;
+
+    &:hover {
+      .sharing {
+        opacity: 1;
+      }
+    }
+  }
+
+  .sharing {
+    position: absolute;
+    top: -77px;
+    left: 0;
+    min-width: 210px;
+    padding: 10px;
+    padding-bottom: 5px;
+
+    background: #683FFF;
+    color: #E0E0E0;
+    text-transform: uppercase;
+    transition: opacity .5s ease;
+
+    &-socials {
+      color: #fff;
+    }
+
+    span {
+      display: inline-block;
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
   }
 
   .left {
