@@ -81,32 +81,38 @@
       <div class="right">
         <div class="image-slider" :class="{'isSliderHiding': isChanging}">
           <transition :name="'small-slider-' + direction + '-animation'">
-            <img class="image-slider-item" v-for="(item, index) in rightSlider"
-              :src="`${'http://' + (item.image || item.preview || item.media ).fields.file.url.slice(2)}`"
-              v-if="index === rightCount"
-              :key="index" />
-            </transition>
+            <nuxt-link v-for="(item, index) in rightSlider"
+                v-if="index === rightCount"
+                class="image-slider-item link"
+                :key="index"
+                :to="rightSliderLink(item)">
+              <img class="image-slider-item"
+                :src="`${'http://' + (item.image || item.preview || item.media ).fields.file.url.slice(2)}`"
+                />
+            </nuxt-link>
+          </transition>
           <nuxt-link v-for="(item, index) in rightSlider"
               class="arrow"
               v-if="index === rightCount"
               :key="index"
-              :to="`${item.link}`">
+              :to="rightSliderLink(item)">
             <div class="arrow"/>
           </nuxt-link>
         </div>
         <div class="small-slider" :class="{'isSliderHiding': isChanging}">
             <div>
               <transition :name="'small-slider-' + direction + '-animation'">
-                <div class="small-slider-left"
+                <nuxt-link class="small-slider-left"
                   v-for="(item, index) in rightSlider"
                   v-if="index === rightCount"
+                  :to="rightSliderLink(item)"
                   :key="index">
                   <div class="small-slider-text" v-html="item.title"/>
                   <!-- <div class="small-slider-place" v-if="item.type === 'calendar'" v-html="item.place"/> -->
                   <div class="small-slider-category" v-if="item.type === 'store'" v-html="item.category"/>
                   <div class="small-slider-style" v-if="item.type === 'store'" v-html="item.style"/>
                   <div class="small-slider-event-date" v-if="item.type === 'calendar' || item.type === 'news'" v-html="item.date"/>
-                </div>
+                </nuxt-link>
               </transition>
               <transition :name="'small-slider-' + direction + '-animation'">
                 <div class="small-slider-right"
@@ -250,6 +256,16 @@
           this.nextSlideRight()
           this.nextSlide()
         }
+      },
+
+      rightSliderLink (sliderItem) {
+        let link
+        this.$store.state.entities[sliderItem.type].map((item, index) => {
+          if (sliderItem.title === item.title ) {
+            return link = '/' + sliderItem.type + '/' + index
+          }
+        })
+        return link
       }
     },
 
@@ -495,7 +511,7 @@
       width: calc(100% + 2px);
       height: 18px;
       z-index: -1;
-      animation: background 2s;
+      animation: background 8s;
     }
   }
 
@@ -596,13 +612,13 @@
     position: relative;
     width: 100%;
     display: block;
-    min-height: 74px;
+    min-height: 80px;
     overflow: hidden;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 
     font-family: 'Ailerons', sans-serif;
     color: #FFF;
-    font-size: 90px;
+    font-size: 110px;
     line-height: 115px;
     letter-spacing: 0px;
   }
@@ -610,7 +626,7 @@
   .title-absolute {
     position: absolute;
     overflow: hidden;
-    top: -37px;
+    top: -33px;
     left: 0;
   }
 
@@ -787,6 +803,7 @@
     color: #e5e5e5;
   }
   .small-slider-left {
+    color: #fff;
     position: absolute;
     left: 0;
     overflow: hidden;
@@ -848,6 +865,10 @@
     width: calc(100% - 60px);
     left: 0;
     top: 0;
+  }
+
+  .link {
+    width: 100%;
   }
 
   @media (max-width: 1024px) {
