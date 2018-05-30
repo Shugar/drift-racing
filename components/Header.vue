@@ -16,7 +16,7 @@
             <nuxt-link to="/contact/" class="list-item">CONTACT</nuxt-link>
           </div>
           <div class="language">
-            RU — EN
+            <span :class="{'lang-active': locale === 'ru'}" @click="setRU()">RU</span> — <span :class="{'lang-active': locale === 'en'}" @click="setEN()">EN</span>
           </div>
           <div class="made"><span>MADE BY</span> APUS AGENCY</div>
         </div>
@@ -76,6 +76,10 @@
     computed: {
       isHeaderAnimated () {
         return this.$store.state.isHeaderAnimated
+      },
+
+      locale () {
+        return this.$store.state.locale
       }
     },
 
@@ -86,6 +90,16 @@
 
       openMenu () {
         this.isMenuOpened = true
+      },
+
+      setRU () {
+        this.$store.commit('setLocale', 'ru')
+        this.$router.push('/')
+      },
+
+      setEN () {
+        this.$store.commit('setLocale', 'en')
+        this.$router.push('/')
       }
     }
   }
@@ -395,7 +409,11 @@
       line-height: 24px;
       font-size: 24px;
       text-transform: uppercase;
-      color: #FFFFFF;
+      color: #E0E0E0;
+    }
+
+    .lang-active {
+      color: #FFF !important;
     }
 
     .mobile-menu {

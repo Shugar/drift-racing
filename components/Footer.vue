@@ -5,11 +5,10 @@
         <div v-if="isSharingActive" class="sharing">
           <div class="sharing-title">Tell your friends in</div>
           <div class="sharing-socials">
-            <social-sharing url="https://drift-racing.com/"
-              title="DRIFT"
-              description="DRIFT decrtiption"
-              quote="Drift quote"
-              hashtags="drift, cars, sport, racing"
+            <social-sharing :url="url"
+              :title="meta.title"
+              :description="meta.description"
+              :hashtags="meta.keywords"
               inline-template>
               <div>
                   <network network="facebook">
@@ -50,30 +49,43 @@
 <script>
 export default {
   props: ['type'],
+
   data () {
     return {
-      isSharingActive: false
+      isSharingActive: false,
+      url: ''
     }
   },
 
   methods: {
     setRU () {
       this.$store.commit('setLocale', 'ru')
-    },
-
-    toggleSharing () {
-      this.isSharingActive = !this.isSharingActive
+      this.$router.push('/')
     },
 
     setEN () {
       this.$store.commit('setLocale', 'en')
+      this.$router.push('/')
+    },
+
+    toggleSharing () {
+      this.isSharingActive = !this.isSharingActive
     }
   },
 
   computed: {
     locale () {
       return this.$store.state.locale
+    },
+
+    meta () {
+      return this.$store.state.meta[this.$store.state.locale][this.$route.name]
     }
+  },
+
+  mounted () {
+    this.url = window.location.href
+    console.log(this.meta)
   }
 }
 </script>
