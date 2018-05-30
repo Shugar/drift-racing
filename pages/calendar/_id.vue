@@ -98,7 +98,14 @@
       animateClass="animated"
       :begin="true"
     >
-      <Footer />
+      <Footer :propMeta="{
+        title: this.article.title,
+        description: this.article.text,
+        keywords: this.article.keywords,
+        facebook_image: `http://${this.article.image.fields.file.url.slice(2)}`,
+        facebook_title: this.article.title,
+        facebook_description: this.article.text
+      }" />
     </u-animate>
   </section>
 </template>
@@ -107,6 +114,31 @@
   import VueMarkdown from 'vue-markdown'
 
   export default {
+    data () {
+      return {
+        url: ''
+      }
+    },
+
+    head () {
+      return {
+        title: this.article.title,
+        meta: [
+          { name: 'description', content: this.article.text },
+          { name: 'keywords', content: this.article.keywords },
+          { hid: 'og:type', property: 'og:type', content: 'article'},
+          { hid: 'og:url', property: 'og:url', content: this.url },
+          { hid: 'og:image', property: 'og:image', content: `http://${this.article.image.fields.file.url.slice(2)}` },
+          { hid: 'og:title', property: 'og:title', content: this.article.title },
+          { hid: 'og:description', property: 'og:description', content: this.article.text },
+        ]
+      }
+    },
+
+    mounted () {
+      this.url = window.location.href
+    },
+
     computed: {
       article () {
         return this.$store.state.entities.calendar.map(article => {

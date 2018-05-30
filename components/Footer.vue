@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  props: ['type'],
+  props: ['type', 'propMeta'],
 
   data () {
     return {
@@ -79,7 +79,8 @@ export default {
     },
 
     meta () {
-      return this.$store.state.meta[this.$store.state.locale][this.$route.name]
+      const meta = this.$store.state.meta[this.$store.state.locale][this.$route.name]
+      return meta !== undefined ? meta : this.propMeta
     }
   },
 

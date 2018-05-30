@@ -84,7 +84,22 @@
   export default {
     data () {
       return {
-        isMobileInfoVisible: false,
+        isMobileInfoVisible: false
+      }
+    },
+
+    head () {
+      return {
+        title: this.store.title,
+        meta: [
+          { name: 'description', content: this.store.description },
+          { name: 'keywords', content: this.store.category },
+          { hid: 'og:type', property: 'og:type', content: 'article'},
+          { hid: 'og:url', property: 'og:url', content: this.url },
+          { hid: 'og:image', property: 'og:image', content: `http://${this.store.full.fields.file.url.slice(2)}` },
+          { hid: 'og:title', property: 'og:title', content: this.store.title + ' ' + this.store.price },
+          { hid: 'og:description', property: 'og:description', content: this.store.description },
+        ]
       }
     },
 

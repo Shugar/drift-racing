@@ -110,7 +110,14 @@
       animateClass="animated"
       :begin="true"
     >
-      <Footer />
+      <Footer :propMeta="{
+        title: this.video.title,
+        description: this.video.text,
+        keywords: this.video.keywords,
+        facebook_image: `http://${this.video.video.fields.file.url.slice(2)}`,
+        facebook_title: this.video.title,
+        facebook_description: this.video.text
+      }" />
     </u-animate>
   </section>
 </template>
@@ -120,6 +127,21 @@
     data () {
       return {
         isChanging: false
+      }
+    },
+
+    head () {
+      return {
+        title: this.video.title,
+        meta: [
+          { name: 'description', content: this.video.text },
+          { name: 'keywords', content: this.video.keywords },
+          { hid: 'og:type', property: 'og:type', content: 'article'},
+          { hid: 'og:url', property: 'og:url', content: this.url },
+          { hid: 'og:image', property: 'og:image', content: `http://${this.video.video.fields.file.url.slice(2)}` },
+          { hid: 'og:title', property: 'og:title', content: this.video.title },
+          { hid: 'og:description', property: 'og:description', content: this.video.text },
+        ]
       }
     },
 
