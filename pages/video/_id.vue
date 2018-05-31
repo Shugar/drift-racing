@@ -80,22 +80,12 @@
           </div>
         <div class="right mobile">
           <div class="previous-article">
-            <div class="previous-title">Previous videos</div>
-            <div class="previous">
+            <div class="previous-title">{{ previous.length > 0 ? 'Previous videos' : '' }}</div>
+            <nuxt-link class="previous" v-for="(item, index) in previous"  :to="'/video/' + findItemByTitle(item.title)" :key="index">
               <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
-              <div class="previous-date">JAN 30 — 2016</div>
-              <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
-            </div>
-            <div class="previous">
-              <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
-              <div class="previous-date">JAN 30 — 2016</div>
-              <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
-            </div>
-            <div class="previous">
-              <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
-              <div class="previous-date">JAN 30 — 2016</div>
-              <div class="previous-subtitle">2 stage Grand prix RDS 2018 Ryazan</div>
-            </div>
+              <div class="previous-date">{{ item.date }}</div>
+              <div class="previous-subtitle">{{ item.title }}</div>
+            </nuxt-link>
           </div>
         </div>
         </div>
@@ -145,10 +135,43 @@
       }
     },
 
+
+    methods: {
+      findItemByTitle (title) {
+        let result
+        this.$store.state.entities.video.map((item, index) => {
+          if (item.title === title) {
+            return result = index
+          }
+        })
+
+        return result
+      }
+    },
+
     computed: {
       video () {
         return this.$store.state.entities.video[this.$route.params.id]
-      }
+      },
+
+      previous () {
+        const array = this.$store.state.entities.video.map(article => {
+          return {
+            ...article,
+            tags: article.championship.replace(' ', '').split(',')
+          }
+        })
+        if (this.$route.params.id > 1) {
+          return [
+            array[this.$route.params.id - 1],
+            array[this.$route.params.id - 2]
+          ]
+        } else if (this.$route.params.id > 0  ) {
+          return [ array[0] ]
+        } else {
+          return []
+        }
+      },
     },
 
     components: {
@@ -244,6 +267,7 @@
 
   .previous-title {
     margin-bottom: 20px;
+    min-height: 20px;
   }
 
   .back {
