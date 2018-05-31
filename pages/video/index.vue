@@ -3,7 +3,7 @@
     <Header />
     <div class="container" :class="{'isAnimating': isChanging}">
       <u-animate
-          name="fadeInUp"
+          name="fadeInUpTitle"
           delay="0s"
           duration="0.8s"
           :iteration="1"
@@ -37,7 +37,7 @@
       </u-animate>
 
       <u-animate
-          name="fadeInUp"
+          name="fadeInUpPlayer"
           delay="0.5s"
           duration="0.8s"
           :iteration="1"
@@ -63,28 +63,38 @@
           </masonry>
         </div>
       </u-animate>
-      <div class="videos-list">
-        <masonry
-          :cols="{default: 3, 1024: 2, 425: 1}"
-          :gutter="{default: '60px', 768: '40px', 425: '0px'}"
-          ref="my-masonry">
-          <div class="video" v-for="(video, index) in filteredVideos" :key="index">
-            <nuxt-link :to="'/video/' + findItemByTitle(video.title)" >
-              <div class="video-image"
-                :style="{background: `url(${ 'http://' + video.video.fields.file.url.slice(2) }) no-repeat center / cover`}">
-                <div class="play-button" />
-              </div>
-              <div class="video-date">{{ video.date }}</div>
-              <div class="video-title" v-html="video.title"></div>
-            </nuxt-link>
-          </div>
-        </masonry>
-      </div>
+      <u-animate
+          name="fadeInUpPlayer"
+          delay="0.5s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="true"
+        >
+        <div class="videos-list">
+          <masonry
+            :cols="{default: 3, 1024: 2, 425: 1}"
+            :gutter="{default: '60px', 768: '40px', 425: '0px'}"
+            ref="my-masonry">
+            <div class="video" v-for="(video, index) in filteredVideos" :key="index">
+              <nuxt-link :to="'/video/' + findItemByTitle(video.title)" >
+                <div class="video-image"
+                  :style="{background: `url(${ 'http://' + video.video.fields.file.url.slice(2) }) no-repeat center / cover`}">
+                  <div class="play-button" />
+                </div>
+                <div class="video-date">{{ video.date }}</div>
+                <div class="video-title" v-html="video.title"></div>
+              </nuxt-link>
+            </div>
+          </masonry>
+        </div>
+      </u-animate>
     </div>
     <u-animate
-      name="fadeInUp"
+      name="fadeInUpOther"
       delay="1s"
-      duration="0.8s"
+      duration="0.4s"
       :iteration="1"
       :offset="0"
       animateClass="animated"
@@ -239,10 +249,6 @@
     text-transform: uppercase;
     color: #FFFFFF;
     margin-bottom: 15px;
-  }
-
-  .videos-list {
-    margin-bottom: 100px;
   }
 
   .video {

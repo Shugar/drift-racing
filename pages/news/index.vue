@@ -3,7 +3,7 @@
     <Header />
     <div class="container" :class="{'isAnimating': isChanging}">
       <u-animate
-        name="fadeInUp"
+        name="fadeInUpTitle"
         delay="0s"
         duration="0.8s"
         :iteration="1"
@@ -32,8 +32,8 @@
         </div>
       </u-animate>
       <u-animate
-        name="fadeInUp"
-        delay="0.5s"
+        name="fadeInUpPlayer"
+        delay="0.6s"
         duration="0.8s"
         :iteration="1"
         :offset="0"

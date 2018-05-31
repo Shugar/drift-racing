@@ -16,7 +16,7 @@
       </u-animate>
       <div class="left">
         <u-animate
-          name="fadeInUp"
+          name="fadeInUpTitle"
           delay="0s"
           duration="0.8s"
           :iteration="1"
@@ -27,9 +27,9 @@
           <div class="title">{{ bio.leftColumnTitle }}</div>
         </u-animate>
         <u-animate
-          name="fadeInUp"
+          name="fadeInUpOther"
           delay="0.8s"
-          duration="0.8s"
+          duration="0.4s"
           :iteration="1"
           :offset="0"
           animateClass="animated"
@@ -42,8 +42,8 @@
 
         <u-animate-container class="img-fullwidth">
           <u-animate
-            name="fadeInUp"
-            delay="1.6s"
+            name="fadeInUpPlayer"
+            delay="1.2s"
             duration="0.8s"
             :iteration="1"
             :offset="0"
@@ -56,9 +56,9 @@
       </div>
       <div class="right">
         <u-animate
-          name="fadeInUp"
+          name="fadeInUpTitle"
           delay="0s"
-          duration="1.1s"
+          duration="0.8s"
           :iteration="1"
           :offset="0"
           animateClass="animated"
@@ -67,9 +67,9 @@
           <div class="title">{{ bio.rightColumnTitle }}</div>
         </u-animate>
         <u-animate
-          name="fadeInUp"
+          name="fadeInUpOther"
           delay="0.8s"
-          duration="0.8s"
+          duration="0.4s"
           :iteration="1"
           :offset="0"
           animateClass="animated"
@@ -81,8 +81,8 @@
         </u-animate>
         <u-animate-container class="img-fullwidth">
           <u-animate
-            name="fadeInUp"
-            delay="1.6s"
+            name="fadeInUpPlayer"
+            delay="1.2s"
             duration="0.8s"
             :iteration="1"
             :offset="0"
@@ -108,7 +108,7 @@
       </u-animate>
       <div class="left" v-for="(car, index) in bioCars" :key="index">
         <u-animate
-          name="fadeInUp"
+          name="fadeInUpTitle"
           delay="1.8s"
           duration="0.8s"
           :iteration="1"
@@ -117,10 +117,40 @@
           :begin="true"
         >
           <div class="title">{{ car.title }}<br> {{ car.car }}</div>
+        </u-animate>
+        <u-animate
+          name="fadeInUpPlayer"
+          delay="2.6s"
+          duration="0.8s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="true"
+        >
           <img :src="'http://' + car.image.fields.file.url.slice(2)" />
+        </u-animate>
+        <u-animate
+          name="fadeInUpOther"
+          delay="3.2s"
+          duration="0.4s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="true"
+        >
           <div class="text">
             The car was built at the end of the past especially for the current season in the Russian Drift Series and the European Drift Allstars Championship.
           </div>
+        </u-animate>
+        <u-animate
+          name="fadeInUpOther"
+          delay="3.6s"
+          duration="0.4s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="true"
+        >
           <div class="numbers">
             <div class="numbers-item">
               <div class="numbers-item__digits">{{ car.hp }}</div>
@@ -140,9 +170,9 @@
     </div>
 
     <u-animate
-      name="fadeInUp"
+      name="fadeInUpOther"
       delay="1s"
-      duration="0.8s"
+      duration="0.4s"
       :iteration="1"
       :offset="0"
       animateClass="animated"

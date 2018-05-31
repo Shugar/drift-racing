@@ -6,7 +6,7 @@
       <div class="left" :class="{'isAnimating': isChanging }">
         <div class="page-title">
           <u-animate
-            name="fadeInUp"
+            name="fadeInUpTitle"
             delay="0s"
             duration="0.8s"
             :iteration="1"
@@ -17,9 +17,9 @@
             <div>contact</div>
           </u-animate>
           <u-animate
-            name="fadeInUp"
+            name="fadeInUpOther"
             delay="0.5s"
-            duration="0.8s"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -41,9 +41,9 @@
           :key="index"
           v-if="currentCity === item.city">
           <u-animate
-            name="fadeInUp"
+            name="fadeInUpOther"
             delay="1s"
-            duration="0.8s"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -59,9 +59,9 @@
             </div>
           </u-animate>
           <u-animate
-            name="fadeInUp"
+            name="fadeInUpOther"
             delay="1.5s"
-            duration="0.8s"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -99,9 +99,9 @@
     </div>
     <div class="footer-wrapper">
       <u-animate
-        name="fadeInUp"
-        delay="1s"
-        duration="0.8s"
+        name="fadeInUpOther"
+        delay="2s"
+        duration="0.4s"
         :iteration="1"
         :offset="0"
         animateClass="animated"
@@ -501,6 +501,7 @@
   .footer-wrapper {
     width: 100%;
     position: absolute;
+    z-index: 5;
     bottom: 60px;
   }
 

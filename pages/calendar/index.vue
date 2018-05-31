@@ -4,7 +4,7 @@
     <div class="wrapper" :class="{'isAnimating': isChanging}">
       <div class="title-wrapper">
         <u-animate
-          name="fadeInUp"
+          name="fadeInUpTitle"
           delay="0s"
           duration="0.8s"
           :iteration="1"
@@ -68,7 +68,7 @@
 
           <div class="article" v-for="(article, index) in (events.length > 0 ? events : leftCalendar)" :key="index">
             <u-animate
-              name="fadeInUp"
+              name="fadeInUpPlayer"
               :delay="0.8 + (index - 0.5) + 's'"
               duration="0.8s"
               :iteration="1"
@@ -91,7 +91,7 @@
           <div class="previous-article">
               <nuxt-link class="previous" v-for="(article, index) in (rightEvents.length > 0 ? rightEvents : rightCalendar)" :to="'/calendar/' + findItemByTitle(article.title)" :key="index">
                   <u-animate
-                    name="fadeInUp"
+                    name="fadeInUpPlayer"
                     :delay="0.9 + (index - 0.5) + 's'"
                     duration="0.8s"
                     :iteration="1"
@@ -126,9 +126,9 @@
     </div>
 
     <u-animate
-      name="fadeInUp"
+      name="fadeInUpOther"
       delay="1s"
-      duration="0.8s"
+      duration="0.4s"
       :iteration="1"
       :offset="0"
       animateClass="animated"

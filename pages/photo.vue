@@ -3,7 +3,7 @@
     <Header />
     <div class="container" :class="{'isAnimating': isChanging}">
       <u-animate
-        name="fadeInUp"
+        name="fadeInUpTitle"
         delay="0s"
         duration="0.8s"
         :iteration="1"
@@ -42,8 +42,8 @@
       <div class="list" v-if="filteredPhotos.length === 0">
         <div class="photo" v-for="(photo, index) in fetchedPhotos" :key="index">
           <u-animate
-            name="fadeInUp"
-            :delay="0.5 + (index - 0.7 * index) + 's'"
+            name="fadeInUpPlayer"
+            :delay="0.6 + (index - 0.7 * index) + 's'"
             duration="0.8s"
             :iteration="1"
             :offset="0"
@@ -75,32 +75,42 @@
 
       <div class="list" v-else>
         <div class="photo" v-for="(photo, index) in filteredPhotos" :key="index">
-          <div class="photo-date">{{ photo.date }}</div>
-          <div class="photo-title" v-html="photo.title"></div>
-          <div class="photo-list">
-            <masonry
-              :cols="{default: 4, 768: 2, 425: 1}"
-              :gutter="{default: '20px', 768: '40px', 425: '0px'}"
-              ref="my-masonry">
-              <div class="photo-item"
-                v-for="(image, index) in photo.photos"
-                v-if="image.fields"
-                :key="'image-' + index"
-                @click="$store.commit('openLightbox', {
-                  path: 'http://' + image.fields.file.url.slice(2),
-                  index: index,
-                  photos: photo.photos
-                })"
-                :style="{background: `url(${ 'http://' + image.fields.file.url }) no-repeat center / cover`}" />
-            </masonry>
-          </div>
+          <u-animate
+            name="fadeInUpPlayer"
+            :delay="0.6 + (index - 0.7 * index) + 's'"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="true"
+          >
+            <div class="photo-date">{{ photo.date }}</div>
+            <div class="photo-title" v-html="photo.title"></div>
+            <div class="photo-list">
+              <masonry
+                :cols="{default: 4, 768: 2, 425: 1}"
+                :gutter="{default: '20px', 768: '40px', 425: '0px'}"
+                ref="my-masonry">
+                <div class="photo-item"
+                  v-for="(image, index) in photo.photos"
+                  v-if="image.fields"
+                  :key="'image-' + index"
+                  @click="$store.commit('openLightbox', {
+                    path: 'http://' + image.fields.file.url.slice(2),
+                    index: index,
+                    photos: photo.photos
+                  })"
+                  :style="{background: `url(${ 'http://' + image.fields.file.url }) no-repeat center / cover`}" />
+              </masonry>
+            </div>
+          </u-animate>
         </div>
       </div>
     </div>
     <u-animate
-      name="fadeInUp"
+      name="fadeInUpOther"
       delay="1s"
-      duration="0.8s"
+      duration="0.4s"
       :iteration="1"
       :offset="0"
       animateClass="animated"

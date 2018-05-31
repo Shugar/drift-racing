@@ -4,7 +4,7 @@
     <Checkout v-if="$store.state.isCheckoutOpen" />
     <div class="container" :class="{'isAnimating': isChanging}">
       <u-animate
-        name="fadeInUp"
+        name="fadeInUpTitle"
         delay="0s"
         duration="0.8s"
         :iteration="1"
@@ -39,7 +39,7 @@
       </u-animate>
 
       <u-animate
-        name="fadeInUp"
+        name="fadeInUpPlayer"
         delay="0.5s"
         duration="0.8s"
         :iteration="1"
@@ -87,9 +87,9 @@
       </u-animate>
     </div>
     <u-animate
-      name="fadeInUp"
+      name="fadeInUpOther"
       delay="1s"
-      duration="0.8s"
+      duration="0.4s"
       :iteration="1"
       :offset="0"
       animateClass="animated"

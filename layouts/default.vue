@@ -224,4 +224,21 @@
     animation-timing-function: ease-out;
   }
 
+  @keyframes fadeInUpOther {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 50px, 0);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .fadeInUpOther {
+    animation-name: fadeInUpOther;
+    animation-timing-function: ease-in-out;
+  }
+
 </style>
