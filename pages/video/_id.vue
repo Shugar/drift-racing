@@ -82,7 +82,7 @@
           <div class="previous-article">
             <div class="previous-title">{{ previous.length > 0 ? 'Previous videos' : '' }}</div>
             <nuxt-link class="previous" v-for="(item, index) in previous"  :to="'/video/' + findItemByTitle(item.title)" :key="index">
-              <div class="previous-image" :style="{background: `url(/calendar/event-2.png) no-repeat center / cover`}" />
+              <div class="previous-image" :style="{background: `url(http://${item.video.fields.file.url.slice(2)}) no-repeat center / cover`}" />
               <div class="previous-date">{{ item.date }}</div>
               <div class="previous-subtitle">{{ item.title }}</div>
             </nuxt-link>
