@@ -480,6 +480,7 @@
   }
 
   .slide {
+    min-height: 518px;
     padding-top: 70px;
     position: relative;
     z-index: 1;

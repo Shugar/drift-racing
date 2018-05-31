@@ -186,9 +186,11 @@
   }
 
   .logo i:last-child {
-    bottom: 33.8px;
+    opacity: 0;
+    bottom: 32.8px;
     height: 37.7px;
     transform: translate3d(0, 0, 0) skewX(15deg);
+    background: url('~/assets/images/logo-icon.svg') no-repeat center / contain;
     background-position-x: 53px;
     will-change: transform, background-position-x;
   }
@@ -205,11 +207,13 @@
 
   @keyframes logo {
     0% {
+      opacity: 1;
       transform: translate3d(-45px, 0, 0) skewX(15deg);
       background-position-x: 45px;
     }
 
     100% {
+      opacity: 1;
       transform: translate3d(45px, 0, 0) skewX(15deg);
       background-position-x: -45px;
     }
