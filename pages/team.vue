@@ -1,62 +1,12 @@
 <template>
   <div class="team">
     <Header />
-    <div class="arrow left" />
+    <div class="arrow left" @click="prevSlide()" />
     <div class="fade-left" />
     <div class="title">team</div>
 
     <div class="members-wrapper">
-      <div class="member">
-        <div class="member-photo"/>
-        <div class="descr">
-          <div class="name">Alexandr<br/>Dmitrenko</div>
-          <div class="position">race-driver</div>
-          <div class="birth">
-            <div class="descr-item">
-              Birth:
-              <div class='descr-value'>1992</div>
-            </div>
-            <div class="descr-item">
-              Location: 
-              <div class='descr-value'>Moscow</div>
-            </div>
-          </div>
-          <div class="descr-item">
-            Superpower
-            <div class='descr-value'>Ride slideaways by car</div>
-          </div>
-          <div class="descr-item">
-            Favorite car
-            <div class='descr-value'>BMW</div>
-          </div>
-        </div>
-      </div>
-      <div class="member">
-        <div class="member-photo"/>
-        <div class="descr">
-          <div class="name">Alexandr<br/>Dmitrenko</div>
-          <div class="position">race-driver</div>
-          <div class="birth">
-            <div class="descr-item">
-              Birth:
-              <div class='descr-value'>1992</div>
-            </div>
-            <div class="descr-item">
-              Location: 
-              <div class='descr-value'>Moscow</div>
-            </div>
-          </div>
-          <div class="descr-item">
-            Superpower
-            <div class='descr-value'>Ride slideaways by car</div>
-          </div>
-          <div class="descr-item">
-            Favorite car
-            <div class='descr-value'>BMW</div>
-          </div>
-        </div>
-      </div>
-      <div class="member">
+      <div v-for="(item, index) in testArray" :key="index" class="member">
         <div class="member-photo"/>
         <div class="descr">
           <div class="name">Alexandr<br/>Dmitrenko</div>
@@ -83,7 +33,7 @@
       </div>
     </div>
 
-    <div class="arrow right"></div>
+    <div class="arrow right"  @click="nextSlide()"/>
     <div class="fade-right" />
     <div class="footer-wrapper">
       <Footer />
@@ -94,6 +44,26 @@
 
 <script>
 export default {
+
+  data () {
+    return {
+      testArray: [1, 2, 3, 4],
+      count: 0
+    }
+  },
+
+  methods: {
+    nextSlide () {
+      console.log('@@@@@@@@@', this.count)
+      this.testArray.length > this.count ? this.count++ : this.count = 0
+    },
+
+
+    prevSlide () {
+      console.log('@@@@@@@@@', this.count)
+      return this.count > 0 ? this.count-- : this.count = 0
+    }
+  },
   components: {
     Header: () => import('@/components/Header'),
     Footer: () => import('@/components/Footer')
