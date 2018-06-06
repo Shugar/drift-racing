@@ -3,7 +3,7 @@
     <div class="left" :class="{ mainLeft: type === 'main' }">
       <div @click="toggleSharing()" class="share">
         <div v-if="isSharingActive" class="sharing">
-          <div class="sharing-title">Tell your friends in</div>
+          <div class="sharing-title">{{locale === 'en' ? 'Tell your friends in' : 'Расскажи о нас друзьям'}}</div>
           <div class="sharing-socials">
             <social-sharing :url="url"
               :title="meta.title"

@@ -6,14 +6,14 @@
         <div class="mobile-menu-content-wrapper">
           <div class="mobile-menu__title">MENU</div>
           <div class="list">
-            <nuxt-link to="/bio/" class="list-item">BIO</nuxt-link>
-            <nuxt-link to="/photo/" class="list-item">PHOTO</nuxt-link>
-            <nuxt-link to="/calendar/" class="list-item">CALENDAR</nuxt-link>
-            <nuxt-link to="/video/" class="list-item">VIDEO</nuxt-link>
-            <nuxt-link to="/news/" class="list-item">NEWS</nuxt-link>
-            <nuxt-link to="/store/" class="list-item">STORE</nuxt-link>
-            <nuxt-link to="/partners/" class="list-item">PARTNERS</nuxt-link>
-            <nuxt-link to="/contact/" class="list-item">CONTACT</nuxt-link>
+            <nuxt-link to="/bio/" class="list-item">{{ locale === 'en' ? 'BIO' : 'БИОГРАФИЯ' }}</nuxt-link>
+            <nuxt-link to="/photo/" class="list-item">{{ locale === 'en' ? 'PHOTO' : 'ФОТО'}}</nuxt-link>
+            <nuxt-link to="/calendar/" class="list-item">{{locale === 'en' ? 'CALENDAR' : "КАЛЕНДАРЬ"}}</nuxt-link>
+            <nuxt-link to="/video/" class="list-item">{{locale === 'en' ? 'VIDEO' : 'ВИДЕО'}}</nuxt-link>
+            <nuxt-link to="/news/" class="list-item">{{ locale === 'en' ? 'NEWS' : 'НОВОСТИ' }}</nuxt-link>
+            <nuxt-link to="/store/" class="list-item">{{ locale === 'en' ? 'STORE' : 'МАГАЗИН' }}</nuxt-link>
+            <nuxt-link to="/partners/" class="list-item">{{ locale === 'en' ? 'PARTNERS' : 'ПАРТНЕРЫ'}}</nuxt-link>
+            <nuxt-link to="/contact/" class="list-item">{{ locale === 'en' ? 'CONTACT' : 'КОНТАКТЫ'}}</nuxt-link>
           </div>
           <div class="language">
             <span :class="{'lang-active': locale === 'ru'}" @click="setRU()">RU</span> — <span :class="{'lang-active': locale === 'en'}" @click="setEN()">EN</span>
@@ -30,10 +30,10 @@
         </div>
       </nuxt-link>
       <div class="back-to news" v-if="this.$route.path === `/news/${this.$route.params.id}`">
-        <nuxt-link to='/news/'>BACK TO NEWS</nuxt-link>
+        <nuxt-link to='/news/'>{{locale === 'en' ? 'BACK TO NEWS' : 'НАЗАД К НОВОСТЯМ'}}</nuxt-link>
       </div>
       <div class="back-to" v-if="this.$route.path === `/calendar/${this.$route.params.id}`">
-        <nuxt-link to='/calendar/'>BACK TO CALENDAR</nuxt-link>
+        <nuxt-link to='/calendar/'>{{locale === 'en' ? 'BACK TO CALENDAR' : 'НАЗАД К КАЛЕНДАРЮ' }}</nuxt-link>
       </div>
       <div class="back-to" v-if="this.$route.path === `/video/${this.$route.params.id}`">
         <nuxt-link to='/video/'>BACK TO VIDEO</nuxt-link>
@@ -43,20 +43,20 @@
       <div class="menu-button" @click="openMenu()" />
 
       <div class="nav nav-left">
-        <nuxt-link class="nav-item" to="/bio/" :class="{'nuxt-link-active': count === 0}">BIO</nuxt-link>
-        <nuxt-link class="nav-item" to="/photo/" :class="{'nuxt-link-active': count === 1}">PHOTO</nuxt-link>
-        <nuxt-link class="nav-item" to="/video/" :class="{'nuxt-link-active': count === 2}">VIDEO</nuxt-link>
-        <nuxt-link class="nav-item" to="/calendar/" :class="{'nuxt-link-active': count === 3}">CALENDAR</nuxt-link>
+        <nuxt-link class="nav-item" to="/bio/" :class="{'nuxt-link-active': count === 0}">{{ locale === 'en' ? 'BIO' : 'БИОГРАФИЯ' }}</nuxt-link>
+        <nuxt-link class="nav-item" to="/photo/" :class="{'nuxt-link-active': count === 1}">{{ locale === 'en' ? 'PHOTO' : 'ФОТО'}}</nuxt-link>
+        <nuxt-link class="nav-item" to="/video/" :class="{'nuxt-link-active': count === 2}"> {{locale === 'en' ? 'VIDEO' : 'ВИДЕО'}} </nuxt-link>
+        <nuxt-link class="nav-item" to="/calendar/" :class="{'nuxt-link-active': count === 3}">{{locale === 'en' ? 'CALENDAR' : "КАЛЕНДАРЬ"}}</nuxt-link>
       </div>
     </div>
 
     <div class="right" :class="{ mainRight: type === 'main' }">
       <div class="nav nav-right">
-        <nuxt-link class="nav-item" to="/news/">NEWS</nuxt-link>
-        <nuxt-link class="nav-item" to="/store/">STORE</nuxt-link>
-        <nuxt-link class="nav-item" to="/partners/">PARTNERS</nuxt-link>
+        <nuxt-link class="nav-item" to="/news/">{{ locale === 'en' ? 'NEWS' : 'НОВОСТИ' }}</nuxt-link>
+        <nuxt-link class="nav-item" to="/store/">{{ locale === 'en' ? 'STORE' : 'МАГАЗИН' }}</nuxt-link>
+        <nuxt-link class="nav-item" to="/partners/">{{ locale === 'en' ? 'PARTNERS' : 'ПАРТНЕРЫ'}}</nuxt-link>
         <div class="nav-item--bigger">
-          <nuxt-link class="nav-item" to="/contact/">CONTACT</nuxt-link>
+          <nuxt-link class="nav-item" to="/contact/">{{ locale === 'en' ? 'CONTACT' : 'КОНТАКТЫ'}}</nuxt-link>
         </div>
       </div>
     </div>

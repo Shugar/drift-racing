@@ -11,7 +11,7 @@
         animateClass="animated"
         :begin="true"
       >
-        <div class="title">NEWS</div>
+        <div class="title">{{ locale === 'en' ? 'NEWS' : 'НОВОСТИ'}}</div>
       </u-animate>
       <u-animate
         name="fadeIn"
@@ -23,7 +23,7 @@
         :begin="true"
       >
         <div class="tags">
-          <div class="tags-title">TAGS</div>
+          <div class="tags-title">{{ locale === 'en' ? 'TAGS' : 'ТЕГИ'}}</div>
           <div class="tags-item">
             <div class="tag" v-for="(tag, index) in tags" :key="index" @click="filterByTag(tag.trim())">
               #{{tag}}
@@ -149,6 +149,10 @@
             tags: article.tags.replace(' ', '').split(',')
           }
         })
+      },
+
+      locale () {
+        return this.$store.state.locale
       }
     },
 

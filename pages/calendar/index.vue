@@ -12,7 +12,7 @@
           animateClass="animated"
           :begin="true"
           >
-          <div class="title">calendar</div>
+          <div class="title">{{locale === 'en' ? 'calendar' : 'календарь'}}</div>
         </u-animate>
         <u-animate
             name="fadeIn"
@@ -227,6 +227,10 @@
         })
 
         return right
+      },
+      
+      locale () {
+        return this.$store.state.locale
       }
     },
 

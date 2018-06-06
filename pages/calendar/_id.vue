@@ -14,7 +14,7 @@
         >
           <div class="tags">
             <div class="tags-item">
-              <div class="tag"><nuxt-link to="/calendar/">back to calendar</nuxt-link></div>
+              <div class="tag"><nuxt-link to="/calendar/">{{locale === 'en' ? 'back to calendar' : 'назад к календарю'}}</nuxt-link></div>
             </div>
           </div>
         </u-animate>
@@ -69,7 +69,7 @@
             animateClass="animated"
             :begin="true"
           >
-            <div class="previous-title"> PREVIOUS EVENT </div>
+            <div class="previous-title"> {{ locale === 'en' ? 'PREVIOUS EVENT' : 'ПРЕДЫДУЩИЕ МЕРОПРИЯТИЯ'}} </div>
           </u-animate>
           <nuxt-link  v-for="(item, index) in previous" :to="'/calendar/' + findItemByTitle(item.title)" :key="index" class="previous">
             <u-animate
@@ -178,6 +178,10 @@
         })
 
         return [ ...new Set(hashtags) ]
+      },
+
+      locale () {
+        return this.$store.state.locale
       }
     },
 

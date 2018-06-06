@@ -11,7 +11,7 @@
         animateClass="animated"
         :begin="true"
       >
-        <nuxt-link to="/news/" class="back">back to news</nuxt-link>
+        <nuxt-link to="/news/" class="back">{{ locale === 'en' ? 'back to news' : 'назад к новостям'}}</nuxt-link>
       </u-animate>
       <div class="left">
         <u-animate
@@ -84,7 +84,7 @@
               animateClass="animated"
               :begin="true"
             >
-              <div class="previous-title">Previous news</div>
+              <div class="previous-title">{{ locale === 'en' ? 'Previous news' : 'Предыдущие новости'}}</div>
             </u-animate>
             <u-animate
               name="fadeInUp"
@@ -197,6 +197,10 @@
             tags: article.tags.replace(' ', '').split(',')
           }
         })
+      },
+
+      locale () {
+        return this.$store.state.locale
       }
     },
 
