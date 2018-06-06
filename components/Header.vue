@@ -47,6 +47,7 @@
         <nuxt-link class="nav-item" to="/photo/" :class="{'nuxt-link-active': count === 1}">{{ locale === 'en' ? 'PHOTO' : 'ФОТО'}}</nuxt-link>
         <nuxt-link class="nav-item" to="/video/" :class="{'nuxt-link-active': count === 2}"> {{locale === 'en' ? 'VIDEO' : 'ВИДЕО'}} </nuxt-link>
         <nuxt-link class="nav-item" to="/calendar/" :class="{'nuxt-link-active': count === 3}">{{locale === 'en' ? 'CALENDAR' : "КАЛЕНДАРЬ"}}</nuxt-link>
+        <nuxt-link class="nav-item" to="/team/" :class="{'nuxt-link-active': count === 4}">{{locale === 'en' ? 'TEAM' : "КОМАНДА"}}</nuxt-link>
       </div>
     </div>
 
