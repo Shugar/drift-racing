@@ -1,7 +1,8 @@
 <template>
   <div class="team">
     <Header />
-    <div class="arrow left"></div>
+    <div class="arrow left" />
+    <div class="fade-left" />
     <div class="title">team</div>
 
     <div class="members-wrapper">
@@ -83,6 +84,7 @@
     </div>
 
     <div class="arrow right"></div>
+    <div class="fade-right" />
     <div class="footer-wrapper">
       <Footer />
     </div>
@@ -177,12 +179,33 @@ export default {
     width: 240px;
     height: 360px
   }
+
+  .fade-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 320px;
+    background: linear-gradient(90deg, #683FFF 0%, rgba(104, 63, 255, .8) 58.56%, rgba(104, 63, 255, 0) 100%)
+  }
+
+  .fade-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    background: linear-gradient(-90deg, #683FFF 0, rgba(104, 63, 255, 0) 100%)
+  }
+
   .arrow {
     position: absolute;
     cursor: pointer;
     background: url('~/static/team/arrow.svg') center center no-repeat / contain;
     height: 50px;
     width: 28px;
+
+    z-index: 2;
   }
 
     .left {
