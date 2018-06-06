@@ -9,6 +9,7 @@
             <nuxt-link to="/bio/" class="list-item">{{ locale === 'en' ? 'BIO' : 'БИОГРАФИЯ' }}</nuxt-link>
             <nuxt-link to="/photo/" class="list-item">{{ locale === 'en' ? 'PHOTO' : 'ФОТО'}}</nuxt-link>
             <nuxt-link to="/calendar/" class="list-item">{{locale === 'en' ? 'CALENDAR' : "КАЛЕНДАРЬ"}}</nuxt-link>
+            <nuxt-link to="/team/" class="list-item">{{locale === 'en' ? 'team' : "команда"}}</nuxt-link>
             <nuxt-link to="/video/" class="list-item">{{locale === 'en' ? 'VIDEO' : 'ВИДЕО'}}</nuxt-link>
             <nuxt-link to="/news/" class="list-item">{{ locale === 'en' ? 'NEWS' : 'НОВОСТИ' }}</nuxt-link>
             <nuxt-link to="/store/" class="list-item">{{ locale === 'en' ? 'STORE' : 'МАГАЗИН' }}</nuxt-link>

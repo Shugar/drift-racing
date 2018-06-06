@@ -4,31 +4,84 @@
     <div class="arrow left"></div>
     <div class="title">team</div>
 
-    <div class="member">
-      <div class="member-photo"/>
-      <div class="descr">
-        <div class="name">Alexandr<br/>Dmitrenko</div>
-        <div class="position">race-driver</div>
-        <div class="birth">
-          <div class="descr-item">
-            Birth:
-            <div class='descr-value'>1992</div>
+    <div class="members-wrapper">
+      <div class="member">
+        <div class="member-photo"/>
+        <div class="descr">
+          <div class="name">Alexandr<br/>Dmitrenko</div>
+          <div class="position">race-driver</div>
+          <div class="birth">
+            <div class="descr-item">
+              Birth:
+              <div class='descr-value'>1992</div>
+            </div>
+            <div class="descr-item">
+              Location: 
+              <div class='descr-value'>Moscow</div>
+            </div>
           </div>
           <div class="descr-item">
-            Location: 
-            <div class='descr-value'>Moscow</div>
+            Superpower
+            <div class='descr-value'>Ride slideaways by car</div>
+          </div>
+          <div class="descr-item">
+            Favorite car
+            <div class='descr-value'>BMW</div>
           </div>
         </div>
-        <div class="descr-item">
-          Superpower
-          <div class='descr-value'>Ride slideaways by car</div>
+      </div>
+      <div class="member">
+        <div class="member-photo"/>
+        <div class="descr">
+          <div class="name">Alexandr<br/>Dmitrenko</div>
+          <div class="position">race-driver</div>
+          <div class="birth">
+            <div class="descr-item">
+              Birth:
+              <div class='descr-value'>1992</div>
+            </div>
+            <div class="descr-item">
+              Location: 
+              <div class='descr-value'>Moscow</div>
+            </div>
+          </div>
+          <div class="descr-item">
+            Superpower
+            <div class='descr-value'>Ride slideaways by car</div>
+          </div>
+          <div class="descr-item">
+            Favorite car
+            <div class='descr-value'>BMW</div>
+          </div>
         </div>
-        <div class="descr-item">
-          Favorite car
-          <div class='descr-value'>BMW</div>
+      </div>
+      <div class="member">
+        <div class="member-photo"/>
+        <div class="descr">
+          <div class="name">Alexandr<br/>Dmitrenko</div>
+          <div class="position">race-driver</div>
+          <div class="birth">
+            <div class="descr-item">
+              Birth:
+              <div class='descr-value'>1992</div>
+            </div>
+            <div class="descr-item">
+              Location: 
+              <div class='descr-value'>Moscow</div>
+            </div>
+          </div>
+          <div class="descr-item">
+            Superpower
+            <div class='descr-value'>Ride slideaways by car</div>
+          </div>
+          <div class="descr-item">
+            Favorite car
+            <div class='descr-value'>BMW</div>
+          </div>
         </div>
       </div>
     </div>
+
     <div class="arrow right"></div>
     <div class="footer-wrapper">
       <Footer />
@@ -52,10 +105,15 @@ export default {
     font-family: 'DIN Condensed';
     position: relative;
     height: 100vh;
+    min-height: 700px;
     width: 100%;
     padding: 200px 0;
     padding-left: 320px;
     background: #683FFF;
+  }
+
+  .members-wrapper {
+    display: flex;
   }
 
 
@@ -69,6 +127,7 @@ export default {
 
   .member {
     display: flex;
+    margin-right: 80px;
   }
 
   .descr {
@@ -146,4 +205,44 @@ export default {
   }
 
 
+
+@media ( max-width: 768px) {
+
+  .team {
+    padding: 200px 100px;
+    height: 100%;
+  }
+
+  .arrow {
+    display: none;
+  }
+  
+  .member {
+    display: block;
+    margin: 0;
+
+
+    &-photo {
+      margin-bottom: 40px;
+    }
+    &:nth-child(odd) {
+      margin-right: 60px;
+    }
+  }
+
+  .descr {
+    margin: 0;
+    margin-bottom: 80px;
+  }
+
+  .members-wrapper {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 375px) {
+  .team {
+    padding: 180px 50px;
+  }
+}
 </style>
