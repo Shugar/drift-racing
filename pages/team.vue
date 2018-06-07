@@ -41,12 +41,10 @@
             </div>
           </div>
         </div>
+
       </div>
 
-      <div class="count">
-        
-      </div>
-
+      <div class="counter"> {{ count + 1 + '/' + team.length }}</div>
       <div class="arrow right"  @click="nextSlide()"/>
       <div class="fade-right" />
     </div>
@@ -128,6 +126,14 @@ export default {
     padding-left: 240px;
   }
 
+  .counter {
+    font-family: 'DIN Pro Medium';
+    position: absolute;
+    bottom: 0;
+    // left: 0;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.6);
+  }
   .members-wrapper {
     margin-bottom: 40px;
     position: relative;
