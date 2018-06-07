@@ -218,7 +218,7 @@
 <style lang="scss" scoped>
   .store {
     background: #683FFF;
-    padding: 200px 0 40px;
+    padding: 200px 0 80px;
     height: 100%;
 
     min-height: 100vh;

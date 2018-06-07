@@ -107,9 +107,9 @@
       animateClass="animated"
       :begin="true"
     >
-      <div class="footer-wrapper">
+      <!-- <div class="footer-wrapper"> -->
         <Footer />
-      </div>
+      <!-- </div> -->
     </u-animate>
   </div>
 </template>
@@ -416,7 +416,7 @@ export default {
 
 @media (max-width: 425px) {
   .team {
-    padding: 180px 0;
+    padding: 180px 0 80px;
   }
 
   .wrapper {
