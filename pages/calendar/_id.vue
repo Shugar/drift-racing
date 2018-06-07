@@ -406,7 +406,12 @@
   }
 
   .previous {
+    display: block;
     margin-bottom: 40px;
+
+    &:hover .previous-subtitle {
+      box-shadow:  0 -4px 0 0 #FFF inset;
+    }
   }
 
   .previous-image {
@@ -428,7 +433,6 @@
   }
 
   .previous-subtitle {
-    margin-bottom: 5px;
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -436,6 +440,11 @@
     font-size: 36px;
     text-transform: uppercase;
     color: #FFFFFF;
+
+    display: inline;
+    box-shadow: 0 0px 0 0 transparent inset;
+    transition: box-shadow .1s ease-in;
+    will-change: box-shadow;
   }
 
   .previous-preview {

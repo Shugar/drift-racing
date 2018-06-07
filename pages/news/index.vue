@@ -269,6 +269,10 @@
     a {
       text-decoration: none;
     }
+
+    &:hover .article-title {
+      box-shadow:  0 -4px 0 0 #FFF inset;
+    }
   }
 
   .article-date {
@@ -282,13 +286,13 @@
   }
 
   .article-image {
+    margin-top: 10px;
     width: 100%;
     height: 180px;
     margin-bottom: 20px;
   }
 
   .article-title {
-    margin-bottom: 10px;
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -296,6 +300,11 @@
     font-size: 36px;
     text-transform: uppercase;
     color: #FFFFFF;
+
+    display: inline;
+    box-shadow: 0 0px 0 0 transparent inset;
+    transition: box-shadow .1s ease-in;
+    will-change: box-shadow;
   }
 
   .article-preview {

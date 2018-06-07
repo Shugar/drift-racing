@@ -326,6 +326,15 @@
     .title {
       padding: 0;
       margin-bottom: 10px;
+
+      display: inline;
+      box-shadow: 0 0px 0 0 transparent inset;
+      transition: box-shadow .1s ease-in;
+      will-change: box-shadow;
+    }
+
+    &:hover .title {
+      box-shadow:  0 -6px 0 0 #FFF inset;
     }
   }
 
@@ -440,6 +449,11 @@
 
   .previous {
     margin-bottom: 40px;
+    display: block;
+
+    &:hover .previous-subtitle {
+      box-shadow:  0 -4px 0 0 #FFF inset;
+    }
   }
 
   .previous-image {
@@ -460,7 +474,6 @@
   }
 
   .previous-subtitle {
-    margin-bottom: 5px;
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -468,9 +481,15 @@
     font-size: 36px;
     text-transform: uppercase;
     color: #FFFFFF;
+
+    display: inline;
+    box-shadow: 0 0px 0 0 transparent inset;
+    transition: box-shadow .1s ease-in;
+    will-change: box-shadow;
   }
 
   .previous-preview {
+    margin-top: 10px;
     margin-bottom: 20px;
     font-family: 'DIN Pro Medium', sans-serif;
     font-style: normal;

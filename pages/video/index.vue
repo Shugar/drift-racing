@@ -259,6 +259,10 @@
     a {
       text-decoration: none;
     }
+
+    &:hover .video-title {
+      box-shadow:  0 -4px 0 0 #FFF inset;
+    }
   }
 
   .video-date {
@@ -321,6 +325,11 @@
     font-size: 36px;
     text-transform: uppercase;
     color: #FFFFFF;
+
+    display: inline;
+    box-shadow: 0 0px 0 0 transparent inset;
+    transition: box-shadow .1s ease-in;
+    will-change: box-shadow;
   }
 
   @media (max-width: 1024px) {
