@@ -458,6 +458,7 @@
     .header {
       position: absolute;
       padding: 0 30px;
+      overflow: initial;
     }
 
     .checkout {

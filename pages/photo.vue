@@ -162,6 +162,10 @@
 
       countryTags () {
         return [ ...new Set(this.fetchedPhotos.map(photo => photo.country )) ]
+      },
+
+      locale () {
+        return this.$store.state.locale
       }
     },
 
