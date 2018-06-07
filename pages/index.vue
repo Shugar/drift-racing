@@ -488,9 +488,8 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: flex-end;
-
     &:hover ~ .left-background {
-      transform: scale(1.15);
+      transform: scale(1.04);
     }
   }
 

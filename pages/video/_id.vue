@@ -15,7 +15,7 @@
         >
           <div class="tags">
             <div class="tags-item">
-              <div class="tag"><nuxt-link to="/video/" >back to videos</nuxt-link></div>
+              <!-- <div class="tag"><nuxt-link to="/video/" >back to videos</nuxt-link></div> -->
             </div>
           </div>
         </u-animate>
@@ -198,6 +198,7 @@
 
 <style lang="scss" scoped>
   .calendar {
+    height: 100vh;
     background: #683FFF;
     padding: 200px 0 80px;
   }
@@ -459,6 +460,10 @@
   @media (max-width: 1024px) {
     .video-wrapper {
       height: 270px;
+    }
+
+    .tag {
+      display: none;
     }
   }
 
