@@ -275,6 +275,8 @@ export default {
   
   .member {
     display: block;
+    position: initial;
+    // left: initial;
     margin: 0;
 
 
@@ -293,6 +295,11 @@ export default {
 
   .members-wrapper {
     flex-wrap: wrap;
+  }
+
+  .fade-left,
+  .fade-right {
+    display: none;
   }
 }
 
