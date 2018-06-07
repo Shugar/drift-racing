@@ -1,49 +1,55 @@
 <template>
   <div class="team">
     <Header />
-    <div class="arrow left" @click="prevSlide()" />
-    <div class="fade-left" />
-    <div class="title">team</div>
+    <div class="wrapper">
+      <div class="arrow left" @click="prevSlide()" />
+      <div class="fade-left" />
+      <div class="title">team</div>
 
-    <div class="members-wrapper">
-      <div
-          v-for="(item, index) in testArray"
-          :style="{left: count === 0 ? index*550 + 'px' : index*550 - count*550 + 'px'}"
-          :key="index"
-          class="member">
-        <div class="member-photo">
-          <div class="socials">
-            <a href="https://www.instagram.com/alexd_prodrift/ " class="socials-instagram"></a>
-            <a href="https://vk.com/alexd_prodrift " class="socials-facebook"></a>
-          </div>
-        </div>
-        <div class="descr">
-          <div class="name">Alexandr<br/>Dmitrenko</div>
-          <div class="position">race-driver {{ '-' +index }}</div>
-          <div class="birth">
-            <div class="descr-item">
-              Birth:
-              <div class='descr-value'>1992</div>
-            </div>
-            <div class="descr-item">
-              Location: 
-              <div class='descr-value'>Moscow</div>
+      <div class="members-wrapper">
+        <div
+            v-for="(item, index) in team"
+            :style="{left: count === 0 ? index*550 + 'px' : index*550 - count*550 + 'px'}"
+            :key="index"
+            class="member">
+          <div class="member-photo" :style="{background: 'url(http://' + item.image.fields.file.url.slice(2) + ') no-repeat center / cover'}">
+            <div class="socials">
+              <a :href="item.instagram" class="socials-instagram"></a>
+              <a :href="item.facebook" class="socials-facebook"></a>
             </div>
           </div>
-          <div class="descr-item">
-            Superpower
-            <div class='descr-value'>Ride slideaways by car</div>
-          </div>
-          <div class="descr-item">
-            Favorite car
-            <div class='descr-value'>BMW</div>
+          <div class="descr">
+            <div class="name">{{ item.name }}</div>
+            <div class="position">{{ item.position }}</div>
+            <div class="birth">
+              <div class="descr-item">
+                Birth:
+                <div class='descr-value'>{{ item.birth }}</div>
+              </div>
+              <div class="descr-item">
+                Location:
+                <div class='descr-value'>{{ item.location }}</div>
+              </div>
+            </div>
+            <div class="descr-item">
+              Superpower
+              <div class='descr-value'>{{ item.superpower }}</div>
+            </div>
+            <div class="descr-item">
+              Favorite car
+              <div class='descr-value'>{{ item.favorite }}</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="arrow right"  @click="nextSlide()"/>
-    <div class="fade-right" />
+      <div class="count">
+        
+      </div>
+
+      <div class="arrow right"  @click="nextSlide()"/>
+      <div class="fade-right" />
+    </div>
     <div class="footer-wrapper">
       <Footer />
     </div>
@@ -53,24 +59,47 @@
 
 <script>
 export default {
+  head () {
+    return {
+      title: this.meta.title,
+      meta: [
+        { name: 'description', content: this.meta.description },
+        { name: 'keywords', content: this.meta.keywords },
+        { hid: 'og:type', property: 'og:type', content: 'article'},
+        { hid: 'og:url', property: 'og:url', content: this.meta.facebook_url },
+        { hid: 'og:image', property: 'og:image', content: this.meta.facebook_image },
+        { hid: 'og:title', property: 'og:title', content: this.meta.facebook_title },
+        { hid: 'og:description', property: 'og:description', content: this.meta.facebook_description },
+      ]
+    }
+  },
 
   data () {
     return {
-      testArray: [1, 2, 3, 4],
       count: 0
     }
   },
 
   methods: {
     nextSlide () {
-      this.testArray.length - 1 > this.count ? this.count++ : this.count = 0
+      this.team.length - 1 > this.count ? this.count++ : this.count = 0
     },
-
 
     prevSlide () {
       return this.count > 0 ? this.count-- : this.count = 0
     }
   },
+
+  computed: {
+    meta () {
+      return this.$store.state.meta[this.$store.state.locale][this.$route.name]
+    },
+
+    team () {
+      return this.$store.state.entities.team
+    }
+  },
+
   components: {
     Header: () => import('@/components/Header'),
     Footer: () => import('@/components/Footer')
@@ -82,20 +111,24 @@ export default {
 <style lang="scss" scoped>
   .team {
     font-family: 'DIN Condensed';
-    position: relative;
-    height: 100vh;
-    min-height: 700px;
+    min-height: 100vh;
     width: 100%;
-    padding: 200px 0;
-    padding-left: 320px;
     background: #683FFF;
+    padding: 200px 0 80px;
+  }
+
+  .wrapper {
+    min-height: 500px;
+    padding: 0 80px;
+    position: relative;
+    padding-left: 240px;
   }
 
   .members-wrapper {
+    margin-bottom: 40px;
     position: relative;
     display: flex;
   }
-
 
   .title {
     font-size: 48px;
@@ -207,9 +240,6 @@ export default {
     }
 
   .footer-wrapper {
-    position: absolute;
-    bottom: 80px;
-    left: 0;
     width: 100%;
   }
  
@@ -261,16 +291,19 @@ export default {
 
 
 @media ( max-width: 768px) {
+  .wrapper {
+    padding: 0 100px;
+  }
 
   .team {
-    padding: 200px 100px;
+    padding: 200px 0px;
     height: 100%;
   }
 
   .arrow {
     display: none;
   }
-  
+
   .member {
     display: block;
     position: initial;
@@ -301,9 +334,13 @@ export default {
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 425px) {
   .team {
-    padding: 180px 50px;
+    padding: 180px 0;
+  }
+
+  .wrapper {
+    padding: 0 40px;
   }
 }
 </style>
