@@ -303,7 +303,7 @@ export default {
 @media ( max-width: 1024px) {
 
   .wrapper {
-    padding: 0 80px;
+    padding: 0 100px;
   }
 
   .team {
@@ -343,6 +343,10 @@ export default {
   .fade-right {
     display: none;
   }
+
+  .counter {
+    display: none;
+  }
 }
 
 @media (max-width: 425px) {
@@ -351,7 +355,7 @@ export default {
   }
 
   .wrapper {
-    padding: 0 40px;
+    padding: 0 30px;
   }
 }
 </style>
