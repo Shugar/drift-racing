@@ -6,11 +6,15 @@
     <div class="title">team</div>
 
     <div class="members-wrapper">
-      <div v-for="(item, index) in testArray" :key="index" class="member">
+      <div
+          v-for="(item, index) in testArray"
+          :style="{left: count === 0 ? index*550 + 'px' : index*550 - count*550 + 'px'}"
+          :key="index"
+          class="member">
         <div class="member-photo"/>
         <div class="descr">
           <div class="name">Alexandr<br/>Dmitrenko</div>
-          <div class="position">race-driver</div>
+          <div class="position">race-driver {{ index + '|| ' + count}}</div>
           <div class="birth">
             <div class="descr-item">
               Birth:
@@ -55,7 +59,7 @@ export default {
   methods: {
     nextSlide () {
       console.log('@@@@@@@@@', this.count)
-      this.testArray.length > this.count ? this.count++ : this.count = 0
+      this.testArray.length - 1 > this.count ? this.count++ : this.count = 0
     },
 
 
@@ -85,6 +89,7 @@ export default {
   }
 
   .members-wrapper {
+    position: relative;
     display: flex;
   }
 
@@ -98,8 +103,11 @@ export default {
 
 
   .member {
+    position: absolute;
     display: flex;
     margin-right: 80px;
+
+    transition: left .5s ease;
   }
 
   .descr {
