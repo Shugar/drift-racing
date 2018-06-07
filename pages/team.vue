@@ -143,7 +143,7 @@ export default {
     display: flex;
     margin-right: 80px;
 
-    transition: left .5s ease;
+    transition: left .2s ease;
   }
 
   .descr {
@@ -290,9 +290,10 @@ export default {
 
 
 
-@media ( max-width: 768px) {
+@media ( max-width: 1024px) {
+
   .wrapper {
-    padding: 0 100px;
+    padding: 0 80px;
   }
 
   .team {
