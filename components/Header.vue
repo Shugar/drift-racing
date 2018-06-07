@@ -451,6 +451,10 @@
   }
 
   @media (max-width: 425px) {
+    .back-to {
+      display: none;
+    }
+
     .header {
       position: absolute;
       padding: 0 30px;

@@ -56,7 +56,7 @@
               </transition>
             </div>
             <div class="button-wrapper">
-              <transition name="button-top-animation" appear>
+              <transition :name="'button-' + direction + '-animation'" appear>
                 <nuxt-link class="button" :to="dummyLeftSlider[count].link"
                   v-if="count === index"
                   v-for="(slide, index) in dummyLeftSlider"
@@ -161,28 +161,28 @@
             title: ['Drift', 'Is my', 'Therapy'],
             subtitle: 'Alexander Dmitrenko, pilot of<br> the Russian Drift Series',
             button: 'Learn more',
-            link: '/photo/',
+            link: '/bio/',
             category: 'photos'
           },
           {
             title: ['Latest', 'Photos'],
             subtitle: 'Photos from our<br> recent events',
             button: 'Discover',
-            link: '/video/',
+            link: '/photo/',
             category: 'videos'
           },
           {
             title: ['New', 'videos'],
             subtitle: 'Newest videos right<br> from the race track',
             button: 'Discover',
-            link: '/calendar/',
+            link: '/video/',
             category: 'calendar'
           },
           {
             title: ['upcoming', 'events'],
             subtitle: 'Upcoming events<br> with Alex D',
             button: 'Discover',
-            link: '/bio/',
+            link: '/calendar/',
             category: 'bio'
           }
         ]
@@ -593,6 +593,21 @@
     transition-delay: .1s;
   }
 
+  .button-bottom-animation-enter-active, .button-bottom-animation-leave-active {
+    transition: transform .5s;
+    transition-delay: .1s;
+  }
+
+  .button-bottom-animation-leave-to {
+    transform: translateY(120%);
+    transition-delay: .1s;
+  }
+
+  .button-bottom-animation-enter {
+    transform: translateY(-120%);
+    transition-delay: .1s;
+  }
+
 
   .category-top-animation-enter-active, .category-top-animation-leave-active {
     transition: transform .5s ease-in;
@@ -632,9 +647,9 @@
     position: relative;
     width: 100%;
     display: block;
-    min-height: 80px;
+    min-height: 90px;
     overflow: hidden;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 
     font-family: 'Ailerons', sans-serif;
     color: #FFF;
@@ -645,7 +660,7 @@
 
   .title-absolute {
     position: absolute;
-    overflow: hidden;
+    // overflow: hidden;
     top: -33px;
     left: 0;
   }

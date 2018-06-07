@@ -15,8 +15,8 @@
           <div class="title">{{locale === 'en' ? 'calendar' : 'календарь'}}</div>
         </u-animate>
         <u-animate
-            name="fadeIn"
-            delay="0s"
+            name="fadeInUpOther"
+            delay="0.5s"
             duration="0.8s"
             :iteration="1"
             :offset="0"
@@ -110,17 +110,27 @@
 
       <div class="container container-mobile">
         <div :class="{'previous': article.column === 'right', 'article': article.column === 'left'}" v-for="(article, index) in calendar" :key="index">
-          <nuxt-link class="hui" :to="'/calendar/' + findItemByTitle(article.title)">
-            <div class="previous-image"
-              :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
-            <div :class="{'previous-date': article.column === 'right', 'date': article.column === 'left'}">
-              {{ article.date }}
-            </div>
-            <div :class="{'previous-subtitle': article.column === 'right', 'title': article.column === 'left'}">
-              {{ article.title }}
-            </div>
-            <div class="text" v-if="article.column === 'left'">{{ article.preview }}</div>
-          </nuxt-link>
+          <u-animate
+            name="fadeInUpPlayer"
+            :delay="1.6 + (index - 0.5) + 's'"
+            duration="0.8s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="true"
+          >
+            <nuxt-link class="hui" :to="'/calendar/' + findItemByTitle(article.title)">
+              <div class="previous-image"
+                :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
+              <div :class="{'previous-date': article.column === 'right', 'date': article.column === 'left'}">
+                {{ article.date }}
+              </div>
+              <div :class="{'previous-subtitle': article.column === 'right', 'title': article.column === 'left'}">
+                {{ article.title }}
+              </div>
+              <div class="text" v-if="article.column === 'left'">{{ article.preview }}</div>
+            </nuxt-link>
+          </u-animate>
         </div>
       </div>
     </div>

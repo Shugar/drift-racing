@@ -505,7 +505,7 @@
     }
 
     .back {
-      display: none;
+      display: block;
       position: initial;
       margin-bottom: 20px;
     }
@@ -528,6 +528,16 @@
       line-height: 28px;
       font-size: 18px;
       color: #FFFFFF;
+    }
+
+    .title-wrapper {
+      .tags {
+        display: flex;
+      }
+
+      .tag {
+        display: block;
+      }
     }
 
     .tags {

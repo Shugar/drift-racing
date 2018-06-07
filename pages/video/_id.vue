@@ -15,7 +15,7 @@
         >
           <div class="tags">
             <div class="tags-item">
-              <!-- <div class="tag"><nuxt-link to="/video/" >back to videos</nuxt-link></div> -->
+              <div class="tag"><nuxt-link to="/video/" >back to videos</nuxt-link></div>
             </div>
           </div>
         </u-animate>
@@ -198,7 +198,7 @@
 
 <style lang="scss" scoped>
   .calendar {
-    height: 100vh;
+    min-height: 100vh;
     background: #683FFF;
     padding: 200px 0 80px;
   }
@@ -480,16 +480,12 @@
       display: block;
     }
 
-    .tags {
-      display: none;
-    }
-
     .title-wrapper {
       justify-content: space-between;
       margin-bottom: 0px;
 
       .tags {
-        display: flex;
+        display: none;
         flex-flow: row nowrap;
         align-items: flex-start;
         position: relative;
@@ -558,7 +554,7 @@
     .title-wrapper {
       padding: 0 30px;
       flex-flow: column nowrap;
-      
+
       .tags {
         display: flex;
         flex-flow: row nowrap;
@@ -571,6 +567,10 @@
             margin-right: 30px;
           }
         }
+      }
+
+      .tag {
+        display: block;
       }
     }
 
@@ -598,10 +598,6 @@
       line-height: 28px;
       font-size: 18px;
       color: #FFFFFF;
-    }
-
-    .tags {
-      display: none;
     }
 
     .date {

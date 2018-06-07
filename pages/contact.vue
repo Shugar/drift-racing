@@ -501,7 +501,7 @@
   .footer-wrapper {
     width: 100%;
     position: absolute;
-    z-index: 5;
+    z-index: 10;
     bottom: 60px;
   }
 

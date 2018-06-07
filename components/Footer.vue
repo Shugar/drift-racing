@@ -2,7 +2,7 @@
   <div class="footer" :class="{ 'isHome': $route.path === '/'}">
     <div class="left" :class="{ mainLeft: type === 'main' }">
       <div @click="toggleSharing()" class="share">
-        <div v-if="isSharingActive" class="sharing">
+        <div v-if="isSharingActive" class="sharing" :class="{'sharing-purple': $route.path === '/'}">
           <div class="sharing-title">{{locale === 'en' ? 'Tell your friends in' : 'Расскажи о нас друзьям'}}</div>
           <div class="sharing-socials">
             <social-sharing :url="url"
@@ -133,10 +133,14 @@ export default {
     padding: 10px;
     padding-bottom: 5px;
 
-    background: #683FFF;
+    background: #000000;
     color: #E0E0E0;
     text-transform: uppercase;
     transition: opacity .5s ease;
+
+    &.sharing-purple {
+      background: #683FFF;
+    }
 
     &-socials {
       color: #fff;

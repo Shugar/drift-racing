@@ -107,13 +107,13 @@
     left: 50%;
     bottom: 80px;
     transform: translateX(-50%);
-    font-family: 'DIN Condensed', sans-serif;
+    font-family: 'DIN Pro', sans-serif;
     font-style: normal;
-    font-weight: bold;
-    line-height: 60px;
-    font-size: 48px;
+    font-weight: 500;
+    line-height: 32px;
+    font-size: 24px;
     text-transform: uppercase;
-    color: #FFFFFF;
+    color: rgba(255, 255, 255, 0.6);
   }
 
   @media (max-width: 812px) {
@@ -123,21 +123,32 @@
     }
 
     .index {
-      bottom: 25px;
+      bottom: 84px;
     }
 
     .prev {
       left: 50px;
       top: initial;
-      bottom: 36px;
+      bottom: 76px;
       transform: none;
     }
 
     .next {
       right: 50px;
-      bottom: 36px;
+      bottom: 76px;
       top: initial;
       transform: none;
+    }
+  }
+
+  @media (max-width: 425px) {
+    .index {
+      bottom: 54px;
+    }
+
+    .prev,
+    .next {
+      bottom: 42px;
     }
   }
 </style>

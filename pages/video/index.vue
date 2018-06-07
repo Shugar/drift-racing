@@ -328,6 +328,7 @@
       flex-flow: row wrap;
     }
   }
+
   @media (max-width: 768px) {
     .videos {
       display: block
