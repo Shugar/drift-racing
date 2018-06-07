@@ -2,6 +2,14 @@
   <section class="store">
     <Header :productCount="productCount" :productSum="productSum"/>
     <Checkout v-if="$store.state.isCheckoutOpen" />
+
+    <transition name="fade">
+      <div class="hint" v-if="isHintVisible">
+        <div class="hint-icon" />
+        <span>"{{ $store.state.last }}"</span> has been added to the cart.
+      </div>
+    </transition>
+
     <div class="container" :class="{'isAnimating': isChanging}">
       <u-animate
         name="fadeInUpTitle"
@@ -106,6 +114,7 @@
       return {
         filteredGoods: [],
         isChanging: false,
+        isHintVisible: false
       }
     },
 
@@ -179,6 +188,14 @@
 
     mounted () {
       this.isChanging = false
+
+      if (this.$store.state.last !== '') {
+        this.isHintVisible = true
+
+        setTimeout(() => {
+          this.isHintVisible = false
+        }, 4000)
+      }
     },
 
     beforeRouteLeave(to, from, next) {
@@ -344,6 +361,29 @@
     color: #FFFFFF;
   }
 
+  .hint {
+    position: fixed;
+    left: 100px;
+    bottom: 100px;
+    max-width: 324px;
+    width: 100%;
+    padding: 30px;
+    background: #000000;
+    font-weight: 500;
+    line-height: 25px;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    z-index: 10;
+  }
+
+  .hint-icon {
+    background: url('~/assets/images/info.svg') no-repeat center / contain;
+    height: 20px;
+    width: 20px;
+    margin-bottom: 10px;
+  }
+
   @media (max-width: 1024px) {
 
     .container {
@@ -396,11 +436,18 @@
   }
 
   @media (max-width: 425px) {
+    .hint {
+      left: 0;
+      bottom: -1px;
+      width: 100%;
+      max-width: initial;
+    }
 
     .store {
-       height: auto;
-       min-height: auto;
+      height: auto;
+      min-height: auto;
     }
+
     .container {
       padding: 0 30px;
       display: block;
@@ -420,8 +467,6 @@
       margin-bottom: 50px;
       margin-left: 0;
     }
-
-    
 
     .tags-item {
       margin-left: 0;

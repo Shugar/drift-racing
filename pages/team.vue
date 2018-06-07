@@ -2,55 +2,115 @@
   <div class="team">
     <Header />
     <div class="wrapper">
-      <div class="arrow left" @click="prevSlide()" />
+      <u-animate
+        name="fadeIn"
+        delay="0.4s"
+        duration="0.4s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="true"
+      >
+        <div class="arrow left" @click="prevSlide()" />
+      </u-animate>
       <div class="fade-left" />
-      <div class="title">team</div>
+      <u-animate
+        name="fadeInUpTitle"
+        delay="0s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="true"
+      >
+        <div class="title">team</div>
+      </u-animate>
+      <u-animate
+        name="fadeInUpPlayer"
+        delay="0.4s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="true"
+      >
+        <div class="members-wrapper">
+          <div
+              v-for="(item, index) in team"
+              :style="{left: count === 0 ? index*550 + 'px' : index*550 - count*550 + 'px'}"
+              :key="index"
+              class="member">
+            <div class="member-photo" :style="{background: 'url(http://' + item.image.fields.file.url.slice(2) + ') no-repeat center / cover'}">
+              <div class="socials">
+                <a :href="item.instagram" class="socials-instagram"></a>
+                <a :href="item.facebook" class="socials-facebook"></a>
+              </div>
+            </div>
+            <div class="descr">
+              <div class="name">{{ item.name }}</div>
+              <div class="position">{{ item.position }}</div>
+              <div class="birth">
+                <div class="descr-item">
+                  Birth:
+                  <div class='descr-value'>{{ item.birth }}</div>
+                </div>
+                <div class="descr-item">
+                  Location:
+                  <div class='descr-value'>{{ item.location }}</div>
+                </div>
+              </div>
+              <div class="descr-item">
+                Superpower
+                <div class='descr-value'>{{ item.superpower }}</div>
+              </div>
+              <div class="descr-item">
+                Favorite car
+                <div class='descr-value'>{{ item.favorite }}</div>
+              </div>
+            </div>
+          </div>
 
-      <div class="members-wrapper">
-        <div
-            v-for="(item, index) in team"
-            :style="{left: count === 0 ? index*550 + 'px' : index*550 - count*550 + 'px'}"
-            :key="index"
-            class="member">
-          <div class="member-photo" :style="{background: 'url(http://' + item.image.fields.file.url.slice(2) + ') no-repeat center / cover'}">
-            <div class="socials">
-              <a :href="item.instagram" class="socials-instagram"></a>
-              <a :href="item.facebook" class="socials-facebook"></a>
-            </div>
-          </div>
-          <div class="descr">
-            <div class="name">{{ item.name }}</div>
-            <div class="position">{{ item.position }}</div>
-            <div class="birth">
-              <div class="descr-item">
-                Birth:
-                <div class='descr-value'>{{ item.birth }}</div>
-              </div>
-              <div class="descr-item">
-                Location:
-                <div class='descr-value'>{{ item.location }}</div>
-              </div>
-            </div>
-            <div class="descr-item">
-              Superpower
-              <div class='descr-value'>{{ item.superpower }}</div>
-            </div>
-            <div class="descr-item">
-              Favorite car
-              <div class='descr-value'>{{ item.favorite }}</div>
-            </div>
-          </div>
         </div>
-
-      </div>
-
-      <div class="counter"> {{ count + 1 + '/' + team.length }}</div>
-      <div class="arrow right"  @click="nextSlide()"/>
+      </u-animate>
+        <div class="counter">
+          <u-animate
+            name="fadeInUpOther"
+            delay="0.8s"
+            duration="0.4s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="true"
+          >
+            {{ count + 1 + '/' + team.length }}
+          </u-animate>
+        </div>
+        <u-animate
+          name="fadeIn"
+          delay="0.4s"
+          duration="0.4s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="true"
+        >
+          <div class="arrow right"  @click="nextSlide()"/>
+        </u-animate>
       <div class="fade-right" />
     </div>
-    <div class="footer-wrapper">
-      <Footer />
-    </div>
+    <u-animate
+      name="fadeInUpOther"
+      delay="1s"
+      duration="0.4s"
+      :iteration="1"
+      :offset="0"
+      animateClass="animated"
+      :begin="true"
+    >
+      <div class="footer-wrapper">
+        <Footer />
+      </div>
+    </u-animate>
   </div>
 </template>
 
@@ -120,10 +180,11 @@ export default {
   }
 
   .wrapper {
+    margin-bottom: 80px;
     min-height: 500px;
     padding: 0 80px;
     position: relative;
-    padding-left: 240px;
+    padding-left: 320px;
   }
 
   .counter {
