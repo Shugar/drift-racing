@@ -937,7 +937,7 @@
     }
     .title-inner {
       font-size: 100px;
-      margin-bottom: 30px;
+      margin-bottom: 5px;
     }
 
     .next {
