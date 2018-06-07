@@ -11,7 +11,12 @@
           :style="{left: count === 0 ? index*550 + 'px' : index*550 - count*550 + 'px'}"
           :key="index"
           class="member">
-        <div class="member-photo"/>
+        <div class="member-photo">
+          <div class="socials">
+            <a href="https://www.instagram.com/alexd_prodrift/ " class="socials-instagram"></a>
+            <a href="https://vk.com/alexd_prodrift " class="socials-facebook"></a>
+          </div>
+        </div>
         <div class="descr">
           <div class="name">Alexandr<br/>Dmitrenko</div>
           <div class="position">race-driver {{ index + '|| ' + count}}</div>
@@ -155,7 +160,11 @@ export default {
   .member-photo {
     background: url("~/static/team/team-member.jpeg") center center no-repeat / cover;
     width: 240px;
-    height: 360px
+    height: 360px;
+    padding: 30px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
   }
 
   .fade-left {
@@ -205,6 +214,51 @@ export default {
     left: 0;
     width: 100%;
   }
+ 
+ ////////////// SOCIALS /////////////////////////
+ .socials {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  .socials-facebook:before,
+  .socials-instagram:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    z-index: -1;
+
+    transition: background-color .3s ease;
+    will-change: background-color;
+  }
+
+  .socials-facebook:hover:before,
+  .socials-instagram:hover:before {
+    background-color: #000;
+  }
+
+  .socials-instagram {
+    background: url('~/assets/images/inst.svg') no-repeat center / contain;
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+    position: relative;
+  }
+
+  .socials-facebook {
+    background: url('~/assets/images/facebook.svg') no-repeat center / contain;
+    width: 20px;
+    height: 20px;
+    position: relative;
+  }
+
+
+
 
 
 
