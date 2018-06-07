@@ -1,6 +1,6 @@
 <template>
   <section class="calendar" :class="{phone: isMobileInfoVisible}">
-    <div class="background" :style="{ background: 'url(http://' + store.full.fields.file.url.slice(2) + ') no-repeat center / cover'}"></div>
+    <div class="background" :class="{active: isBackgroundAnimation}" :style="{ background: 'url(http://' + store.full.fields.file.url.slice(2) + ') no-repeat center / cover'}"></div>
     <div class="container" >
       <nuxt-link to="/store/">
         <div class="cross" />
@@ -8,7 +8,7 @@
     <div class="product" :class="{'product-mobile': isMobileInfoVisible}" >
       <u-animate
         name="fadeInUp"
-        delay="0s"
+        delay="0.7s"
         duration="0.8s"
         :iteration="1"
         :offset="0"
@@ -21,7 +21,7 @@
       </u-animate>
       <u-animate
         name="fadeInUp"
-        delay="0.5s"
+        delay="1.2s"
         duration="0.8s"
         :iteration="1"
         :offset="0"
@@ -32,7 +32,7 @@
       </u-animate>
       <u-animate
         name="fadeInUp"
-        delay="1s"
+        delay="1.7s"
         duration="0.8s"
         :iteration="1"
         :offset="0"
@@ -45,7 +45,7 @@
       </u-animate>
       <u-animate
         name="fadeInUp"
-        delay="1.5s"
+        delay="2.2s"
         duration="0.8s"
         :iteration="1"
         :offset="0"
@@ -65,7 +65,7 @@
       </u-animate>
       <u-animate
         name="fadeInUp"
-        delay="2s"
+        delay="2.7s"
         duration="0.8s"
         :iteration="1"
         :offset="0"
@@ -84,7 +84,8 @@
   export default {
     data () {
       return {
-        isMobileInfoVisible: false
+        isMobileInfoVisible: false,
+        isBackgroundAnimation: false
       }
     },
 
@@ -109,14 +110,20 @@
       }
     },
 
+
     methods: {
       toggleInfo () {
         this.isInfoVisible = !this.isInfoVisible
       },
-
       toggleInfoMobile () {
         this.isMobileInfoVisible = !this.isMobileInfoVisible
       }
+    },
+
+    mounted () {
+      setTimeout(() => {
+        this.isBackgroundAnimation = true
+      }, 200);
     },
 
     validate ({ params }) {
@@ -154,10 +161,16 @@
     position: fixed;
     height: 100%;
     width: 100%;
-    top: 0;
+    top: 100%;
     left: 0;
     background: url('/store/store-background.png') center / cover no-repeat;
+    transition: top .5s ease;
   }
+
+  .active {
+    top: 0;
+  }
+
 
   .cross {
     position: absolute;
