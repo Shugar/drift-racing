@@ -9,7 +9,8 @@ const createStore = () => {
       isCheckoutOpen: false,
       checkoutList: [],
       isHeaderAnimated: false,
-      locale: 'en'
+      locale: 'en',
+      last: ''
     },
 
     mutations: {
@@ -44,8 +45,13 @@ const createStore = () => {
       toggleCheckout (state) {
         state.isCheckoutOpen = !state.isCheckoutOpen
       },
+
       addProductToCart (state, payload) {
         state.checkoutList = [...state.checkoutList, payload ]
+      },
+
+      lastProduct (state, payload) {
+        state.last = payload.title + ' ' + payload.gender + ' ' + payload.style
       }
     }
   })

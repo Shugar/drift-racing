@@ -72,7 +72,7 @@
         animateClass="animated"
         :begin="true"
       >
-        <div class="add-to" @click="$store.commit('addProductToCart', store)" :class="{white: isMobileInfoVisible}" >add to card</div>
+        <div class="add-to" @click="addToCard" :class="{white: isMobileInfoVisible}" >add to card</div>
       </u-animate>
     </div>
     <div class="about mobile" :class="{white: isMobileInfoVisible}" @click="toggleInfoMobile()">about product</div>
@@ -116,6 +116,12 @@
 
       toggleInfoMobile () {
         this.isMobileInfoVisible = !this.isMobileInfoVisible
+      },
+
+      addToCard () {
+        this.$store.commit('addProductToCart', this.store)
+        this.$store.commit('lastProduct', this.store)
+        this.$router.push('/store/')
       }
     },
 
