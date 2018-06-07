@@ -19,7 +19,7 @@
         </div>
         <div class="descr">
           <div class="name">Alexandr<br/>Dmitrenko</div>
-          <div class="position">race-driver {{ index + '|| ' + count}}</div>
+          <div class="position">race-driver {{ '-' +index }}</div>
           <div class="birth">
             <div class="descr-item">
               Birth:
