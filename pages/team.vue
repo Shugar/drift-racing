@@ -123,7 +123,7 @@ export default {
     min-height: 500px;
     padding: 0 80px;
     position: relative;
-    padding-left: 240px;
+    padding-left: 320px;
   }
 
   .counter {
