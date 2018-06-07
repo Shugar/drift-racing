@@ -164,7 +164,8 @@ export default {
     left: 0;
     height: 100%;
     width: 320px;
-    background: linear-gradient(90deg, #683FFF 0%, rgba(104, 63, 255, .8) 58.56%, rgba(104, 63, 255, 0) 100%)
+    background: linear-gradient(90deg, #683FFF 0, rgba(104, 63, 255, 0) 100%);
+    z-index: 3;
   }
 
   .fade-right {
@@ -183,7 +184,7 @@ export default {
     height: 50px;
     width: 28px;
 
-    z-index: 2;
+    z-index: 4;
   }
 
     .left {
