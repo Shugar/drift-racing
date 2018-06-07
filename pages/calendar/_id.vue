@@ -53,7 +53,7 @@
             :begin="true"
           >
             <div class="calendar-text text">
-              <vue-markdown> {{ article.text}} </vue-markdown>
+              <vue-markdown> {{ article.text }} </vue-markdown>
             </div>
           </u-animate>
         </div>

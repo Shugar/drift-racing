@@ -53,7 +53,7 @@
         :begin="true"
       >
         <div class="size-wrapper">
-          SIZE –
+          {{locale === 'en' ? 'SIZE' : 'РАЗМЕР'}} –
           <select class="product-size">
             <option value="xs">xs</option>
             <option value="s">s</option>
@@ -72,10 +72,10 @@
         animateClass="animated"
         :begin="true"
       >
-        <div class="add-to" @click="addToCard" :class="{white: isMobileInfoVisible}" >add to card</div>
+        <div class="add-to" @click="addToCard" :class="{white: isMobileInfoVisible}" >{{ locale === 'en' ? "add to card" : "добавить в корзину"}}</div>
       </u-animate>
     </div>
-    <div class="about mobile" :class="{white: isMobileInfoVisible}" @click="toggleInfoMobile()">about product</div>
+    <div class="about mobile" :class="{white: isMobileInfoVisible}" @click="toggleInfoMobile()">{{locale === 'en' ? 'about product' : 'о товаре'}}</div>
     </div>
   </section>
 </template>
@@ -107,6 +107,9 @@
     computed: {
       store () {
         return this.$store.state.entities.store[this.$route.params.id]
+      },
+      locale () {
+        return this.$store.state.locale
       }
     },
 

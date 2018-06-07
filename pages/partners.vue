@@ -11,7 +11,7 @@
         animateClass="animated"
         :begin="true"
       >
-        <div class="title">Partners</div>
+        <div class="title">{{locale === 'en' ? 'Partners' : 'Партнеры'}}</div>
       </u-animate>
       <u-animate-container class="partners-list">
         <u-animate
@@ -90,6 +90,10 @@
 
       meta () {
         return this.$store.state.meta[this.$store.state.locale][this.$route.name]
+      },
+
+      locale () {
+        return this.$store.state.locale
       }
     }
   }

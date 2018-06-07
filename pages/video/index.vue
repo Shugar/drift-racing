@@ -10,7 +10,7 @@
           :offset="0"
           animateClass="animated"
           :begin="true">
-        <div class="title">VIDEO</div>
+        <div class="title">{{locale === 'en' ? 'VIDEO' : 'ВИДЕО'}}</div>
       </u-animate>
       <u-animate
           name="fadeIn"
@@ -22,13 +22,13 @@
           :begin="true">
         <div class="tags">
           <div class="tags-item">
-            <div class="tags-title">CHAMPIONSHIP</div>
+            <div class="tags-title">{{locale === 'en' ? 'CHAMPIONSHIP' : 'ЧЕМПИОНАТ'}}</div>
             <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="filterByTag(tag)">
               #{{tag}}
             </div>
           </div>
           <div class="tags-item">
-            <div class="tags-title tags-country">COUNTRY</div>
+            <div class="tags-title tags-country">{{locale === 'en' ? 'COUNTRY' : 'СТРАНА'}}</div>
             <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="filterByTag(tag)">
               #{{tag}}
             </div>
@@ -146,6 +146,10 @@
 
       fetchedVideos () {
         return this.$store.state.entities.video
+      },
+
+      locale () {
+        return this.$store.state.locale
       }
     },
 

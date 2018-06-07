@@ -25,13 +25,13 @@
           >
           <div class="tags">
             <div class="tags-item">
-              <div class="tags-title">CHAMPIONSHIP</div>
+              <div class="tags-title">{{locale === 'en' ? 'CHAMPIONSHIP' : 'ЧЕМПИОНАТ'}}</div>
               <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="setTag(tag)">
                 #{{tag}}
               </div>
             </div>
             <div class="tags-item">
-              <div class="tags-title tags-country">COUNTRY</div>
+              <div class="tags-title tags-country">{{ locale === 'en' ? 'COUNTRY' : 'СТРАНА' }}</div>
               <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="setCountry(tag)">
                 #{{tag}}
               </div>
@@ -52,13 +52,13 @@
           >
             <div class="tags">
               <div class="tags-item">
-                <div class="tags-title">CHAMPIONSHIP</div>
+                <div class="tags-title">{{locale === 'en' ? 'CHAMPIONSHIP' : 'ЧЕМПИОНАТ'}}</div>
                 <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="setTag(tag)">
                   #{{tag}}
                 </div>
               </div>
               <div class="tags-item">
-                <div class="tags-title tags-country">COUNTRY</div>
+                <div class="tags-title tags-country">{{ locale === 'en' ? 'COUNTRY' : 'СТРАНА' }}</div>
                 <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="setCountry(tag)">
                   #{{tag}}
                 </div>
@@ -216,7 +216,6 @@
       calendar () {
         return this.$store.state.entities.calendar
       },
-
 
       leftCalendar () {
         const left = []

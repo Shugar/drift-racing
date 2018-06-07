@@ -14,7 +14,7 @@
             animateClass="animated"
             :begin="true"
           >
-            <div>contact</div>
+            <div>{{locale === 'en' ? 'contact' : 'контакты'}}</div>
           </u-animate>
           <u-animate
             name="fadeInUpOther"
@@ -50,7 +50,7 @@
             :begin="true"
           >
             <div class="contact-info">
-              <div class="contact-title">connect with us</div>
+              <div class="contact-title">{{locale === 'en' ? 'connect with us' : 'свяжитесь с нами'}}</div>
               <div class="contact">
                 <a :href="'mailto:' + item.email">{{ item.email }}</a>
                 <br/>
@@ -68,7 +68,7 @@
             :begin="true"
           >
             <div class="contact-info">
-              <div class="contact-title">location</div>
+              <div class="contact-title">{{locale === 'en' ? 'location' : 'адрес'}}</div>
               <div class="contact">
                 {{ item.address }}
               </div>
@@ -318,7 +318,11 @@
 
       contact () {
         return this.$store.state.entities.contact
-      }
+      },
+
+    locale () {
+      return this.$store.state.locale
+    }
     },
 
     mounted () {

@@ -24,7 +24,7 @@
             </social-sharing>
           </div>
         </div>
-        SHARE
+        {{locale === 'en' ? 'SHARE' : 'ПОДЕЛИТЬСЯ'}}
       </div>
       <div class="socials">
         <a href="https://www.youtube.com/c/AlexDProDrift" class="socials-youtube"></a>

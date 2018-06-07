@@ -15,7 +15,7 @@
         >
           <div class="tags">
             <div class="tags-item">
-              <div class="tag"><nuxt-link to="/video/" >back to videos</nuxt-link></div>
+              <div class="tag"><nuxt-link to="/video/" >{{locale === 'en' ? 'back to videos' : 'назад к видео'}}</nuxt-link></div>
             </div>
           </div>
         </u-animate>
@@ -33,7 +33,7 @@
           >
             <div class="tags">
               <div class="tags-item">
-                <div class="tag"><nuxt-link to="/video/">back to videos</nuxt-link></div>
+                <div class="tag"><nuxt-link to="/video/">{{locale === 'en' ? 'back to videos' : 'назад к видео'}}</nuxt-link></div>
               </div>
             </div>
           </u-animate>
@@ -80,7 +80,7 @@
           </div>
         <div class="right mobile">
           <div class="previous-article">
-            <div class="previous-title">{{ previous.length > 0 ? 'Previous videos' : '' }}</div>
+            <div class="previous-title">{{ previous.length > 0 ? (locale === 'en' ? 'Previous videos' : 'Предыдущие видео') : '' }}</div>
             <nuxt-link class="previous" v-for="(item, index) in previous"  :to="'/video/' + findItemByTitle(item.title)" :key="index">
               <div class="previous-image" :style="{background: `url(http://${item.video.fields.file.url.slice(2)}) no-repeat center / cover`}" />
               <div class="previous-date">{{ item.date }}</div>
@@ -172,6 +172,9 @@
           return []
         }
       },
+      locale () {
+        return this.$store.state.locale
+      }
     },
 
     components: {

@@ -11,7 +11,7 @@
         animateClass="animated"
         :begin="true"
       >
-        <div class="title">PHOTO</div>
+        <div class="title">{{locale === 'en' ? 'PHOTO' : 'ФОТО'}}</div>
       </u-animate>
       <u-animate
         name="fadeIn"
@@ -24,14 +24,14 @@
       >
         <div class="tags" v-if="fetchedPhotos">
           <div class="tags-item">
-            <div class="tags-title">CHAMPIONSHIP</div>
+            <div class="tags-title">{{locale === 'en' ? 'CHAMPIONSHIP' : 'ЧЕМПИОНАТ'}}</div>
             <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="filterByTag(tag)">
               #{{tag}}
             </div>
           </div>
 
           <div class="tags-item">
-            <div class="tags-title tags-country">COUNTRY</div>
+            <div class="tags-title tags-country">{{locale === 'en' ? 'COUNTRY' : 'СТРАНА'}}</div>
             <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="filterByTag(tag)">
               #{{tag}}
             </div>

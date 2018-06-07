@@ -12,7 +12,7 @@
           animateClass="animated"
           :begin="true"
         >
-        <div class="tag">bio</div>
+        <div class="tag">{{locale === 'en' ? 'bio' : 'био'}}</div>
       </u-animate>
       <div class="left">
         <u-animate
@@ -104,7 +104,7 @@
           animateClass="animated"
           :begin="true"
         >
-        <div class="tag">cars</div>
+        <div class="tag">{{locale === 'en' ? 'cars' : 'машины'}}</div>
       </u-animate>
       <div class="left" v-for="(car, index) in bioCars" :key="index">
         <u-animate
@@ -154,15 +154,15 @@
           <div class="numbers">
             <div class="numbers-item">
               <div class="numbers-item__digits">{{ car.hp }}</div>
-              <div class="numbers-item__units">HP</div>
+              <div class="numbers-item__units">{{locale === 'en' ? 'HP' : 'ЛС'}}</div>
             </div>
             <div class="numbers-item">
               <div class="numbers-item__digits">{{ car.drivetrain }}</div>
-              <div class="numbers-item__units">DRIVETRAIN</div>
+              <div class="numbers-item__units">{{locale === 'en' ? 'DRIVETRAIN' : 'ТРАНСМИССИЯ'}}</div>
             </div>
             <div class="numbers-item">
               <div class="numbers-item__digits">{{ car.engine }}</div>
-              <div class="numbers-item__units">ENGINE</div>
+              <div class="numbers-item__units">{{locale === 'en' ?  'ENGINE' : 'ДВИГАТЕЛЬ'}}</div>
             </div>
           </div>
         </u-animate>
@@ -223,6 +223,10 @@ export default {
     bioCars () {
       return this.$store.state.entities.bioCars
     },
+
+    locale () {
+      return this.$store.state.locale
+    }
   },
 
   mounted () {

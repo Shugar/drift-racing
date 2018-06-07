@@ -6,7 +6,7 @@
     <transition name="fade">
       <div class="hint" v-if="isHintVisible">
         <div class="hint-icon" />
-        <span>"{{ $store.state.last }}"</span> has been added to the cart.
+        <span>"{{ $store.state.last }}"</span> {{ locale === 'en' ? 'has been added to the cart.' : 'добавлено в корзину.'}}
       </div>
     </transition>
 
@@ -20,10 +20,10 @@
         animateClass="animated"
         :begin="true"
       >
-        <span @click="$store.commit('toggleCheckout')" class="checkout">{{ productCount }} items — $ {{ productSum }}</span>
+        <span @click="$store.commit('toggleCheckout')" class="checkout">{{ productCount }} {{ locale === 'en' ? 'items' : 'товаров' }} — $ {{ productSum }}</span>
         <div class="title">
           STORE
-          <span @click="$store.commit('toggleCheckout')">{{ productCount }} items — $ {{ productSum }}</span>
+          <span @click="$store.commit('toggleCheckout')">{{ productCount }} {{ locale === 'en' ? 'items' : 'товаров' }} — $ {{ productSum }}</span>
         </div>
       </u-animate>
 
@@ -37,7 +37,7 @@
         :begin="true"
       >
         <div class="tags">
-          <div class="tags-title">CATEGORIES</div>
+          <div class="tags-title">{{ locale === 'en' ? 'CATEGORIES' : 'КАТЕГОРИИ'}}</div>
           <div class="tags-item">
             <div class="tag" v-for="(category, index) in categories" :key="index" @click="filterByCategory(category)">
               #{{category}}
@@ -161,6 +161,10 @@
 
       store () {
         return this.$store.state.entities.store
+      },
+
+      locale () {
+        return this.$store.state.locale
       }
     },
 

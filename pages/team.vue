@@ -51,20 +51,20 @@
               <div class="position">{{ item.position }}</div>
               <div class="birth">
                 <div class="descr-item">
-                  Birth:
+                  {{locale === 'en' ? 'Birth:' : 'Родился'}}
                   <div class='descr-value'>{{ item.birth }}</div>
                 </div>
                 <div class="descr-item">
-                  Location:
+                  {{locale === 'en' ? 'Location:' : 'Местоположение'}}
                   <div class='descr-value'>{{ item.location }}</div>
                 </div>
               </div>
               <div class="descr-item">
-                Superpower
+                {{locale === 'en' ? 'Superpower' : 'Суперсила'}}
                 <div class='descr-value'>{{ item.superpower }}</div>
               </div>
               <div class="descr-item">
-                Favorite car
+                {{locale === 'en' ? 'Favorite car' : 'Любимая машина'}}
                 <div class='descr-value'>{{ item.favorite }}</div>
               </div>
             </div>
@@ -155,6 +155,10 @@ export default {
 
     team () {
       return this.$store.state.entities.team
+    },
+
+    locale () {
+      return this.$store.state.locale
     }
   },
 

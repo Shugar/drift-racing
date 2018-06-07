@@ -3,7 +3,7 @@
       <div class="left" @click="$store.commit('toggleCheckout')" />
       <div class="right">
         <div class="right-wrapper">
-          <div class="title">{{ this.isOrder ? 'CHECKOUT' : 'CART'}}</div>
+          <div class="title">{{ this.isOrder ? (locale === 'en' ? 'CHECKOUT' : 'ОФОРМЛЕНИЕ ЗАКАЗА') : (locale  === 'en' ? 'CART' : 'КОРЗИНА')}}</div>
           <div class="products" v-if="!this.isOrder">
             <div class="product-item" v-for="(product, index) in checkoutList" :key="index">
               <div class="image" :style="{background: `url(${ 'http://' + product.preview.fields.file.url.slice(2) }) no-repeat center / cover`}" />
@@ -14,15 +14,26 @@
               <div class="price">$ {{product.price}}</div>
             </div>
           </div>
-          <form v-if="this.isOrder" class="order-form">
-            <input type="text" placeholder="NAME"/>
-            <input type="email" placeholder="EMAIL"/>
-            <input type="number" placeholder="PHONE"/>
-            <input type="text" placeholder="ADRESS"/>
-            <input type="number" placeholder="ZIP"/>
-          </form>
+          {{
+            locale === 'en' ?
+            <form v-if="this.isOrder" class="order-form">
+              <input type="text" placeholder="NAME"/>
+              <input type="email" placeholder="EMAIL"/>
+              <input type="number" placeholder="PHONE"/>
+              <input type="text" placeholder="ADRESS"/>
+              <input type="number" placeholder="ZIP"/>
+            </form>
+            :
+            <form v-if="this.isOrder" class="order-form">
+              <input type="text" placeholder="ИМЯ"/>
+              <input type="email" placeholder="EMAIL"/>
+              <input type="number" placeholder="ТЕЛЕФОН"/>
+              <input type="text" placeholder="АДРЕС"/>
+              <input type="number" placeholder="ИНДЕКС"/>
+            </form>
+          }}
         </div>
-        <div class="order" @click="orderProducts()"> {{this.isOrder ? 'send an order' : 'CHECKOUT'}} </div>
+        <div class="order" @click="orderProducts()"> {{this.isOrder ? (locale === 'en' ? 'send an order' : 'заказать') : (locale === 'en'? 'CHECKOUT' : 'ОФОРМИТЬ ЗАКАЗ')}} </div>
       </div>
   </div>
 </template>
@@ -39,6 +50,10 @@
       checkoutList () {
         return this.$store.state.checkoutList
       },
+
+      locale () {
+        return this.$store.state.locale
+      }
     },
 
     methods: {
