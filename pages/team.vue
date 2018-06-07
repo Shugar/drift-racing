@@ -115,6 +115,10 @@ export default {
     width: 100%;
     background: #683FFF;
     padding: 200px 0 80px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
   }
 
   .wrapper {
