@@ -167,14 +167,19 @@
     position: fixed;
     height: 100%;
     width: 100%;
-    top: 100%;
+    top: 0;
     left: 0;
     background: url('/store/store-background.png') center / cover no-repeat;
-    transition: top .5s ease;
+
+    transform: translateY(40%);
+    opacity: 0;
+    transition: transform .5s ease, opacity .5s ease;
+    will-change: opacity, transform;
   }
 
   .active {
-    top: 0;
+    transform: translateY(0);
+    opacity: 1;
   }
 
 

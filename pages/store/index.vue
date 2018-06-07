@@ -381,9 +381,12 @@
     font-weight: 500;
     line-height: 25px;
     font-size: 18px;
-    text-transform: uppercase;
     color: #FFFFFF;
     z-index: 10;
+
+    span {
+      text-transform: uppercase;
+    }
   }
 
   .hint-icon {
