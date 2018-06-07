@@ -63,13 +63,11 @@ export default {
 
   methods: {
     nextSlide () {
-      console.log('@@@@@@@@@', this.count)
       this.testArray.length - 1 > this.count ? this.count++ : this.count = 0
     },
 
 
     prevSlide () {
-      console.log('@@@@@@@@@', this.count)
       return this.count > 0 ? this.count-- : this.count = 0
     }
   },
