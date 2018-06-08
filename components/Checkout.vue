@@ -14,26 +14,22 @@
               <div class="price">$ {{product.price}}</div>
             </div>
           </div>
-          {{
-            locale === 'en' ?
-            <form v-if="this.isOrder" class="order-form">
+            <form v-if="this.isOrder && locale === 'en'" class="order-form">
               <input type="text" placeholder="NAME"/>
               <input type="email" placeholder="EMAIL"/>
-              <input type="number" placeholder="PHONE"/>
+              <input type="tel" placeholder="PHONE"/>
               <input type="text" placeholder="ADRESS"/>
               <input type="number" placeholder="ZIP"/>
             </form>
-            :
-            <form v-if="this.isOrder" class="order-form">
+            <form v-if="this.isOrder && locale === 'ru'" class="order-form">
               <input type="text" placeholder="ИМЯ"/>
               <input type="email" placeholder="EMAIL"/>
-              <input type="number" placeholder="ТЕЛЕФОН"/>
+              <input type="tel" placeholder="ТЕЛЕФОН"/>
               <input type="text" placeholder="АДРЕС"/>
               <input type="number" placeholder="ИНДЕКС"/>
             </form>
-          }}
         </div>
-        <div class="order" @click="orderProducts()"> {{this.isOrder ? (locale === 'en' ? 'send an order' : 'заказать') : (locale === 'en'? 'CHECKOUT' : 'ОФОРМИТЬ ЗАКАЗ')}} </div>
+        <div class="order" @click="orderProducts()"> {{this.isOrder ? (locale === 'en' ? 'send an order' : 'заказать') : (locale === 'en' ? 'CHECKOUT' : 'ОФОРМИТЬ ЗАКАЗ')}} </div>
       </div>
   </div>
 </template>
@@ -179,7 +175,9 @@
       margin-bottom: 20px;
       font-size: 20px;
       padding: 11px 0 6px 15px;
-
+      width: 100%;  
+      -webkit-appearance: none;
+      -moz-appearance: textfield;
       &::placeholder {
         color: #BDBDBD;
       }
@@ -190,6 +188,7 @@
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
+    -moz-appearance: none;
     margin: 0;
 }
 
