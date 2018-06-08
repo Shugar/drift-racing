@@ -256,6 +256,7 @@
     border: none;
     background: none;
     -webkit-appearance: none;
+    -moz-appearance: none;
   }
 
   .add-to {

@@ -295,7 +295,7 @@ export default {
   .arrow {
     position: absolute;
     cursor: pointer;
-    background: url('~/static/team/arrow.svg') center center no-repeat / contain;
+    background: url('~/static/team/arrow.svg') no-repeat center center / contain;
     height: 50px;
     width: 28px;
 
