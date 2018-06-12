@@ -68,13 +68,11 @@
           </div>
 
         </div>
-        <transition name="fade" mode="out-in" appear>
-          <div v-for="(slide, index) in dummyLeftSlider"
-            :class="'left-background-'+`${index + 1}`"
-            class="left-background"
-            v-if="count === index"
-            :key="index" />
-        </transition>
+        <div v-for="(slide, index) in dummyLeftSlider"
+          :class="'left-background-'+`${index + 1}`"
+          class="left-background"
+          v-if="count === index"
+          :key="index" />
       </div>
 
       <div class="right-background" :class="{'isPurpleAnimating': isChanging}" />
@@ -371,6 +369,10 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
+
+    &:hover .left-background {
+      transform: scale(1.04);
+    }
   }
 
   .left-background {
@@ -395,10 +397,6 @@
 
     transition: transform .3s ease;
     will-change: transform;
-
-    &.left-background__hovered {
-      transform: scale(1.2);
-    }
   }
 
   .left-background-1 {
@@ -488,9 +486,6 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: flex-end;
-    &:hover ~ .left-background {
-      transform: scale(1.04);
-    }
   }
 
   .next {

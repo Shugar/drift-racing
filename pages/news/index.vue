@@ -1,6 +1,24 @@
 <template>
   <section class="news">
     <Header />
+    <u-animate
+      name="fadeIn"
+      delay="0s"
+      duration="0.8s"
+      :iteration="1"
+      :offset="0"
+      animateClass="animated"
+      :begin="true"
+    >
+      <div class="tags">
+        <div class="tags-title">{{ locale === 'en' ? 'TAGS' : 'ТЕГИ'}}</div>
+        <div class="tags-item">
+          <div class="tag" v-for="(tag, index) in tags" :key="index" @click="filterByTag(tag.trim())">
+            #{{tag}}
+          </div>
+        </div>
+      </div>
+    </u-animate>
     <div class="container" :class="{'isAnimating': isChanging}">
       <u-animate
         name="fadeInUpTitle"
@@ -12,24 +30,6 @@
         :begin="true"
       >
         <div class="title">{{ locale === 'en' ? 'NEWS' : 'НОВОСТИ'}}</div>
-      </u-animate>
-      <u-animate
-        name="fadeIn"
-        delay="0s"
-        duration="0.8s"
-        :iteration="1"
-        :offset="0"
-        animateClass="animated"
-        :begin="true"
-      >
-        <div class="tags">
-          <div class="tags-title">{{ locale === 'en' ? 'TAGS' : 'ТЕГИ'}}</div>
-          <div class="tags-item">
-            <div class="tag" v-for="(tag, index) in tags" :key="index" @click="filterByTag(tag.trim())">
-              #{{tag}}
-            </div>
-          </div>
-        </div>
       </u-animate>
       <u-animate
         name="fadeInUpPlayer"
@@ -219,7 +219,7 @@
 
   .tags {
     position: fixed;
-    top: 80px;
+    top: 280px;
     left: 100px;
   }
 

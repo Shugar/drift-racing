@@ -1,6 +1,30 @@
 <template>
   <section class="calendar">
     <Header />
+    <u-animate
+      name="fadeIn"
+      delay="0s"
+      duration="0.8s"
+      :iteration="1"
+      :offset="0"
+      animateClass="animated"
+      :begin="true"
+    >
+      <div class="tags">
+        <div class="tags-item">
+          <div class="tags-title">{{locale === 'en' ? 'CHAMPIONSHIP' : 'ЧЕМПИОНАТ'}}</div>
+          <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="setTag(tag)">
+            #{{tag}}
+          </div>
+        </div>
+        <div class="tags-item">
+          <div class="tags-title tags-country">{{ locale === 'en' ? 'COUNTRY' : 'СТРАНА' }}</div>
+          <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="setCountry(tag)">
+            #{{tag}}
+          </div>
+        </div>
+      </div>
+    </u-animate>
     <div class="wrapper" :class="{'isAnimating': isChanging}">
       <div class="title-wrapper">
         <u-animate
@@ -41,31 +65,6 @@
       </div>
       <div class="container">
         <div class="left">
-          <u-animate
-            name="fadeIn"
-            delay="0s"
-            duration="0.8s"
-            :iteration="1"
-            :offset="0"
-            animateClass="animated"
-            :begin="true"
-          >
-            <div class="tags">
-              <div class="tags-item">
-                <div class="tags-title">{{locale === 'en' ? 'CHAMPIONSHIP' : 'ЧЕМПИОНАТ'}}</div>
-                <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="setTag(tag)">
-                  #{{tag}}
-                </div>
-              </div>
-              <div class="tags-item">
-                <div class="tags-title tags-country">{{ locale === 'en' ? 'COUNTRY' : 'СТРАНА' }}</div>
-                <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="setCountry(tag)">
-                  #{{tag}}
-                </div>
-              </div>
-            </div>
-          </u-animate>
-
           <div class="article" v-for="(article, index) in (events.length > 0 ? events : leftCalendar)" :key="index">
             <u-animate
               name="fadeInUpPlayer"
@@ -368,10 +367,10 @@
   }
 
   .tags {
-      position: fixed;
-      top: 110px;
-      left: 100px;
-    }
+    position: fixed;
+    top: 305px;
+    left: 100px;
+  }
 
   .tags-title {
     margin-bottom: 10px;

@@ -2,9 +2,26 @@
   <section class="store">
     <Header :productCount="productCount" :productSum="productSum"/>
     <Checkout v-if="$store.state.isCheckoutOpen" />
-
+    <u-animate
+      name="fadeIn"
+      delay="0s"
+      duration="0.8s"
+      :iteration="1"
+      :offset="0"
+      animateClass="animated"
+      :begin="true"
+    >
+      <div class="tags">
+        <div class="tags-title">{{ locale === 'en' ? 'CATEGORIES' : 'КАТЕГОРИИ'}}</div>
+        <div class="tags-item">
+          <div class="tag" v-for="(category, index) in categories" :key="index" @click="filterByCategory(category)">
+            #{{category}}
+          </div>
+        </div>
+      </div>
+    </u-animate>
     <transition name="fade">
-      <div class="hint" v-if="isHintVisible">
+      <div class="hint" v-if="isHintVisible && $store.state.hintWasShowedOnce < 1">
         <div class="hint-icon" />
         <span>"{{ $store.state.last }}"</span> {{ locale === 'en' ? 'has been added to the cart.' : 'добавлено в корзину.'}}
       </div>
@@ -24,25 +41,6 @@
         <div class="title">
           STORE
           <span @click="$store.commit('toggleCheckout')">{{ productCount }} {{ locale === 'en' ? 'items' : 'товаров' }} — $ {{ productSum }}</span>
-        </div>
-      </u-animate>
-
-      <u-animate
-        name="fadeIn"
-        delay="0s"
-        duration="0.8s"
-        :iteration="1"
-        :offset="0"
-        animateClass="animated"
-        :begin="true"
-      >
-        <div class="tags">
-          <div class="tags-title">{{ locale === 'en' ? 'CATEGORIES' : 'КАТЕГОРИИ'}}</div>
-          <div class="tags-item">
-            <div class="tag" v-for="(category, index) in categories" :key="index" @click="filterByCategory(category)">
-              #{{category}}
-            </div>
-          </div>
         </div>
       </u-animate>
 
@@ -198,6 +196,7 @@
 
         setTimeout(() => {
           this.isHintVisible = false
+          this.$store.commit('isHintShowed', 1)
         }, 4000)
       }
     },
@@ -241,7 +240,7 @@
 
   .tags {
     position: fixed;
-    top: 80px;
+    top: 280px;
     left: 100px;
   }
 

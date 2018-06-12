@@ -46,6 +46,12 @@
                 <a :href="item.facebook" class="socials-facebook"></a>
               </div>
             </div>
+            <div class="member-photo member-photo-mobile" :style="{background: 'url(http://' + item.imageMobile.fields.file.url.slice(2) + ') no-repeat center / cover'}">
+              <div class="socials">
+                <a :href="item.instagram" class="socials-instagram"></a>
+                <a :href="item.facebook" class="socials-facebook"></a>
+              </div>
+            </div>
             <div class="descr">
               <div class="name">{{ item.name }}</div>
               <div class="position">{{ item.position }}</div>
@@ -59,13 +65,17 @@
                   <div class='descr-value'>{{ item.location }}</div>
                 </div>
               </div>
-              <div class="descr-item">
+              <div class="descr-item superpower">
                 {{locale === 'en' ? 'Superpower' : 'Суперсила'}}
                 <div class='descr-value'>{{ item.superpower }}</div>
               </div>
               <div class="descr-item">
                 {{locale === 'en' ? 'Favorite car' : 'Любимая машина'}}
                 <div class='descr-value'>{{ item.favorite }}</div>
+              </div>
+              <div class="socials socials-mobile">
+                <a :href="item.instagram" class="socials-instagram"></a>
+                <a :href="item.facebook" class="socials-facebook"></a>
               </div>
             </div>
           </div>
@@ -144,7 +154,7 @@ export default {
     },
 
     prevSlide () {
-      return this.count > 0 ? this.count-- : this.count = 0
+      return this.count > 0 ? this.count-- : this.count = this.team.length - 1
     }
   },
 
@@ -317,9 +327,8 @@ export default {
   .footer-wrapper {
     width: 100%;
   }
- 
- ////////////// SOCIALS /////////////////////////
- .socials {
+
+  .socials {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -360,67 +369,134 @@ export default {
     position: relative;
   }
 
-
-
-
-
-
-@media ( max-width: 1024px) {
-
-  .wrapper {
-    padding: 0 100px;
-  }
-
-  .team {
-    padding: 200px 0px;
-    height: 100%;
-  }
-
-  .arrow {
+  .member-photo-mobile,
+  .socials-mobile {
     display: none;
   }
 
-  .member {
-    display: block;
-    position: initial;
-    // left: initial;
-    margin: 0;
-
-
-    &-photo {
-      margin-bottom: 40px;
+  @media ( max-width: 1024px) {
+    .wrapper {
+      padding: 0 100px;
     }
-    &:nth-child(odd) {
-      margin-right: 60px;
+
+    .team {
+      padding: 200px 0px;
+      height: 100%;
+    }
+
+    .arrow {
+      display: none;
+    }
+
+    .member {
+      display: block;
+      position: initial;
+      // left: initial;
+      margin: 0;
+
+
+      &-photo {
+        margin-bottom: 40px;
+      }
+      &:nth-child(odd) {
+        margin-right: 60px;
+      }
+    }
+
+    .descr {
+      margin: 0;
+      margin-bottom: 80px;
+    }
+
+    .members-wrapper {
+      flex-wrap: wrap;
+    }
+
+    .fade-left,
+    .fade-right {
+      display: none;
+    }
+
+    .counter {
+      display: none;
     }
   }
 
-  .descr {
-    margin: 0;
-    margin-bottom: 80px;
-  }
+  @media (max-width: 425px) {
+    .team {
+      padding: 180px 0 80px;
+    }
 
-  .members-wrapper {
-    flex-wrap: wrap;
-  }
+    .socials {
+      display: none;
+    }
 
-  .fade-left,
-  .fade-right {
-    display: none;
-  }
+    .socials-mobile {
+      order: 6;
+      display: flex;
+    }
 
-  .counter {
-    display: none;
-  }
-}
+    .descr {
+      margin-bottom: 0;
+      position: relative;
+      display: flex;
+      flex-flow: column nowrap;
+    }
 
-@media (max-width: 425px) {
-  .team {
-    padding: 180px 0 80px;
-  }
+    .name {
+      order: 1;
+    }
 
-  .wrapper {
-    padding: 0 30px;
+    .position {
+      order: 2;
+    }
+
+    .birth {
+      order: 3;
+    }
+
+    .superpower {
+      order: 5 !important;
+    }
+
+    .descr-item {
+      order: 4;
+    }
+
+    .birth {
+      display: block;
+
+      .descr-item {
+        margin-bottom: 20px;
+      }
+    }
+
+    .member {
+      margin-bottom: 100px;
+      position: relative;
+      left: 0 !important;
+      width: 100%;
+      margin-right: 0 !important;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .member-photo {
+      display: none;
+    }
+
+    .member-photo-mobile {
+      display: block;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .wrapper {
+      padding: 0 30px;
+    }
   }
-}
 </style>

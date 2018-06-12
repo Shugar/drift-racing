@@ -190,10 +190,12 @@
   .logo i:last-child {
     opacity: 0;
     bottom: 32.8px;
-    height: 37.7px;
+    left: 22px;
+    height: 38px;
+    width: 55px;
     transform: translate3d(0, 0, 0) skewX(15deg);
     background: url('~/assets/images/logo-icon.svg') no-repeat center / contain;
-    background-position-x: 53px;
+    background-position-x: 54px;
     will-change: transform, background-position-x;
   }
 
@@ -210,14 +212,14 @@
   @keyframes logo {
     0% {
       opacity: 1;
-      transform: translate3d(-45px, 0, 0) skewX(15deg);
-      background-position-x: 45px;
+      transform: translate3d(-90px, 0, 0) skewX(15deg);
+      background-position-x: 90px;
     }
 
     100% {
       opacity: 1;
-      transform: translate3d(45px, 0, 0) skewX(15deg);
-      background-position-x: -45px;
+      transform: translate3d(90px, 0, 0) skewX(15deg);
+      background-position-x: -90px;
     }
   }
 

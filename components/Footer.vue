@@ -1,7 +1,7 @@
 <template>
   <div class="footer" :class="{ 'isHome': $route.path === '/'}">
     <div class="left" :class="{ mainLeft: type === 'main' }">
-      <div @click="toggleSharing()" class="share">
+      <div @click="toggleSharing()" class="share" :class="{'share-active': isSharingActive}">
         <div v-if="isSharingActive" class="sharing" :class="{'sharing-purple': $route.path === '/'}">
           <div class="sharing-title">{{locale === 'en' ? 'Tell your friends in' : 'Расскажи о нас друзьям'}}</div>
           <div class="sharing-socials">
@@ -116,12 +116,17 @@ export default {
     line-height: normal;
     font-size: 20px;
     text-transform: uppercase;
-    color: #FFF;
+    color: #E0E0E0;
+
+    transition: color .2s ease;
+    will-change: color;
 
     &:hover {
-      .sharing {
-        opacity: 1;
-      }
+      color: #FFF;
+    }
+
+    &.share-active {
+      color: #FFF;
     }
   }
 

@@ -53,7 +53,7 @@ module.exports = {
     {
       src: '~/plugins/vueSocialSharing',
       ssr: false
-    },
+    }
   ],
 
   env: {

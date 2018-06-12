@@ -54,13 +54,21 @@
       >
         <div class="size-wrapper">
           {{locale === 'en' ? 'SIZE' : 'РАЗМЕР'}} –
-          <select class="product-size">
+          <v-select class="product-size"
+            v-model="selected"
+            :options="store.sizes.split(',')"
+            :searchable="false"
+            :close-on-select="true"
+            :allow-empty="false"
+            placeholder=""
+          />
+          <!-- <select class="product-size">
             <option value="xs">xs</option>
             <option value="s">s</option>
             <option value="m" selected>m</option>
             <option value="l">l</option>
             <option value="xl">xl</option>
-          </select>
+          </select> -->
         </div>
       </u-animate>
       <u-animate
@@ -81,11 +89,18 @@
 </template>
 
 <script>
+  import Multiselect from 'vue-multiselect'
+
   export default {
+    components: {
+      'v-select': Multiselect
+    },
+
     data () {
       return {
         isMobileInfoVisible: false,
-        isBackgroundAnimation: false
+        isBackgroundAnimation: false,
+        selected: null
       }
     },
 
@@ -118,18 +133,21 @@
       toggleInfo () {
         this.isInfoVisible = !this.isInfoVisible
       },
+
       toggleInfoMobile () {
         this.isMobileInfoVisible = !this.isMobileInfoVisible
       },
 
       addToCard () {
-        this.$store.commit('addProductToCart', this.store)
-        this.$store.commit('lastProduct', this.store)
+        this.$store.commit('addProductToCart', { ...this.store, sizes: this.selected })
+        this.$store.commit('lastProduct', { ...this.store, sizes: this.selected })
         this.$router.push('/store/')
       }
     },
 
     mounted () {
+      this.selected = this.store.sizes.split(',')[0]
+
       setTimeout(() => {
         this.isBackgroundAnimation = true
       }, 200);
@@ -228,27 +246,19 @@
   }
 
   .size-wrapper {
-    display: flex;
     position: relative;
     font-size: 36px;
     margin-bottom: 40px;
 
-    &::after {
-      content: '';
-      display: block;
-      width: 16px;
-      height: 10px;
-      top: 14px;
-      left: 110px;
-      position: absolute;
-      background: url('/store/dropdown-arrow.svg') no-repeat right / contain;
-    }
+    display: flex;
+    align-items: center;
   }
+
   .product-size {
+    position: relative;
     text-transform: uppercase;
     font-family: 'DIN Condensed';
     font-size: 36px;
-    width: 80px;
     margin-left: 10px;
     z-index: 3;
     outline: none;
@@ -257,11 +267,25 @@
     background: none;
     -webkit-appearance: none;
     -moz-appearance: none;
+
+    display: flex;
+    align-items: center;
+
+    &::after {
+      margin-bottom: 7px;
+      margin-left: 10px;
+      content: '';
+      display: block;
+      width: 16px;
+      height: 10px;
+      background: url('/store/dropdown-arrow.svg') no-repeat right / contain;
+    }
   }
 
   .add-to {
     margin-bottom: 120px;
   }
+
   .add-to, .about {
     position: relative;
     text-transform: uppercase;
@@ -289,6 +313,37 @@
     z-index: 3;
     cursor: pointer;
     display: none;
+  }
+
+  /deep/ .multiselect__content-wrapper {
+    position: absolute;
+  }
+
+  /deep/ .multiselect__content {
+    display: flex !important;
+    flex-flow: row nowrap;
+    padding: 16px 16px 8px;
+    background: #683FFF;
+  }
+
+  /deep/ .multiselect__element {
+    list-style: none;
+    cursor: pointer;
+    line-height: 36px;
+    text-align: center;
+    margin-left: 24px;
+
+    opacity: 0.8;
+    transition: opacity .2s ease;
+    will-change: opacity;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
   }
 
   @media (max-width: 1024px) {

@@ -1,6 +1,29 @@
 <template>
   <section class="videos">
     <Header />
+    <u-animate
+      name="fadeIn"
+      delay="0s"
+      duration="0.8s"
+      :iteration="1"
+      :offset="0"
+      animateClass="animated"
+      :begin="true">
+    <div class="tags">
+      <div class="tags-item">
+        <div class="tags-title">{{locale === 'en' ? 'CHAMPIONSHIP' : 'ЧЕМПИОНАТ'}}</div>
+        <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="filterByTag(tag)">
+          #{{tag}}
+        </div>
+      </div>
+      <div class="tags-item">
+        <div class="tags-title tags-country">{{locale === 'en' ? 'COUNTRY' : 'СТРАНА'}}</div>
+        <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="filterByTag(tag)">
+          #{{tag}}
+        </div>
+      </div>
+    </div>
+  </u-animate>
     <div class="container" :class="{'isAnimating': isChanging}">
       <u-animate
           name="fadeInUpTitle"
@@ -11,29 +34,6 @@
           animateClass="animated"
           :begin="true">
         <div class="title">{{locale === 'en' ? 'VIDEO' : 'ВИДЕО'}}</div>
-      </u-animate>
-      <u-animate
-          name="fadeIn"
-          delay="0s"
-          duration="0.8s"
-          :iteration="1"
-          :offset="0"
-          animateClass="animated"
-          :begin="true">
-        <div class="tags">
-          <div class="tags-item">
-            <div class="tags-title">{{locale === 'en' ? 'CHAMPIONSHIP' : 'ЧЕМПИОНАТ'}}</div>
-            <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="filterByTag(tag)">
-              #{{tag}}
-            </div>
-          </div>
-          <div class="tags-item">
-            <div class="tags-title tags-country">{{locale === 'en' ? 'COUNTRY' : 'СТРАНА'}}</div>
-            <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="filterByTag(tag)">
-              #{{tag}}
-            </div>
-          </div>
-        </div>
       </u-animate>
 
       <u-animate
@@ -195,6 +195,7 @@
   .videos {
     background: #683FFF;
     padding: 200px 0 80px;
+    height: 100%;
 
     display: flex;
     flex-flow: column nowrap;
@@ -213,7 +214,7 @@
 
   .tags {
     position: fixed;
-    top: 80px;
+    top: 275px;
     left: 100px;
   }
 

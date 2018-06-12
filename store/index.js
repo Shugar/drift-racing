@@ -10,7 +10,8 @@ const createStore = () => {
       checkoutList: [],
       isHeaderAnimated: false,
       locale: 'en',
-      last: ''
+      last: '',
+      hintWasShowedOnce: 0
     },
 
     mutations: {
@@ -52,6 +53,11 @@ const createStore = () => {
 
       lastProduct (state, payload) {
         state.last = payload.title + ' ' + payload.gender + ' ' + payload.style
+        state.hintWasShowedOnce = 0
+      },
+
+      isHintShowed (state, payload) {
+        state.hintWasShowedOnce = payload
       }
     }
   })
