@@ -294,7 +294,7 @@
 
     beforeRouteLeave(to, from, next) {
       this.isChanging = true
-      setTimeout(() => next(), 1000)
+      setTimeout(() => next(), 800)
     },
 
     mounted () {
@@ -765,7 +765,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    transition: transform 1s ease-out 0.3s;
+    transition: transform 0.6s ease-out 0.3s;
     will-change: transform;
     z-index: 5;
   }
