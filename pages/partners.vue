@@ -3,9 +3,9 @@
     <Header />
     <div class="container" :class="{'isAnimating': isChanging}">
       <u-animate
-        name="fadeInUpTitle"
+        name="fadeInUp"
         delay="0s"
-        duration="0.8s"
+        duration="0.4s"
         :iteration="1"
         :offset="0"
         animateClass="animated"
@@ -15,9 +15,9 @@
       </u-animate>
       <u-animate-container class="partners-list">
         <u-animate
-          name="fadeInUpPlayer"
-          delay="0.5s"
-          duration="0.8s"
+          name="fadeInUp"
+          delay="0.2s"
+          duration="0.4s"
           :iteration="1"
           :offset="0"
           animateClass="animated"
@@ -33,8 +33,8 @@
       </u-animate-container>
     </div>
     <u-animate
-      name="fadeInUpOther"
-      delay="1s"
+      name="fadeInUp"
+      delay="0.4s"
       duration="0.4s"
       :iteration="1"
       :offset="0"
@@ -80,7 +80,7 @@
 
     beforeRouteLeave(to, from, next) {
       this.isChanging = true
-      setTimeout(() => next(), 500)
+      setTimeout(() => next(), 300)
     },
 
     computed: {
@@ -119,7 +119,7 @@
 
     display: flex;
     flex-flow: column nowrap;
-    transition: transform .5s ease, opacity .5s ease;
+    transition: transform .4s ease, opacity .4s ease;
     will-change: transform, opacity;
   }
 

@@ -6,9 +6,9 @@
       <div class="left" :class="{'isAnimating': isChanging }">
         <div class="page-title">
           <u-animate
-            name="fadeInUpTitle"
+            name="fadeInUp"
             delay="0s"
-            duration="0.8s"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -17,8 +17,8 @@
             <div>{{locale === 'en' ? 'contact' : 'контакты'}}</div>
           </u-animate>
           <u-animate
-            name="fadeInUpOther"
-            delay="0.5s"
+            name="fadeInUp"
+            delay="0.2s"
             duration="0.4s"
             :iteration="1"
             :offset="0"
@@ -41,8 +41,8 @@
           :key="index"
           v-if="currentCity === item.city">
           <u-animate
-            name="fadeInUpOther"
-            delay="1s"
+            name="fadeInUp"
+            delay="0.4s"
             duration="0.4s"
             :iteration="1"
             :offset="0"
@@ -59,8 +59,8 @@
             </div>
           </u-animate>
           <u-animate
-            name="fadeInUpOther"
-            delay="1.5s"
+            name="fadeInUp"
+            delay="0.6s"
             duration="0.4s"
             :iteration="1"
             :offset="0"
@@ -99,8 +99,8 @@
     </div>
     <div class="footer-wrapper">
       <u-animate
-        name="fadeInUpOther"
-        delay="2s"
+        name="fadeInUp"
+        delay="0.8s"
         duration="0.4s"
         :iteration="1"
         :offset="0"
@@ -348,7 +348,7 @@
     beforeRouteLeave(to, from, next) {
       this.isChanging = true
       this.isPurpleChanging = false
-      setTimeout(() => next(), 500)
+      setTimeout(() => next(), 300)
     },
 
     methods: {
@@ -417,7 +417,7 @@
     z-index: 6;
 
 
-    transition: transform .5s ease, opacity .5s ease;
+    transition: transform .4s ease, opacity .4s ease;
     will-change: transform, opacity;
   }
 

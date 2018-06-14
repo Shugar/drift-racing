@@ -6,7 +6,7 @@
       <u-animate
           name="fadeIn"
           delay="0s"
-          duration="0.8s"
+          duration="0.4s"
           :iteration="1"
           :offset="0"
           animateClass="animated"
@@ -16,9 +16,9 @@
       </u-animate>
       <div class="left">
         <u-animate
-          name="fadeInUpTitle"
+          name="fadeInUp"
           delay="0s"
-          duration="0.8s"
+          duration="0.4s"
           :iteration="1"
           :offset="0"
           animateClass="animated"
@@ -27,8 +27,8 @@
           <div class="title">{{ bio.leftColumnTitle }}</div>
         </u-animate>
         <u-animate
-          name="fadeInUpOther"
-          delay="0.8s"
+          name="fadeInUp"
+          delay="0.2s"
           duration="0.4s"
           :iteration="1"
           :offset="0"
@@ -42,9 +42,9 @@
 
         <u-animate-container class="img-fullwidth">
           <u-animate
-            name="fadeInUpPlayer"
-            delay="1.2s"
-            duration="0.8s"
+            name="fadeInUp"
+            delay="0.4s"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -56,9 +56,9 @@
       </div>
       <div class="right">
         <u-animate
-          name="fadeInUpTitle"
+          name="fadeInUp"
           delay="0s"
-          duration="0.8s"
+          duration="0.4s"
           :iteration="1"
           :offset="0"
           animateClass="animated"
@@ -67,8 +67,8 @@
           <div class="title">{{ bio.rightColumnTitle }}</div>
         </u-animate>
         <u-animate
-          name="fadeInUpOther"
-          delay="0.8s"
+          name="fadeInUp"
+          delay="0.2s"
           duration="0.4s"
           :iteration="1"
           :offset="0"
@@ -81,9 +81,9 @@
         </u-animate>
         <u-animate-container class="img-fullwidth">
           <u-animate
-            name="fadeInUpPlayer"
-            delay="1.2s"
-            duration="0.8s"
+            name="fadeInUp"
+            delay="0.4s"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -108,9 +108,9 @@
       </u-animate>
       <div class="left" v-for="(car, index) in bioCars" :key="index">
         <u-animate
-          name="fadeInUpTitle"
-          delay="1.8s"
-          duration="0.8s"
+          name="fadeInUp"
+          delay="0.6s"
+          duration="0.4s"
           :iteration="1"
           :offset="0"
           animateClass="animated"
@@ -119,9 +119,9 @@
           <div class="title">{{ car.title }}<br> {{ car.car }}</div>
         </u-animate>
         <u-animate
-          name="fadeInUpPlayer"
-          delay="2.6s"
-          duration="0.8s"
+          name="fadeInUp"
+          delay="0.8s"
+          duration="0.4s"
           :iteration="1"
           :offset="0"
           animateClass="animated"
@@ -130,8 +130,8 @@
           <img :src="'http://' + car.image.fields.file.url.slice(2)" />
         </u-animate>
         <u-animate
-          name="fadeInUpOther"
-          delay="3.2s"
+          name="fadeInUp"
+          delay="1s"
           duration="0.4s"
           :iteration="1"
           :offset="0"
@@ -143,8 +143,8 @@
           </div>
         </u-animate>
         <u-animate
-          name="fadeInUpOther"
-          delay="3.6s"
+          name="fadeInUp"
+          delay="1.2s"
           duration="0.4s"
           :iteration="1"
           :offset="0"
@@ -170,8 +170,8 @@
     </div>
 
     <u-animate
-      name="fadeInUpOther"
-      delay="1s"
+      name="fadeInUp"
+      delay="1.4s"
       duration="0.4s"
       :iteration="1"
       :offset="0"
@@ -235,7 +235,7 @@ export default {
 
   beforeRouteLeave(to, from, next) {
     this.isChanging = true
-    setTimeout(() => next(), 500)
+    setTimeout(() => next(), 300)
   }
 }
 </script>
@@ -254,7 +254,7 @@ export default {
     flex-flow: row nowrap;
     align-content: center;
 
-    transition: transform .5s ease, opacity .5s ease;
+    transition: transform .4s ease, opacity .4s ease;
     will-change: transform, opacity;
   }
 

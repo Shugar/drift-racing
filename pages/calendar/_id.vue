@@ -6,7 +6,7 @@
         <u-animate
           name="fadeIn"
           delay="0s"
-          duration="0.8s"
+          duration="0.4s"
           :iteration="1"
           :offset="0"
           animateClass="animated"
@@ -22,7 +22,7 @@
           <u-animate
             name="fadeInUp"
             delay="0s"
-            duration="0.8s"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -34,8 +34,8 @@
           </u-animate>
           <u-animate
             name="fadeInUp"
-            delay="0.5s"
-            duration="0.8s"
+            delay="0.2s"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -45,8 +45,8 @@
           </u-animate>
           <u-animate
             name="fadeInUp"
-            delay="1s"
-            duration="0.8s"
+            delay="0.4s"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -62,8 +62,8 @@
         <div class="previous-article" v-if="previous.length > 0">
           <u-animate
             name="fadeInUp"
-            delay="0s"
-            duration="0.8s"
+            delay="0.6s"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -74,8 +74,8 @@
           <nuxt-link  v-for="(item, index) in previous" :to="'/calendar/' + findItemByTitle(item.title)" :key="index" class="previous">
             <u-animate
               name="fadeInUp"
-              :delay="1 + (index + 0.2) + 's'"
-              duration="0.8s"
+              :delay="0.8 + (index * 0.1) + 's'"
+              duration="0.4s"
               :iteration="1"
               :offset="0"
               animateClass="animated"
@@ -325,6 +325,7 @@
 
   .tags {
       position: fixed;
+      z-index: 10;
       top: 198px;
       left: 100px;
     }

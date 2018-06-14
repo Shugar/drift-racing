@@ -119,7 +119,7 @@
   }
 
   .fade-enter-active, .fade-more-leave-active {
-    transition: opacity 0.5s ease;
+    transition: opacity 0.4s ease;
   }
 
   .fade-enter, .fade-leave-to {
@@ -188,6 +188,7 @@
 
   .fadeInUp {
     animation-name: fadeInUp;
+    animation-timing-function: ease;
   }
 
   @keyframes fadeInUpTitle {

@@ -4,7 +4,7 @@
     <u-animate
       name="fadeIn"
       delay="0s"
-      duration="0.8s"
+      duration="0.4s"
       :iteration="1"
       :offset="0"
       animateClass="animated"
@@ -21,9 +21,9 @@
     </u-animate>
     <div class="container" :class="{'isAnimating': isChanging}">
       <u-animate
-        name="fadeInUpTitle"
+        name="fadeInUp"
         delay="0s"
-        duration="0.8s"
+        duration="0.4s"
         :iteration="1"
         :offset="0"
         animateClass="animated"
@@ -32,9 +32,9 @@
         <div class="title">{{ locale === 'en' ? 'NEWS' : 'НОВОСТИ'}}</div>
       </u-animate>
       <u-animate
-        name="fadeInUpPlayer"
-        delay="0.6s"
-        duration="0.8s"
+        name="fadeInUp"
+        delay="0.2s"
+        duration="0.4s"
         :iteration="1"
         :offset="0"
         animateClass="animated"
@@ -64,34 +64,44 @@
           </masonry>
         </div>
       </u-animate>
-      <div class="news-list">
-        <masonry
-          :cols="{default: 3, 1024: 2, 425: 1}"
-          :gutter="{default: '60px', 768: '40px', 425: '0px'}"
-          ref="my-masonry">
-          <div class="article" v-for="(article, index) in filteredArticles" :key="index">
-            <nuxt-link :to="'/news/' + index">
-              <div class="article-date">{{ article.date }}</div>
-              <div class="article-title" v-html="article.title"></div>
-              <div class="article-image"
-                :style="{background: `url(${ 'http://' + article.media.fields.file.url.slice(2) }) no-repeat center / cover`}" />
-              <div class="article-preview">{{ article.preview }}</div>
-              <div class="article-hashtags">
-                <div class="article-hashtag"
-                  v-for="(hashtag, index) in article.tags"
-                  :key="index">
-                  #{{ hashtag.trim() }}
+      <u-animate
+        name="fadeInUp"
+        delay="0.2s"
+        duration="0.4s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="true"
+      >
+        <div class="news-list">
+          <masonry
+            :cols="{default: 3, 1024: 2, 425: 1}"
+            :gutter="{default: '60px', 768: '40px', 425: '0px'}"
+            ref="my-masonry">
+            <div class="article" v-for="(article, index) in filteredArticles" :key="index">
+              <nuxt-link :to="'/news/' + index">
+                <div class="article-date">{{ article.date }}</div>
+                <div class="article-title" v-html="article.title"></div>
+                <div class="article-image"
+                  :style="{background: `url(${ 'http://' + article.media.fields.file.url.slice(2) }) no-repeat center / cover`}" />
+                <div class="article-preview">{{ article.preview }}</div>
+                <div class="article-hashtags">
+                  <div class="article-hashtag"
+                    v-for="(hashtag, index) in article.tags"
+                    :key="index">
+                    #{{ hashtag.trim() }}
+                  </div>
                 </div>
-              </div>
-            </nuxt-link>
-          </div>
-        </masonry>
-      </div>
+              </nuxt-link>
+            </div>
+          </masonry>
+        </div>
+      </u-animate>
     </div>
     <u-animate
       name="fadeInUp"
-      delay="1s"
-      duration="0.8s"
+      delay="0.4s"
+      duration="0.4s"
       :iteration="1"
       :offset="0"
       animateClass="animated"
@@ -186,7 +196,7 @@
 
     beforeRouteLeave(to, from, next) {
       this.isChanging = true
-      setTimeout(() => next(), 500)
+      setTimeout(() => next(), 300)
     },
 
     components: {
@@ -213,7 +223,7 @@
 
     padding-left: 320px;
 
-    transition: transform .5s ease, opacity .5s ease;
+    transition: transform .4s ease, opacity .4s ease;
     will-change: transform, opacity;
   }
 
@@ -221,6 +231,7 @@
     position: fixed;
     top: 280px;
     left: 100px;
+    z-index: 10;
   }
 
   .tags-title {

@@ -5,7 +5,7 @@
       <u-animate
         name="fadeIn"
         delay="0s"
-        duration="0.8s"
+        duration="0.4s"
         :iteration="1"
         :offset="0"
         animateClass="animated"
@@ -17,7 +17,7 @@
         <u-animate
           name="fadeInUp"
           delay="0s"
-          duration="0.8s"
+          duration="0.4s"
           :iteration="1"
           :offset="0"
           animateClass="animated"
@@ -28,8 +28,8 @@
         <div class="article">
           <u-animate
             name="fadeInUp"
-            delay="0.5s"
-            duration="0.8s"
+            delay="0.2s"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -46,8 +46,8 @@
           </u-animate>
           <u-animate
             name="fadeInUp"
-            delay="1s"
-            duration="0.8s"
+            delay="0.4s"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -57,8 +57,8 @@
           </u-animate>
           <u-animate
             name="fadeInUp"
-            delay="1.5s"
-            duration="0.8s"
+            delay="0.6s"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -77,8 +77,8 @@
           <div class="previous" v-for="(item, index) in news" :key="index">
             <u-animate
               name="fadeInUp"
-              delay="1.5s"
-              duration="0.8s"
+              delay="0.8s"
+              duration="0.4s"
               :iteration="1"
               :offset="0"
               animateClass="animated"
@@ -88,8 +88,8 @@
             </u-animate>
             <u-animate
               name="fadeInUp"
-              delay="2s"
-              duration="0.8s"
+              delay="1s"
+              duration="0.4s"
               :iteration="1"
               :offset="0"
               animateClass="animated"
@@ -115,8 +115,8 @@
     </div>
     <u-animate
       name="fadeInUp"
-      delay="1s"
-      duration="0.8s"
+      delay="1.2s"
+      duration="0.4s"
       :iteration="1"
       :offset="0"
       animateClass="animated"
@@ -224,7 +224,7 @@
 
     beforeRouteUpdate(to, from, next) {
       this.isChanging = true
-      setTimeout(() => next(), 500)
+      setTimeout(() => next(), 300)
     },
 
     components: {
@@ -254,7 +254,7 @@
     flex-flow: row nowrap;
     align-content: center;
 
-    transition: transform .5s ease, opacity .5s ease;
+    transition: transform .4s ease, opacity .4s ease;
     will-change: transform, opacity;
   }
 

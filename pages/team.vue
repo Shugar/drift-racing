@@ -4,7 +4,7 @@
     <div class="wrapper">
       <u-animate
         name="fadeIn"
-        delay="0.4s"
+        delay="0.6s"
         duration="0.4s"
         :iteration="1"
         :offset="0"
@@ -15,9 +15,9 @@
       </u-animate>
       <div class="fade-left" />
       <u-animate
-        name="fadeInUpTitle"
+        name="fadeInUp"
         delay="0s"
-        duration="0.8s"
+        duration="0.4s"
         :iteration="1"
         :offset="0"
         animateClass="animated"
@@ -26,9 +26,9 @@
         <div class="title">team</div>
       </u-animate>
       <u-animate
-        name="fadeInUpPlayer"
-        delay="0.4s"
-        duration="0.8s"
+        name="fadeInUp"
+        delay="0.2s"
+        duration="0.4s"
         :iteration="1"
         :offset="0"
         animateClass="animated"
@@ -84,8 +84,8 @@
       </u-animate>
         <div class="counter">
           <u-animate
-            name="fadeInUpOther"
-            delay="0.8s"
+            name="fadeInUp"
+            delay="0.4s"
             duration="0.4s"
             :iteration="1"
             :offset="0"
@@ -97,7 +97,7 @@
         </div>
         <u-animate
           name="fadeIn"
-          delay="0.4s"
+          delay="0.6s"
           duration="0.4s"
           :iteration="1"
           :offset="0"
@@ -109,8 +109,8 @@
       <div class="fade-right" />
     </div>
     <u-animate
-      name="fadeInUpOther"
-      delay="1s"
+      name="fadeInUp"
+      delay="0.8s"
       duration="0.4s"
       :iteration="1"
       :offset="0"

@@ -2,14 +2,24 @@
   <section class="calendar" :class="{phone: isMobileInfoVisible}">
     <div class="background" :class="{active: isBackgroundAnimation}" :style="{ background: 'url(http://' + store.full.fields.file.url.slice(2) + ') no-repeat center / cover'}"></div>
     <div class="container" >
-      <nuxt-link to="/store/">
-        <div class="cross" />
-      </nuxt-link>
+      <u-animate
+        name="fadeIn"
+        delay="0.6s"
+        duration="0.4s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="true"
+      >
+        <nuxt-link to="/store/">
+          <div class="cross" />
+        </nuxt-link>
+      </u-animate>
     <div class="product" :class="{'product-mobile': isMobileInfoVisible}" >
       <u-animate
         name="fadeInUp"
-        delay="0.7s"
-        duration="0.8s"
+        delay="0.6s"
+        duration="0.4s"
         :iteration="1"
         :offset="0"
         animateClass="animated"
@@ -21,8 +31,8 @@
       </u-animate>
       <u-animate
         name="fadeInUp"
-        delay="1.2s"
-        duration="0.8s"
+        delay="0.8s"
+        duration="0.4s"
         :iteration="1"
         :offset="0"
         animateClass="animated"
@@ -32,8 +42,8 @@
       </u-animate>
       <u-animate
         name="fadeInUp"
-        delay="1.7s"
-        duration="0.8s"
+        delay="1s"
+        duration="0.4s"
         :iteration="1"
         :offset="0"
         animateClass="animated"
@@ -45,8 +55,8 @@
       </u-animate>
       <u-animate
         name="fadeInUp"
-        delay="2.2s"
-        duration="0.8s"
+        delay="1.2s"
+        duration="0.4s"
         :iteration="1"
         :offset="0"
         animateClass="animated"
@@ -73,8 +83,8 @@
       </u-animate>
       <u-animate
         name="fadeInUp"
-        delay="2.7s"
-        duration="0.8s"
+        delay="1.4s"
+        duration="0.4s"
         :iteration="1"
         :offset="0"
         animateClass="animated"
@@ -194,7 +204,7 @@
 
     transform: translateY(40%);
     opacity: 0;
-    transition: transform .5s ease, opacity .5s ease;
+    transition: transform .4s ease, opacity .4s ease;
     will-change: opacity, transform;
   }
 
@@ -232,6 +242,7 @@
     padding-right: 20px;
     margin-bottom: 40px;
   }
+
   .product-price {
     text-transform: uppercase;
     color: #683FFF;

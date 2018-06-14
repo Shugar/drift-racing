@@ -7,7 +7,7 @@
         <u-animate
           name="fadeIn"
           delay="0s"
-          duration="0.8s"
+          duration="0.4s"
           :iteration="1"
           :offset="0"
           animateClass="animated"
@@ -25,7 +25,7 @@
           <u-animate
             name="fadeIn"
             delay="0s"
-            duration="0.8s"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -42,7 +42,7 @@
             <u-animate
               name="fadeInUp"
               delay="0s"
-              duration="0.8s"
+              duration="0.4s"
               :iteration="1"
               :offset="0"
               animateClass="animated"
@@ -54,8 +54,8 @@
             </u-animate>
             <u-animate
               name="fadeInUp"
-              delay="0.5s"
-              duration="0.8s"
+              delay="0.2s"
+              duration="0.4s"
               :iteration="1"
               :offset="0"
               animateClass="animated"
@@ -65,8 +65,8 @@
             </u-animate>
             <u-animate
               name="fadeInUp"
-              delay="1s"
-              duration="0.8s"
+              delay="0.4s"
+              duration="0.4s"
               :iteration="1"
               :offset="0"
               animateClass="animated"
@@ -93,8 +93,8 @@
     </div>
     <u-animate
       name="fadeInUp"
-      delay="1s"
-      duration="0.8s"
+      delay="0.6s"
+      duration="0.4s"
       :iteration="1"
       :offset="0"
       animateClass="animated"
@@ -216,7 +216,7 @@
   }
 
   .wrapper {
-    transition: transform .5s ease, opacity .5s ease;
+    transition: transform .4s ease, opacity .4s ease;
     will-change: transform, opacity;
   }
 
@@ -320,6 +320,7 @@
       position: fixed;
       top: 198px;
       left: 100px;
+      z-index: 10;
     }
 
   .tags-title {

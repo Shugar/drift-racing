@@ -4,7 +4,7 @@
     <u-animate
       name="fadeIn"
       delay="0s"
-      duration="0.8s"
+      duration="0.4s"
       :iteration="1"
       :offset="0"
       animateClass="animated"
@@ -28,9 +28,9 @@
     <div class="wrapper" :class="{'isAnimating': isChanging}">
       <div class="title-wrapper">
         <u-animate
-          name="fadeInUpTitle"
+          name="fadeInUp"
           delay="0s"
-          duration="0.8s"
+          duration="0.4s"
           :iteration="1"
           :offset="0"
           animateClass="animated"
@@ -39,9 +39,9 @@
           <div class="title">{{locale === 'en' ? 'calendar' : 'календарь'}}</div>
         </u-animate>
         <u-animate
-            name="fadeInUpOther"
-            delay="0.5s"
-            duration="0.8s"
+            name="fadeIn"
+            delay="0s"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -67,9 +67,9 @@
         <div class="left">
           <div class="article" v-for="(article, index) in (events.length > 0 ? events : leftCalendar)" :key="index">
             <u-animate
-              name="fadeInUpPlayer"
-              :delay="0.8 + (index - 0.5) + 's'"
-              duration="0.8s"
+              name="fadeInUp"
+              :delay="0.2 + (index * 0.1) + 's'"
+              duration="0.4s"
               :iteration="1"
               :offset="0"
               animateClass="animated"
@@ -90,9 +90,9 @@
           <div class="previous-article">
               <nuxt-link class="previous" v-for="(article, index) in (rightEvents.length > 0 ? rightEvents : rightCalendar)" :to="'/calendar/' + findItemByTitle(article.title)" :key="index">
                   <u-animate
-                    name="fadeInUpPlayer"
-                    :delay="0.9 + (index - 0.5) + 's'"
-                    duration="0.8s"
+                    name="fadeInUp"
+                    :delay="0.2 + (index * 0.1) + 's'"
+                    duration="0.4s"
                     :iteration="1"
                     :offset="0"
                     animateClass="animated"
@@ -110,9 +110,9 @@
       <div class="container container-mobile">
         <div :class="{'previous': article.column === 'right', 'article': article.column === 'left'}" v-for="(article, index) in calendar" :key="index">
           <u-animate
-            name="fadeInUpPlayer"
-            :delay="1.6 + (index - 0.5) + 's'"
-            duration="0.8s"
+            name="fadeInUp"
+            :delay="0.2 + (index * 0.1) + 's'"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -135,8 +135,8 @@
     </div>
 
     <u-animate
-      name="fadeInUpOther"
-      delay="1s"
+      name="fadeInUp"
+      delay="0.8s"
       duration="0.4s"
       :iteration="1"
       :offset="0"
@@ -248,7 +248,7 @@
 
     beforeRouteLeave(to, from, next) {
       this.isChanging = true
-      setTimeout(() => next(), 500)
+      setTimeout(() => next(), 300)
     },
 
     components: {
@@ -265,7 +265,7 @@
   }
 
   .wrapper {
-    transition: transform .5s ease, opacity .5s ease;
+    transition: transform .4s ease, opacity .4s ease;
     will-change: transform, opacity;
   }
 
@@ -323,7 +323,6 @@
 
     .title {
       padding: 0;
-      margin-bottom: 10px;
 
       display: inline;
       box-shadow: 0 0px 0 0 transparent inset;

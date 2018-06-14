@@ -4,7 +4,7 @@
     <u-animate
       name="fadeIn"
       delay="0s"
-      duration="0.8s"
+      duration="0.4s"
       :iteration="1"
       :offset="0"
       animateClass="animated"
@@ -26,9 +26,9 @@
   </u-animate>
     <div class="container" :class="{'isAnimating': isChanging}">
       <u-animate
-          name="fadeInUpTitle"
+          name="fadeInUp"
           delay="0s"
-          duration="0.8s"
+          duration="0.4s"
           :iteration="1"
           :offset="0"
           animateClass="animated"
@@ -37,9 +37,9 @@
       </u-animate>
 
       <u-animate
-          name="fadeInUpPlayer"
-          delay="0.5s"
-          duration="0.8s"
+          name="fadeInUp"
+          delay="0.2s"
+          duration="0.4s"
           :iteration="1"
           :offset="0"
           animateClass="animated"
@@ -64,9 +64,9 @@
         </div>
       </u-animate>
       <u-animate
-          name="fadeInUpPlayer"
-          delay="0.5s"
-          duration="0.8s"
+          name="fadeInUp"
+          delay="0.6s"
+          duration="0.4s"
           :iteration="1"
           :offset="0"
           animateClass="animated"
@@ -92,8 +92,8 @@
       </u-animate>
     </div>
     <u-animate
-      name="fadeInUpOther"
-      delay="1s"
+      name="fadeInUp"
+      delay="0.4s"
       duration="0.4s"
       :iteration="1"
       :offset="0"
@@ -181,7 +181,7 @@
 
     beforeRouteLeave(to, from, next) {
       this.isChanging = true
-      setTimeout(() => next(), 500)
+      setTimeout(() => next(), 300)
     },
 
     components: {
@@ -208,7 +208,7 @@
     padding: 0 100px;
 
     padding-left: 320px;
-    transition: transform .5s ease, opacity .5s ease;
+    transition: transform .4s ease, opacity .4s ease;
     will-change: transform, opacity;
   }
 
@@ -216,6 +216,7 @@
     position: fixed;
     top: 275px;
     left: 100px;
+    z-index: 10;
   }
 
   .tags-title {

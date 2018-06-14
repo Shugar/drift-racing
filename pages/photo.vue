@@ -4,7 +4,7 @@
     <u-animate
       name="fadeIn"
       delay="0s"
-      duration="0.8s"
+      duration="0.4s"
       :iteration="1"
       :offset="0"
       animateClass="animated"
@@ -28,9 +28,9 @@
     </u-animate>
     <div class="container" :class="{'isAnimating': isChanging}">
       <u-animate
-        name="fadeInUpTitle"
+        name="fadeInUp"
         delay="0s"
-        duration="0.8s"
+        duration="0.4s"
         :iteration="1"
         :offset="0"
         animateClass="animated"
@@ -42,9 +42,9 @@
       <div class="list" v-if="filteredPhotos.length === 0">
         <div class="photo" v-for="(photo, index) in fetchedPhotos" :key="index">
           <u-animate
-            name="fadeInUpPlayer"
-            :delay="0.6 + (index - 0.7 * index) + 's'"
-            duration="0.8s"
+            name="fadeInUp"
+            :delay="0.2 + (index * 0.1) + 's'"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -76,9 +76,9 @@
       <div class="list" v-else>
         <div class="photo" v-for="(photo, index) in filteredPhotos" :key="index">
           <u-animate
-            name="fadeInUpPlayer"
-            :delay="0.6 + (index - 0.7 * index) + 's'"
-            duration="0.8s"
+            name="fadeInUp"
+            :delay="0.2 + (index * 0.1) + 's'"
+            duration="0.4s"
             :iteration="1"
             :offset="0"
             animateClass="animated"
@@ -108,8 +108,8 @@
       </div>
     </div>
     <u-animate
-      name="fadeInUpOther"
-      delay="1s"
+      name="fadeInUp"
+      delay="0.8s"
       duration="0.4s"
       :iteration="1"
       :offset="0"
@@ -185,7 +185,7 @@
 
     beforeRouteLeave(to, from, next) {
       this.isChanging = true
-      setTimeout(() => next(), 500)
+      setTimeout(() => next(), 300)
     },
 
 
@@ -221,13 +221,14 @@
     padding: 0 100px;
 
     padding-left: 320px;
-    transition: transform .5s ease, opacity .5s ease;
+    transition: transform .4s ease, opacity .4s ease;
     will-change: transform, opacity;
   }
 
   .tags {
     position: fixed;
     top: 280px;
+    z-index: 10;
     left: 100px;
   }
 
