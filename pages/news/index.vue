@@ -366,6 +366,7 @@
     }
 
     .tags {
+      padding-left: 60px;
       flex: 1;
       position: initial;
       display: flex;
@@ -387,7 +388,7 @@
     }
 
     .tag {
-      width: 130px;
+      flex: 0 0 50%;
     }
 
     .tags-country {
@@ -402,6 +403,7 @@
     }
 
     .tags {
+      padding: 0 30px;
       margin-bottom: 50px;
       margin-left: 0;
     }

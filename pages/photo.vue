@@ -339,6 +339,7 @@
     }
 
     .tags {
+      padding-left: 100px;
       flex: 1;
       position: initial;
       display: flex;
@@ -372,6 +373,7 @@
     }
 
     .tags {
+      padding: 0 30px;
       margin-bottom: 50px;
     }
   }
