@@ -68,7 +68,7 @@
     position: fixed;
     height: 100%;
     width: 100%;
-    z-index: 11;
+    z-index: 10000;
     display: block;
   }
 
