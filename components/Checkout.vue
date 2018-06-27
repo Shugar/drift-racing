@@ -69,7 +69,7 @@
 
 <style lang="scss" scoped>
   .checkout {
-    z-index: 22;
+    z-index: 10000;
     position: fixed;
     display: flex;
     height: 100%;

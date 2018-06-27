@@ -180,6 +180,7 @@
         this.events = events.filter(article => { return article.championship === tag })
         this.rightEvents = rightEvents.filter(article => { return article.championship === tag })
       },
+
       setCountry (tag) {
         const events = this.leftCalendar
         const rightEvents = this.rightCalendar
@@ -369,6 +370,7 @@
     position: fixed;
     top: 305px;
     left: 100px;
+    z-index: 100;
   }
 
   .tags-title {

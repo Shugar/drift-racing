@@ -131,6 +131,7 @@
     font-size: 48px;
     text-transform: uppercase;
     color: #FFFFFF;
+    margin-bottom: 100px;
   }
 
   .partners-list {
@@ -143,6 +144,7 @@
   }
 
   .partner {
+    margin-bottom: 60px;
     padding-right: 60px;
     flex: 0 0 33%;
   }
@@ -163,6 +165,12 @@
     line-height: 28px;
     font-size: 18px;
     color: rgba(255, 255, 255, 0.8);
+  }
+
+  @media (max-width: 1024px) {
+    .container {
+      padding-left: 100px;
+    }
   }
 
   @media (max-width: 768px) {

@@ -370,9 +370,9 @@
     flex-flow: column nowrap;
     justify-content: center;
 
-    &:hover .left-background {
-      transform: scale(1.04);
-    }
+    // &:hover .left-background {
+    //   transform: scale(1.04);
+    // }
   }
 
   .left-background {
@@ -572,6 +572,45 @@
       }
     }
   }
+
+  .left-background-active {
+    transform-origin: 50% 0% 0px;
+    opacity: 1;
+    transform: translateY(0%) scale(1);
+  }
+
+  .left-background-top-enter-active, .left-background-top-leave-active {
+    transition: transform 1s ease, transform-origin 1s ease, opacity 1s ease;
+  }
+
+  .left-background-top-leave-to {
+    transform-origin: 50% 50% 0px;
+    // opacity: 0;
+    transform: translateY(100%) scale(0.8);
+  }
+
+  .left-background-top-enter {
+    transform-origin: 50% 50% 0px;
+    // opacity: 0;
+    transform: translateY(-100%) scale(0.8);
+  }
+
+  .left-background-bottom-enter-active, .left-background-bottom-leave-active {
+    transition: transform 1s ease, transform-origin 1s ease, opacity 1s ease;
+  }
+
+  .left-background-bottom-leave-to {
+    transform-origin: 50% 50% 0px;
+    // opacity: 0;
+    transform: translateY(-100%) scale(0.8);
+  }
+
+  .left-background-bottom-enter {
+    transform-origin: 50% 50% 0px;
+    // opacity: 0;
+    transform: translateY(100%) scale(0.8);
+  }
+
 
   .button-top-animation-enter-active, .button-top-animation-leave-active {
     transition: transform .5s;
