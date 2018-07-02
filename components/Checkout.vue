@@ -1,9 +1,12 @@
 <template>
-  <div class="checkout">
+  <div class="checkout" :class="{'checkout--opened': isOpen}">
       <div class="left" @click="$store.commit('toggleCheckout')" />
       <div class="right">
         <div class="right-wrapper">
-          <div class="title">{{ this.isOrder ? (locale === 'en' ? 'CHECKOUT' : 'ОФОРМЛЕНИЕ ЗАКАЗА') : (locale  === 'en' ? 'CART' : 'КОРЗИНА')}}</div>
+          <div class="title">
+            {{ this.isOrder ? (locale === 'en' ? 'CHECKOUT' : 'ОФОРМЛЕНИЕ ЗАКАЗА') : (locale  === 'en' ? 'CART' : 'КОРЗИНА')}}
+            <div class="close" @click="$store.commit('toggleCheckout')" />
+          </div>
           <div class="products" v-if="!this.isOrder">
             <div class="product-item" v-for="(product, index) in checkoutList" :key="index">
               <div class="image" :style="{background: `url(${ 'http://' + product.preview.fields.file.url.slice(2) }) no-repeat center / cover`}" />
@@ -36,6 +39,8 @@
 
 <script>
   export default {
+    props: ['isOpen'],
+
     data () {
       return {
         isOrder: false
@@ -76,6 +81,14 @@
     width: 100%;
     right: 0;
     top: 0;
+
+    transform: translateY(-100%);
+    transition: transform .3s ease;
+    will-change: transform;
+
+    &.checkout--opened {
+      transform: translateY(0%);
+    }
   }
 
   .left {
@@ -107,6 +120,11 @@
     padding-top: 80px;
   }
 
+  .close {
+    width: 24px;
+    height: 24px;
+    background: url('~/assets/images/close.svg') no-repeat center / contain;
+  }
 
   .order {
     background: #fff;
@@ -185,15 +203,17 @@
     }
   }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    margin: 0;
-}
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      margin: 0;
+  }
 
 @media (max-width: 768px) {
   .product-item {
+    max-width: 286px;
+    padding-right: 0;
     flex-wrap: wrap;
     justify-content: space-between;
   }
@@ -208,12 +228,28 @@ input::-webkit-inner-spin-button {
   }
 
   .right {
-    width: 300px;
+    width: 100%;
   }
 
   .left {
+    display: none;
     width: calc(100% - 300px);
   }
 }
 
+@media (max-width: 425px) {
+  .close {
+    display: block;
+  }
+
+  .left {
+    display: none;
+  }
+
+  .title {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+}
 </style>

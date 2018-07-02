@@ -1,7 +1,7 @@
 <template>
   <section class="store">
     <Header :productCount="productCount" :productSum="productSum"/>
-    <Checkout v-if="$store.state.isCheckoutOpen" />
+    <Checkout :isOpen="$store.state.isCheckoutOpen" />
     <u-animate
       name="fadeIn"
       delay="0s"
@@ -215,8 +215,20 @@
 </script>
 
 <style lang="scss" scoped>
+  .transform-animation-enter-active, .transform-animation-leave-active {
+    transition: transform .5s ease-in;
+  }
+
+  .transform-animation-leave-to {
+    transform: translateY(110%);
+  }
+
+  .transform-animation-enter {
+    transform: translateY(-110%);
+  }
+
   .store {
-    background: #683FFF;
+    background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
     padding: 200px 0 80px;
     height: 100%;
 

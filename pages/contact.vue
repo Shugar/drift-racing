@@ -380,13 +380,13 @@
     height: 100%;
     display: flex;
     flex-flow: row nowrap;
-    background: #683FFF;
+    background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
   }
 
   .left-background {
     width: 100%;
     height: 100%;
-    background: #683FFF;
+    background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
     position: absolute;
     top: 0;
     left: 0;

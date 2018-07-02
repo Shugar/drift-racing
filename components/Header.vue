@@ -123,7 +123,6 @@
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(180deg, #683FFF 0%, rgba(104, 63, 255, 0.8) 58.56%, rgba(104, 63, 255, 0) 100%);
     z-index: 9999;
 
     &.main {
@@ -382,7 +381,7 @@
       height: 100%;
       z-index: 9999;
       right: 0;
-      background: #000;
+      background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
 
       &-content-wrapper {
         padding: 56px 76px;

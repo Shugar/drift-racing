@@ -38,9 +38,9 @@
         <span :class="{'lang-active': locale === 'ru'}" @click="setRU()">RU</span> — <span :class="{'lang-active': locale === 'en'}" @click="setEN()">EN</span>
       </div>
 
-      <div class="copy">
+      <a class="copy" target="_blank" href="https://apus.agency/">
         MADE BY APUS <span>AGENCY</span>
-      </div>
+      </a>
     </div>
   </div>
 </template>
@@ -254,6 +254,17 @@ export default {
     font-size: 20px;
     text-transform: uppercase;
     color: #E0E0E0;
+  }
+
+  .copy {
+    display: inline;
+    box-shadow: 0 0px 0 0 transparent inset;
+    transition: box-shadow .1s ease-in;
+    will-change: box-shadow;
+  }
+
+  .copy:hover {
+    box-shadow: 0 -4px 0 0 #E0E0E0 inset;
   }
 
   .lang span {

@@ -32,15 +32,20 @@
             <div class="title" v-for="(slide, index) in dummyLeftSlider"
               :style="{display: count === index ? 'block' : 'none'}"
               :key="index">
-                <div class="title-inner"
-                  v-for="(title, i) in slide.title"
-                  :key="i">
-                  <transition :name="'category-' + direction + '-animation'" mode="out-in" appear>
-                    <div v-if="count === index" class="title-absolute">
-                        {{ title }}
-                    </div>
-                  </transition>
-                </div>
+                <nuxt-link :to="dummyLeftSlider[count].link"
+                  v-if="count === index"
+                  v-for="(slide, index) in dummyLeftSlider"
+                  :key="index">
+                  <div class="title-inner"
+                    v-for="(title, i) in slide.title"
+                    :key="i">
+                    <transition :name="'category-' + direction + '-animation'" mode="out-in" appear>
+                      <div v-if="count === index" class="title-absolute">
+                          {{ title }}
+                      </div>
+                    </transition>
+                  </div>
+                </nuxt-link>
             </div>
             <div class="subtitle-wrapper">
               <transition :name="'subtitle-' + direction + '-animation'"
@@ -223,7 +228,6 @@
         this.sliderInterval()
 
         this.nextUpAnimation = false
-        // this.prevSlideRight()
         setTimeout(() => this.nextUpAnimation = true, 0)
       },
 
@@ -235,38 +239,25 @@
         this.sliderInterval()
 
         this.nextUpAnimation = false
-        // this.nextSlideRight()
         setTimeout(() => this.nextUpAnimation = true, 0)
       },
 
-      // nextSlideRight () {
-      //   return this.rightCount === 3 ? this.rightCount = 0 : this.rightCount++
-      // },
-
-      // prevSlideRight () {
-      //   return this.rightCount === 0 ? this.rightCount = 3 : this.rightCount--
-      // },
-
       handleScroll (e) {
         if (e.deltaY < 0) {
-          // this.prevSlideRight()
           this.prevSlide()
         }
 
         if (e.deltaY > 0) {
-          // this.nextSlideRight()
           this.nextSlide()
         }
       },
 
       handleKeypress (e) {
         if (e.keyCode === 37) {
-          // this.prevSlideRight()
           this.prevSlide()
         }
 
         if (e.keyCode === 39) {
-          // this.nextSlideRight()
           this.nextSlide()
         }
       },
@@ -675,6 +666,30 @@
   .title {
     margin-bottom: 30px;
     width: 100%;
+
+    &:nth-child(1) {
+      margin-left: -10px;
+    }
+
+    &:nth-child(1) &-inner:nth-child(3) {
+      margin-left: 10px;
+    }
+
+    &:nth-child(2) {
+      margin-left: -12px;
+    }
+
+    &:nth-child(3) &-inner:nth-child(1) {
+      margin-left: -10px;
+    }
+
+    &:nth-child(3) &-inner:nth-child(2) {
+      margin-left: -4px;
+    }
+
+    &:nth-child(4) &-inner:nth-child(1) {
+      margin-left: -10px;
+    }
   }
 
   .title-inner {
@@ -788,7 +803,7 @@
 
   .right {
     height: 100%;
-    background: #683FFF;
+    background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
     flex: 0 0 45%;
     display: flex;
     flex-flow: column nowrap;
@@ -799,7 +814,7 @@
   .right-background {
     width: 100%;
     transform: translateX(55%);
-    background: #683FFF;
+    background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
     height: 100%;
     position: absolute;
     right: 0;

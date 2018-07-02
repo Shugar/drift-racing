@@ -172,7 +172,7 @@
 
 <style lang="scss" scoped>
   .calendar {
-    background: #683FFF;
+    background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
     // padding: 200px 0 80px;
     position: relative;
     height: 100%;
@@ -240,7 +240,7 @@
   .product-title {
     text-transform: uppercase;
     padding-right: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
   }
 
   .product-price {
@@ -447,8 +447,21 @@
       pointer-events: auto;
     }
 
+    .product-title {
+      font-size: 32px;
+    }
+
     .product-price {
+      margin-bottom: 16px;
       color: #fff;
+    }
+
+    /deep/ .multiselect--active {
+      margin-top: -4px;
+    }
+
+    /deep/ .multiselect__content {
+      padding: 0;
     }
 
     .mobile-container {

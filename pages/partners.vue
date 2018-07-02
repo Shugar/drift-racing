@@ -102,7 +102,7 @@
 <style lang="scss" scoped>
   .partners {
     min-height: 100vh;
-    background: #683FFF;
+    background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
     padding: 200px 0 60px;
 
     display: flex;

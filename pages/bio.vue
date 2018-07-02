@@ -242,7 +242,7 @@ export default {
 
 <style lang="scss" scoped>
   .bio {
-    background: #683FFF;
+    background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
     padding: 200px 0 80px;
   }
 
