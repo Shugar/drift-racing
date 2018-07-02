@@ -83,8 +83,6 @@
     top: 0;
 
     transform: translateY(-100%);
-    transition: transform .3s ease;
-    will-change: transform;
 
     &.checkout--opened {
       transform: translateY(0%);
@@ -121,6 +119,7 @@
   }
 
   .close {
+    display: none;
     width: 24px;
     height: 24px;
     background: url('~/assets/images/close.svg') no-repeat center / contain;
@@ -238,6 +237,11 @@
 }
 
 @media (max-width: 425px) {
+  .checkout {
+    transition: transform .3s ease;
+    will-change: transform;
+  }
+
   .close {
     display: block;
   }
