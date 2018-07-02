@@ -159,7 +159,7 @@
     data () {
       return {
         count: 0,
-        rightCount: 3,
+        rightCount: 0,
         direction: 'top',
         isChanging: false,
         timeInterval: 0,
@@ -227,8 +227,8 @@
 
       prevSlide () {
         this.direction = 'bottom'
-        // this.count === 0 ? this.count = 3 : this.count--
-        // this.rightCount === 0 ? this.rightCount = 3 : this.rightCount--
+        this.count === 0 ? this.count = 3 : this.count--
+        this.rightCount === 0 ? this.rightCount = 3 : this.rightCount--
         clearInterval(this.nextSlideInterval)
         this.sliderInterval()
 
@@ -238,8 +238,8 @@
 
       nextSlide () {
         this.direction = 'top'
-        // this.count === 3 ? this.count = 0 : this.count++
-        // this.rightCount === 3 ? this.rightCount = 0 : this.rightCount++
+        this.count === 3 ? this.count = 0 : this.count++
+        this.rightCount === 3 ? this.rightCount = 0 : this.rightCount++
         clearInterval(this.nextSlideInterval)
         this.sliderInterval()
 
