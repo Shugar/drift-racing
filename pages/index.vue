@@ -73,11 +73,13 @@
           </div>
 
         </div>
-        <div v-for="(slide, index) in dummyLeftSlider"
-          :class="'left-background-'+`${index + 1}`"
-          class="left-background"
-          v-if="count === index"
-          :key="index" />
+        <transition :name="'left-background-' + direction">
+          <div v-for="(slide, index) in dummyLeftSlider"
+            :class="'left-background-'+`${index + 1}`"
+            class="left-background"
+            v-if="count === index"
+            :key="index" />
+        </transition>
       </div>
 
       <div class="right-background" :class="{'isPurpleAnimating': isChanging}" />
@@ -576,35 +578,31 @@
   }
 
   .left-background-top-enter-active, .left-background-top-leave-active {
-    transition: transform 1s ease, transform-origin 1s ease, opacity 1s ease;
+    pointer-events: none;
+    transition: transform 0.8s ease;
+    will-change: transform;
   }
 
   .left-background-top-leave-to {
-    transform-origin: 50% 50% 0px;
-    // opacity: 0;
-    transform: translateY(100%) scale(0.8);
+    transform: translateY(100%) scale(1);
   }
 
   .left-background-top-enter {
-    transform-origin: 50% 50% 0px;
-    // opacity: 0;
-    transform: translateY(-100%) scale(0.8);
+    transform: translateY(-100%) scale(1.4);
   }
 
   .left-background-bottom-enter-active, .left-background-bottom-leave-active {
-    transition: transform 1s ease, transform-origin 1s ease, opacity 1s ease;
+    pointer-events: none;
+    transition: transform 0.8s ease;
+    will-change: transform;
   }
 
   .left-background-bottom-leave-to {
-    transform-origin: 50% 50% 0px;
-    // opacity: 0;
-    transform: translateY(-100%) scale(0.8);
+    transform: translateY(-100%) scale(1);
   }
 
   .left-background-bottom-enter {
-    transform-origin: 50% 50% 0px;
-    // opacity: 0;
-    transform: translateY(100%) scale(0.8);
+    transform: translateY(100%) scale(1.4);
   }
 
 
