@@ -130,6 +130,7 @@
           <img :src="'http://' + car.image.fields.file.url.slice(2)" />
         </u-animate>
         <u-animate
+          class="text-wrapper"
           name="fadeInUp"
           delay="1s"
           duration="0.4s"
@@ -139,7 +140,7 @@
           :begin="true"
         >
           <div class="text">
-            The car was built at the end of the past especially for the current season in the Russian Drift Series and the European Drift Allstars Championship.
+            {{ car.text }}
           </div>
         </u-animate>
         <u-animate
@@ -307,6 +308,10 @@ export default {
     color: rgba(255, 255, 255, 0.8);
     max-width: 470px;
     padding-right: 40px;
+    flex: 1;
+  }
+
+  .text-wrapper {
     flex: 1;
   }
 

@@ -398,7 +398,7 @@
   }
 
   .isPurpleChanging {
-    transform: translateX(-55%);
+    transform: translateX(-45%);
   }
 
   .left {

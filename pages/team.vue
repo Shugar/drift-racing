@@ -37,7 +37,10 @@
         <div class="members-wrapper">
           <div
               v-for="(item, index) in team"
-              :style="{left: count === 0 ? index*550 + 'px' : index*550 - count*550 + 'px'}"
+              :style="{
+                left: count === 0 ? index*550 + 'px' : index*550 - count*550 + 'px',
+                opacity: count === index ? '1' : '0.2'
+              }"
               :key="index"
               class="member">
             <div class="member-photo" :style="{background: 'url(http://' + item.image.fields.file.url.slice(2) + ') no-repeat center / cover'}">
@@ -228,7 +231,8 @@ export default {
     display: flex;
     margin-right: 80px;
 
-    transition: left .2s ease;
+    transition: left .2s ease, opacity .2s ease;
+    will-change: left, opacity;
   }
 
   .descr {
@@ -289,7 +293,7 @@ export default {
     left: 0;
     height: 100%;
     width: 320px;
-    // opacity: 0.5;
+    opacity: 0.5;
     display: none;
     z-index: 3;
   }
@@ -300,7 +304,7 @@ export default {
     right: 0;
     height: 100%;
     width: 50%;
-    // opacity: 0.5;
+    opacity: 0.5;
     display: none;
   }
 

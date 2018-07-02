@@ -211,7 +211,7 @@ export default {
   .socials-youtube:hover:before,
   .socials-facebook:hover:before,
   .socials-instagram:hover:before {
-    background-color: #000;
+    background-color: #673fff;
   }
 
   .isHome {

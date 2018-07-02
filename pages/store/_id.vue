@@ -435,7 +435,7 @@
     .product {
       opacity: 0;
       pointer-events: none;
-      background: #683FFF;
+      background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
       width: 100%;
       height: 100%;
       padding: 150px 50px 0 50px;
@@ -443,6 +443,11 @@
     }
 
     .product-mobile {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
       opacity: 1;
       pointer-events: auto;
     }
