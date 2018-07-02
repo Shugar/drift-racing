@@ -1,14 +1,6 @@
 <template>
   <div class="preload nprogress-custom-parent">
-    <div class="preload__sign">
-      <i></i>
-      <i></i>
-    </div>
-    <div class="left-background left-background-1" />
-    <div class="left-background left-background-2" />
-    <div class="left-background left-background-3" />
-    <div class="left-background left-background-4" />
-    <div class="preload__progress"><i></i></div>
+    <video class="logo-loader" autoplay loop src="~/assets/video/logo-3.mp4"/>
     <div id="nprogress">
       <div class="bar" role="bar"
         :style="{
@@ -48,6 +40,14 @@
     height: 121.22px;
   }
 
+  .logo-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 20%;
+    height: auto;
+  }
   .preload__sign i {
     position: absolute;
     left: 0;

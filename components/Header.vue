@@ -26,8 +26,9 @@
 
     <div class="left" :class="{ mainLeft: type === 'main' }">
       <nuxt-link to="/" class="logo-link">
-        <div class="logo" :class="{'isHeaderAnimated': isHeaderAnimated}">
+        <div class="logo">
           <i></i><i></i>
+          <video class="logo-loader" v-if="isHeaderAnimated" autoplay loop src="~/assets/video/logo-3.mp4"/>
         </div>
       </nuxt-link>
       <div class="back-to news" v-if="this.$route.path === `/news/${this.$route.params.id}`">
@@ -170,11 +171,19 @@
     overflow: hidden;
     background: #000;
 
-    &.isHeaderAnimated i:last-child {
-      animation: logo 1.5s linear infinite;
-    }
+    // &.isHeaderAnimated i:last-child {
+    //   animation: logo 1.5s linear infinite;
+    // }
   }
 
+  .logo-loader {
+    position: absolute;
+    left: 23px;
+    bottom: 23px;
+    width: 54px;
+    height: auto;
+    transform: translate3d(0, 0, 0) skewX(15deg);
+  }
   .logo i {
     position: absolute;
     left: 24px;
