@@ -289,7 +289,8 @@ export default {
     left: 0;
     height: 100%;
     width: 320px;
-    background: linear-gradient(90deg, #683FFF 0, rgba(104, 63, 255, 0) 100%);
+    // opacity: 0.5;
+    display: none;
     z-index: 3;
   }
 
@@ -299,7 +300,8 @@ export default {
     right: 0;
     height: 100%;
     width: 50%;
-    background: linear-gradient(-90deg, #683FFF 0, rgba(104, 63, 255, 0) 100%)
+    // opacity: 0.5;
+    display: none;
   }
 
   .arrow {
