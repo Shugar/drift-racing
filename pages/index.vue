@@ -110,10 +110,15 @@
                   v-if="index === rightCount"
                   :to="rightSliderLink(item)"
                   :key="index">
-                  <div class="small-slider-text" v-html="item.title"/>
+
+                  <div class="text-wrapper">
+                    <div class="small-slider-text" v-html="item.title"/>
+                  </div>
                   <!-- <div class="small-slider-place" v-if="item.type === 'calendar'" v-html="item.place"/> -->
                   <div class="small-slider-category" v-if="item.type === 'store'" v-html="item.category"/>
-                  <div class="small-slider-style" v-if="item.type === 'store'" v-html="item.style"/>
+                  <div class="text-wrapper">
+                    <div class="small-slider-style" v-if="item.type === 'store'" v-html="item.style"/>
+                  </div>
                   <div class="small-slider-event-date" v-if="item.type === 'calendar' || item.type === 'news'" v-html="item.date"/>
                 </nuxt-link>
               </transition>
@@ -154,7 +159,7 @@
     data () {
       return {
         count: 0,
-        rightCount: 0,
+        rightCount: 3,
         direction: 'top',
         isChanging: false,
         timeInterval: 0,
@@ -222,8 +227,8 @@
 
       prevSlide () {
         this.direction = 'bottom'
-        this.count === 0 ? this.count = 3 : this.count--
-        this.rightCount === 0 ? this.rightCount = 3 : this.rightCount--
+        // this.count === 0 ? this.count = 3 : this.count--
+        // this.rightCount === 0 ? this.rightCount = 3 : this.rightCount--
         clearInterval(this.nextSlideInterval)
         this.sliderInterval()
 
@@ -233,8 +238,8 @@
 
       nextSlide () {
         this.direction = 'top'
-        this.count === 3 ? this.count = 0 : this.count++
-        this.rightCount === 3 ? this.rightCount = 0 : this.rightCount++
+        // this.count === 3 ? this.count = 0 : this.count++
+        // this.rightCount === 3 ? this.rightCount = 0 : this.rightCount++
         clearInterval(this.nextSlideInterval)
         this.sliderInterval()
 
@@ -861,7 +866,7 @@
 
   .small-slider {
     width: 380px;
-    min-height: 120px;
+    min-height: 170px;
     font-family: 'DIN Condensed', sans-serif;
     text-transform: uppercase;
     font-size: 36px;
@@ -876,11 +881,10 @@
     transition: opacity .4s ease;
     will-change: opacity;
 
-    &-text {
+    .text-wrapper {
       width: 65%;
     }
   }
-
 
   .small-slider-style,
   .small-slider-right {
@@ -891,6 +895,28 @@
     position: absolute;
     left: 0;
     overflow: hidden;
+
+
+    &:hover {
+      .small-slider-text,
+      .small-slider-category,
+      .small-slider-style,
+      .small-slider-event-date,
+      .small-slider-price {
+        box-shadow: 0 -4px 0 0 #E0E0E0 inset;
+      }
+    }
+
+    .small-slider-text,
+    .small-slider-category,
+    .small-slider-style,
+    .small-slider-event-date,
+    .small-slider-price  {
+      display: inline;
+      box-shadow: 0 0px 0 0 transparent inset;
+      transition: box-shadow .1s ease-in;
+      will-change: box-shadow;
+    }
   }
 
   .small-slider-right {
@@ -905,7 +931,7 @@
     }
     .small-slider-price {
       align-self: flex-end;
-      margin-bottom: -9px;
+      margin-bottom: -13px;
     }
   }
 
