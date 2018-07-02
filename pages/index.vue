@@ -584,11 +584,11 @@
   }
 
   .left-background-top-leave-to {
-    transform: translateY(100%) scale(1);
+    transform: translateY(-100%) scale(1);
   }
 
   .left-background-top-enter {
-    transform: translateY(-100%) scale(1.4);
+    transform: translateY(100%) scale(1.4);
   }
 
   .left-background-bottom-enter-active, .left-background-bottom-leave-active {
@@ -598,11 +598,11 @@
   }
 
   .left-background-bottom-leave-to {
-    transform: translateY(-100%) scale(1);
+    transform: translateY(100%) scale(1);
   }
 
   .left-background-bottom-enter {
-    transform: translateY(100%) scale(1.4);
+    transform: translateY(-100%) scale(1.4);
   }
 
 
