@@ -1,5 +1,5 @@
 <template>
-  <section class="news">
+  <section class="calendar">
     <Header />
     <u-animate
       name="fadeIn"
@@ -11,96 +11,132 @@
       :begin="true"
     >
       <div class="tags">
-        <div class="tags-title">{{ locale === 'en' ? 'TAGS' : 'ТЕГИ'}}</div>
         <div class="tags-item">
-          <div class="tag" v-for="(tag, index) in tags" :key="index" @click="filterByTag(tag.trim())">
+          <div class="tags-title">{{locale === 'en' ? 'CHAMPIONSHIP' : 'ЧЕМПИОНАТ'}}</div>
+          <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="setTag(tag)">
+            #{{tag}}
+          </div>
+        </div>
+        <div class="tags-item">
+          <div class="tags-title tags-country">{{ locale === 'en' ? 'COUNTRY' : 'СТРАНА' }}</div>
+          <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="setCountry(tag)">
             #{{tag}}
           </div>
         </div>
       </div>
     </u-animate>
-    <div class="container" :class="{'isAnimating': isChanging}">
-      <u-animate
-        name="fadeInUp"
-        delay="0s"
-        duration="0.4s"
-        :iteration="1"
-        :offset="0"
-        animateClass="animated"
-        :begin="true"
-      >
-        <div class="title">{{ locale === 'en' ? 'NEWS' : 'НОВОСТИ'}}</div>
-      </u-animate>
-      <u-animate
-        name="fadeInUp"
-        delay="0.2s"
-        duration="0.4s"
-        :iteration="1"
-        :offset="0"
-        animateClass="animated"
-        :begin="true"
-      >
-        <div class="news-list" v-if="filteredArticles.length === 0">
-          <masonry
-            :cols="{default: 3, 1024: 2, 425: 1}"
-            :gutter="{default: '60px', 768: '40px', 425: '0px'}"
-            ref="my-masonry">
-            <div class="article" v-for="(article, index) in fetchedNews" :key="index">
-              <nuxt-link :to="'/news/' + index">
-                <div class="article-date">{{ article.date }}</div>
-                <div class="article-title" v-html="article.title"></div>
-                <div class="article-image"
-                  :style="{background: `url(${ 'http://' + article.media.fields.file.url.slice(2) }) no-repeat center / cover`}" />
-                <div class="article-preview">{{ article.preview }}</div>
-                <div class="article-hashtags">
-                  <div class="article-hashtag"
-                    v-for="(hashtag, index) in article.tags"
-                    :key="index">
-                    #{{ hashtag.trim() }}
-                  </div>
-                </div>
-              </nuxt-link>
+    <div class="wrapper" :class="{'isAnimating': isChanging}">
+      <div class="title-wrapper">
+        <u-animate
+          name="fadeInUp"
+          delay="0s"
+          duration="0.4s"
+          :iteration="1"
+          :offset="0"
+          animateClass="animated"
+          :begin="true"
+          >
+          <div class="title">{{locale === 'en' ? 'news' : 'новости'}}</div>
+        </u-animate>
+        <u-animate
+            name="fadeIn"
+            delay="0s"
+            duration="0.4s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="true"
+          >
+          <div class="tags">
+            <div class="tags-item">
+              <div class="tags-title">{{locale === 'en' ? 'CHAMPIONSHIP' : 'ЧЕМПИОНАТ'}}</div>
+              <div class="tag" v-for="(tag, index) in championshipTags" :key="'championship-' + index" @click="setTag(tag)">
+                #{{tag}}
+              </div>
             </div>
-          </masonry>
-        </div>
-      </u-animate>
-      <u-animate
-        name="fadeInUp"
-        delay="0.2s"
-        duration="0.4s"
-        :iteration="1"
-        :offset="0"
-        animateClass="animated"
-        :begin="true"
-      >
-        <div class="news-list">
-          <masonry
-            :cols="{default: 3, 1024: 2, 425: 1}"
-            :gutter="{default: '60px', 768: '40px', 425: '0px'}"
-            ref="my-masonry">
-            <div class="article" v-for="(article, index) in filteredArticles" :key="index">
-              <nuxt-link :to="'/news/' + index">
-                <div class="article-date">{{ article.date }}</div>
-                <div class="article-title" v-html="article.title"></div>
-                <div class="article-image"
-                  :style="{background: `url(${ 'http://' + article.media.fields.file.url.slice(2) }) no-repeat center / cover`}" />
-                <div class="article-preview">{{ article.preview }}</div>
-                <div class="article-hashtags">
-                  <div class="article-hashtag"
-                    v-for="(hashtag, index) in article.tags"
-                    :key="index">
-                    #{{ hashtag.trim() }}
-                  </div>
-                </div>
-              </nuxt-link>
+            <div class="tags-item">
+              <div class="tags-title tags-country">{{ locale === 'en' ? 'COUNTRY' : 'СТРАНА' }}</div>
+              <div class="tag" v-for="(tag, index) in countryTags" :key="'country-' + index" @click="setCountry(tag)">
+                #{{tag}}
+              </div>
             </div>
-          </masonry>
+          </div>
+        </u-animate>
+      </div>
+      <div class="container">
+        <div class="left">
+          <div class="article" v-for="(article, index) in (events.length > 0 ? events : leftCalendar)" :key="index">
+            <u-animate
+              name="fadeInUp"
+              :delay="0.2 + (index * 0.1) + 's'"
+              duration="0.4s"
+              :iteration="1"
+              :offset="0"
+              animateClass="animated"
+              :begin="true"
+            >
+              <nuxt-link :to="'/calendar/' + findItemByTitle(article.title)">
+                <div class="img-fullwidth">
+                  <img :src="'http://' + article.image.fields.file.url.slice(2)" />
+                </div>
+                <div class="date">{{ article.date }}</div>
+                <div class="title">{{ article.title }}</div>
+                <div class="text">{{ article.preview }}</div>
+              </nuxt-link>
+            </u-animate>
+          </div>
         </div>
-      </u-animate>
+        <div class="right">
+          <div class="previous-article">
+              <nuxt-link class="previous" v-for="(article, index) in (rightEvents.length > 0 ? rightEvents : rightCalendar)" :to="'/calendar/' + findItemByTitle(article.title)" :key="index">
+                  <u-animate
+                    name="fadeInUp"
+                    :delay="0.2 + (index * 0.1) + 's'"
+                    duration="0.4s"
+                    :iteration="1"
+                    :offset="0"
+                    animateClass="animated"
+                    :begin="true"
+                  >
+                    <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
+                    <div class="previous-date">{{ article.date }}</div>
+                    <div class="previous-subtitle">{{ article.title }}</div>
+                  </u-animate>
+              </nuxt-link>
+          </div>
+        </div>
+      </div>
+
+      <div class="container container-mobile">
+        <div :class="{'previous': article.column === 'right', 'article': article.column === 'left'}" v-for="(article, index) in calendar" :key="index">
+          <u-animate
+            name="fadeInUp"
+            :delay="0.2 + (index * 0.1) + 's'"
+            duration="0.4s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="true"
+          >
+            <nuxt-link class="hui" :to="'/calendar/' + findItemByTitle(article.title)">
+              <div class="previous-image"
+                :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
+              <div :class="{'previous-date': article.column === 'right', 'date': article.column === 'left'}">
+                {{ article.date }}
+              </div>
+              <div :class="{'previous-subtitle': article.column === 'right', 'title': article.column === 'left'}">
+                {{ article.title }}
+              </div>
+              <div class="text" v-if="article.column === 'left'">{{ article.preview }}</div>
+            </nuxt-link>
+          </u-animate>
+        </div>
+      </div>
     </div>
+
     <u-animate
       name="fadeInUp"
-      delay="0.4s"
+      delay="0.8s"
       duration="0.4s"
       :iteration="1"
       :offset="0"
@@ -116,8 +152,9 @@
   export default {
     data () {
       return {
-        filteredArticles: [],
-        isChanging: false,
+        events: [],
+        rightEvents: [],
+        isChanging: false
       }
     },
 
@@ -136,57 +173,73 @@
       }
     },
 
-    computed: {
-      meta () {
-        return this.$store.state.meta[this.$store.state.locale][this.$route.name]
-      },
-
-      tags () {
-        const hashtags = []
-        this.fetchedNews.map((article, index) => {
-          article.tags.map((tag, index) => {
-            hashtags.push(tag.trim())
-          })
-        })
-
-        return [ ...new Set(hashtags) ]
-      },
-
-      fetchedNews () {
-        return this.$store.state.entities.news.map(article => {
-          return {
-            ...article,
-            tags: article.tags.replace(' ', '').split(',')
-          }
-        })
-      },
-
-      locale () {
-        return this.$store.state.locale
-      }
-    },
-
     methods: {
-      filterByTag (hashtag) {
-        this.filteredArticles = []
-        this.fetchedNews.map((article, index) => {
-          article.tags.map((tag, index) => {
-            if (hashtag === tag) {
-              this.filteredArticles.push(article)
-            }
-          })
-        })
+      setTag (tag) {
+        const events = this.leftCalendar
+        const rightEvents = this.rightCalendar
+        this.events = events.filter(article => { return article.championship === tag })
+        this.rightEvents = rightEvents.filter(article => { return article.championship === tag })
+      },
+
+      setCountry (tag) {
+        const events = this.leftCalendar
+        const rightEvents = this.rightCalendar
+        this.events = events.filter(article => { return article.country === tag } )
+        this.rightEvents = rightEvents.filter(article => { return article.country === tag } )
       },
 
       findItemByTitle (title) {
         let result
-        this.fetchedNews.map((item, index) => {
+        this.calendar.map((item, index) => {
           if (item.title === title) {
             result = index
           }
         })
 
         return result
+      }
+    },
+
+    computed: {
+      meta () {
+        return this.$store.state.meta[this.$store.state.locale][this.$route.name]
+      },
+
+      championshipTags () {
+        return [ ...new Set(this.calendar.map(article => article.championship )) ]
+      },
+
+      countryTags () {
+        return [ ...new Set(this.calendar.map(article => article.country )) ]
+      },
+
+      calendar () {
+        return this.$store.state.entities.calendar
+      },
+
+      leftCalendar () {
+        const left = []
+        this.$store.state.entities.calendar.map(article => {
+          if (article.column === 'left') {
+            left.push(article)
+          }
+        })
+        return left
+      },
+
+      rightCalendar () {
+        const right = []
+        this.$store.state.entities.calendar.map(article => {
+          if (article.column === 'right') {
+            right.push(article)
+          }
+        })
+
+        return right
+      },
+      
+      locale () {
+        return this.$store.state.locale
       }
     },
 
@@ -207,31 +260,117 @@
 </script>
 
 <style lang="scss" scoped>
-  .news {
+  .calendar {
     background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
     padding: 200px 0 80px;
-
-    display: flex;
-    flex-flow: column nowrap;
-    min-height: 100vh;
   }
 
-  .container {
-    flex: 1;
-    position: relative;
-    padding: 0 100px;
-
-    padding-left: 320px;
-
+  .wrapper {
     transition: transform .4s ease, opacity .4s ease;
     will-change: transform, opacity;
   }
 
+  a {
+    text-decoration: none;
+  }
+
+  .container {
+    position: relative;
+    padding: 0 100px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: center;
+  }
+
+  .container-mobile {
+    display: none;
+  }
+
+  .title-wrapper {
+    padding: 0 100px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: center;
+
+    .tags {
+      display: none;
+    }
+  }
+
+  .left {
+    padding-left: 220px;
+    padding-bottom: 100px;
+    flex: 0 0 60%;
+
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  .right {
+    flex: 0 0 40%;
+    padding-bottom: 40px;
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+  }
+
+  .article {
+    max-width: 435px;
+    margin-bottom: 40px;
+    cursor: pointer;
+    text-decoration: none;
+
+    .title {
+      padding: 0;
+
+      display: inline;
+      box-shadow: 0 0px 0 0 transparent inset;
+      transition: box-shadow .1s ease-in;
+      will-change: box-shadow;
+    }
+
+    &:hover .title {
+      box-shadow:  0 -6px 0 0 #FFF inset;
+    }
+  }
+
+  .previous-article {
+    padding-left: 50px;
+    max-width: 350px;
+  }
+
+  .tags {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+  }
+
+  .tags-item:first-child {
+    margin-bottom: 40px;
+  }
+
+  .date {
+    margin-bottom: 20px;
+  }
+
+  .date,
+  .tag {
+    font-family: 'DIN Condensed', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 35px;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
   .tags {
     position: fixed;
-    top: 280px;
+    top: 305px;
     left: 100px;
-    z-index: 10;
+    z-index: 100;
   }
 
   .tags-title {
@@ -258,35 +397,72 @@
   }
 
   .title {
+    margin-bottom: 30px;
+    padding-left: 220px;
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
-    line-height: 60px;
-    font-size: 48px;
+    line-height: normal;
+    font-size: 64px;
     text-transform: uppercase;
     color: #FFFFFF;
-    margin-bottom: 15px;
   }
 
-  .news-list {
-    margin-bottom: 100px;
+  .subtitle {
+    margin-bottom: 20px;
+    font-family: 'DIN Pro Medium', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 37px;
+    font-size: 24px;
+    color: #FFFFFF;
   }
 
-  .article {
-    margin-bottom: 60px;
-    cursor: pointer;
-    max-width: 300px;
+  .text {
+    margin-bottom: 20px;
+    font-family: 'DIN Pro Medium', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.8);
+  }
 
-    a {
-      text-decoration: none;
-    }
+  .img-fullwidth img {
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
 
-    &:hover .article-title {
+  .previous-title {
+    margin-bottom: 5px;
+    font-family: 'DIN Condensed', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 45px;
+    font-size: 36px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+  }
+
+  .previous {
+    margin-bottom: 40px;
+    display: block;
+
+    &:hover .previous-subtitle {
       box-shadow:  0 -4px 0 0 #FFF inset;
     }
   }
 
-  .article-date {
+  .previous-image {
+    margin-bottom: 20px;
+    height: 169px;
+    width: 100%;
+  }
+
+  .previous-date {
+    margin-bottom: 5px;
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -296,14 +472,7 @@
     color: rgba(255, 255, 255, 0.8);
   }
 
-  .article-image {
-    margin-top: 10px;
-    width: 100%;
-    height: 180px;
-    margin-bottom: 20px;
-  }
-
-  .article-title {
+  .previous-subtitle {
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -318,98 +487,167 @@
     will-change: box-shadow;
   }
 
-  .article-preview {
-    margin-bottom: 10px;
-    line-height: 25px;
+  .previous-preview {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-family: 'DIN Pro Medium', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
     font-size: 18px;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.8);
   }
 
-  .article-hashtags {
+  .previous-tags {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
   }
 
-  .article-hashtag {
-    margin-right: 8px;
+  .previous-tag {
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
     line-height: 29px;
     font-size: 20px;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.8);
+    color: #FFFFFF;
   }
 
   @media (max-width: 768px) {
-    .news {
-      display: block;
-    }
-
     .container {
-      padding-left: 100px;
+      display: none;
 
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-between;
-    }
-
-    .news-list {
-      margin-top: 40px;
-      margin-bottom: 60px;
-      flex: 0 0 100%;
-    }
-
-    .title {
-      flex: 1;
-    }
-
-    .tags {
-      padding-left: 60px;
-      flex: 1;
-      position: initial;
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: space-between;
-      margin-left: 43px;
-      margin-top: 5px;
-    }
-
-    .tags-item {
-      flex: 1;
-      display: flex;
-      flex-flow: row wrap;
-
-      &:first-child {
-        margin-left: 20px;
-        // margin-right: 60px;
+      &.container-mobile {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
       }
     }
 
-    .tag {
-      flex: 0 0 50%;
+    .tags {
+      display: none;
     }
 
-    .tags-country {
-      margin-top: 0;
+    .title-wrapper {
+      justify-content: space-between;
+      margin-bottom: 40px;
+
+      .tags {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-start;
+        position: relative;
+        top: 0;
+        left: 0;
+      }
+
+      .tags-item:first-child {
+        margin-bottom: 0;
+        margin-right: 60px;
+      }
+    }
+
+    .title {
+      padding: 0;
+    }
+
+    .left {
+      padding-left: 0;
+      padding-bottom: 0;
+      margin-bottom: 50px;
+    }
+
+    .right {
+      display: none;
+    }
+
+    .right {
+      padding-bottom: 10px;
+    }
+
+    .article {
+      max-width: initial;
+      // flex: 0 0 100%;
+    }
+
+    .previous-article {
+      padding-left: 0;
+      max-width: initial;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+    }
+
+    .previous-title {
+      flex: 0 0 100%;
+    }
+
+    .previous {
+      flex: 0 0 46%;
+    }
+
+    .previous-subtitle br {
+      display: none;
     }
   }
 
   @media (max-width: 425px) {
+    .news {
+      padding-top: 180px;
+    }
+
     .container {
       padding: 0 30px;
-      display: block;
+    }
+
+    .title-wrapper {
+      padding: 0 30px;
+      flex-flow: column nowrap;
+
+      .tags {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+
+      .tags-item:first-child {
+        margin-bottom: 0;
+        margin-right: 30px;
+      }
+    }
+
+    .title {
+      margin-bottom: 30px;
+      font-family: 'DIN Condensed', sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      line-height: normal;
+      font-size: 36px;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .subtitle {
+      font-family: 'DIN Pro Medium', sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      line-height: 28px;
+      font-size: 18px;
+      color: #FFFFFF;
     }
 
     .tags {
-      padding: 0 30px;
-      margin-bottom: 50px;
-      margin-left: 0;
+      display: none;
     }
 
-    .tags-item:first-child {
-      margin-left: 0;
+    .date {
+      margin-bottom: 0px;
+    }
+
+    .previous {
+      flex: 0 0 100%;
     }
   }
 </style>

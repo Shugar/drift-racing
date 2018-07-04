@@ -1,21 +1,10 @@
 <template>
-  <section class="news">
+  <section class="calendar">
     <Header />
-    <div class="container" :class="{'isAnimating': isChanging}">
-      <u-animate
-        name="fadeIn"
-        delay="0s"
-        duration="0.4s"
-        :iteration="1"
-        :offset="0"
-        animateClass="animated"
-        :begin="true"
-      >
-        <nuxt-link to="/news/" class="back">{{ locale === 'en' ? 'back to news' : 'назад к новостям'}}</nuxt-link>
-      </u-animate>
+    <div class="container">
       <div class="left">
         <u-animate
-          name="fadeInUp"
+          name="fadeIn"
           delay="0s"
           duration="0.4s"
           :iteration="1"
@@ -23,9 +12,26 @@
           animateClass="animated"
           :begin="true"
         >
-          <div class="title">{{ article.title }}</div>
+          <div class="tags">
+            <div class="tags-item">
+              <div class="tag"><nuxt-link to="/calendar/">{{locale === 'en' ? 'back to calendar' : 'назад к календарю'}}</nuxt-link></div>
+            </div>
+          </div>
         </u-animate>
         <div class="article">
+          <u-animate
+            name="fadeInUp"
+            delay="0s"
+            duration="0.4s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="true"
+          >
+            <div class="info">
+              <div class="date">{{ article.date }}</div>
+            </div>
+          </u-animate>
           <u-animate
             name="fadeInUp"
             delay="0.2s"
@@ -35,14 +41,7 @@
             animateClass="animated"
             :begin="true"
           >
-            <div class="info">
-              <div class="date">{{ article.date }}</div>
-              <div class="tags">
-                <div class="tag" v-for="(tag, index) in article.tags" :key="index">
-                  #{{ tag.trim() }}
-                </div>
-              </div>
-            </div>
+            <div class="title"> {{ article.title }} </div>
           </u-animate>
           <u-animate
             name="fadeInUp"
@@ -53,8 +52,14 @@
             animateClass="animated"
             :begin="true"
           >
-            <div class="subtitle">{{ article.subtitle }}</div>
+            <div class="calendar-text text">
+              <vue-markdown> {{ article.text }} </vue-markdown>
+            </div>
           </u-animate>
+        </div>
+      </div>
+      <div class="right">
+        <div class="previous-article" v-if="previous.length > 0">
           <u-animate
             name="fadeInUp"
             delay="0.6s"
@@ -64,59 +69,30 @@
             animateClass="animated"
             :begin="true"
           >
-            <div class="text article-text">
-              <vue-markdown>
-                {{ article.text }}
-              </vue-markdown>
-            </div>
+            <div class="previous-title"> {{ locale === 'en' ? 'PREVIOUS EVENT' : 'ПРЕДЫДУЩИЕ МЕРОПРИЯТИЯ'}} </div>
           </u-animate>
-        </div>
-      </div>
-      <div class="right" v-if="news.length > 0">
-        <div class="previous-article">
-          <div class="previous" v-for="(item, index) in news" :key="index">
+          <nuxt-link  v-for="(item, index) in previous" :to="'/calendar/' + findItemByTitle(item.title)" :key="index" class="previous">
             <u-animate
               name="fadeInUp"
-              delay="0.8s"
+              :delay="0.8 + (index * 0.1) + 's'"
               duration="0.4s"
               :iteration="1"
               :offset="0"
               animateClass="animated"
               :begin="true"
             >
-              <div class="previous-title">{{ locale === 'en' ? 'Previous news' : 'Предыдущие новости'}}</div>
+              <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover`}" />
+              <div class="previous-date"> {{ item.date }} </div>
+              <div class="previous-subtitle"> {{ item.title }} </div>
             </u-animate>
-            <u-animate
-              name="fadeInUp"
-              delay="1s"
-              duration="0.4s"
-              :iteration="1"
-              :offset="0"
-              animateClass="animated"
-              :begin="true"
-            >
-              <nuxt-link :to="'/news/' + findItemByTitle(item.title)">
-                <div class="previous-image" />
-                <div class="previous-date">{{ item.date }}</div>
-                <div class="previous-subtitle">{{ item.title }}</div>
-                <div class="previous-preview">
-                  {{ item.text.length > 92 ? item.text.slice(0, 89) + '...' : item.text }}
-                </div>
-                <div class="previous-tags">
-                  <div class="previous-tag" v-for="(tag, index) in item.tags" :key="index">
-                    #{{ tag }}
-                  </div>
-                </div>
-              </nuxt-link>
-            </u-animate>
-          </div>
+          </nuxt-link>
         </div>
       </div>
     </div>
     <u-animate
       name="fadeInUp"
-      delay="1.2s"
-      duration="0.4s"
+      delay="1s"
+      duration="0.8s"
       :iteration="1"
       :offset="0"
       animateClass="animated"
@@ -126,7 +102,7 @@
         title: this.article.title,
         description: this.article.text,
         keywords: this.article.keywords,
-        facebook_image: `http://${this.article.media.fields.file.url.slice(2)}`,
+        facebook_image: `http://${this.article.image.fields.file.url.slice(2)}`,
         facebook_title: this.article.title,
         facebook_description: this.article.text
       }" />
@@ -140,7 +116,6 @@
   export default {
     data () {
       return {
-        isChanging: false,
         url: ''
       }
     },
@@ -153,50 +128,56 @@
           { name: 'keywords', content: this.article.keywords },
           { hid: 'og:type', property: 'og:type', content: 'article'},
           { hid: 'og:url', property: 'og:url', content: this.url },
-          { hid: 'og:image', property: 'og:image', content: `http://${this.article.media.fields.file.url.slice(2)}` },
+          { hid: 'og:image', property: 'og:image', content: `http://${this.article.image.fields.file.url.slice(2)}` },
           { hid: 'og:title', property: 'og:title', content: this.article.title },
           { hid: 'og:description', property: 'og:description', content: this.article.text },
         ]
       }
     },
 
+    mounted () {
+      this.url = window.location.href
+    },
+
     computed: {
       article () {
-        return this.$store.state.entities.news.map(article => {
+        return this.$store.state.entities.calendar.map(article => {
           return {
-            ...article,
-            tags: article.tags.replace(' ', '').split(',')
+            ...article
           }
         })[this.$route.params.id]
       },
 
-      news () {
-        const array = this.$store.state.entities.news.map(article => {
+
+      previous () {
+        const array = this.$store.state.entities.calendar.map(article => {
           return {
             ...article,
-            tags: article.tags.replace(' ', '').split(',')
+            tags: article.championship.replace(' ', '').split(',')
           }
         })
-
         if (this.$route.params.id > 1) {
           return [
             array[this.$route.params.id - 1],
             array[this.$route.params.id - 2]
           ]
-        } else if (this.$route.params.id > 0) {
+        } else if (this.$route.params.id > 0  ) {
           return [ array[0] ]
         } else {
           return []
         }
       },
 
-      fetchedNews () {
-        return this.$store.state.entities.news.map(article => {
-          return {
-            ...article,
-            tags: article.tags.replace(' ', '').split(',')
-          }
+
+      tags () {
+        const hashtags = []
+        this.article.map((event, index) => {
+          article.hashtags.map((tag, index) => {
+            hashtags.push(tag)
+          })
         })
+
+        return [ ...new Set(hashtags) ]
       },
 
       locale () {
@@ -204,10 +185,11 @@
       }
     },
 
+
     methods: {
       findItemByTitle (title) {
         let result
-        this.fetchedNews.map((item, index) => {
+        this.$store.state.entities.calendar.map((item, index) => {
           if (item.title === title) {
             result = index
           }
@@ -215,16 +197,6 @@
 
         return result
       }
-    },
-
-    mounted () {
-      this.isChanging = false
-      this.url = window.location.href
-    },
-
-    beforeRouteUpdate(to, from, next) {
-      this.isChanging = true
-      setTimeout(() => next(), 300)
     },
 
     components: {
@@ -241,27 +213,40 @@
 </script>
 
 <style lang="scss" scoped>
-  .news {
+  .calendar {
     background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
     padding: 200px 0 80px;
+
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
   }
 
   .container {
+    flex: 1;
     position: relative;
     padding: 0 100px;
 
     display: flex;
     flex-flow: row nowrap;
     align-content: center;
+  }
 
-    transition: transform .4s ease, opacity .4s ease;
-    will-change: transform, opacity;
+  .title-wrapper {
+    padding: 0 100px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: center;
+
+    .tags {
+      display: none;
+    }
   }
 
   .left {
-    position: relative;
     padding-left: 220px;
-    padding-bottom: 100px;
+    padding-bottom: 30px;
     flex: 0 0 60%;
 
     display: flex;
@@ -275,8 +260,18 @@
     position: relative;
   }
 
+  .mobile {
+    display: none;
+  }
+
   .article {
     max-width: 435px;
+    margin-bottom: 40px;
+
+    .title {
+      padding: 0;
+      margin-bottom: 10px;
+    }
   }
 
   .previous-article {
@@ -284,6 +279,12 @@
     // top: 200px;
     padding-left: 50px;
     max-width: 350px;
+  }
+
+  .back {
+    position: absolute;
+    left: 100px;
+    top: 0px;
   }
 
   .info {
@@ -295,21 +296,20 @@
 
   .tags {
     display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    &-item {
+      &:first-child {
+        margin-bottom: 40px;
+      }
+    }
   }
 
   .date {
     margin-right: 40px;
   }
 
-  .tag {
-    margin-right: 10px;
-  }
-
-  .tag:last-child {
-    margin-right: 0;
-  }
 
   .date,
   .tag,
@@ -323,19 +323,42 @@
     color: rgba(255, 255, 255, 0.8);
   }
 
-  .back {
-    position: absolute;
-    left: 100px;
-    top: 0px;
-    z-index: 2;
-    text-decoration: none;
-    color: #FFF;
+  .tags {
+      position: fixed;
+      z-index: 10;
+      top: 198px;
+      left: 100px;
+    }
+
+  .tags-title {
+    margin-bottom: 10px;
+    font-family: 'DIN Condensed', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #E0E0E0;
+  }
+
+  .tag {
+    margin-bottom: 10px;
+    font-family: 'DIN Condensed', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 20px;
     text-transform: uppercase;
     cursor: pointer;
+    a {
+      color: #FFFFFF;
+      text-decoration: none;
+    }
   }
 
   .title {
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+    padding-left: 220px;
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -369,6 +392,7 @@
     height: auto;
     width: 100%;
     max-width: 100%;
+    margin-bottom: 20px;
   }
 
   .previous-title {
@@ -383,11 +407,8 @@
   }
 
   .previous {
+    display: block;
     margin-bottom: 40px;
-
-    a {
-      text-decoration: none;
-    }
 
     &:hover .previous-subtitle {
       box-shadow:  0 -4px 0 0 #FFF inset;
@@ -398,7 +419,7 @@
     margin-bottom: 20px;
     height: 169px;
     width: 100%;
-    background: url('/news/news-3.jpg') no-repeat center / cover;
+    // background: url('/news/news-2.jpg') no-repeat center / cover;
   }
 
   .previous-date {
@@ -428,7 +449,6 @@
   }
 
   .previous-preview {
-    margin-top: 5px;
     margin-bottom: 20px;
     font-family: 'DIN Pro Medium', sans-serif;
     font-style: normal;
@@ -445,7 +465,6 @@
   }
 
   .previous-tag {
-    margin-right: 10px;
     font-family: 'DIN Condensed', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -453,20 +472,47 @@
     font-size: 20px;
     text-transform: uppercase;
     color: #FFFFFF;
-
-    &:last-child {
-      margin-right: 0;
-    }
   }
 
-  
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
+    .container {
+      display: block;
+    }
+
     .back {
       display: none;
     }
 
-    .container {
+    .mobile {
       display: block;
+    }
+
+    .tags {
+      display: none;
+    }
+
+    .title-wrapper {
+      justify-content: space-between;
+      margin-bottom: 0px;
+
+      .tags {
+        // display: none;
+        // display: flex;
+        // flex-flow: row nowrap;
+        // align-items: flex-start;
+        // position: relative;
+        // top: 0;
+        // left: 0;
+        // margin-left: 10px;
+
+        &-item {
+          display: none;
+        }
+      }
+    }
+
+    .title {
+      padding: 0;
     }
 
     .left {
@@ -477,6 +523,7 @@
 
     .right {
       padding-bottom: 10px;
+      flex: 0 0 100%;
     }
 
     .article {
@@ -492,7 +539,7 @@
     }
 
     .previous-title {
-      flex: 0 0 100%;
+      display: none;
     }
 
     .previous {
@@ -513,6 +560,34 @@
       padding: 0 30px;
     }
 
+    .title-wrapper {
+      padding: 0 30px;
+      flex-flow: column nowrap;
+      
+      .tags {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        &-item {
+          &:first-child {
+            margin-bottom: 0;
+            margin-right: 30px;
+          }
+        }
+      }
+    }
+
+    .tags {
+      display: block;
+      position: inherit;
+
+      .tag {
+        margin: 0;
+      }
+    }
+
     .back {
       display: block;
       position: initial;
@@ -520,7 +595,7 @@
     }
 
     .title {
-      margin-bottom: 10px;
+      margin-bottom: 30px;
       font-family: 'DIN Condensed', sans-serif;
       font-style: normal;
       font-weight: bold;
@@ -539,19 +614,6 @@
       color: #FFFFFF;
     }
 
-    .title-wrapper {
-      .tags {
-        display: flex;
-      }
-
-      .tag {
-        display: block;
-      }
-    }
-
-    .tags {
-      display: none;
-    }
 
     .date {
       margin-bottom: 0px;
@@ -565,7 +627,7 @@
 
 
 <style lang="scss">
-  .article-text {
+  .calendar-text {
     pre,
     code {
       margin-bottom: 20px;

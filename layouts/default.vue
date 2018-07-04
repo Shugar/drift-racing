@@ -28,7 +28,7 @@
         this.$store.commit('animateHeader', true)
         setTimeout(() => {
           this.$store.commit('animateHeader', false)
-        }, 1500)
+        }, 880)
       },
 
       '$store.state.locale': function () {

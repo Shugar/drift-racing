@@ -7,19 +7,22 @@
           <div class="mobile-menu__title">MENU</div>
           <div class="list">
             <nuxt-link to="/bio/" class="list-item">{{ locale === 'en' ? 'BIO' : 'БИОГРАФИЯ' }}</nuxt-link>
+            <nuxt-link to="/team/" class="list-item">{{locale === 'en' ? 'TEAM' : "КОМАНДА"}}</nuxt-link>
             <nuxt-link to="/photo/" class="list-item">{{ locale === 'en' ? 'PHOTO' : 'ФОТО'}}</nuxt-link>
-            <nuxt-link to="/calendar/" class="list-item">{{locale === 'en' ? 'CALENDAR' : "КАЛЕНДАРЬ"}}</nuxt-link>
-            <nuxt-link to="/team/" class="list-item">{{locale === 'en' ? 'team' : "команда"}}</nuxt-link>
             <nuxt-link to="/video/" class="list-item">{{locale === 'en' ? 'VIDEO' : 'ВИДЕО'}}</nuxt-link>
+            <nuxt-link to="/sponsors/" class="list-item">{{ locale === 'en' ? 'SPONSORS' : 'СПОНСОРЫ'}}</nuxt-link>
             <nuxt-link to="/news/" class="list-item">{{ locale === 'en' ? 'NEWS' : 'НОВОСТИ' }}</nuxt-link>
             <nuxt-link to="/store/" class="list-item">{{ locale === 'en' ? 'STORE' : 'МАГАЗИН' }}</nuxt-link>
-            <nuxt-link to="/partners/" class="list-item">{{ locale === 'en' ? 'PARTNERS' : 'ПАРТНЕРЫ'}}</nuxt-link>
             <nuxt-link to="/contact/" class="list-item">{{ locale === 'en' ? 'CONTACT' : 'КОНТАКТЫ'}}</nuxt-link>
           </div>
           <div class="language">
             <span :class="{'lang-active': locale === 'ru'}" @click="setRU()">RU</span> — <span :class="{'lang-active': locale === 'en'}" @click="setEN()">EN</span>
           </div>
-          <div class="made"><span>MADE BY</span> APUS AGENCY</div>
+          <div class="made">
+            <a class="made" target="_blank" href="https://apus.agency/">
+              MADE BY APUS <span>AGENCY</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -46,18 +49,17 @@
 
       <div class="nav nav-left">
         <nuxt-link class="nav-item" to="/bio/" :class="{'nuxt-link-active': count === 0}">{{ locale === 'en' ? 'BIO' : 'БИОГРАФИЯ' }}</nuxt-link>
+        <nuxt-link class="nav-item" to="/team/" :class="{'nuxt-link-active': count === 4}">{{locale === 'en' ? 'TEAM' : "КОМАНДА"}}</nuxt-link>
         <nuxt-link class="nav-item" to="/photo/" :class="{'nuxt-link-active': count === 1}">{{ locale === 'en' ? 'PHOTO' : 'ФОТО'}}</nuxt-link>
         <nuxt-link class="nav-item" to="/video/" :class="{'nuxt-link-active': count === 2}"> {{locale === 'en' ? 'VIDEO' : 'ВИДЕО'}} </nuxt-link>
-        <nuxt-link class="nav-item" to="/calendar/" :class="{'nuxt-link-active': count === 3}">{{locale === 'en' ? 'CALENDAR' : "КАЛЕНДАРЬ"}}</nuxt-link>
-        <nuxt-link class="nav-item" to="/team/" :class="{'nuxt-link-active': count === 4}">{{locale === 'en' ? 'TEAM' : "КОМАНДА"}}</nuxt-link>
       </div>
     </div>
 
     <div class="right" :class="{ mainRight: type === 'main' }">
       <div class="nav nav-right">
+        <nuxt-link class="nav-item" to="/sponsors/">{{ locale === 'en' ? 'SPONSORS' : 'СПОНСОРЫ'}}</nuxt-link>
         <nuxt-link class="nav-item" to="/news/">{{ locale === 'en' ? 'NEWS' : 'НОВОСТИ' }}</nuxt-link>
         <nuxt-link class="nav-item" to="/store/">{{ locale === 'en' ? 'STORE' : 'МАГАЗИН' }}</nuxt-link>
-        <nuxt-link class="nav-item" to="/partners/">{{ locale === 'en' ? 'PARTNERS' : 'ПАРТНЕРЫ'}}</nuxt-link>
         <div class="nav-item--bigger">
           <nuxt-link class="nav-item" to="/contact/">{{ locale === 'en' ? 'CONTACT' : 'КОНТАКТЫ'}}</nuxt-link>
         </div>
@@ -125,6 +127,7 @@
     justify-content: space-between;
     align-items: center;
     z-index: 9999;
+    background: linear-gradient(180deg, #333333 0%, rgba(51, 51, 51, 0.8) 58.56%, rgba(51, 51, 51, 0) 100%);
 
     &.main {
       background: transparent;

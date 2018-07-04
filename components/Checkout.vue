@@ -217,6 +217,16 @@
     justify-content: space-between;
   }
 
+  .close {
+    display: block;
+  }
+
+  .title {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+
   .descr {
     margin-left: 0;
     width: 70%

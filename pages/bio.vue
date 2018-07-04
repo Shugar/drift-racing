@@ -4,15 +4,16 @@
 
     <div class="container" :class="{'isAnimating': isChanging}">
       <u-animate
-          name="fadeIn"
-          delay="0s"
-          duration="0.4s"
-          :iteration="1"
-          :offset="0"
-          animateClass="animated"
-          :begin="true"
-        >
-        <div class="tag">{{locale === 'en' ? 'bio' : 'био'}}</div>
+        class="tag"
+        name="fadeIn"
+        delay="0s"
+        duration="0.4s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="true"
+      >
+        {{locale === 'en' ? 'bio' : 'био'}}
       </u-animate>
       <div class="left">
         <u-animate
@@ -96,15 +97,16 @@
     </div>
     <div class="container container-car">
       <u-animate
-          name="fadeIn"
-          delay="0s"
-          duration="0.8s"
-          :iteration="1"
-          :offset="0"
-          animateClass="animated"
-          :begin="true"
-        >
-        <div class="tag">{{locale === 'en' ? 'cars' : 'машины'}}</div>
+        class="tag"
+        name="fadeIn"
+        delay="0s"
+        duration="0.8s"
+        :iteration="1"
+        :offset="0"
+        animateClass="animated"
+        :begin="true"
+      >
+        {{locale === 'en' ? 'cars' : 'машины'}}
       </u-animate>
       <div class="left" v-for="(car, index) in bioCars" :key="index">
         <u-animate
@@ -250,6 +252,7 @@ export default {
   .container {
     position: relative;
     padding: 0 100px;
+    padding-left: 320px;
 
     display: flex;
     flex-flow: row nowrap;
@@ -273,7 +276,7 @@ export default {
   }
 
   .left {
-    padding-left: 220px;
+    // padding-left: 220px;
     // flex: 0 0 60%;
 
 
@@ -294,7 +297,6 @@ export default {
     text-transform: uppercase;
     color: #FFFFFF;
     margin-bottom: 20px;
-    padding-right: 110px;
   }
 
   .right .img-fullwidth {
@@ -333,16 +335,14 @@ export default {
 
   .container-car {
     flex-flow: row wrap;
+    justify-content: space-between;
     align-content: center;
   }
 
   .container-car .left {
     margin-bottom: 100px;
-    padding-left: 130px;
 
     &:nth-child(even) {
-      padding-left: 220px;
-
       .title,
       .text {
         padding-left: 0;
@@ -352,13 +352,15 @@ export default {
 
   .container-car img {
     width: 100%;
-    max-width: 440px;
+    max-width: 448px;
     height: auto;
     margin-bottom: 40px;
   }
 
   .container-car .left,
   .container-car .right {
+    max-width: 448px;
+    width: 100%;
     display: flex;
     flex-flow: column nowrap;
   }
@@ -412,6 +414,10 @@ export default {
   @media (max-width: 1024px) {
     .tag {
       display: none;
+    }
+
+    .container {
+      padding-left: 100px;
     }
 
     .numbers-item__digits {

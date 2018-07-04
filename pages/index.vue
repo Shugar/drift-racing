@@ -864,7 +864,7 @@
 
   .small-slider {
     width: 380px;
-    min-height: 170px;
+    min-height: 177px;
     font-family: 'DIN Condensed', sans-serif;
     text-transform: uppercase;
     font-size: 36px;
@@ -929,7 +929,6 @@
     }
     .small-slider-price {
       align-self: flex-end;
-      margin-bottom: -13px;
     }
   }
 
