@@ -1,6 +1,8 @@
 <template>
   <div class="preload nprogress-custom-parent">
-    <video class="logo-loader" autoplay loop src="~/assets/video/logo-3.mp4"/>
+    <video class="logo-loader" ref="kek" loop muted autoplay>
+        <source src="~/assets/video/logo-3.mp4" type="video/mp4">
+    </video>
     <div id="nprogress">
       <div class="bar" role="bar"
         :style="{
@@ -11,6 +13,10 @@
         </div>
       </div>
     </div>
+    <div class="left-background left-background-1" />
+    <div class="left-background left-background-2" />
+    <div class="left-background left-background-3" />
+    <div class="left-background left-background-4" />
   </div>
 </template>
 

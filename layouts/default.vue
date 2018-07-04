@@ -4,11 +4,11 @@
       <span style="font-family: 'DIN Pro Medium', Arial, sans-serif;"></span>
       <span style="font-family: 'Ailerons', Arial, sans-serif;"></span>
     </div>
-    <!-- <Lightbox /> -->
-    <!-- <div class="preloader" v-if="!this.isReady"> -->
+    <Lightbox />
+    <div class="preloader" v-if="!this.isReady">
       <Preloader :loaded="loaded"/>
-    <!-- </div> -->
-    <!-- <nuxt v-else /> -->
+    </div>
+    <nuxt v-else />
   </div>
 </template>
 
