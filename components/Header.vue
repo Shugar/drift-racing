@@ -31,7 +31,9 @@
       <nuxt-link to="/" class="logo-link">
         <div class="logo">
           <i></i><i></i>
-          <video class="logo-loader" v-if="isHeaderAnimated" autoplay loop src="~/assets/video/logo-3.mp4"/>
+          <video class="logo-loader" v-if="isHeaderAnimated" autoplay loop muted>
+            <source src="~/assets/video/logo-3.mp4" type="video/mp4">
+          </video>
         </div>
       </nuxt-link>
       <div class="back-to news" v-if="this.$route.path === `/news/${this.$route.params.id}`">
