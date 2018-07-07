@@ -30,8 +30,10 @@
     <div class="left" :class="{ mainLeft: type === 'main' }">
       <nuxt-link to="/" class="logo-link">
         <div class="logo">
-          <i></i><i></i>
           <video class="logo-loader" v-if="isHeaderAnimated" autoplay loop muted>
+            <source src="~/assets/video/logo-3.mp4" type="video/mp4">
+          </video>
+          <video class="logo-loader pointer-events-none" v-else muted>
             <source src="~/assets/video/logo-3.mp4" type="video/mp4">
           </video>
         </div>
@@ -54,12 +56,12 @@
         <nuxt-link class="nav-item" to="/team/" :class="{'nuxt-link-active': count === 4}">{{locale === 'en' ? 'TEAM' : "КОМАНДА"}}</nuxt-link>
         <nuxt-link class="nav-item" to="/photo/" :class="{'nuxt-link-active': count === 1}">{{ locale === 'en' ? 'PHOTO' : 'ФОТО'}}</nuxt-link>
         <nuxt-link class="nav-item" to="/video/" :class="{'nuxt-link-active': count === 2}"> {{locale === 'en' ? 'VIDEO' : 'ВИДЕО'}} </nuxt-link>
+        <nuxt-link class="nav-item" to="/sponsors/">{{ locale === 'en' ? 'SPONSORS' : 'СПОНСОРЫ'}}</nuxt-link>
       </div>
     </div>
 
     <div class="right" :class="{ mainRight: type === 'main' }">
       <div class="nav nav-right">
-        <nuxt-link class="nav-item" to="/sponsors/">{{ locale === 'en' ? 'SPONSORS' : 'СПОНСОРЫ'}}</nuxt-link>
         <nuxt-link class="nav-item" to="/news/">{{ locale === 'en' ? 'NEWS' : 'НОВОСТИ' }}</nuxt-link>
         <nuxt-link class="nav-item" to="/store/">{{ locale === 'en' ? 'STORE' : 'МАГАЗИН' }}</nuxt-link>
         <div class="nav-item--bigger">
@@ -179,6 +181,10 @@
     // &.isHeaderAnimated i:last-child {
     //   animation: logo 1.5s linear infinite;
     // }
+  }
+
+  .pointer-events-none {
+    pointer-events: none;
   }
 
   .logo-loader {
