@@ -29,6 +29,7 @@
 
     <div class="container" :class="{'isAnimating': isChanging}">
       <u-animate
+        class="title-wrapper"
         name="fadeInUp"
         delay="0s"
         duration="0.4s"
@@ -40,7 +41,31 @@
         <span @click="$store.commit('toggleCheckout')" class="checkout">{{ productCount }} {{ locale === 'en' ? 'items' : 'товаров' }} — $ {{ productSum }}</span>
         <div class="title">
           STORE
-          <span @click="$store.commit('toggleCheckout')">{{ productCount }} {{ locale === 'en' ? 'items' : 'товаров' }} — $ {{ productSum }}</span>
+          <div class="cart">
+            <div class="cart-title">
+              Cart
+            </div>
+            <span @click="$store.commit('toggleCheckout')">{{ productCount }} {{ locale === 'en' ? 'items' : 'товаров' }} — $ {{ productSum }}</span>
+          </div>
+          <u-animate
+            class="tags-wrapper-desktop"
+            name="fadeIn"
+            delay="0s"
+            duration="0.4s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="true"
+          >
+            <div class="tags">
+              <div class="tags-title">{{ locale === 'en' ? 'CATEGORIES' : 'КАТЕГОРИИ'}}</div>
+              <div class="tags-item">
+                <div class="tag" v-for="(category, index) in categories" :key="index" @click="filterByCategory(category)">
+                  #{{category}}
+                </div>
+              </div>
+            </div>
+          </u-animate>
         </div>
       </u-animate>
 
@@ -294,6 +319,28 @@
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+
+    & .tags-wrapper-desktop,
+    & .tags {
+      display: none;
+    }
+  }
+
+  .title .cart {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+  }
+
+  .cart-title {
+    display: none;
+    font-family: 'DIN Condensed', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #E0E0E0;
   }
 
   .title span,
@@ -393,7 +440,7 @@
     max-width: 324px;
     width: 100%;
     padding: 30px;
-    background: #000000;
+    background: #683FFF;
     font-weight: 500;
     line-height: 25px;
     font-size: 18px;
@@ -413,7 +460,6 @@
   }
 
   @media (max-width: 1024px) {
-
     .container {
       padding-left: 100px;
 
@@ -428,12 +474,12 @@
       flex: 0 0 100%;
     }
 
-    .title {
-      flex: 1;
+    .tags {
+      display: none !important;
+    }
 
-      span {
-        display: none;
-      }
+    .title .tags-wrapper-desktop {
+      display: block;
     }
 
     .tags {
@@ -462,6 +508,33 @@
     .tags-country {
       margin-top: 0;
     }
+
+    .title-wrapper {
+      width: 100%;
+    }
+
+    .cart {
+      .cart-title {
+        display: block;
+      }
+
+      span {
+        margin-top: 10px;
+      }
+    }
+
+    .title {
+      flex: 1;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      .tags {
+        margin-top: 0;
+        display: block !important;
+      }
+    }
   }
 
   @media (max-width: 425px) {
@@ -475,6 +548,10 @@
     .store {
       height: auto;
       min-height: auto;
+    }
+
+    .cart {
+      display: none !important;
     }
 
     .container {
@@ -492,7 +569,8 @@
       margin-bottom: 20px;
     }
 
-    .tags {
+    .title .tags {
+      margin-top: 32px;
       padding: 0 30px;
       margin-bottom: 50px;
       margin-left: 0;
@@ -500,6 +578,14 @@
 
     .tags-item {
       margin-left: 0;
+    }
+
+    .title {
+      display: block;
+
+      .tags {
+        padding: 0;
+      }
     }
   }
 </style>

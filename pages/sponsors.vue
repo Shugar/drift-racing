@@ -11,7 +11,7 @@
         animateClass="animated"
         :begin="true"
       >
-        <div class="title">{{locale === 'en' ? 'Partners' : 'Партнеры'}}</div>
+        <div class="title">{{locale === 'en' ? 'Sponsors' : 'Спонсоры'}}</div>
       </u-animate>
       <u-animate-container class="partners-list">
         <u-animate

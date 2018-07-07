@@ -46,7 +46,7 @@
         <nuxt-link to='/video/'>BACK TO VIDEO</nuxt-link>
       </div>
 
-      <span @click="$store.commit('toggleCheckout')" v-if="this.$route.name === 'store'" class="checkout">{{ productCount }} items — $ {{ productSum }}</span>
+      <!-- <span @click="$store.commit('toggleCheckout')" v-if="this.$route.name === 'store'" class="checkout">{{ productCount }} items — $ {{ productSum }}</span> -->
       <div class="menu-button" @click="openMenu()" />
 
       <div class="nav nav-left">

@@ -99,7 +99,7 @@
   .right {
     position: relative;
     // height: 100%;
-    width: 350px;
+    flex: 0 0 460px;
     background: #FAFAFA;
 
     display: flex;
@@ -143,9 +143,11 @@
   }
 
   .products {
+    width: 100%;
     padding-bottom: 40px;
   }
   .product-item {
+    width: 100%;
     display: flex;
     align-items: flex-start;
     margin-bottom: 40px;
@@ -158,6 +160,7 @@
   }
 
   .descr {
+    flex: 1;
     color: #000;
     line-height: 35px;
     font-size: 24px;
@@ -238,11 +241,26 @@
 
   .right {
     width: 100%;
+    transform: translateX(100%);
+    transition: transform .2s ease;
+    will-change: transform;
   }
 
   .left {
-    display: none;
     width: calc(100% - 300px);
+    opacity: 0;
+    transition: opacity .2s ease;
+    will-change: opacity;
+  }
+
+  .checkout--opened {
+    .left {
+      opacity: 1;
+    }
+
+    .right {
+      transform: translateX(0%);
+    }
   }
 }
 

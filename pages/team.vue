@@ -395,15 +395,18 @@ export default {
     }
 
     .member {
+      flex: 1;
       display: block;
       position: initial;
       // left: initial;
+      opacity: 1 !important;
       margin: 0;
 
 
       &-photo {
         margin-bottom: 40px;
       }
+
       &:nth-child(odd) {
         margin-right: 60px;
       }
@@ -499,6 +502,16 @@ export default {
       right: 0;
       top: 50%;
       transform: translateY(-50%);
+
+      &:after {
+        content: '';
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(0deg, #333333 0%, rgba(51, 51, 51, 0.8) 40%, rgba(51, 51, 51, 0) 100%);
+        position: absolute;
+      }
     }
 
     .wrapper {

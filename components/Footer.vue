@@ -138,7 +138,7 @@ export default {
     padding: 10px;
     padding-bottom: 5px;
 
-    background: #000000;
+    background: #683FFF;
     color: #E0E0E0;
     text-transform: uppercase;
     transition: opacity .5s ease;

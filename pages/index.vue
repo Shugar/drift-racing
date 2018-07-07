@@ -1,5 +1,5 @@
 <template>
-  <section class="index" v-touch:swipe.left="nextSlide" v-touch:swipe.right="prevSlide">
+  <section class="index" v-touch:swipe.top="nextSlide" v-touch:swipe.bottom="prevSlide">
     <Header type="main" :count="count" />
     <div class="container">
       <div class="left">
