@@ -33,6 +33,10 @@
 
       '$store.state.locale': function () {
         this.fetchData()
+        this.isReady = false
+        setTimeout(() => {
+          this.isReady = true
+        }, 400);
       }
     },
 

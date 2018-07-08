@@ -35,7 +35,7 @@
 
     <div class="right" :class="{ mainRight: type === 'main' }">
       <div class="lang">
-        <span :class="{'lang-active': locale === 'ru'}" @click="setRU()"><a href="/">RU</a> </span> — <span :class="{'lang-active': locale === 'en'}" @click="setEN()"> <a href="/">EN</a> </span>
+        <span :class="{'lang-active': locale === 'ru'}" @click="setRU()">RU </span> — <span :class="{'lang-active': locale === 'en'}" @click="setEN()"> EN </span>
       </div>
 
       <a class="copy" target="_blank" href="https://apus.agency/">
@@ -59,16 +59,12 @@ export default {
 
   methods: {
     setRU () {
-      setTimeout(() => {
         this.$store.commit('setLocale', 'ru')
-      }, 0);
       // this.$router.push('/')
     },
 
     setEN () {
-      setTimeout(() => {
         this.$store.commit('setLocale', 'en')
-      }, 0);
       // this.$router.push('/')
     },
 
@@ -270,14 +266,14 @@ export default {
     box-shadow: 0 -4px 0 0 #E0E0E0 inset;
   }
 
-  .lang a {
+  .lang span {
     color: #E0E0E0;
     transition: color .2s ease;
     will-change: color;
     cursor: pointer;
   }
 
-  .lang a:hover {
+  .lang span:hover {
     color: #FFF;
   }
 
