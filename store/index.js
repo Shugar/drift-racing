@@ -17,6 +17,7 @@ const createStore = () => {
     mutations: {
       setLocale (state, payload) {
         state.locale = payload
+        localStorage.setItem('locale', payload)
       },
 
       animateHeader (state, payload) {
