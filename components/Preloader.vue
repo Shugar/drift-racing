@@ -17,13 +17,34 @@
     <div class="left-background left-background-2" />
     <div class="left-background left-background-3" />
     <div class="left-background left-background-4" />
+
+    <div  v-if="team" v-for='(member, i) in team' :key="i" class="team-images">
+      <img :src="member.image.fields.file.url.slice(2)" alt="">
+    </div>
+
+    <div v-if="bio"  class="team-images">
+      <img :src="bio[0].leftImage.fields.file.url.slice(2)" alt="">
+      <img :src="bio[0].rightImage.fields.file.url.slice(2)" alt="">
+    </div>
+
   </div>
 </template>
 
 <script>
   export default {
-    props: ['loaded']
+    props: ['loaded'],
+
+    computed: {
+      team () {
+        return (this.$store.state.entities || { team: null }).team
+      },
+
+      bio () {
+        return (this.$store.state.entities || { bio: null }).bio
+      }
+    }
   }
+
 </script>
 
 <style lang="scss" scoped>
@@ -126,6 +147,12 @@
   #nprogress .spinner-icon {
     border-top-color: #000;
     border-left-color: #000;
+  }
+
+  .team-images {
+    opacity: 0;
+    position: absolute;
+    top: -1000%;
   }
 
   .left-background {
