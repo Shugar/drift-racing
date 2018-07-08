@@ -59,13 +59,13 @@ export default {
 
   methods: {
     setRU () {
-        this.$store.commit('setLocale', 'ru')
-      // this.$router.push('/')
+      this.$store.commit('setLocale', 'ru')
+      this.$router.push('/')
     },
 
     setEN () {
-        this.$store.commit('setLocale', 'en')
-      // this.$router.push('/')
+      this.$store.commit('setLocale', 'en')
+      this.$router.push('/')
     },
 
     toggleSharing () {
