@@ -135,8 +135,11 @@
       },
       locale () {
         return this.$store.state.locale
+      },
+      checkoutLenght () {
+        return this.$store.state.checkoutList.length
       }
-    },
+     },
 
 
     methods: {
@@ -149,7 +152,7 @@
       },
 
       addToCard () {
-        this.$store.commit('addProductToCart', { ...this.store, sizes: this.selected })
+        this.$store.commit('addProductToCart', { ...this.store, sizes: this.selected, id: this.checkoutLenght + 1 })
         this.$store.commit('lastProduct', { ...this.store, sizes: this.selected })
         this.$router.push('/store/')
       }

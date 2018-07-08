@@ -51,6 +51,10 @@ const createStore = () => {
         state.checkoutList = [...state.checkoutList, payload ]
       },
 
+      removeProductFromCart (state, id) {
+        state.checkoutList = state.checkoutList.filter(el => el.id !== id)
+      },
+
       lastProduct (state, payload) {
         state.last = payload.title + ' ' + payload.gender + ' ' + payload.style
         state.hintWasShowedOnce = 0

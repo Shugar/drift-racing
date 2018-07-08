@@ -8,7 +8,7 @@
           </div>
           <div class="products" v-if="!isOrder">
             <div class="product-item" v-for="(product, index) in checkoutList" :key="index">
-              <div class="delete" />
+              <div class="delete" @click="$store.commit('removeProductFromCart', product.id)"/>
               <div class="image" :style="{background: `url(${ 'http://' + product.preview.fields.file.url.slice(2) }) no-repeat center / cover`}" />
               <div class="descr-wrapper">
                 <div class="descr">
