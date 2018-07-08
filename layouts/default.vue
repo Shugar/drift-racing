@@ -36,6 +36,7 @@
         this.isReady = false
         setTimeout(() => {
           this.isReady = true
+          this.$router.push('/')
         }, 400);
       }
     },
