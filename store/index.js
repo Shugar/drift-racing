@@ -18,6 +18,7 @@ const createStore = () => {
       setLocale (state, payload) {
         state.locale = payload
         localStorage.setItem('locale', payload)
+        console.log('@@@@@@@@@@@@@', localStorage.getItem('locale'))
       },
 
       animateHeader (state, payload) {

@@ -303,7 +303,7 @@
       this.isChanging = false
       this.sliderInterval()
       this.$store.commit('setLocale', localStorage.getItem('locale'))
-      // console.log('@@@@@', localStorage.getItem('locale'))
+      console.log('@@@@@', localStorage.getItem('locale'))
       // setInterval(() => this.nextSlideRight(), 8000)
     },
 
