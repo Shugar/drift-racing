@@ -5,16 +5,18 @@
         <div class="right-wrapper">
           <div class="title">
             {{ this.isOrder ? (locale === 'en' ? 'CHECKOUT' : 'ОФОРМЛЕНИЕ ЗАКАЗА') : (locale  === 'en' ? 'CART' : 'КОРЗИНА')}}
-            <!-- <div class="close" @click="$store.commit('toggleCheckout')" /> -->
           </div>
           <div class="products" v-if="!isOrder">
             <div class="product-item" v-for="(product, index) in checkoutList" :key="index">
+              <div class="delete" />
               <div class="image" :style="{background: `url(${ 'http://' + product.preview.fields.file.url.slice(2) }) no-repeat center / cover`}" />
-              <div class="descr">
-                <div class="name">{{product.title}}<br> {{product.category}} </div>
-                <div class="color-size">{{ product.style }} — {{product.sizes}}</div>
+              <div class="descr-wrapper">
+                <div class="descr">
+                  <div class="name">{{product.title}} {{product.category}} </div>
+                  <div class="color-size">{{ product.style }} — {{product.sizes}}</div>
+                </div>
+                <div class="price">$ {{product.price}}</div>
               </div>
-              <div class="price">$ {{product.price}}</div>
             </div>
           </div>
             <form v-if="this.isOrder">
@@ -37,7 +39,7 @@
                 </div>
                 <div class="input-wrapper small">
                   <div class="input-label"> {{ locale === 'en' ? 'PHONE' : 'ИНДЕКС' }} </div>
-                  <input type="tel" placeholder="+7 999 352 96 66" name="phone"/>
+                  <input type="tel" placeholder="+7 999 999 99 99" name="phone"/>
                 </div>
               </div>
             </form>
@@ -105,8 +107,8 @@
 
   .right {
     position: relative;
-    // height: 100%;
-    // flex: 0 0 460px;
+    height: 100%;
+    flex: 0 0 460px;
     background: #FAFAFA;
 
     display: flex;
@@ -125,11 +127,13 @@
     padding-top: 80px;
   }
 
-  .close {
-    display: none;
+  .delete {
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 24px;
     height: 24px;
-    background: url('~/assets/images/close.svg') no-repeat center / contain;
+    background: url('~/assets/images/delete.svg') no-repeat center / contain;
   }
 
   .button-wrapper {
@@ -165,6 +169,7 @@
     padding-bottom: 40px;
   }
   .product-item {
+    position: relative;
     width: 100%;
     display: flex;
     align-items: flex-start;
@@ -175,6 +180,11 @@
     height: 86px;
     width: 86px;
     background: url('~/store/product-image.png') center no-repeat / cover;
+  }
+
+  .descr-wrapper {
+    display: flex;
+    width: calc(100% - 86px);
   }
 
   .descr {
@@ -195,6 +205,7 @@
   }
 
   .price {
+    align-self: flex-end;
     font-size: 24px;
     margin-left: 20px;
   }
@@ -253,7 +264,7 @@
 
 @media (max-width: 768px) {
   .product-item {
-    max-width: 286px;
+    // max-width: 286px;
     padding-right: 0;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -269,13 +280,22 @@
     justify-content: space-between;
   }
 
+  .descr-wrapper {
+    width: 100%;
+  }
+
+  .price {
+    align-self: flex-start;
+  }
+
   .descr {
     margin-left: 0;
-    width: 70%
+    width: 70%;
   }
 
   .image {
     margin-bottom: 20px;
+    margin-right: 10px;
   }
 
   .right {
@@ -321,6 +341,9 @@
     display: none;
   }
 
+  .right {
+    flex: 0 0 100%;
+  }
   .title {
     display: flex;
     flex-flow: row nowrap;
