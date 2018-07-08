@@ -223,6 +223,10 @@
     },
 
     methods: {
+
+      findVideoByTitle (title) {
+        this.$store.state.video.find(el => el.title === title)
+      },
       sliderInterval () {
         this.nextSlideInterval = setInterval(this.nextSlide, 8000)
       },
@@ -298,6 +302,8 @@
     mounted () {
       this.isChanging = false
       this.sliderInterval()
+      this.$store.commit('setLocale', localStorage.getItem('locale'))
+      // console.log('@@@@@', localStorage.getItem('locale'))
       // setInterval(() => this.nextSlideRight(), 8000)
     },
 

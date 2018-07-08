@@ -80,7 +80,8 @@
             <div class="video" v-for="(video, index) in filteredVideos" :key="index">
               <nuxt-link :to="'/video/' + findItemByTitle(video.title)" >
                 <div class="video-image"
-                  :style="{background: `url(${ 'http://' + video.video.fields.file.url.slice(2) }) no-repeat center / cover`}">
+                  :style="{background: 'url( http://' + video.gif.fields.file.url.slice(2) + ') no-repeat center / cover'}">
+                  <div class="video-placeholder" />
                   <div class="play-button" />
                 </div>
                 <div class="video-date">{{ video.date }}</div>
@@ -287,7 +288,6 @@
     height: 180px;
     margin-bottom: 15px;
     position: relative;
-    background: url('/videos/tumbnails/drift.gif') no-repeat center / cover;
     transition: all 5s ease-in-out;
 
     &:hover {

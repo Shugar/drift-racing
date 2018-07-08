@@ -86,7 +86,6 @@ export default {
 
   mounted () {
     this.url = window.location.href
-    console.log(this.meta)
   }
 }
 </script>

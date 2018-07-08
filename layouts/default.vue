@@ -96,12 +96,10 @@
           .catch(console.error)
       }
     },
-
     created () {
       setInterval(() => {
         this.loaded = this.loaded - Math.floor(Math.random() * 10)
       }, 500)
-
       this.fetchData()
     }
   }
