@@ -113,7 +113,7 @@
                   :to="rightSliderLink(item)"
                   :key="index">
 
-                  <div class="text-wrapper">
+                  <div class="text-wrapper" :class="{'product-name': item.type === 'store'}">
                     <div class="small-slider-text" v-html="item.title"/>
                   </div>
                   <!-- <div class="small-slider-place" v-if="item.type === 'calendar'" v-html="item.place"/> -->
@@ -864,7 +864,7 @@
 
   .small-slider {
     width: 380px;
-    min-height: 177px;
+    min-height: 128px;
     font-family: 'DIN Condensed', sans-serif;
     text-transform: uppercase;
     font-size: 36px;
@@ -881,6 +881,10 @@
 
     .text-wrapper {
       width: 65%;
+    }
+
+    .product-name {
+      width: 100%;
     }
   }
 
