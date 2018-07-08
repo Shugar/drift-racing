@@ -5,9 +5,9 @@
         <div class="right-wrapper">
           <div class="title">
             {{ this.isOrder ? (locale === 'en' ? 'CHECKOUT' : 'ОФОРМЛЕНИЕ ЗАКАЗА') : (locale  === 'en' ? 'CART' : 'КОРЗИНА')}}
-            <div class="close" @click="$store.commit('toggleCheckout')" />
+            <!-- <div class="close" @click="$store.commit('toggleCheckout')" /> -->
           </div>
-          <div class="products" v-if="!this.isOrder">
+          <div class="products" v-if="!isOrder">
             <div class="product-item" v-for="(product, index) in checkoutList" :key="index">
               <div class="image" :style="{background: `url(${ 'http://' + product.preview.fields.file.url.slice(2) }) no-repeat center / cover`}" />
               <div class="descr">
@@ -17,22 +17,39 @@
               <div class="price">$ {{product.price}}</div>
             </div>
           </div>
-            <form v-if="this.isOrder && locale === 'en'" class="order-form">
-              <input type="text" placeholder="NAME"/>
-              <input type="email" placeholder="EMAIL"/>
-              <input type="tel" placeholder="PHONE"/>
-              <input type="text" placeholder="ADRESS"/>
-              <input type="number" placeholder="ZIP"/>
-            </form>
-            <form v-if="this.isOrder && locale === 'ru'" class="order-form">
-              <input type="text" placeholder="ИМЯ"/>
-              <input type="email" placeholder="EMAIL"/>
-              <input type="tel" placeholder="ТЕЛЕФОН"/>
-              <input type="text" placeholder="АДРЕС"/>
-              <input type="number" placeholder="ИНДЕКС"/>
+            <form v-if="this.isOrder">
+              <div class="input-wrapper">
+                <div class="input-label"> {{ locale === 'en' ? 'NAME' : 'ИМЯ' }} </div>
+                <input type="text" placeholder="Sylvester Stallone" name="name"/>
+              </div>
+              <div class="input-wrapper">
+                <div class="input-label"> {{ locale === 'en' ? 'EMAIL' : 'EMAIL' }} </div>
+                <input type="email" placeholder="firstblood@rambo.com" name="email"/>
+              </div>
+              <div class="input-wrapper">
+                <div class="input-label"> {{ locale === 'en' ? 'ADRESS' : 'ТЕЛЕФОН' }} </div>
+                <input type="text" placeholder="Vietnam, jungle" name="address"/>
+              </div>
+              <div class="input-inner">
+                <div class="input-wrapper small">
+                  <div class="input-label"> {{ locale === 'en' ? 'ZIP CODE' : 'АДРЕС' }} </div>
+                  <input type="number" placeholder="765200" name="zip"/>
+                </div>
+                <div class="input-wrapper small">
+                  <div class="input-label"> {{ locale === 'en' ? 'PHONE' : 'ИНДЕКС' }} </div>
+                  <input type="tel" placeholder="+7 999 352 96 66" name="phone"/>
+                </div>
+              </div>
             </form>
         </div>
-        <div class="order" @click="orderProducts()"> {{this.isOrder ? (locale === 'en' ? 'send an order' : 'заказать') : (locale === 'en' ? 'CHECKOUT' : 'ОФОРМИТЬ ЗАКАЗ')}} </div>
+        <div class="button-wrapper" v-if="!isOrder">
+          <div class="order" @click="$store.commit('toggleCheckout')" >{{(locale === 'en' ? 'back to catalog' : 'вернуться в каталог')}}</div>
+          <div class="order blacked" @click="isOrder = true" >{{(locale === 'en' ? 'checkout' : 'оформить заказ')}}</div>
+        </div>
+        <div class="button-wrapper" v-if="isOrder">
+          <div class="order" @click="isOrder = false">{{(locale === 'en' ? 'back to cart' : 'Вернуться в корзину')}}</div>
+          <div class="order blacked">{{(locale === 'en' ? 'pay now' : 'оплатить')}}</div>
+        </div>
       </div>
   </div>
 </template>
@@ -58,16 +75,6 @@
     },
 
     methods: {
-
-      orderProducts () {
-        if ( !this.isOrder ) {
-          return (
-            this.isOrder = true
-          )
-        } else {
-          null
-        }
-      }
     }
   }
 </script>
@@ -99,7 +106,7 @@
   .right {
     position: relative;
     // height: 100%;
-    flex: 0 0 460px;
+    // flex: 0 0 460px;
     background: #FAFAFA;
 
     display: flex;
@@ -107,7 +114,7 @@
     justify-content: space-between;
 
     font-family: 'DIN Condensed';
-    color: #683FFF;
+    color: #000000;
     text-align: left;
     overflow-y: scroll;
   }
@@ -125,16 +132,27 @@
     background: url('~/assets/images/close.svg') no-repeat center / contain;
   }
 
+  .button-wrapper {
+    display: flex;
+    width: 100%;
+  }
+
   .order {
     background: #fff;
     text-transform: uppercase;
     position: relative;
-    width: 100%;
+    width: 50%;
     padding: 23px 0;
     padding-top: 30px;
     text-align: center;
     cursor: pointer;
     user-select: none;
+  }
+
+  .blacked {
+    background: linear-gradient(196.26deg, #565656 0%, #000000 100%);
+    text-transform: uppercase;
+    color: #FFFFFF;
   }
 
   .title {
@@ -181,29 +199,50 @@
     margin-left: 20px;
   }
 
+  .input-label {
+    font-size: 13px;
+  }
+
+  .input-wrapper {
+    width: 100%;
+  }
+
+  .input-inner {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+  .small {
+    width: calc(50% - 10px);
+  }
 
   .order-form {
     display: flex;
     flex-flow: column nowrap;
-
+  }
+  
     input {
       opacity: 0.8;
       font-family: 'DIN Condensed';
       color: #000;
-      border: 2px solid #BDBDBD;
+      border: none;
+      background: transparent;
+      border-bottom: 2px solid #000;
       outline: none;
       margin-bottom: 20px;
       font-size: 20px;
-      padding: 11px 0 6px 15px;
-      width: 100%;  
+      width: 100%;
       -webkit-appearance: none;
       -moz-appearance: textfield;
       &::placeholder {
         color: #BDBDBD;
+        text-transform: uppercase;
       }
 
     }
-  }
+
 
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
@@ -268,6 +307,10 @@
   .checkout {
     transition: transform .3s ease;
     will-change: transform;
+  }
+
+  .small {
+    width: 100%;
   }
 
   .close {
