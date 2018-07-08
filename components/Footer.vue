@@ -59,12 +59,16 @@ export default {
 
   methods: {
     setRU () {
-      this.$store.commit('setLocale', 'ru')
+      setTimeout(() => {
+        this.$store.commit('setLocale', 'ru')
+      }, 0);
       // this.$router.push('/')
     },
 
     setEN () {
-      this.$store.commit('setLocale', 'en')
+      setTimeout(() => {
+        this.$store.commit('setLocale', 'en')
+      }, 0);
       // this.$router.push('/')
     },
 
