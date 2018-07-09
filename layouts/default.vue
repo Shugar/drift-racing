@@ -7,6 +7,17 @@
     <Lightbox />
     <div class="preloader" v-if="!this.isReady">
       <Preloader :loaded="loaded"/>
+
+      <!-- Load fetched images -->
+      <div  v-if="team" v-for='(member, i) in team' :key="i" class="team-images">
+        <img :src="'https://' + member.image.fields.file.url.slice(2)" alt="">
+      </div>
+
+      <div v-if="bio"  class="team-images">
+        <img :src="'https://' + bio[0].leftImage.fields.file.url.slice(2)" alt="">
+        <img :src="'https://' + bio[0].rightImage.fields.file.url.slice(2)" alt="">
+      </div>
+
     </div>
     <nuxt v-else />
   </div>
@@ -43,7 +54,16 @@
     computed: {
       locale () {
         return this.$store.state.locale
-      }
+      },
+
+      team () {
+        return (this.$store.state.entities || { team: null }).team
+      },
+
+      bio () {
+        return (this.$store.state.entities || { bio: null }).bio
+      },
+
     },
 
     components: {
@@ -95,7 +115,7 @@
             this.$store.commit('fetchMeta', meta)
             this.$store.commit('fetchData', normalized)
             this.loaded = 0
-            setTimeout(() => { this.isReady = true }, 300)
+            setTimeout(() => { this.isReady = true }, 500)
           })
           .catch(console.error)
       }
