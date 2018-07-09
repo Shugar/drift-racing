@@ -4,12 +4,10 @@ $subject = "Отправка формы с сайта"; // заголовок п
 
 $_POST = json_decode(file_get_contents('php://input'), true);
 
-  foreach($_POST.contacts as $key => $value)
-  { $contact .= $key.": ".$value." \r\n"; }
-  foreach($_POST.products as $key => $value)
-  { $product .= $key.": ".$value." \r\n"; }
-  $message = $subject." \r\n".$contacts" \r\n".$product;
-  $headers  = "Content-type:  text/plain; charset=utf-8 \r\n";
+  // foreach($_POST as $key => $value)
+  // { $contact .= ''; }
+  $message = $subject." \r\n"."";
+  $headers  = "Content-type:  text/plain; charset3=utf-8 \r\n";
 
   mail($to, $subject, $message, $headers);
 ?>
