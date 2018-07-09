@@ -131,6 +131,15 @@
 <style>
   @import '@/assets/fonts/fonts.css';
 
+
+
+  .team-images {
+    opacity: 0;
+    position: absolute;
+    top: -1000%;
+  }
+
+
   .fonts-preload {
     opacity: 0;
     position: absolute;

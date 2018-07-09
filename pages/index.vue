@@ -337,14 +337,6 @@
 </script>
 
 <style lang="scss" scoped>
-
-
-  .team-images {
-    opacity: 0;
-    position: absolute;
-    top: -1000%;
-  }
-
   .fade-enter-active, .fade-more-leave-active {
     transition: opacity .5s ease;
   }
