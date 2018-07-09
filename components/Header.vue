@@ -30,10 +30,10 @@
     <div class="left" :class="{ mainLeft: type === 'main' }">
       <nuxt-link to="/" class="logo-link">
         <div class="logo">
-          <video ref="video-1" class="logo-loader" v-show="isHeaderAnimated" autoplay loop muted>
+          <video ref="video-1" class="logo-loader" v-if="isHeaderAnimated" autoplay loop muted >
             <source src="~/assets/video/logo-3.mp4" type="video/mp4">
           </video>
-          <video ref="video-2" class="logo-loader pointer-events-none" v-show="!isHeaderAnimated" muted>
+          <video ref="video-2" class="logo-loader pointer-events-none" v-else autoplay muted >
             <source src="~/assets/video/logo-3.mp4" type="video/mp4">
           </video>
         </div>
@@ -103,6 +103,12 @@
             this.$refs['video-2'].currentTime = 0
           }
         }, 1040)
+      }
+    },
+
+    mounted () {
+      if (this.$refs['video-2']) {
+        this.$refs['video-2'].pause()
       }
     },
 

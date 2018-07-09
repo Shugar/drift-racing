@@ -1,6 +1,6 @@
 <template>
   <div class="preload nprogress-custom-parent">
-    <video class="logo-loader" ref="kek" loop muted autoplay>
+    <video class="logo-loader" loop muted autoplay playsinline>
       <source src="~/assets/video/logo-3.mp4" type="video/mp4">
     </video>
     <div id="nprogress">
