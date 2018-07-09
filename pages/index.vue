@@ -143,6 +143,15 @@
     <div class="footer-wrapper" :class="{'isFooterHiding': isChanging}">
       <Footer type="main" />
     </div>
+
+    <div  v-if="team" v-for='(member, i) in team' :key="i" class="team-images">
+      <img :src="'https://' + member.image.fields.file.url.slice(2)" alt="">
+    </div>
+
+    <div v-if="bio"  class="team-images">
+      <img :src="'https://' + bio[0].leftImage.fields.file.url.slice(2)" alt="">
+      <img :src="'https://' + bio[0].rightImage.fields.file.url.slice(2)" alt="">
+    </div>
   </section>
 </template>
 
@@ -284,6 +293,15 @@
     },
 
     computed: {
+
+      team () {
+        return (this.$store.state.entities || { team: null }).team
+      },
+
+      bio () {
+        return (this.$store.state.entities || { bio: null }).bio
+      },
+      
       rightSlider () {
         return this.$store.state.entities.rightSlider
       },
@@ -337,6 +355,14 @@
 </script>
 
 <style lang="scss" scoped>
+
+
+  .team-images {
+    opacity: 0;
+    position: absolute;
+    top: -1000%;
+  }
+
   .fade-enter-active, .fade-more-leave-active {
     transition: opacity .5s ease;
   }
