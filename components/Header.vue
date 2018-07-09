@@ -30,10 +30,10 @@
     <div class="left" :class="{ mainLeft: type === 'main' }">
       <nuxt-link to="/" class="logo-link">
         <div class="logo">
-          <video class="logo-loader" v-if="isHeaderAnimated" autoplay loop muted>
+          <video ref="video-1" class="logo-loader" v-show="isHeaderAnimated" autoplay loop muted>
             <source src="~/assets/video/logo-3.mp4" type="video/mp4">
           </video>
-          <video class="logo-loader pointer-events-none" v-else muted>
+          <video ref="video-2" class="logo-loader pointer-events-none" v-show="!isHeaderAnimated" muted>
             <source src="~/assets/video/logo-3.mp4" type="video/mp4">
           </video>
         </div>
@@ -89,6 +89,20 @@
 
       locale () {
         return this.$store.state.locale
+      }
+    },
+
+    watch: {
+      'isHeaderAnimated': function (prev, current) {
+        setTimeout(() => {
+          if (this.$refs['video-1']) {
+            this.$refs['video-1'].currentTime = 0
+          }
+
+          if (this.$refs['video-2']) {
+            this.$refs['video-2'].currentTime = 0
+          }
+        }, 1040)
       }
     },
 
