@@ -91,7 +91,10 @@
                 class="image-slider-item link"
                 :key="index"
                 :to="rightSliderLink(item)">
-              <img class="image-slider-item"
+              <img v-if="item.type === 'video'" class="image-slider-item"
+                :src="`${'http://' + item.gif.fields.file.url.slice(2)}`"
+                />
+              <img v-else class="image-slider-item"
                 :src="`${'http://' + (item.image || item.preview || item.media ).fields.file.url.slice(2)}`"
                 />
             </nuxt-link>
@@ -223,10 +226,6 @@
     },
 
     methods: {
-
-      findVideoByTitle (title) {
-        this.$store.state.video.find(el => el.title === title)
-      },
       sliderInterval () {
         this.nextSlideInterval = setInterval(this.nextSlide, 8000)
       },
@@ -338,6 +337,14 @@
 </script>
 
 <style lang="scss" scoped>
+
+
+  .team-images {
+    opacity: 0;
+    position: absolute;
+    top: -1000%;
+  }
+
   .fade-enter-active, .fade-more-leave-active {
     transition: opacity .5s ease;
   }
@@ -872,7 +879,7 @@
   }
 
   .small-slider {
-    width: 380px;
+    width: 400px;
     min-height: 128px;
     font-family: 'DIN Condensed', sans-serif;
     text-transform: uppercase;
@@ -963,7 +970,7 @@
     position: relative;
     overflow: hidden;
     height: 200px;
-    width: 380px;
+    width: 400px;
     margin-bottom: 40px;
     z-index: 6;
     transition: opacity .4s ease;
