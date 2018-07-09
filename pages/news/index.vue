@@ -317,7 +317,7 @@
   }
 
   .article {
-    max-width: 435px;
+    max-width: 550px;
     margin-bottom: 40px;
     cursor: pointer;
     text-decoration: none;

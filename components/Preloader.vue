@@ -22,7 +22,7 @@
 
 <script>
   export default {
-    props: ['loaded'],
+    props: ['loaded']
   }
 
 </script>
