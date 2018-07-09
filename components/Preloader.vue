@@ -72,7 +72,7 @@
     top: 50%;
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
-    width: 20%;
+    width: 10%;
     height: auto;
   }
   .preload__sign i {

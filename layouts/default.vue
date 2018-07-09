@@ -5,9 +5,7 @@
       <span style="font-family: 'Ailerons', Arial, sans-serif;"></span>
     </div>
     <Lightbox />
-    <div class="preloader" v-if="!this.isReady">
-      <Preloader :loaded="loaded"/>
-    </div>
+    <Preloader :loaded="loaded" v-if="!this.isReady" />
     <nuxt v-else />
   </div>
 </template>
