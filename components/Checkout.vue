@@ -22,24 +22,24 @@
             <form v-if="this.isOrder">
               <div class="input-wrapper">
                 <div class="input-label"> {{ locale === 'en' ? 'NAME' : 'ИМЯ' }} </div>
-                <input type="text" placeholder="Sylvester Stallone" name="name"/>
+                <input  v-model="customer.name" type="text" placeholder="Sylvester Stallone" name="name"/>
               </div>
               <div class="input-wrapper">
                 <div class="input-label"> {{ locale === 'en' ? 'EMAIL' : 'EMAIL' }} </div>
-                <input type="email" placeholder="firstblood@rambo.com" name="email"/>
+                <input v-model="customer.email" type="email" placeholder="firstblood@rambo.com" name="email"/>
               </div>
               <div class="input-wrapper">
-                <div class="input-label"> {{ locale === 'en' ? 'ADRESS' : 'ТЕЛЕФОН' }} </div>
-                <input type="text" placeholder="Vietnam, jungle" name="address"/>
+                <div class="input-label"> {{ locale === 'en' ? 'ADRESS' : 'АДРЕС' }} </div>
+                <input  v-model="customer.address" type="text" placeholder="Vietnam, jungle" name="address"/>
               </div>
               <div class="input-inner">
                 <div class="input-wrapper small">
-                  <div class="input-label"> {{ locale === 'en' ? 'ZIP CODE' : 'АДРЕС' }} </div>
-                  <input type="number" placeholder="765200" name="zip"/>
+                  <div class="input-label"> {{ locale === 'en' ? 'ZIP CODE' : 'ИНДЕКС' }} </div>
+                  <input v-model="customer.zip" type="number" placeholder="765200" name="zip"/>
                 </div>
                 <div class="input-wrapper small">
-                  <div class="input-label"> {{ locale === 'en' ? 'PHONE' : 'ИНДЕКС' }} </div>
-                  <input type="tel" placeholder="+7 999 999 99 99" name="phone"/>
+                  <div class="input-label"> {{ locale === 'en' ? 'PHONE' : 'ТЕЛЕФОН' }} </div>
+                  <input v-model="customer.phone" type="tel" placeholder="+7 999 999 99 99" name="phone"/>
                 </div>
               </div>
             </form>
@@ -50,19 +50,27 @@
         </div>
         <div class="button-wrapper" v-if="isOrder">
           <div class="order" @click="isOrder = false">{{(locale === 'en' ? 'back to cart' : 'Вернуться в корзину')}}</div>
-          <div class="order blacked">{{(locale === 'en' ? 'pay now' : 'оплатить')}}</div>
+          <div @click="postFormData" class="order blacked">{{(locale === 'en' ? 'send' : 'отправить')}}</div>
         </div>
       </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
   export default {
     props: ['isOpen'],
 
     data () {
       return {
-        isOrder: false
+        isOrder: false,
+        customer: {
+          name: '',
+          email: '',
+          address: '',
+          zip: '',
+          phone: ''
+        }
       }
     },
 
@@ -77,6 +85,23 @@
     },
 
     methods: {
+      postFormData () {
+        axios.post('checkout.php', {
+          contacts: this.customer,
+          products: this.checkoutList
+          // title, category, style, size, gender, price
+
+
+        })
+        .then(function (response) {
+          // eslint-disable-next-line
+          console.log(response)
+        })
+        .catch(function (error) {
+          // eslint-disable-next-line
+          console.log(error)
+        })
+      }
     }
   }
 </script>
