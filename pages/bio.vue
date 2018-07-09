@@ -335,7 +335,7 @@ export default {
 
   .container-car {
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     // padding: 0px 196px;
     // padding-left: 320px;
     align-content: center;
@@ -346,6 +346,9 @@ export default {
   .container-car .left {
     margin-bottom: 100px;
 
+    &:not(:last-child) {
+      margin-right: 126px;
+    }
 
     &:nth-child(even) {
       .title,
