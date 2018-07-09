@@ -19,12 +19,12 @@
     <div class="left-background left-background-4" />
 
     <div  v-if="team" v-for='(member, i) in team' :key="i" class="team-images">
-      <img :src="member.image.fields.file.url.slice(2)" alt="">
+      <img :src="'http://' + member.image.fields.file.url.slice(2)" alt="">
     </div>
 
     <div v-if="bio"  class="team-images">
-      <img :src="bio[0].leftImage.fields.file.url.slice(2)" alt="">
-      <img :src="bio[0].rightImage.fields.file.url.slice(2)" alt="">
+      <img :src="'http://' + bio[0].leftImage.fields.file.url.slice(2)" alt="">
+      <img :src="'http://' + bio[0].rightImage.fields.file.url.slice(2)" alt="">
     </div>
 
   </div>
