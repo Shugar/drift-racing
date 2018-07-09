@@ -213,8 +213,9 @@
     bottom: 23px;
     width: 54px;
     height: auto;
-    transform: translate3d(0, 0, 0) skewX(15deg);
+    // transform: translate3d(0, 0, 0) skewX(15deg);
   }
+
   .logo i {
     position: absolute;
     left: 24px;

@@ -23,7 +23,7 @@
         animateClass="animated"
         :begin="true"
       >
-        <div class="title">team</div>
+        <div class="title">{{ locale === 'en' ? 'TEAM' : 'КОМАНДА' }}</div>
       </u-animate>
       <u-animate
         name="fadeInUp"
