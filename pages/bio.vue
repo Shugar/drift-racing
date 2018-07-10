@@ -282,10 +282,12 @@ export default {
 
     display: flex;
     flex-flow: column nowrap;
+    width: 50%;
   }
 
   .right {
     // flex: 0 0 40%;
+    width: 50%;
     display: flex;
     flex-flow: column nowrap;
   }
@@ -335,7 +337,7 @@ export default {
 
   .container-car {
     flex-flow: row wrap;
-    justify-content: flex-start;
+    justify-content: space-between;
     // padding: 0px 196px;
     // padding-left: 320px;
     align-content: center;
@@ -346,9 +348,9 @@ export default {
   .container-car .left {
     margin-bottom: 100px;
 
-    &:not(:last-child) {
-      margin-right: 126px;
-    }
+    // &:not(:last-child) {
+    //   margin-right: 126px;
+    // }
 
     &:nth-child(even) {
       .title,
@@ -360,7 +362,6 @@ export default {
 
   .container-car img {
     width: 100%;
-    max-width: 448px;
     height: auto;
     margin-bottom: 40px;
   }
@@ -368,7 +369,7 @@ export default {
   .container-car .left,
   .container-car .right {
     max-width: 448px;
-    width: 100%;
+    width: calc(50% - 31px);
     display: flex;
     flex-flow: column nowrap;
   }
