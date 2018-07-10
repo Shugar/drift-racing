@@ -109,66 +109,68 @@
         {{locale === 'en' ? 'cars' : 'машины'}}
       </u-animate>
       <div class="left" v-for="(car, index) in bioCars" :key="index">
-        <u-animate
-          name="fadeInUp"
-          delay="0.6s"
-          duration="0.4s"
-          :iteration="1"
-          :offset="0"
-          animateClass="animated"
-          :begin="true"
-        >
-          <div class="title">{{ car.title }}<br> {{ car.car }}</div>
-        </u-animate>
-        <u-animate
-          name="fadeInUp"
-          delay="0.8s"
-          duration="0.4s"
-          :iteration="1"
-          :offset="0"
-          animateClass="animated"
-          :begin="true"
-        >
-          <img :src="'http://' + car.image.fields.file.url.slice(2)" />
-        </u-animate>
-        <u-animate
-          class="text-wrapper"
-          name="fadeInUp"
-          delay="1s"
-          duration="0.4s"
-          :iteration="1"
-          :offset="0"
-          animateClass="animated"
-          :begin="true"
-        >
-          <div class="text">
-            {{ car.text }}
-          </div>
-        </u-animate>
-        <u-animate
-          name="fadeInUp"
-          delay="1.2s"
-          duration="0.4s"
-          :iteration="1"
-          :offset="0"
-          animateClass="animated"
-          :begin="true"
-        >
-          <div class="numbers">
-            <div class="numbers-item">
-              <div class="numbers-item__digits">{{ car.hp }}</div>
-              <div class="numbers-item__units">{{locale === 'en' ? 'HP' : 'ЛС'}}</div>
+        <div class="car-wrapper">
+          <u-animate
+            name="fadeInUp"
+            delay="0.6s"
+            duration="0.4s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="true"
+          >
+            <div class="title">{{ car.title }}<br> {{ car.car }}</div>
+          </u-animate>
+          <u-animate
+            name="fadeInUp"
+            delay="0.8s"
+            duration="0.4s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="true"
+          >
+            <img :src="'http://' + car.image.fields.file.url.slice(2)" />
+          </u-animate>
+          <u-animate
+            class="text-wrapper"
+            name="fadeInUp"
+            delay="1s"
+            duration="0.4s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="true"
+          >
+            <div class="text">
+              {{ car.text }}
             </div>
-            <div class="numbers-item">
-              <div class="numbers-item__digits">{{ car.drivetrain }}</div>
-              <div class="numbers-item__units">{{locale === 'en' ? 'DRIVETRAIN' : 'ТРАНСМИССИЯ'}}</div>
+          </u-animate>
+          <u-animate
+            name="fadeInUp"
+            delay="1.2s"
+            duration="0.4s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="true"
+          >
+            <div class="numbers">
+              <div class="numbers-item">
+                <div class="numbers-item__digits">{{ car.hp }}</div>
+                <div class="numbers-item__units">{{locale === 'en' ? 'HP' : 'ЛС'}}</div>
+              </div>
+              <div class="numbers-item">
+                <div class="numbers-item__digits">{{ car.drivetrain }}</div>
+                <div class="numbers-item__units">{{locale === 'en' ? 'DRIVETRAIN' : 'ТРАНСМИССИЯ'}}</div>
+              </div>
+              <div class="numbers-item">
+                <div class="numbers-item__digits">{{ car.engine }}</div>
+                <div class="numbers-item__units">{{locale === 'en' ?  'ENGINE' : 'ДВИГАТЕЛЬ'}}</div>
+              </div>
             </div>
-            <div class="numbers-item">
-              <div class="numbers-item__digits">{{ car.engine }}</div>
-              <div class="numbers-item__units">{{locale === 'en' ?  'ENGINE' : 'ДВИГАТЕЛЬ'}}</div>
-            </div>
-          </div>
-        </u-animate>
+          </u-animate>
+        </div>
       </div>
     </div>
 
@@ -282,10 +284,12 @@ export default {
     max-width: 509px;
     display: flex;
     flex-flow: column nowrap;
+    width: 50%;
   }
 
   .right {
     // flex: 0 0 40%;
+    width: 50%;
     display: flex;
     flex-flow: column nowrap;
   }
@@ -335,7 +339,7 @@ export default {
 
   .container-car {
     flex-flow: row wrap;
-    justify-content: flex-start;
+    justify-content: space-between;
     // padding: 0px 196px;
     // padding-left: 320px;
     align-content: center;
@@ -346,9 +350,9 @@ export default {
   .container-car .left {
     margin-bottom: 100px;
 
-    &:not(:last-child) {
-      margin-right: 126px;
-    }
+    // &:not(:last-child) {
+    //   margin-right: 126px;
+    // }
 
     &:nth-child(even) {
       .title,
@@ -360,17 +364,20 @@ export default {
 
   .container-car img {
     width: 100%;
-    max-width: 448px;
     height: auto;
     margin-bottom: 40px;
   }
 
   .container-car .left,
   .container-car .right {
-    max-width: 448px;
-    width: 100%;
+    
+    width: calc(50% - 31px);
     display: flex;
     flex-flow: column nowrap;
+  }
+
+  .car-wrapper {
+    max-width: 448px;
   }
 
   .container-car .right .numbers,
