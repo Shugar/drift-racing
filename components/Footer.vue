@@ -65,7 +65,8 @@ export default {
 
     setEN () {
       this.$store.commit('setLocale', 'en')
-      this.$router.push('/')
+      // this.$router.push('/')
+      console.log(this.$route)
     },
 
     toggleSharing () {

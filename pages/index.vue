@@ -15,16 +15,13 @@
             <div class="next-category">
 
               <transition :name="'category-' + direction + '-animation'" appear>
-
                 <div class="next-category-inner"
                   v-if="count === index"
                   v-for="(slide, index) in dummyLeftSlider"
                   :key="index">
                     {{ dummyLeftSlider[count].category }}
                 </div>
-
               </transition>
-
             </div>
           </div>
 
@@ -86,7 +83,7 @@
       <div class="right">
         <div class="image-slider" :class="{'isSliderHiding': isChanging}">
           <transition :name="'small-slider-' + direction + '-animation'">
-            <nuxt-link v-for="(item, index) in rightSlider"
+            <!-- <nuxt-link v-for="(item, index) in rightSlider"
                 v-if="index === rightCount"
                 class="image-slider-item link"
                 :key="index"
@@ -97,20 +94,20 @@
               <img v-else class="image-slider-item"
                 :src="`${'http://' + (item.image || item.preview || item.media ).fields.file.url.slice(2)}`"
                 />
-            </nuxt-link>
+            </nuxt-link> -->
           </transition>
-          <nuxt-link v-for="(item, index) in rightSlider"
+          <!-- <nuxt-link v-for="(item, index) in rightSlider"
               class="arrow"
               v-if="index === rightCount"
               :key="index"
               :to="rightSliderLink(item)">
             <div class="arrow"/>
-          </nuxt-link>
+          </nuxt-link> -->
         </div>
         <div class="small-slider" :class="{'isSliderHiding': isChanging}">
             <div>
               <transition :name="'small-slider-' + direction + '-animation'">
-                <nuxt-link class="small-slider-left"
+                <!-- <nuxt-link class="small-slider-left"
                   v-for="(item, index) in rightSlider"
                   v-if="index === rightCount"
                   :to="rightSliderLink(item)"
@@ -119,13 +116,12 @@
                   <div class="text-wrapper" :class="{'product-name': item.type === 'store'}">
                     <div class="small-slider-text" v-html="item.title"/>
                   </div>
-                  <!-- <div class="small-slider-place" v-if="item.type === 'calendar'" v-html="item.place"/> -->
                   <div class="small-slider-category" v-if="item.type === 'store'" v-html="item.category"/>
                   <div class="text-wrapper">
                     <div class="small-slider-style" v-if="item.type === 'store'" v-html="item.style"/>
                   </div>
                   <div class="small-slider-event-date" v-if="item.type === 'calendar' || item.type === 'news'" v-html="item.date"/>
-                </nuxt-link>
+                </nuxt-link> -->
               </transition>
               <transition :name="'small-slider-' + direction + '-animation'">
                 <div class="small-slider-right"
@@ -189,13 +185,13 @@
             subtitle: 'Newest videos right<br> from the race track',
             button: 'Discover',
             link: '/video/',
-            category: 'calendar'
+            category: 'news'
           },
           {
             title: ['upcoming', 'events'],
             subtitle: 'Upcoming events<br> with Alex D',
             button: 'Discover',
-            link: '/calendar/',
+            link: '/news/',
             category: 'bio'
           }
         ]
