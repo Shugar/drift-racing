@@ -124,7 +124,7 @@
                   <div class="text-wrapper">
                     <div class="small-slider-style" v-if="item.type === 'store'" v-html="item.style"/>
                   </div>
-                  <div class="small-slider-event-date" v-if="item.type === 'calendar' || item.type === 'news'" v-html="item.date"/>
+                  <div class="small-slider-event-date" v-if="item.type === 'calendar' || item.type === 'news' || item.type === 'video'"  v-html="item.date"/>
                 </nuxt-link>
               </transition>
               <transition :name="'small-slider-' + direction + '-animation'">
@@ -132,7 +132,7 @@
                   v-for="(item, index) in rightSlider"
                   v-if="index === rightCount"
                   :key="index">
-                  <div class="small-slider-date" v-if="item.type === 'calendar' || item.type === 'news'" v-html="item.date"/>
+                  <div class="small-slider-date" v-if="item.type === 'calendar' || item.type === 'news' || item.type === 'video'" v-html="item.date"/>
                   <div class="small-slider-price" v-if="item.type === 'store'">$ {{ item.price }}</div>
                 </div>
               </transition>
@@ -244,7 +244,7 @@
       nextSlide () {
         this.direction = 'top'
         this.count === 3 ? this.count = 0 : this.count++
-        this.rightCount === 3 ? this.rightCount = 0 : this.rightCount++
+        this.rightCount === this.rightSlider.length - 1 ? this.rightCount = 0 : this.rightCount++
         clearInterval(this.nextSlideInterval)
         this.sliderInterval()
 

@@ -30,12 +30,14 @@
     <div class="left" :class="{ mainLeft: type === 'main' }">
       <nuxt-link to="/" class="logo-link">
         <div class="logo">
-          <video ref="video-1" class="logo-loader" v-if="isHeaderAnimated" autoplay loop muted >
+          <img src="../assets/images/logo.svg"/>
+          <img v-if="isHeaderAnimated" class="logo-loader" src="../assets/images/drift-logo-animated.gif" />
+          <!-- <video ref="video-1" class="logo-loader" v-if="isHeaderAnimated" autoplay loop muted >
             <source src="~/assets/video/logo-3.mp4" type="video/mp4">
           </video>
           <video ref="video-2" class="logo-loader pointer-events-none" v-else autoplay muted >
             <source src="~/assets/video/logo-3.mp4" type="video/mp4">
-          </video>
+          </video> -->
         </div>
       </nuxt-link>
       <div class="back-to news" v-if="this.$route.path === `/news/${this.$route.params.id}`">
