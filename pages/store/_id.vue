@@ -90,7 +90,8 @@
         animateClass="animated"
         :begin="true"
       >
-        <div class="add-to" @click="addToCard" :class="{white: isMobileInfoVisible}" >{{ locale === 'en' ? "add to card" : "добавить в корзину"}}</div>
+        <div class="add-to" @click="addToCard" :class="{white: isMobileInfoVisible}" >{{ locale === 'en' ? "add to cart" : "добавить в корзину"}}</div>
+        <div class="about mobile-inside" :class="{white: isMobileInfoVisible}" @click="toggleInfoMobile()">{{locale === 'en' ? 'about product' : 'о товаре'}}</div>
       </u-animate>
     </div>
     <div class="about mobile" :class="{white: isMobileInfoVisible}" @click="toggleInfoMobile()">{{locale === 'en' ? 'about product' : 'о товаре'}}</div>
@@ -432,7 +433,7 @@
       cursor: pointer;
       top: 50px;
       right: 50px;
-      z-index: 3;
+      z-index: 16;
     }
 
     .product {
@@ -441,8 +442,9 @@
       background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
       width: 100%;
       height: 100%;
-      padding: 150px 50px 0 50px;
+      padding: 150px 50px 50px 50px;
       margin: 0;
+      z-index: 15;
     }
 
     .product-mobile {
@@ -453,6 +455,19 @@
       width: 100%;
       opacity: 1;
       pointer-events: auto;
+      overflow-y: scroll;
+    }
+
+    .add-to {
+      display: inline-block;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .mobile-inside {
+      display: block;
+      position: relative;
+      bottom: initial;
     }
 
     .product-title {

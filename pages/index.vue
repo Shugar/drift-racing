@@ -15,16 +15,13 @@
             <div class="next-category">
 
               <transition :name="'category-' + direction + '-animation'" appear>
-
                 <div class="next-category-inner"
                   v-if="count === index"
                   v-for="(slide, index) in dummyLeftSlider"
                   :key="index">
                     {{ dummyLeftSlider[count].category }}
                 </div>
-
               </transition>
-
             </div>
           </div>
 
@@ -119,7 +116,6 @@
                   <div class="text-wrapper" :class="{'product-name': item.type === 'store'}">
                     <div class="small-slider-text" v-html="item.title"/>
                   </div>
-                  <!-- <div class="small-slider-place" v-if="item.type === 'calendar'" v-html="item.place"/> -->
                   <div class="small-slider-category" v-if="item.type === 'store'" v-html="item.category"/>
                   <div class="text-wrapper">
                     <div class="small-slider-style" v-if="item.type === 'store'" v-html="item.style"/>
@@ -189,13 +185,13 @@
             subtitle: 'Newest videos right<br> from the race track',
             button: 'Discover',
             link: '/video/',
-            category: 'calendar'
+            category: 'news'
           },
           {
             title: ['upcoming', 'events'],
             subtitle: 'Upcoming events<br> with Alex D',
             button: 'Discover',
-            link: '/calendar/',
+            link: '/news/',
             category: 'bio'
           }
         ]

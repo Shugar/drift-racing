@@ -281,7 +281,7 @@ export default {
     // padding-left: 220px;
     // flex: 0 0 60%;
 
-
+    max-width: 509px;
     display: flex;
     flex-flow: column nowrap;
     width: 50%;

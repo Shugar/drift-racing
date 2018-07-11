@@ -60,11 +60,11 @@
               <div class="position">{{ item.position }}</div>
               <div class="birth">
                 <div class="descr-item">
-                  {{locale === 'en' ? 'Birth:' : 'Родился'}}
+                  {{locale === 'en' ? 'Birth:' : 'Год рожд.'}}
                   <div class='descr-value'>{{ item.birth }}</div>
                 </div>
                 <div class="descr-item">
-                  {{locale === 'en' ? 'Location:' : 'Местоположение'}}
+                  {{locale === 'en' ? 'Location:' : 'Локация'}}
                   <div class='descr-value'>{{ item.location }}</div>
                 </div>
               </div>

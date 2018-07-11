@@ -55,6 +55,13 @@
     width: 10%;
     height: auto;
   }
+
+  @media (max-width: 768px) {
+    .logo-loader {
+      width: 20%;
+    }
+  }
+
   .preload__sign i {
     position: absolute;
     left: 0;
