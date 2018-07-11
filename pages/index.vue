@@ -285,7 +285,7 @@
 
     computed: {
       rightSlider () {
-        return this.$store.state.entities.rightSlider
+        return this.$store.state.entities.rightSlider.filter(el => el.locale === this.$store.state.locale )
       },
 
       meta () {
