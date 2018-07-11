@@ -77,6 +77,7 @@
         :offset="0"
         animateClass="animated"
         :begin="true"
+        class="news-list-wrapper"
       >
         <div class="news-list">
           <masonry
@@ -273,6 +274,10 @@
     padding-left: 320px;
     transition: transform .4s ease, opacity .4s ease;
     will-change: transform, opacity;
+
+    .news-list-wrapper {
+      width: 100%;
+    }
   }
 
   .tags {

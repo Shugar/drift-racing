@@ -47,6 +47,7 @@
         >
         <div class="videos-list" v-if="filteredVideos.length === 0">
           <masonry
+            class="mansory"
             :cols="{default: 3, 1024: 2, 425: 1}"
             :gutter="{default: '60px', 768: '40px', 425: '0px'}"
             ref="my-masonry">
@@ -211,6 +212,10 @@
     padding-left: 320px;
     transition: transform .4s ease, opacity .4s ease;
     will-change: transform, opacity;
+
+    div:nth-child(3) {
+      width: 100%;
+    }
   }
 
   .tags {

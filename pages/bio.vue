@@ -471,6 +471,7 @@ export default {
     .container-car .left {
       padding-left: 0;
       margin-right: 0;
+      width: 100%;
     }
 
     .container {
