@@ -1,13 +1,36 @@
 <?php
-$to = "dzhafarov.ruslan@yandex.ru"; // адрес куда отправлять письмо
-$subject = "Отправка формы с сайта"; // заголовок письма
+// Файлы phpmailer
+require 'class.phpmailer.php';
+require 'class.smtp.php';
+// Переменные
+$name = $_POST['name'];
+$phone = $_POST['phone'];
+$email = $_POST['email'];
+$address = $_POST['address'];
+$zip = $_POST['zip'];
 
-$_POST = json_decode(file_get_contents('php://input'), true);
+// Настройки
+$mail = new PHPMailer;
+$mail->isSMTP();
+$mail->Host = 'smtp.yandex.ru';
+$mail->SMTPAuth = true;
+$mail->Username = 'alexdracing'; // Ваш логин в Яндексе. Именно логин, без @yandex.ru
+$mail->Password = 'racing'; // Ваш пароль
+$mail->SMTPSecure = 'ssl';
+$mail->Port = 465;
+$mail->setFrom('alexdracing@yandex.ru'); // Ваш Email
+$mail->addAddress('shugar348@gmail.com'); // Email получателя
 
-  // foreach($_POST as $key => $value)
-  // { $contact .= ''; }
-  $message = $subject." \r\n"."";
-  $headers  = "Content-type:  text/plain; charset3=utf-8 \r\n";
+// Письмо
+$mail->isHTML(true);
+$mail->Subject = "Заголовок"; // Заголовок письма
+$mail->Body = "Имя $name . Телефон $phone . Почта $email Адрес $address . ZIP $zip ."; // Текст письма
 
-  mail($to, $subject, $message, $headers);
+// Результат
+if(!$mail->send()) {
+  echo 'Message could not be sent.';
+  echo 'Mailer Error: ' . $mail->ErrorInfo;
+} else {
+  echo 'ok';
+}
 ?>
