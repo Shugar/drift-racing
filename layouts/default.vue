@@ -120,6 +120,13 @@
           .catch(console.error)
       }
     },
+    mounted () {
+      if (!localStorage.getItem('locale')) {
+        this.$store.commit('setLocale', 'en')
+      } else {
+        this.$store.commit('setLocale', localStorage.getItem('locale'))
+      }
+    },
     created () {
       setInterval(() => {
         this.loaded = this.loaded - Math.floor(Math.random() * 10)

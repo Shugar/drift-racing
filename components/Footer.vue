@@ -35,7 +35,9 @@
 
     <div class="right" :class="{ mainRight: type === 'main' }">
       <div class="lang">
-        <span :class="{'lang-active': locale === 'ru'}" @click="setRU()">RU </span> — <span :class="{'lang-active': locale === 'en'}" @click="setEN()"> EN </span>
+        <span :class="{'lang-active': locale === 'ru'}" @click="setRU()">RU </span> 
+        —
+        <span :class="{'lang-active': locale === 'en'}" @click="setEN()"> EN </span>
       </div>
 
       <a class="copy" target="_blank" href="https://apus.agency/">
@@ -60,13 +62,14 @@ export default {
   methods: {
     setRU () {
       this.$store.commit('setLocale', 'ru')
-      this.$router.push('/')
+      const prevPath = this.$router.history.current.fullPath.split('/')
+      this.$router.push(`/${prevPath[1]}`)
     },
 
     setEN () {
       this.$store.commit('setLocale', 'en')
-      // this.$router.push('/')
-      console.log(this.$route)
+      const prevPath = this.$router.history.current.fullPath.split('/')
+      this.$router.push(`/${prevPath[1]}`)
     },
 
     toggleSharing () {

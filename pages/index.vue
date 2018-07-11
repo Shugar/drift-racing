@@ -281,7 +281,7 @@
 
     computed: {
       rightSlider () {
-        return this.$store.state.entities.rightSlider
+        return this.$store.state.entities.rightSlider.filter(el => el.locale === this.$store.state.locale )
       },
 
       meta () {
@@ -297,11 +297,7 @@
     mounted () {
       this.isChanging = false
       this.sliderInterval()
-      if (!localStorage.getItem('locale')) {
-        this.$store.commit('setLocale', 'en')
-      } else {
-        this.$store.commit('setLocale', localStorage.getItem('locale'))
-      }
+
       // setInterval(() => this.nextSlideRight(), 8000)
     },
 
