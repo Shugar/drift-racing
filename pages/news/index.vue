@@ -108,7 +108,7 @@
       </div>
 
       <div class="container container-mobile">
-        <div :class="{'previous': article.column === 'right', 'article': article.column === 'left'}" v-for="(article, index) in calendar" :key="index">
+        <div :class="{'previous': article.column === 'right', 'article': article.column === 'left'}" v-for="(article, index) in (events.length > 0 ? events : leftCalendar)" :key="index">
           <u-animate
             name="fadeInUp"
             :delay="0.2 + (index * 0.1) + 's'"
