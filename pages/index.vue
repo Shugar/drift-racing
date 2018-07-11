@@ -229,7 +229,7 @@
       prevSlide () {
         this.direction = 'bottom'
         this.count === 0 ? this.count = 3 : this.count--
-        this.rightCount === 0 ? this.rightCount = 3 : this.rightCount--
+        this.rightCount === 0 ? this.rightCount = this.rightSlider.length - 1 : this.rightCount--
         clearInterval(this.nextSlideInterval)
         this.sliderInterval()
 
