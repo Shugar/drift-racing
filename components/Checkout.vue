@@ -87,9 +87,8 @@ import axios from 'axios'
     methods: {
       postFormData () {
         axios.post('/checkout.php', {
-          contacts: this.customer.name,
-          // products: this.checkoutList
-          // title, category, style, size, gender, price
+          ...this.customer.name,
+          products: this.checkoutList
         })
         .then(function (response) {
           // eslint-disable-next-line
