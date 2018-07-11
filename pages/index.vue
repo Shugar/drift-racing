@@ -297,11 +297,7 @@
     mounted () {
       this.isChanging = false
       this.sliderInterval()
-      if (!localStorage.getItem('locale')) {
-        this.$store.commit('setLocale', 'en')
-      } else {
-        this.$store.commit('setLocale', localStorage.getItem('locale'))
-      }
+
       // setInterval(() => this.nextSlideRight(), 8000)
     },
 
