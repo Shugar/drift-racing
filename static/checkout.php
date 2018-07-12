@@ -17,7 +17,7 @@ $mail->SMTPAuth = true;
 $mail->Username = 'alexdracing'; // Ваш логин в Яндексе. Именно логин, без @yandex.ru
 $mail->Password = 'racing'; // Ваш пароль
 $mail->SMTPSecure = 'ssl';
-$mail->Port = 465;
+$mail->Port = 587;
 $mail->setFrom('alexdracing@yandex.ru'); // Ваш Email
 $mail->addAddress('shugar348@gmail.com'); // Email получателя
 

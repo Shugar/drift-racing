@@ -78,7 +78,15 @@
         client.getEntries()
           .then(response => {
             const entities = response.items.map((item, index) => {
-              if (item.fields.locale === undefined) {
+              if (item.fields.locale === undefined || item.fields.locale === 'en') {
+                if (item.sys.contentType.id === 'calendar') {
+                  return {
+                    type: 'news',
+                    locale: 'en',
+                    ...item.fields
+                  }
+                }
+
                 return {
                   type: item.sys.contentType.sys.id,
                   locale: 'en',
@@ -87,6 +95,14 @@
               }
 
               if (item.fields.locale === 'ru') {
+                if (item.sys.contentType.id === 'calendar') {
+                  return {
+                    type: 'news',
+                    locale: item.fields.locale,
+                    ...item.fields
+                  }
+                }
+
                 return {
                   type: item.sys.contentType.sys.id,
                   locale: item.fields.locale,
