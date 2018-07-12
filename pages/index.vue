@@ -88,9 +88,8 @@
                 class="image-slider-item link"
                 :key="index"
                 :to="rightSliderLink(item)">
-              <img v-if="item.type === 'video'" class="image-slider-item"
-                :src="`${'http://' + item.gif.fields.file.url.slice(2)}`"
-                />
+              <div v-if="item.type === 'video'" class="image-slider-item" 
+                :style="{background: `url(http://${item.gif.fields.file.url.slice(2)}) no-repeat center / cover`}" />
               <img v-else class="image-slider-item"
                 :src="`${'http://' + (item.image || item.preview || item.media ).fields.file.url.slice(2)}`"
                 />
@@ -977,6 +976,7 @@
   .image-slider-item {
     position: absolute;
     height: 100%;
+    width: 100%;
     width: calc(100% - 60px);
     left: 0;
     top: 0;
