@@ -19,7 +19,7 @@
                   v-if="count === index"
                   v-for="(slide, index) in dummyLeftSlider"
                   :key="index">
-                    {{ dummyLeftSlider[count].category }}
+                    {{ dummyLeftSlider[count].category[locale] }}
                 </div>
               </transition>
             </div>
@@ -54,7 +54,7 @@
                   v-if="count === index"
                   v-for="(slide, index) in dummyLeftSlider"
                   :key="index"
-                  v-html="slide.subtitle" />
+                  v-html="slide.subtitle[locale]" />
               </transition>
             </div>
             <div class="button-wrapper">
@@ -168,31 +168,31 @@
         dummyLeftSlider: [
           {
             title: ['Drift', 'Is my', 'Therapy'],
-            subtitle: 'Alexander Dmitrenko, pilot of<br> the Russian Drift Series',
+            subtitle: {'en': 'Alexander Dmitrenko, pilot of<br> the Russian Drift Series', 'ru': 'Александр Дмитренко, пилот<br> Russian Drift Series'},
             button: {'en':'Learn more', 'ru': 'Подробнее'},
             link: '/bio/',
-            category: 'photos'
+            category: {'en': 'photos', 'ru': 'фото'}
           },
           {
             title: ['Latest', 'Photos'],
-            subtitle: 'Photos from our<br> recent events',
+            subtitle: {'en': 'Photos from our<br> recent events', 'ru': 'Фото с наших<br> мероприятий'},
             button: {'en':'Discover', 'ru': 'Подробнее'},
             link: '/photo/',
-            category: 'videos'
+            category: {'en':'videos', 'ru': 'видео'}
           },
           {
             title: ['New', 'videos'],
-            subtitle: 'Newest videos right<br> from the race track',
+            subtitle: {'en': 'Newest videos right<br> from the race track', 'ru': 'Свежие видео <br>прямиком с трека'},
             button: {'en':'Discover', 'ru': 'Подробнее'},
             link: '/video/',
-            category: 'news'
+            category: {'en': 'news', 'ru': 'новости'}
           },
           {
             title: ['upcoming', 'events'],
-            subtitle: 'Upcoming events<br> with Alex D',
+            subtitle: {'en': 'Upcoming events<br> with Alex D', 'ru': 'Предстоящие мероприятия<br> с Alex D'},
             button: {'en':'Discover', 'ru': 'Подробнее'},
             link: '/news/',
-            category: 'bio'
+            category: {'en': 'bio', 'ru': 'биография'}
           }
         ]
       }
