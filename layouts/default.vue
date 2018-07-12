@@ -79,7 +79,7 @@
           .then(response => {
             const entities = response.items.map((item, index) => {
               if (item.fields.locale === undefined || item.fields.locale === 'en') {
-                if (item.sys.contentType.id === 'calendar') {
+                if (item.sys.contentType.sys.id === 'calendar') {
                   return {
                     type: 'news',
                     locale: 'en',
@@ -95,7 +95,7 @@
               }
 
               if (item.fields.locale === 'ru') {
-                if (item.sys.contentType.id === 'calendar') {
+                if (item.sys.contentType.sys.id === 'calendar') {
                   return {
                     type: 'news',
                     locale: item.fields.locale,
