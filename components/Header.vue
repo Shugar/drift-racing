@@ -44,7 +44,7 @@
         <nuxt-link to='/news/'>{{locale === 'en' ? 'BACK TO NEWS' : 'НАЗАД К НОВОСТЯМ'}}</nuxt-link>
       </div>
       <div class="back-to calendar" v-if="this.$route.path === `/calendar/${this.$route.params.id}`">
-        <nuxt-link to='/calendar/'>{{locale === 'en' ? 'BACK TO CALENDAR' : 'НАЗАД К КАЛЕНДАРЮ' }}</nuxt-link>
+        <nuxt-link to='/calendar/'>{{locale === 'en' ? 'BACK TO NEWS' : 'НАЗАД К НОВОСТЯМ' }}</nuxt-link>
       </div>
       <div class="back-to" v-if="this.$route.path === `/video/${this.$route.params.id}`">
         <nuxt-link to='/video/'>BACK TO VIDEO</nuxt-link>
