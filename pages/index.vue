@@ -9,7 +9,7 @@
             <transition name="next-fade" appear>
               <div class="next-button" @click="nextSlide()">
                 <div v-if="nextUpAnimation" class="next-button-background" />
-                NEXT UP
+                {{ locale === 'en' ? 'NEXT UP' : 'ДАЛЕЕ'}}
               </div>
             </transition>
             <div class="next-category">
@@ -63,7 +63,7 @@
                   v-if="count === index"
                   v-for="(slide, index) in dummyLeftSlider"
                   :key="index">
-                  {{ dummyLeftSlider[count].button }}
+                  {{ dummyLeftSlider[count].button[locale] }}
                 </nuxt-link>
               </transition>
             </div>
@@ -169,28 +169,28 @@
           {
             title: ['Drift', 'Is my', 'Therapy'],
             subtitle: 'Alexander Dmitrenko, pilot of<br> the Russian Drift Series',
-            button: 'Learn more',
+            button: {'en':'Learn more', 'ru': 'Подробнее'},
             link: '/bio/',
             category: 'photos'
           },
           {
             title: ['Latest', 'Photos'],
             subtitle: 'Photos from our<br> recent events',
-            button: 'Discover',
+            button: {'en':'Discover', 'ru': 'Подробнее'},
             link: '/photo/',
             category: 'videos'
           },
           {
             title: ['New', 'videos'],
             subtitle: 'Newest videos right<br> from the race track',
-            button: 'Discover',
+            button: {'en':'Discover', 'ru': 'Подробнее'},
             link: '/video/',
             category: 'news'
           },
           {
             title: ['upcoming', 'events'],
             subtitle: 'Upcoming events<br> with Alex D',
-            button: 'Discover',
+            button: {'en':'Discover', 'ru': 'Подробнее'},
             link: '/news/',
             category: 'bio'
           }
@@ -280,6 +280,10 @@
     },
 
     computed: {
+      locale () {
+        return this.$store.state.locale
+      },
+
       rightSlider () {
         return this.$store.state.entities.rightSlider.filter(el => el.locale === this.$store.state.locale )
       },
