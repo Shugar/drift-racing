@@ -268,8 +268,13 @@
       },
 
       rightSliderLink (sliderItem) {
+
         let link
         this.$store.state.entities[sliderItem.type].map((item, index) => {
+          if (sliderItem.type === 'calendar') {
+            return link = '/' + 'news' + '/' + index
+          }
+
           if (sliderItem.title === item.title ) {
             return link = '/' + sliderItem.type + '/' + index
           }

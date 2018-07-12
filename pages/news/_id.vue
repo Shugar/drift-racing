@@ -14,7 +14,7 @@
         >
           <div class="tags">
             <div class="tags-item">
-              <div class="tag"><nuxt-link to="/calendar/">{{locale === 'en' ? 'back to calendar' : 'назад к календарю'}}</nuxt-link></div>
+              <div class="tag"><nuxt-link to="/calendar/">{{locale === 'en' ? 'back to news' : 'назад к новостям'}}</nuxt-link></div>
             </div>
           </div>
         </u-animate>

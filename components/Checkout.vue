@@ -87,7 +87,7 @@ import axios from 'axios'
     methods: {
       postFormData () {
         axios.post('/checkout.php', {
-          ...this.customer.name,
+          ...this.customer,
           products: this.checkoutList
         })
         .then(function (response) {
