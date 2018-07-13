@@ -1,8 +1,8 @@
 <template>
   <section class="index">
     <Header type="main" />
-    <div class="container" :class="{'videos-isWindows': isWindows }" >
-      <div class="left-background" :class="{'isPurpleChanging': isPurpleChanging}" />
+    <div class="container" >
+      <div class="left-background" />
       <div class="left" :class="{'isAnimating': isChanging }">
         <div class="page-title">
           <u-animate
@@ -328,10 +328,6 @@
 
     mounted () {
       this.isPurpleChanging = true
-      console.log(window.navigator.userAgent.includes('Windows')  )
-      if (window.navigator.userAgent.includes('Windows')) {
-        this.isWindows = true
-      }
       this.isChanging = false
       this.$refs.mapRef.$mapPromise.then((map) => {
         this.contact.map((item, index) => {

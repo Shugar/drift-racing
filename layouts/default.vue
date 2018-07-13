@@ -19,7 +19,7 @@
       </div>
 
     </div>
-    <nuxt v-else />
+    <nuxt :class="{'windows': isWindows}" v-else />
   </div>
 </template>
 
@@ -29,6 +29,7 @@
   export default {
     data () {
       return {
+        isWindows: false,
         loaded: 100,
         isReady: false
       }
@@ -137,6 +138,11 @@
       }
     },
     mounted () {
+
+
+      if (window.navigator.userAgent.includes('Windows')) {
+        this.isWindows = true
+      }
       if (!localStorage.getItem('locale')) {
         this.$store.commit('setLocale', 'en')
       } else {

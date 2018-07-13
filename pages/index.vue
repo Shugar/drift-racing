@@ -337,6 +337,15 @@
 </script>
 
 <style lang="scss" scoped>
+
+  .windows {
+    .button {
+      &::before {
+        height: 30px;
+      }
+    }
+  }
+
   .fade-enter-active, .fade-more-leave-active {
     transition: opacity .5s ease;
   }

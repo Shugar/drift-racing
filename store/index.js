@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 const createStore = () => {
   return new Vuex.Store({
     state: {
+      // isWindows: false,
       lightbox: null,
       entities: null,
       meta: null,
@@ -15,6 +16,9 @@ const createStore = () => {
     },
 
     mutations: {
+      // isWindowsChecker (state, payload) {
+      //   state.isWindows = payload
+      // },
       setLocale (state, payload) {
         state.locale = payload
         localStorage.setItem('locale', payload)
