@@ -345,7 +345,7 @@
         height: 30px;
       }
 
-      .next-button {
+      /deep/ .next-button {
         &-background {
           height: 23px;
         }
