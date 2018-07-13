@@ -141,6 +141,7 @@
 
 
       if (window.navigator.userAgent.includes('Windows')) {
+        console.log('@@@@@@@@@@@@ WINDOWS DETECTED @@@@@@@@@@@@')
         this.isWindows = true
       }
       if (!localStorage.getItem('locale')) {
