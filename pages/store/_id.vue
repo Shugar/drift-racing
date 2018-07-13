@@ -1,5 +1,5 @@
 <template>
-  <section class="calendar" :class="{phone: isMobileInfoVisible}">
+  <section class="calendar" :class="{phone: isMobileInfoVisible, 'videos-isWindows': this.window.navigator.userAgent.includes('Windows') }" >
     <div class="background" :class="{active: isBackgroundAnimation}" :style="{ background: 'url(http://' + store.full.fields.file.url.slice(2) + ') no-repeat center / cover'}"></div>
     <div class="container" >
       <u-animate

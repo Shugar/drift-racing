@@ -1,7 +1,7 @@
 <template>
   <section class="index">
     <Header type="main" />
-    <div class="container">
+    <div class="container" :class="{'videos-isWindows': isWindows }" >
       <div class="left-background" :class="{'isPurpleChanging': isPurpleChanging}" />
       <div class="left" :class="{'isAnimating': isChanging }">
         <div class="page-title">
@@ -117,6 +117,7 @@
   export default {
     data () {
       return {
+        isWindows: false,
         currentCity: 'moscow',
         markers: [],
         isChanging: false,
@@ -327,7 +328,10 @@
 
     mounted () {
       this.isPurpleChanging = true
-
+      console.log(window.navigator.userAgent.includes('Windows')  )
+      if (window.navigator.userAgent.includes('Windows')) {
+        this.isWindows = true
+      }
       this.isChanging = false
       this.$refs.mapRef.$mapPromise.then((map) => {
         this.contact.map((item, index) => {

@@ -1,5 +1,5 @@
 <template>
-  <section class="videos">
+  <section class="videos" :class="{'videos-isWindows': this.window.navigator.userAgent.includes('Windows') }">
     <Header />
     <u-animate
       name="fadeIn"
@@ -194,6 +194,13 @@
 </script>
 
 <style lang="scss" scoped>
+  .videos-isWindows {
+    .button {
+      &::before {
+        height: 30px;
+      }
+    }
+  }
   .videos {
     background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
     padding: 200px 0 80px;

@@ -137,7 +137,6 @@
       }
     },
     mounted () {
-      console.log('@@@@@@@@@@', window.navigator.userAgent)
       if (!localStorage.getItem('locale')) {
         this.$store.commit('setLocale', 'en')
       } else {
