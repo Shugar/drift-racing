@@ -344,6 +344,10 @@
         top: 3.5px;
         height: 30px;
       }
+
+      .next-button-background {
+        height: 23px;
+      }
     }
   }
 
