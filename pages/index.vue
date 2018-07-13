@@ -548,7 +548,7 @@
       width: calc(100% + 2px);
       height: 18px;
       z-index: -1;
-      animation: background 8s;
+      // animation: background 8s;
     }
   }
 
