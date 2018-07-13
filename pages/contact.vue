@@ -1,8 +1,8 @@
 <template>
   <section class="index">
     <Header type="main" />
-    <div class="container" >
-      <div class="left-background" />
+    <div class="container">
+      <div class="left-background" :class="{'isPurpleChanging': isPurpleChanging}" />
       <div class="left" :class="{'isAnimating': isChanging }">
         <div class="page-title">
           <u-animate
@@ -117,7 +117,6 @@
   export default {
     data () {
       return {
-        isWindows: false,
         currentCity: 'moscow',
         markers: [],
         isChanging: false,
@@ -328,6 +327,7 @@
 
     mounted () {
       this.isPurpleChanging = true
+
       this.isChanging = false
       this.$refs.mapRef.$mapPromise.then((map) => {
         this.contact.map((item, index) => {
@@ -370,6 +370,16 @@
 </script>
 
 <style lang="scss" scoped>
+
+  .windows {
+    .city-item {
+      &.active {
+        &::before {
+          top: -1px;
+        }
+      }
+    }
+  }
   .index {
     position: relative;
     height: 100vh;
