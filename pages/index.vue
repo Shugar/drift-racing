@@ -345,8 +345,10 @@
         height: 30px;
       }
 
-      .next-button-background {
-        height: 23px;
+      .next-button {
+        &-background {
+          height: 23px;
+        }
       }
     }
   }

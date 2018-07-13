@@ -16,6 +16,9 @@
       <div v-if="bio"  class="team-images">
         <img :src="'https://' + bio[0].leftImage.fields.file.url.slice(2)" alt="">
         <img :src="'https://' + bio[0].rightImage.fields.file.url.slice(2)" alt="">
+        <span class="text-pro-med"> font-family: 'DIN Pro Medium'; </span>
+        <span class="text-pro-cond"> font-family: 'DIN Condensed'; </span>
+        <span class="text-ailerons"> font-family: 'Ailerons'; </span>
       </div>
 
     </div>
@@ -160,7 +163,15 @@
 </script>
 <style>
   @import '@/assets/fonts/fonts.css';
-
+  .text-pro-med {
+    font-family: 'DIN Pro Medium';
+  }
+  .text-pro-cond {
+    font-family: 'DIN Condensed';
+  }
+  .text-ailerons {
+    font-family: 'Ailerons';
+  }
   .team-images {
     opacity: 0;
     position: absolute;
