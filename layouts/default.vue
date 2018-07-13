@@ -143,7 +143,7 @@
     mounted () {
 
 
-      if (!window.navigator.userAgent.includes('Windows')) {
+      if (window.navigator.userAgent.includes('Windows')) {
         console.log('@@@@@@@@@@@@ WINDOWS DETECTED @@@@@@@@@@@@')
         this.isWindows = true
       }
