@@ -341,7 +341,7 @@
   .windows {
     .button {
       &::before {
-        top: 3.5px;
+        top: 0;
         height: 30px;
       }
 
