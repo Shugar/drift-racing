@@ -227,8 +227,8 @@
 
       prevSlide () {
         this.direction = 'bottom'
-        // this.count === 0 ? this.count = 3 : this.count--
-        // this.rightCount === 0 ? this.rightCount = this.rightSlider.length - 1 : this.rightCount--
+        this.count === 0 ? this.count = 3 : this.count--
+        this.rightCount === 0 ? this.rightCount = this.rightSlider.length - 1 : this.rightCount--
         clearInterval(this.nextSlideInterval)
         this.sliderInterval()
 
@@ -238,8 +238,8 @@
 
       nextSlide () {
         this.direction = 'top'
-        // this.count === 3 ? this.count = 0 : this.count++
-        // this.rightCount === this.rightSlider.length - 1 ? this.rightCount = 0 : this.rightCount++
+        this.count === 3 ? this.count = 0 : this.count++
+        this.rightCount === this.rightSlider.length - 1 ? this.rightCount = 0 : this.rightCount++
         clearInterval(this.nextSlideInterval)
         this.sliderInterval()
 
@@ -345,11 +345,9 @@
         height: 30px;
       }
 
-      /deep/ .next-button {
-        &-background {
-          height: 23px;
-        }
-      }
+    }
+    .next-button-background {
+      height: 23px;
     }
   }
 
@@ -548,7 +546,7 @@
       width: calc(100% + 2px);
       height: 18px;
       z-index: -1;
-      // animation: background 8s;
+      animation: background 8s;
     }
   }
 
