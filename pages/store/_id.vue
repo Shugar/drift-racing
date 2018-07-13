@@ -178,7 +178,7 @@
 
   .windows {
     .add-to, .about {
-      &:before {
+      &::before {
         height: calc(100% + 2px);
       }
     }
