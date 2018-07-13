@@ -175,6 +175,14 @@
 </script>
 
 <style lang="scss" scoped>
+
+  .windows {
+    .add-to, .about {
+      &:before {
+        height: calc(100% + 2px);
+      }
+    }
+  }
   .calendar {
     background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
     // padding: 200px 0 80px;
