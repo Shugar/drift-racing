@@ -91,10 +91,10 @@
         :begin="true"
       >
         <div class="add-to" @click="addToCard" :class="{white: isMobileInfoVisible}" >{{ locale === 'en' ? "add to cart" : "добавить в корзину"}}</div>
-        <div class="about mobile-inside" :class="{white: isMobileInfoVisible}" @click="toggleInfoMobile()">{{locale === 'en' ? 'about product' : 'о товаре'}}</div>
+        <!-- <div class="about mobile-inside" :class="{white: isMobileInfoVisible}" @click="toggleInfoMobile()">{{locale === 'en' ? 'about product' : 'о товаре'}}</div> -->
       </u-animate>
     </div>
-    <!-- <div class="about mobile" :class="{white: isMobileInfoVisible}" @click="toggleInfoMobile()">{{locale === 'en' ? 'about product' : 'о товаре'}}</div> -->
+    <div class="about mobile" :class="{white: isMobileInfoVisible}" @click="toggleInfoMobile()">{{locale === 'en' ? 'about product' : 'о товаре'}}</div>
     </div>
   </section>
 </template>

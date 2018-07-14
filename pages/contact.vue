@@ -379,8 +379,6 @@
           left: -0.5px;
           height: calc(100% - 4px);
           width: calc(100% + 1px);
-
-
         }
       }
     }
