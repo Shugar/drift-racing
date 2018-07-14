@@ -375,7 +375,12 @@
     .city-item {
       &.active {
         &::before {
-          top: -1px;
+          top: 1px;
+          left: -0.5px;
+          height: calc(100% - 4px);
+          width: calc(100% + 1px);
+
+
         }
       }
     }
