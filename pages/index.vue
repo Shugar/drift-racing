@@ -227,8 +227,8 @@
 
       prevSlide () {
         this.direction = 'bottom'
-        // this.count === 0 ? this.count = 3 : this.count--
-        // this.rightCount === 0 ? this.rightCount = this.rightSlider.length - 1 : this.rightCount--
+        this.count === 0 ? this.count = 3 : this.count--
+        this.rightCount === 0 ? this.rightCount = this.rightSlider.length - 1 : this.rightCount--
         clearInterval(this.nextSlideInterval)
         this.sliderInterval()
 
@@ -238,8 +238,8 @@
 
       nextSlide () {
         this.direction = 'top'
-        // this.count === 3 ? this.count = 0 : this.count++
-        // this.rightCount === this.rightSlider.length - 1 ? this.rightCount = 0 : this.rightCount++
+        this.count === 3 ? this.count = 0 : this.count++
+        this.rightCount === this.rightSlider.length - 1 ? this.rightCount = 0 : this.rightCount++
         clearInterval(this.nextSlideInterval)
         this.sliderInterval()
 
@@ -304,7 +304,7 @@
 
     mounted () {
       this.isChanging = false
-      // this.sliderInterval()
+      this.sliderInterval()
 
       // setInterval(() => this.nextSlideRight(), 8000)
     },
@@ -341,13 +341,18 @@
   .windows {
     .button {
       &::before {
-        top: 0;
+        top: -0.5px;
+        left: -2.5px;
         height: 30px;
+        width: calc(100% + 4.5px);
       }
 
     }
     .next-button-background {
-      height: 23px;
+      height: 21px;
+      width: calc(100% - 3px);
+      left: -2px;
+      top: 1px;
     }
   }
 
@@ -520,14 +525,14 @@
     color: #FFFFFF;
   }
 
-  // @keyframes background {
-  //   from {
-  //     width: 0;
-  //   }
-  //   to {
-  //     width: calc(100% + 2px);
-  //   }
-  // }
+  @keyframes background {
+    from {
+      width: 0;
+    }
+    to {
+      width: calc(100% + 2px);
+    }
+  }
 
   .next-button {
     margin-bottom: 5px;
