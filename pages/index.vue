@@ -191,7 +191,7 @@
             subtitle: {'en': 'Upcoming events<br> with Alex D', 'ru': 'Предстоящие мероприятия<br> с Alex D'},
             button: {'en':'Discover', 'ru': 'Подробнее'},
             link: '/news/',
-            category: {'en': 'bio', 'ru': 'биография'}
+            category: {'en': 'bio', 'ru': 'био'}
           }
         ]
       }
