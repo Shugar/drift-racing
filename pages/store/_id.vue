@@ -94,7 +94,7 @@
         <div class="about mobile-inside" :class="{white: isMobileInfoVisible}" @click="toggleInfoMobile()">{{locale === 'en' ? 'about product' : 'о товаре'}}</div>
       </u-animate>
     </div>
-    <div class="about mobile" :class="{white: isMobileInfoVisible}" @click="toggleInfoMobile()">{{locale === 'en' ? 'about product' : 'о товаре'}}</div>
+    <!-- <div class="about mobile" :class="{white: isMobileInfoVisible}" @click="toggleInfoMobile()">{{locale === 'en' ? 'about product' : 'о товаре'}}</div> -->
     </div>
   </section>
 </template>
@@ -179,7 +179,11 @@
   .windows {
     .add-to, .about {
       &::before {
-        height: calc(100% + 2px);
+        height: calc(100% - 2px);
+        width: calc(100% + 4px);
+        left: -2px;
+        top: .5px;
+
       }
     }
   }
