@@ -546,5 +546,9 @@ export default {
     .right {
       margin-bottom: 50px;
     }
+
+    .right {
+      width: 100%;
+    }
   }
 </style>
