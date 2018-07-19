@@ -156,13 +156,11 @@
 
       previous () {
         const array = this.$store.state.entities.video.map(article => {
-          console.log('@@@@@@@@@@@@@@@@', article)
           return {
             ...article,
             tags: (article.championship || '').replace(' ', '').split(',')
           }
         })
-        console.log('@@@@@@@@@@@@@@@@', array)
         if (this.$route.params.id > 1) {
           return [
             array[this.$route.params.id - 1],
