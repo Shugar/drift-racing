@@ -509,7 +509,7 @@ export default {
         top: 0;
         height: 100%;
         width: 100%;
-        background: linear-gradient(180deg, #333333 0%, rgba(51, 51, 51, 0.8) 58.56%, rgba(51, 51, 51, 0) 100%);
+        // background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, rgba(51, 51, 51, .8) 74.56%, #333333 103%);
         position: absolute;
       }
     }

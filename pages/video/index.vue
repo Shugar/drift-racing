@@ -53,7 +53,7 @@
             ref="my-masonry">
             <div class="video" v-for="(video, index) in fetchedVideos" :key="index">
               <nuxt-link :to="'/video/' + index" >
-                <div class="video-image" :style="{background: 'url( http://' + video.gif.fields.file.url.slice(2) + ') no-repeat center / cover'}">
+                <div class="video-image" :style="{background: 'url( http://' + (video.gif || {fields: {file: {url: ''}}}).fields.file.url.slice(2) + ') no-repeat center / cover'}">
                   <div class="video-placeholder" />
                   <div class="play-button" />
                 </div>
@@ -81,8 +81,8 @@
             <div class="video" v-for="(video, index) in filteredVideos" :key="index">
               <nuxt-link :to="'/video/' + findItemByTitle(video.title)" >
                 <div class="video-image"
-                  :style="{background: 'url( http://' + video.gif.fields.file.url.slice(2) + ') no-repeat center / cover'}">
-                  <div class="video-placeholder" />
+                     :style="{background: 'url( http://' + (video.gif || {fields: {file: {url: ''}}}).fields.file.url.slice(2) + ') no-repeat center / cover'}">
+                  <div class="video-placeholder" :style="{background: 'url( http://' + (video.image || {fields: {file: {url: ''}}}).fields.file.url.slice(2) + ') no-repeat center / cover'}" />
                   <div class="play-button" />
                 </div>
                 <div class="video-date">{{ video.date }}</div>
@@ -309,7 +309,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('/videos/tumbnails/drift.png') no-repeat center / cover;
+    // background: url('/videos/tumbnails/drift.png') no-repeat center / cover;
 
     opacity: 1;
     transition: opacity .3s ease-in-out;
