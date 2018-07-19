@@ -54,7 +54,7 @@
             <div class="video" v-for="(video, index) in fetchedVideos" :key="index">
               <nuxt-link :to="'/video/' + index" >
                 <div class="video-image" :style="{background: 'url( http://' + (video.gif || {fields: {file: {url: ''}}}).fields.file.url.slice(2) + ') no-repeat center / cover'}">
-                  <div class="video-placeholder" />
+                  <div class="video-placeholder" :style="{background: 'url( http://' + (video.video || {fields: {file: {url: ''}}}).fields.file.url.slice(2) + ') no-repeat center / cover'}"/>
                   <div class="play-button" />
                 </div>
                 <div class="video-date">{{ video.date }}</div>
@@ -82,7 +82,7 @@
               <nuxt-link :to="'/video/' + findItemByTitle(video.title)" >
                 <div class="video-image"
                      :style="{background: 'url( http://' + (video.gif || {fields: {file: {url: ''}}}).fields.file.url.slice(2) + ') no-repeat center / cover'}">
-                  <div class="video-placeholder" :style="{background: 'url( http://' + (video.image || {fields: {file: {url: ''}}}).fields.file.url.slice(2) + ') no-repeat center / cover'}" />
+                  <div class="video-placeholder" :style="{background: 'url( http://' + (video.video || {fields: {file: {url: ''}}}).fields.file.url.slice(2) + ') no-repeat center / cover'}" />
                   <div class="play-button" />
                 </div>
                 <div class="video-date">{{ video.date }}</div>
