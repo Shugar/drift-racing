@@ -82,7 +82,7 @@
           <div class="previous-article">
             <div class="previous-title">{{ previous.length > 0 ? (locale === 'en' ? 'Previous videos' : 'Предыдущие видео') : '' }}</div>
             <nuxt-link class="previous" v-for="(item, index) in previous"  :to="'/video/' + findItemByTitle(item.title)" :key="index">
-              <div class="previous-image" :style="{background: `url(http://${item.video.fields.file.url.slice(2)}) no-repeat center / cover`}" />
+              <div class="previous-image" :style="{background: `url(http://${(item.video || {fields: {file: { url: ''}}}).fields.file.url.slice(2)}) no-repeat center / cover`}" />
               <div class="previous-date">{{ item.date }}</div>
               <div class="previous-subtitle">{{ item.title }}</div>
             </nuxt-link>
@@ -104,7 +104,7 @@
         title: this.video.title,
         description: this.video.text,
         keywords: this.video.keywords,
-        facebook_image: `http://${this.video.video.fields.file.url.slice(2)}`,
+        facebook_image: `http://${(this.video.video || {fields: {file: {url: ''}}}).fields.file.url.slice(2)}`,
         facebook_title: this.video.title,
         facebook_description: this.video.text
       }" />
@@ -128,7 +128,7 @@
           { name: 'keywords', content: this.video.keywords },
           { hid: 'og:type', property: 'og:type', content: 'article'},
           { hid: 'og:url', property: 'og:url', content: this.url },
-          { hid: 'og:image', property: 'og:image', content: `http://${this.video.video.fields.file.url.slice(2)}` },
+          { hid: 'og:image', property: 'og:image', content: `http://${(this.video.video || {fields: {file: {url: ''}}}).fields.file.url.slice(2)}` },
           { hid: 'og:title', property: 'og:title', content: this.video.title },
           { hid: 'og:description', property: 'og:description', content: this.video.text },
         ]
@@ -156,11 +156,13 @@
 
       previous () {
         const array = this.$store.state.entities.video.map(article => {
+          console.log('@@@@@@@@@@@@@@@@', article)
           return {
             ...article,
-            tags: article.championship.replace(' ', '').split(',')
+            tags: (article.championship || '').replace(' ', '').split(',')
           }
         })
+        console.log('@@@@@@@@@@@@@@@@', array)
         if (this.$route.params.id > 1) {
           return [
             array[this.$route.params.id - 1],
@@ -172,6 +174,7 @@
           return []
         }
       },
+
       locale () {
         return this.$store.state.locale
       }
