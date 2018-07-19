@@ -75,7 +75,7 @@
               animateClass="animated"
               :begin="true"
             >
-              <nuxt-link :to="'/calendar/' + findItemByTitle(article.title)">
+              <nuxt-link :to="'/news/' + findItemByTitle(article.title)">
                 <div class="img-fullwidth">
                   <img :src="'http://' + article.image.fields.file.url.slice(2)" />
                 </div>
@@ -88,7 +88,7 @@
         </div>
         <div class="right">
           <div class="previous-article">
-              <nuxt-link class="previous" v-for="(article, index) in (rightEvents.length > 0 ? rightEvents : rightCalendar)" :to="'/calendar/' + findItemByTitle(article.title)" :key="index">
+              <nuxt-link class="previous" v-for="(article, index) in (rightEvents.length > 0 ? rightEvents : rightCalendar)" :to="'/news/' + findItemByTitle(article.title)" :key="index">
                   <u-animate
                     name="fadeInUp"
                     :delay="0.2 + (index * 0.1) + 's'"
@@ -118,7 +118,7 @@
             animateClass="animated"
             :begin="true"
           >
-            <nuxt-link class="hui" :to="'/calendar/' + findItemByTitle(article.title)">
+            <nuxt-link class="hui" :to="'/news/' + findItemByTitle(article.title)">
               <div class="previous-image"
                 :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
               <div :class="{'previous-date': article.column === 'right', 'date': article.column === 'left'}">
