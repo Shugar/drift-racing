@@ -14,7 +14,7 @@
         >
           <div class="tags">
             <div class="tags-item">
-              <div class="tag"><nuxt-link to="/calendar/">{{locale === 'en' ? 'back to news' : 'назад к новостям'}}</nuxt-link></div>
+              <div class="tag"><nuxt-link to="/news/">{{locale === 'en' ? 'back to news' : 'назад к новостям'}}</nuxt-link></div>
             </div>
           </div>
         </u-animate>
@@ -71,7 +71,7 @@
           >
             <div class="previous-title"> {{ locale === 'en' ? 'PREVIOUS EVENT' : 'ПРЕДЫДУЩИЕ МЕРОПРИЯТИЯ'}} </div>
           </u-animate>
-          <nuxt-link  v-for="(item, index) in previous" :to="'/calendar/' + findItemByTitle(item.title)" :key="index" class="previous">
+          <nuxt-link  v-for="(item, index) in previous" :to="'/news/' + findItemByTitle(item.title)" :key="index" class="previous">
             <u-animate
               name="fadeInUp"
               :delay="0.8 + (index * 0.1) + 's'"
