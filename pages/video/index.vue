@@ -53,7 +53,7 @@
             ref="my-masonry">
             <div class="video" v-for="(video, index) in fetchedVideos" :key="index">
               <nuxt-link :to="'/video/' + index" >
-                <div class="video-image" :style="{background: 'url( http://' + (video.gif || {fields: {file: {url: ''}}}).fields.file.url.slice(2) + ') no-repeat center / cover'}">
+                <div class="video-image" :style="{background: 'url( http://' + (video.gif || video.video || {fields: {file: {url: ''}}}).fields.file.url.slice(2) + ') no-repeat center / cover'}">
                   <div class="video-placeholder" :style="{background: 'url( http://' + (video.video || {fields: {file: {url: ''}}}).fields.file.url.slice(2) + ') no-repeat center / cover'}"/>
                   <div class="play-button" />
                 </div>
@@ -299,6 +299,7 @@
     &:hover {
       .play-button {
         opacity: 0;
+        z-index: -1;
       }
     }
   }
