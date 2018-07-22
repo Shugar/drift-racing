@@ -1,16 +1,19 @@
 <template>
-  <div
-    v-touch:swipe.left="next"
-    v-touch:swipe.right="prev"
-    v-if="photo !== null"
-    class="lightbox"
-    :style="{background: 'url(' + photo.path + ') no-repeat center / cover'}">
-    <div class="close" @click="$store.commit('closeLightbox')" />
-    <div class="prev" @click="prev" />
-    <div class="next" @click="next" />
-    <div class="index">
-      {{ photo.index + 1 }}/{{ photo.photos.length }}
+  <div class="wapper">
+    <div
+      v-touch:swipe.left="next"
+      v-touch:swipe.right="prev"
+      v-if="photo !== null"
+      class="lightbox"
+      :style="{background: 'url(' + photo.path + ') no-repeat center / cover'}">
+      <div class="close" @click="$store.commit('closeLightbox')" />
+      <div class="prev" @click="prev" />
+      <div class="next" @click="next" />
+      <div class="index">
+        {{ photo.index + 1 }}/{{ photo.photos.length }}
+      </div>
     </div>
+    <div v-if="photo !== null" class="background" />
   </div>
 </template>
 
@@ -70,6 +73,16 @@
     width: 100%;
     z-index: 10000;
     display: block;
+
+  }
+  .background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
   }
 
   .close {
