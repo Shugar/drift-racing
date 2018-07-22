@@ -268,6 +268,7 @@
     margin-bottom: 50px;
     cursor: pointer;
     max-width: 300px;
+    min-height: 340px;
 
     a {
       text-decoration: none;
@@ -335,6 +336,7 @@
     font-style: normal;
     font-weight: bold;
     line-height: 52px;
+    min-height: 90px;
     font-size: 36px;
     text-transform: uppercase;
     color: #FFFFFF;
