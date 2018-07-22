@@ -1,6 +1,6 @@
 <template>
   <div class="header" :class="{ main: type === 'main' }">
-    <div v-if="isMenuOpened"  class="mobile-nav">
+    <div :class="{'mobile-nav--opened': isMenuOpened}"  class="mobile-nav">
       <div class="mobile-space" @click="closeMenu()"></div>
       <div class="mobile-menu">
         <div class="mobile-menu-content-wrapper">
@@ -381,6 +381,12 @@
       width: 100%;
       height: 100%;
       z-index: 10;
+      transform: translateX(100%);
+      transition: transform .3s ease-in-out;
+    }
+
+    .mobile-nav--opened {
+      transform: translateX(0);
     }
 
     .menu-button {

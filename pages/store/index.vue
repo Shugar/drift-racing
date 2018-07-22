@@ -88,7 +88,7 @@
             <div class="item" v-for="(item, index) in store" :key="index">
               <nuxt-link :to="'/store/' + index">
                 <div class="item-image"
-                  :style="{background: `url(${ 'http://' + item.preview.fields.file.url.slice(2) }) no-repeat center / cover`}" />
+                  :style="{background: `url(${ 'http://' + item.full.fields.file.url.slice(2) + '?w=300&h=300'}) no-repeat center / cover`}" />
                 <div class="item-category">{{ item.category }}</div>
                 <div class="item-title" v-html="item.title"></div>
                 <div class="item-footer">
@@ -105,7 +105,7 @@
             <div class="item" v-for="(item, index) in filteredGoods" :key="index">
               <nuxt-link :to="'/store/' + findItemByTitle(item.title)">
                 <div class="item-image"
-                  :style="{background: `url(${ 'http://' + item.preview.fields.file.url.slice(2) }) no-repeat center / cover`}" />
+                  :style="{background: `url(${ 'http://' + item.full.fields.file.url.slice(2) + '?w=300&h=300'}) no-repeat center / cover`}" />
                 <div class="item-category">{{ item.category }}</div>
                 <div class="item-title" v-html="item.title"></div>
                 <div class="item-footer">
