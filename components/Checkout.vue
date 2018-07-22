@@ -12,7 +12,7 @@
               <div class="image" :style="{background: `url(${ 'http://' + product.preview.fields.file.url.slice(2) }) no-repeat center / cover`}" />
               <div class="descr-wrapper">
                 <div class="descr">
-                  <div class="name">{{product.title}} {{product.category}} </div>
+                  <div class="name">{{product.title}} {{ product.category}} </div>
                   <div class="color-size">{{ product.style }} — {{product.sizes}}</div>
                 </div>
                 <div class="price">$ {{product.price}}</div>

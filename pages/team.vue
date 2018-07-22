@@ -278,7 +278,7 @@ export default {
   }
 
   .member-photo {
-    background: url("~/static/team/team-member.jpeg") center center no-repeat / cover;
+    // background: url("~/static/team/team-member.jpeg") center center no-repeat / cover;
     width: 240px;
     height: 360px;
     padding: 30px;
@@ -503,7 +503,7 @@ export default {
       top: 50%;
       transform: translateY(-50%);
 
-      &:after {
+      &::after {
         content: '';
         left: 0;
         top: 0;
