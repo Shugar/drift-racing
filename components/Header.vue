@@ -1,8 +1,8 @@
 <template>
   <div class="header" :class="{ main: type === 'main' }">
     <div :class="{'mobile-nav--opened': isMenuOpened}"  class="mobile-nav">
-      <div class="mobile-space" @click="closeMenu()"></div>
-      <div class="mobile-menu">
+      <div :class="{'mobile-space--opened': isMenuOpened}" class="mobile-space" @click="closeMenu()"></div>
+      <div :class="{'mobile-menu--opened': isMenuOpened}" class="mobile-menu">
         <div class="mobile-menu-content-wrapper">
           <div class="mobile-menu__title">MENU</div>
           <div class="list">
@@ -381,12 +381,13 @@
       width: 100%;
       height: 100%;
       z-index: 10;
-      transform: translateX(100%);
-      transition: transform .3s ease-in-out;
+      opacity: 0;
+      pointer-events: none;
     }
 
     .mobile-nav--opened {
-      transform: translateX(0);
+      opacity: 1;
+      pointer-events: initial;
     }
 
     .menu-button {
@@ -416,11 +417,17 @@
 
     .mobile-space {
       position: fixed;
-      width: 20%;
+      width: 100%;
       left: 0;
       height: 100%;
       background: rgba(51, 51, 51, 0.6);
       z-index: 9999;
+      opacity: 0;
+      transition: opacity .3s ease-in-out;
+    }
+
+    .mobile-space--opened {
+      opacity: 1;
     }
 
     .mobile-menu {
@@ -430,12 +437,18 @@
       z-index: 9999;
       right: 0;
       background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
+      transform: translateX(100%);
+      transition: transform .3s ease-in-out;
 
       &-content-wrapper {
         padding: 56px 76px;
         width: 100%;
         overflow-y: scroll;
       }
+    }
+
+    .mobile-menu--opened {
+      transform: translateX(0);
     }
 
     .mobile-menu__title,
