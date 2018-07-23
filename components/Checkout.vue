@@ -112,10 +112,11 @@ import axios from 'axios'
     width: 100%;
     right: 0;
     top: 0;
-
+    pointer-events: none;
     transform: translateY(-100%);
 
     &.checkout--opened {
+      pointer-events: initial;
       transform: translateY(0%);
     }
   }
@@ -332,6 +333,9 @@ import axios from 'axios'
     opacity: 0;
     transition: opacity .2s ease;
     will-change: opacity;
+  }
+  .checkout {
+    transform: translateY(0%);
   }
 
   .checkout--opened {
