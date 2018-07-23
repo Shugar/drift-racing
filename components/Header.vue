@@ -383,6 +383,7 @@
       z-index: 10;
       opacity: 0;
       pointer-events: none;
+      transition: opacity .3s ease-in-out;
     }
 
     .mobile-nav--opened {
