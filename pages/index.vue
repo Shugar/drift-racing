@@ -91,7 +91,7 @@
               <div v-if="item.type === 'video'" class="image-slider-item" 
                 :style="{background: `url(http://${item.gif.fields.file.url.slice(2)}) no-repeat center / cover`}" />
               <div v-else class="image-slider-item"
-                :style="{ background: `url(http://${(item.image || item.preview || item.media ).fields.file.url.slice(2)}) no-repeat center / cover`}"
+                :style="{ background: `url(http://${(item.gif || item.image || item.preview || item.media ).fields.file.url.slice(2)}) no-repeat center / cover`}"
                 />
             </nuxt-link>
           </transition>
