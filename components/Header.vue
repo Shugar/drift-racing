@@ -383,7 +383,7 @@
       z-index: 10;
       opacity: 0;
       pointer-events: none;
-      transition: opacity .3s ease-in-out;
+      transition: opacity .2s ease-in-out;
     }
 
     .mobile-nav--opened {
@@ -424,7 +424,7 @@
       background: rgba(51, 51, 51, 0.6);
       z-index: 9999;
       opacity: 0;
-      transition: opacity .3s ease-in-out;
+      transition: opacity .15s ease-in-out;
     }
 
     .mobile-space--opened {
@@ -439,7 +439,7 @@
       right: 0;
       background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
       transform: translateX(100%);
-      transition: transform .3s ease-in-out;
+      transition: transform .15s ease-in-out;
 
       &-content-wrapper {
         padding: 56px 76px;
