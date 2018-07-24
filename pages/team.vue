@@ -43,7 +43,14 @@
               }"
               :key="index"
               class="member">
-            <div class="member-photo" :style="{background: 'url(http://' + item.image.fields.file.url.slice(2) + ') no-repeat center / cover'}">
+            <div class="member-photo"
+              :style="{background: 'url(http://' + item.image.fields.file.url.slice(2) + '?' + getImageMeta('http://' + item.image.fields.file.url.slice(2)) + ') no-repeat center / cover'}">
+              <div class="socials">
+                <a :href="item.instagram" class="socials-instagram"></a>
+                <a :href="item.facebook" class="socials-facebook"></a>
+              </div>
+            </div>
+            <div class="member-photo-retina" :style="{background: 'url(http://' + item.image.fields.file.url.slice(2) + ') no-repeat center / cover'}">
               <div class="socials">
                 <a :href="item.instagram" class="socials-instagram"></a>
                 <a :href="item.facebook" class="socials-facebook"></a>
@@ -160,13 +167,11 @@ export default {
       return this.count > 0 ? this.count-- : this.count = this.team.length - 1
     },
 
-    getMeta (url) {
+    getImageMeta (url) {
       let img = new Image
       img.src = url
-      // let width
-      // let height
       img.onload = () => {
-         return {'width': img.width, 'height': img.height}
+         return `w=${img.width/2}&h=${img.height/2}`
       }
       return img.onload()
     }
@@ -184,10 +189,6 @@ export default {
     locale () {
       return this.$store.state.locale
     }
-  },
-
-  created () {
-    console.log(this.getMeta('http://images.ctfassets.net/u70qj7y74l9n/1opR9kTWwcQmMYc0gEosKo/4682d7bf4dd95e05cbda825d26a7f9ea/team-member.jpeg'))
   },
 
   components: {
@@ -292,14 +293,24 @@ export default {
     color: #fff;
   }
 
-  .member-photo {
-    // background: url("~/static/team/team-member.jpeg") center center no-repeat / cover;
+
+  .member-photo, .member-photo-retina {
     width: 240px;
     height: 360px;
     padding: 30px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-end;
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2) {
+    .member-photo {
+      display: none;
+    }
+
+    .member-photo-retina {
+      display: flex;
+    }
   }
 
   .fade-left {
@@ -430,6 +441,7 @@ export default {
     .descr {
       margin: 0;
       margin-bottom: 80px;
+      margin-top: 30px;
     }
 
     .members-wrapper {
@@ -462,6 +474,7 @@ export default {
 
     .descr {
       margin-bottom: 0;
+      margin-top: 0;
       position: relative;
       display: flex;
       flex-flow: column nowrap;
@@ -507,7 +520,7 @@ export default {
       }
     }
 
-    .member-photo {
+    .member-photo, .member-photo-retina {
       display: none;
     }
 
