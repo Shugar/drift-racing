@@ -43,8 +43,7 @@
               }"
               :key="index"
               class="member">
-            <div class="member-photo"
-              :style="{background: 'url(http://' + item.image.fields.file.url.slice(2) + '?' + getImageMeta('http://' + item.image.fields.file.url.slice(2)) + ') no-repeat center / cover'}">
+            <div class="member-photo" :style="{background: getImageMeta('http://' + item.image.fields.file.url.slice(2)) + ' no-repeat center / cover'}">
               <div class="socials">
                 <a :href="item.instagram" class="socials-instagram"></a>
                 <a :href="item.facebook" class="socials-facebook"></a>
@@ -171,7 +170,7 @@ export default {
       let img = new Image
       img.src = url
       img.onload = () => {
-         return `w=${img.width/2}&h=${img.height/2}`
+         return `url(${url}?w=${img.width/2}&h=${img.height/2})`
       }
       return img.onload()
     }
