@@ -158,6 +158,17 @@ export default {
 
     prevSlide () {
       return this.count > 0 ? this.count-- : this.count = this.team.length - 1
+    },
+
+    getMeta (url) {
+      let img = new Image
+      img.src = url
+      // let width
+      // let height
+      img.onload = () => {
+         return {'width': img.width, 'height': img.height}
+      }
+      return img.onload()
     }
   },
 
@@ -173,6 +184,10 @@ export default {
     locale () {
       return this.$store.state.locale
     }
+  },
+
+  created () {
+    console.log(this.getMeta('http://images.ctfassets.net/u70qj7y74l9n/1opR9kTWwcQmMYc0gEosKo/4682d7bf4dd95e05cbda825d26a7f9ea/team-member.jpeg'))
   },
 
   components: {

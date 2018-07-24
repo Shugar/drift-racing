@@ -106,7 +106,7 @@
         animateClass="animated"
         :begin="true"
       >
-        {{locale === 'en' ? 'cars' : 'машины'}}
+        {{bioCars && (locale === 'en' ? 'cars' : 'машины')}}
       </u-animate>
       <div class="left" v-for="(car, index) in bioCars" :key="index">
         <div class="car-wrapper">
