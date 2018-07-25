@@ -4,7 +4,20 @@
       v-touch:swipe.left="next"
       v-touch:swipe.right="prev"
       v-if="photo !== null"
-      class="lightbox"
+      class="lightbox simple"
+      :style="{ background: imageSrc + ' no-repeat center / cover' }">
+      <div class="close" @click="$store.commit('closeLightbox')" />
+      <div class="prev" @click="prev" />
+      <div class="next" @click="next" />
+      <div class="index">
+        {{ photo.index + 1 }}/{{ photo.photos.length }}
+      </div>
+    </div>
+    <div
+      v-touch:swipe.left="next"
+      v-touch:swipe.right="prev"
+      v-if="photo !== null"
+      class="lightbox retina"
       :style="{background: 'url(' + photo.path + ') no-repeat center / cover'}">
       <div class="close" @click="$store.commit('closeLightbox')" />
       <div class="prev" @click="prev" />
@@ -19,7 +32,21 @@
 
 <script>
   export default {
+    data () {
+      return {
+        imageSrc: ''
+      }
+    },
     methods: {
+      getImageForBackground (url) {
+        let img = new Image
+        img.src = url
+        img.onload = () => {
+          return `url(${url}?w=${Math.round(img.width/2)}&h=${Math.round(img.height/2)})`
+        }
+       this.imageSrc = img.onload()
+      },
+
       prev () {
         const index = this.photo.index <= 0 ? this.photo.photos.length - 1 : this.photo.index - 1
 
@@ -62,7 +89,11 @@
 
     mounted () {
       window.addEventListener('keyup', this.handleKeypress)
-    }
+    },
+
+    updated () {
+      this.getImageForBackground(this.photo.path)
+    },
   }
 </script>
 
@@ -127,6 +158,26 @@
     font-size: 24px;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.6);
+  }
+
+
+
+  .simple {
+    display: none;
+  }
+
+  .retina {
+    display: block;
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2) {
+    .simple {
+      display: block;
+    }
+
+    .retina {
+      display: none;
+    }
   }
 
   @media (max-width: 812px) {

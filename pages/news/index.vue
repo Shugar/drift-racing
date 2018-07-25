@@ -182,7 +182,7 @@
         let img = new Image
         img.src = url
         img.onload = () => {
-          return `url(${url}?w=${img.width/2}&h=${img.height/2})`
+          return `url(${url}?w=${Math.round(img.width/2)}&h=${Math.round(img.height/2)})`
         }
         return img.onload()
       },
@@ -191,7 +191,7 @@
         let img = new Image
         img.src = url
         img.onload = () => {
-          return `${url}?w=${img.width/2}&h=${img.height/2}`
+          return `${url}?w=${Math.round(img.width/2)}&h=${Math.round(img.height/2)}`
         }
         return img.onload()
       },
