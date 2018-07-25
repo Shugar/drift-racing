@@ -37,14 +37,18 @@
         imageSrc: ''
       }
     },
+
     methods: {
       getImageForBackground (url) {
-        let img = new Image
+        const img = new Image
         img.src = url
-        img.onload = () => {
-          return `url(${url}?w=${Math.round(img.width/2)}&h=${Math.round(img.height/2)})`
-        }
-       this.imageSrc = img.onload()
+        img.onload = () => this.setDimensions(url, { height: img.naturalHeight, width: img.naturalWidth })
+      },
+
+      setDimensions (url, dimensions) {
+        this.imageSrc = `
+          url(${url}?w=${Math.round(dimensions.width / 2)}&h=${Math.round(dimensions.height / 2)})
+        `
       },
 
       prev () {
@@ -92,7 +96,9 @@
     },
 
     updated () {
-      this.getImageForBackground(this.photo.path)
+      if (this.photo) {
+        this.getImageForBackground(this.photo.path)
+      }
     },
   }
 </script>
