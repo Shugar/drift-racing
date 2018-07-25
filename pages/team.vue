@@ -302,6 +302,10 @@ export default {
     justify-content: flex-end;
   }
 
+  .member-photo-retina {
+    display: none;
+  }
+
   @media (-webkit-min-device-pixel-ratio: 2) {
     .member-photo {
       display: none;
