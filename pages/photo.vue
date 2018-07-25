@@ -66,7 +66,7 @@
                     index: index,
                     photos: photo.photos
                   })"
-                  :style="{background: `url(${ 'http://' + image.fields.file.url + '?w=300&h=300' }) no-repeat center / cover`}" />
+                  :style="{background: `url(${ 'http://' + image.fields.file.url + '?w=500&h=500' }) no-repeat center / cover`}" />
               </masonry>
             </div>
           </u-animate>
