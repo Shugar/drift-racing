@@ -2,8 +2,6 @@ const { createClient } = require('../plugins/contentful')
 
 const client = createClient()
 
-console.log('process.env', process.env)
-
 module.exports = async function () {
   try {
     const response = await client.getEntries()
