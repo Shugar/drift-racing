@@ -1,4 +1,5 @@
 const config = require('./.contentful.json')
+const routes = require('./utils/routes')
 
 module.exports = {
   /*
@@ -89,5 +90,9 @@ module.exports = {
         })
       }
     }
+  },
+
+  generate: {
+    routes
   }
 }
