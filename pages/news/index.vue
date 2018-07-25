@@ -174,6 +174,15 @@
     },
 
     methods: {
+      getImageMeta (url) {
+        let img = new Image
+        img.src = url
+        img.onload = () => {
+          return `url(${url}?w=${img.width/2}&h=${img.height/2})`
+        }
+        return img.onload()
+      },
+
       setTag (tag) {
         const events = this.leftCalendar
         const rightEvents = this.rightCalendar

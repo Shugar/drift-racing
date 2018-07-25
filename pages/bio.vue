@@ -51,7 +51,8 @@
             animateClass="animated"
             :begin="true"
           >
-            <img :src="'http://' + bio.leftImage.fields.file.url.slice(2)" />
+            <img class="image"  :src="getImageMeta('http://' + bio.leftImage.fields.file.url.slice(2))" />
+            <img class="retina-image"  :src="'http://' + bio.leftImage.fields.file.url.slice(2)" />
           </u-animate>
         </u-animate-container>
       </div>
@@ -90,7 +91,8 @@
             animateClass="animated"
             :begin="true"
           >
-            <img :src="'http://' + bio.rightImage.fields.file.url.slice(2)" />
+            <img class="retina-image" :src="'http://' + bio.rightImage.fields.file.url.slice(2)" />
+            <img class="image" :src="getImageMeta('http://' + bio.rightImage.fields.file.url.slice(2))" />
           </u-animate>
         </u-animate-container>
       </div>
@@ -130,7 +132,8 @@
             animateClass="animated"
             :begin="true"
           >
-            <img :src="'http://' + car.image.fields.file.url.slice(2)" />
+            <img class="retina-image" :src="'http://' + car.image.fields.file.url.slice(2)" />
+            <img class="image" :src="getImageMeta('http://' + car.image.fields.file.url.slice(2))" />
           </u-animate>
           <u-animate
             class="text-wrapper"
@@ -238,6 +241,17 @@ export default {
     this.isChanging = false
   },
 
+  methods: {
+    getImageMeta (url) {
+      let img = new Image
+      img.src = url
+      img.onload = () => {
+         return `${url}?w=${img.width/2}&h=${img.height/2}`
+      }
+      return img.onload()
+    }
+  },
+
   beforeRouteLeave(to, from, next) {
     this.isChanging = true
     setTimeout(() => next(), 300)
@@ -246,6 +260,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+
+  .retina-image {
+    display: none;
+  }
+
+  .image {
+    display: inline;
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2) {
+    .retina-image {
+      display: inline;
+    }
+
+    .image {
+      display: none;
+    }
+  }
+
   .bio {
     background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
     padding: 200px 0 80px;

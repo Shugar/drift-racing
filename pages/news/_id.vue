@@ -56,6 +56,18 @@
               <vue-markdown> {{ article.text }} </vue-markdown>
             </div>
           </u-animate>
+          <u-animate
+            name="fadeInUp"
+            delay="0.4s"
+            duration="0.4s"
+            :iteration="1"
+            :offset="0"
+            animateClass="animated"
+            :begin="true"
+          >
+            <div class='article-image-retina' :style="{background: 'url(http://' + article.image.fields.file.url.slice(2) + ') no-repeat center / cover'}" />
+            <div class="article-image" :style="{background: getImageMeta('http://' + article.image.fields.file.url.slice(2)) + ' no-repeat center / cover'}" />
+          </u-animate>
         </div>
       </div>
       <div class="right">
@@ -81,7 +93,8 @@
               animateClass="animated"
               :begin="true"
             >
-              <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover`}" />
+              <div class="previous-image" :style="{background: getImageMeta('http://' + article.image.fields.file.url.slice(2)) + ' no-repeat center / cover'}" />
+              <div class="previous-image-retina" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover`}" />
               <div class="previous-date"> {{ item.date }} </div>
               <div class="previous-subtitle"> {{ item.title }} </div>
             </u-animate>
@@ -187,6 +200,14 @@
 
 
     methods: {
+    getImageMeta (url) {
+      let img = new Image
+      img.src = url
+      img.onload = () => {
+         return `url(${url}?w=${img.width/2}&h=${img.height/2})`
+      }
+      return img.onload()
+    },
       findItemByTitle (title) {
         let result
         this.$store.state.entities.calendar.map((item, index) => {
@@ -415,11 +436,32 @@
     }
   }
 
-  .previous-image {
+  .previous-image, .previous-image-retina {
     margin-bottom: 20px;
     height: 169px;
     width: 100%;
-    // background: url('/news/news-2.jpg') no-repeat center / cover;
+  }
+
+  .article-image, .article-image-retina {
+    height: 250px;
+    width: 100%;
+  }
+
+  .previous-image, .article-image {
+    display: block;
+  }
+
+  .previous-image-retina, .article-image-retina {
+    display: none;
+  }
+  @media (-webkit-min-device-pixel-ratio: 2) {
+    .previous-image, .article-image{
+      display: none;
+    }
+
+    .previous-image-retina, .article-image-retina {
+      display: block;
+    }
   }
 
   .previous-date {
