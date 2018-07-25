@@ -169,20 +169,20 @@
 
 
   .simple {
-    display: none;
+    display: block;
   }
 
   .retina {
-    display: block;
+    display: none;
   }
 
   @media (-webkit-min-device-pixel-ratio: 2) {
     .simple {
-      display: block;
+      display: none;
     }
 
     .retina {
-      display: none;
+      display: block;
     }
   }
 
