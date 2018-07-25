@@ -454,6 +454,7 @@
   .previous-image-retina, .article-image-retina {
     display: none;
   }
+  
   @media (-webkit-min-device-pixel-ratio: 2) {
     .previous-image, .article-image{
       display: none;

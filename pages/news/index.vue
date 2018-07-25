@@ -77,7 +77,8 @@
             >
               <nuxt-link :to="'/news/' + findItemByTitle(article.title)">
                 <div class="img-fullwidth">
-                  <img :src="'http://' + article.image.fields.file.url.slice(2)" />
+                  <img class="simple-image" :src="getImageForSrc('http://' + article.image.fields.file.url.slice(2))" />
+                  <img class="retina-image" :src="'http://' + article.image.fields.file.url.slice(2)" />
                 </div>
                 <div class="date">{{ article.date }}</div>
                 <div class="title">{{ article.title }}</div>
@@ -98,7 +99,8 @@
                     animateClass="animated"
                     :begin="true"
                   >
-                    <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
+                    <div class="previous-image simple-image" :style="{background: getImageForBackground('http://' + article.image.fields.file.url.slice(2)) + ' no-repeat center / cover'}" />
+                    <div class="previous-image retina-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
                     <div class="previous-date">{{ article.date }}</div>
                     <div class="previous-subtitle">{{ article.title }}</div>
                   </u-animate>
@@ -119,8 +121,10 @@
             :begin="true"
           >
             <nuxt-link class="hui" :to="'/news/' + findItemByTitle(article.title)">
-              <div class="previous-image"
+              <div class="previous-image retina-image"
                 :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
+              <div class="previous-image simple-image"
+                :style="{background: getImageForBackground('http://' + article.image.fields.file.url.slice(2)) + ' no-repeat center / cover' }" />
               <div :class="{'previous-date': article.column === 'right', 'date': article.column === 'left'}">
                 {{ article.date }}
               </div>
@@ -174,11 +178,20 @@
     },
 
     methods: {
-      getImageMeta (url) {
+      getImageForBackground (url) {
         let img = new Image
         img.src = url
         img.onload = () => {
           return `url(${url}?w=${img.width/2}&h=${img.height/2})`
+        }
+        return img.onload()
+      },
+
+      getImageForSrc (url) {
+        let img = new Image
+        img.src = url
+        img.onload = () => {
+          return `${url}?w=${img.width/2}&h=${img.height/2}`
         }
         return img.onload()
       },
@@ -246,7 +259,6 @@
 
         return right
       },
-      
       locale () {
         return this.$store.state.locale
       }
@@ -444,6 +456,23 @@
     margin-bottom: 20px;
   }
 
+  .simple-image {
+    display: block;
+  }
+
+  .retina-image {
+    display: none;
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2) {
+    .simple-image {
+      display: none;
+    }
+
+    .retina-image {
+      display: block;
+    }
+  }
   .previous-title {
     margin-bottom: 5px;
     font-family: 'DIN Condensed', sans-serif;
