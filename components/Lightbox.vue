@@ -5,7 +5,7 @@
       v-touch:swipe.right="prev"
       v-if="photo !== null"
       class="lightbox simple"
-      :style="{ background: imageSrc + ' no-repeat center / cover' }">
+      :style="{background: `url(${photo.path}?w=1280&h=800) no-repeat center / cover`}">
       <div class="close" @click="$store.commit('closeLightbox')" />
       <div class="prev" @click="prev" />
       <div class="next" @click="next" />
@@ -18,7 +18,7 @@
       v-touch:swipe.right="prev"
       v-if="photo !== null"
       class="lightbox retina"
-      :style="{background: 'url(' + photo.path + ') no-repeat center / cover'}">
+      :style="{background: `url(${photo.path}) no-repeat center / cover`}">
       <div class="close" @click="$store.commit('closeLightbox')" />
       <div class="prev" @click="prev" />
       <div class="next" @click="next" />
@@ -39,17 +39,17 @@
     },
 
     methods: {
-      getImageForBackground (url) {
-        const img = new Image
-        img.src = url
-        img.onload = () => this.setDimensions(url, { height: img.naturalHeight, width: img.naturalWidth })
-      },
+      // getImageForBackground (url) {
+      //   const img = new Image
+      //   img.src = url
+      //   img.onload = () => this.setDimensions(url, { height: img.naturalHeight, width: img.naturalWidth })
+      // },
 
-      setDimensions (url, dimensions) {
-        this.imageSrc = `
-          url(${url}?w=${Math.round(dimensions.width / 2)}&h=${Math.round(dimensions.height / 2)})
-        `
-      },
+      // setDimensions (url, dimensions) {
+      //   this.imageSrc = `
+      //     url(${url}?w=${Math.round(dimensions.width / 2)}&h=${Math.round(dimensions.height / 2)})
+      //   `
+      // },
 
       prev () {
         const index = this.photo.index <= 0 ? this.photo.photos.length - 1 : this.photo.index - 1
