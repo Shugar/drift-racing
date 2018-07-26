@@ -95,11 +95,11 @@
       window.addEventListener('keyup', this.handleKeypress)
     },
 
-    updated () {
-      if (this.photo) {
-        this.getImageForBackground(this.photo.path)
-      }
-    },
+    // updated () {
+    //   if (this.photo) {
+    //     this.getImageForBackground(this.photo.path)
+    //   }
+    // },
   }
 </script>
 
