@@ -43,19 +43,19 @@
               }"
               :key="index"
               class="member">
-            <div class="member-photo" :style="{background: getImageMeta('http://' + item.image.fields.file.url.slice(2)) + ' no-repeat center / cover'}">
+            <div class="member-photo" :style="{background: `url(http://${item.image.fields.file.url.slice(2)}?w=1280&h=800) no-repeat center / cover`}">
               <div class="socials">
                 <a :href="item.instagram" class="socials-instagram"></a>
                 <a :href="item.facebook" class="socials-facebook"></a>
               </div>
             </div>
-            <div class="member-photo-retina" :style="{background: 'url(http://' + item.image.fields.file.url.slice(2) + ') no-repeat center / cover'}">
+            <div class="member-photo-retina" :style="{background: `url(http://${item.image.fields.file.url.slice(2)}) no-repeat center / cover`}">
               <div class="socials">
                 <a :href="item.instagram" class="socials-instagram"></a>
                 <a :href="item.facebook" class="socials-facebook"></a>
               </div>
             </div>
-            <div class="member-photo member-photo-mobile" :style="{background: 'url(http://' + item.imageMobile.fields.file.url.slice(2) + ') no-repeat center / cover'}">
+            <div class="member-photo member-photo-mobile" :style="{background: `url(http://${item.imageMobile.fields.file.url.slice(2)}) no-repeat center / cover`}">
               <div class="socials">
                 <a :href="item.instagram" class="socials-instagram"></a>
                 <a :href="item.facebook" class="socials-facebook"></a>
@@ -166,14 +166,14 @@ export default {
       return this.count > 0 ? this.count-- : this.count = this.team.length - 1
     },
 
-    getImageMeta (url) {
-      let img = new Image
-      img.src = url
-      img.onload = () => {
-         return `url(${url}?w=${Math.round(img.width/2)}&h=${Math.round(img.height/2)})`
-      }
-      return img.onload()
-    }
+    // getImageMeta (url) {
+    //   let img = new Image
+    //   img.src = url
+    //   img.onload = () => {
+    //      return `url(${url}?w=${Math.round(img.width/2)}&h=${Math.round(img.height/2)})`
+    //   }
+    //   return img.onload()
+    // }
   },
 
   computed: {

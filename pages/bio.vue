@@ -51,8 +51,8 @@
             animateClass="animated"
             :begin="true"
           >
-            <img class="image"  :src="getImageMeta('http://' + bio.leftImage.fields.file.url.slice(2))" />
-            <img class="retina-image"  :src="'http://' + bio.leftImage.fields.file.url.slice(2)" />
+            <img class="retina-image"  :src="`http://${bio.leftImage.fields.file.url.slice(2)}?w=1280&h=800`" />
+            <img class="image"  :src="`http://${bio.leftImage.fields.file.url.slice(2)}`" />
           </u-animate>
         </u-animate-container>
       </div>
@@ -91,8 +91,8 @@
             animateClass="animated"
             :begin="true"
           >
-            <img class="retina-image" :src="'http://' + bio.rightImage.fields.file.url.slice(2)" />
-            <img class="image" :src="getImageMeta('http://' + bio.rightImage.fields.file.url.slice(2))" />
+            <img class="retina-image" :src="`http://${bio.rightImage.fields.file.url.slice(2)}`" />
+            <img class="image" :src="`http://${bio.rightImage.fields.file.url.slice(2)}?w=1280&h=800`" />
           </u-animate>
         </u-animate-container>
       </div>
@@ -133,7 +133,7 @@
             :begin="true"
           >
             <img class="retina-image" :src="'http://' + car.image.fields.file.url.slice(2)" />
-            <img class="image" :src="getImageMeta('http://' + car.image.fields.file.url.slice(2))" />
+            <img class="image" :src="'http://' + car.image.fields.file.url.slice(2) + '?w=1280&h=800'" />
           </u-animate>
           <u-animate
             class="text-wrapper"
@@ -241,16 +241,16 @@ export default {
     this.isChanging = false
   },
 
-  methods: {
-    getImageMeta (url) {
-      let img = new Image
-      img.src = url
-      img.onload = () => {
-         return `${url}?w=${Math.round(img.width/2)}&h=${Math.round(img.height/2)}`
-      }
-      return img.onload()
-    }
-  },
+  // methods: {
+  //   getImageMeta (url) {
+  //     let img = new Image
+  //     img.src = url
+  //     img.onload = () => {
+  //        return `${url}?w=${Math.round(img.width/2)}&h=${Math.round(img.height/2)}`
+  //     }
+  //     return img.onload()
+  //   }
+  // },
 
   beforeRouteLeave(to, from, next) {
     this.isChanging = true
