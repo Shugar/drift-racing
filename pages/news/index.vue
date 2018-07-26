@@ -99,7 +99,7 @@
                     animateClass="animated"
                     :begin="true"
                   >
-                    <div class="previous-image simple-image" :style="{background: getImageForBackground('http://' + article.image.fields.file.url.slice(2)) + ' no-repeat center / cover'}" />
+                    <div class="previous-image simple-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}?w=1280&h=800) no-repeat center / cover `}" />
                     <div class="previous-image retina-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
                     <div class="previous-date">{{ article.date }}</div>
                     <div class="previous-subtitle">{{ article.title }}</div>
@@ -124,7 +124,7 @@
               <div class="previous-image retina-image"
                 :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
               <div class="previous-image simple-image"
-                :style="{background: getImageForBackground('http://' + article.image.fields.file.url.slice(2)) + ' no-repeat center / cover' }" />
+                :style="{background: `url(http://${article.image.fields.file.url.slice(2)}?w=1280&h=800) no-repeat center / cover `}"  />
               <div :class="{'previous-date': article.column === 'right', 'date': article.column === 'left'}">
                 {{ article.date }}
               </div>
@@ -158,7 +158,9 @@
       return {
         events: [],
         rightEvents: [],
-        isChanging: false
+        isChanging: false,
+        // imgSrc: [],
+        // backgroundUrl: []
       }
     },
 
@@ -178,23 +180,35 @@
     },
 
     methods: {
-      getImageForBackground (url) {
-        let img = new Image
-        img.src = url
-        img.onload = () => {
-          return `url(${url}?w=${Math.round(img.width/2)}&h=${Math.round(img.height/2)})`
-        }
-        return img.onload()
-      },
+      // getImageForBackground () {
+      //   const array = this.rightEvents.length > 0 ? this.rightEvents : this.rightCalendar
+      //   array.map(item => {
+      //     let img = new Image
+      //     img.src = 'http://' + item.image.fields.file.url.slice(2)
+      //     // return (
+      //     //   img.onload = () => {
+      //     //     console.log('@@@@@@@@@@@@@@')
+      //     //     this.setBackgroundDimensions(img.src, {width: img.naturalWidth, height: img.naturalHeight})
+      //     //   }
+      //     // )
+      //   })
+      // },
 
-      getImageForSrc (url) {
-        let img = new Image
-        img.src = url
-        img.onload = () => {
-          return `${url}?w=${Math.round(img.width/2)}&h=${Math.round(img.height/2)}`
-        }
-        return img.onload()
-      },
+      // getImageForSrc (url) {
+      //   let img = new Image
+      //   img.src = url
+      //   return img.onload = () => this.setImgDimensions(url, {width: img.naturalWidth, height: img.naturalHeight})
+      // },
+
+      // setBackgroundDimensions (url, dimensions) {
+      //   return this.backgroundUrl = [...this.backgroundUrl, `url(${url}?w=${Math.round(dimensions.width / 2)}&h=${Math.round(dimensions.height / 2)})`]
+      // },
+
+      // setImgDimensions (url, dimensions) {
+      //   return this.imgSrc = [...this.imgSrc, `${url}?w=${Math.round(dimensions.width / 2)}&h=${Math.round(dimensions.height / 2)}`]
+      // },
+
+
 
       setTag (tag) {
         const events = this.leftCalendar
@@ -262,6 +276,10 @@
       locale () {
         return this.$store.state.locale
       }
+    },
+
+    updated() {
+      this.getImageForBackground()
     },
 
     mounted () {
@@ -457,20 +475,20 @@
   }
 
   .simple-image {
-    display: block;
+    display: none;
   }
 
   .retina-image {
-    display: none;
+    display: block;
   }
 
   @media (-webkit-min-device-pixel-ratio: 2) {
     .simple-image {
-      display: none;
+      display: block;
     }
 
     .retina-image {
-      display: block;
+      display: none;
     }
   }
   .previous-title {
