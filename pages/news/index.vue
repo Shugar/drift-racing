@@ -77,7 +77,7 @@
             >
               <nuxt-link :to="'/news/' + findItemByTitle(article.title)">
                 <div class="img-fullwidth">
-                  <img class="simple-image" :src="getImageForSrc('http://' + article.image.fields.file.url.slice(2))" />
+                  <img class="simple-image" :src="'http://' + article.image.fields.file.url.slice(2)+'?w=1280&h=800'" />
                   <img class="retina-image" :src="'http://' + article.image.fields.file.url.slice(2)" />
                 </div>
                 <div class="date">{{ article.date }}</div>
@@ -278,9 +278,9 @@
       }
     },
 
-    updated() {
-      this.getImageForBackground()
-    },
+    // updated() {
+    //   this.getImageForBackground()
+    // },
 
     mounted () {
       this.isChanging = false
@@ -475,20 +475,20 @@
   }
 
   .simple-image {
-    display: none;
+    display: block;
   }
 
   .retina-image {
-    display: block;
+    display: none;
   }
 
   @media (-webkit-min-device-pixel-ratio: 2) {
     .simple-image {
-      display: block;
+      display: none;
     }
 
     .retina-image {
-      display: none;
+      display: block;
     }
   }
   .previous-title {
