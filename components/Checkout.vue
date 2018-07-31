@@ -285,7 +285,7 @@ import axios from 'axios'
       margin: 0;
   }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .product-item {
     // max-width: 286px;
     padding-right: 0;
