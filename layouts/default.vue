@@ -67,7 +67,6 @@
       bio () {
         return (this.$store.state.entities || { bio: null }).bio
       },
-
     },
 
     components: {
