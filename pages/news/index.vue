@@ -77,8 +77,8 @@
             >
               <nuxt-link :to="'/news/' + findItemByTitle(article.title)">
                 <div class="img-fullwidth">
-                  <img class="simple-image" :src="'http://' + article.image.fields.file.url.slice(2)+'?w=1280&h=800'" />
-                  <img class="retina-image" :src="'http://' + article.image.fields.file.url.slice(2)" />
+                  <img class="simple-image" v-if="article.image" :src="'http://' + article.image.fields.file.url.slice(2)+'?w=1280&h=800'" />
+                  <img class="retina-image" v-if="article.image" :src="'http://' + article.image.fields.file.url.slice(2)" />
                 </div>
                 <div class="date">{{ article.date }}</div>
                 <div class="title">{{ article.title }}</div>
@@ -99,8 +99,8 @@
                     animateClass="animated"
                     :begin="true"
                   >
-                    <div class="previous-image simple-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}?w=1280&h=800) no-repeat center / cover `}" />
-                    <div class="previous-image retina-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
+                    <div class="previous-image simple-image" v-if="article.image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}?w=1280&h=800) no-repeat center / cover `}" />
+                    <div class="previous-image retina-image" v-if="article.image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
                     <div class="previous-date">{{ article.date }}</div>
                     <div class="previous-subtitle">{{ article.title }}</div>
                   </u-animate>
@@ -121,9 +121,9 @@
             :begin="true"
           >
             <nuxt-link class="hui" :to="'/news/' + findItemByTitle(article.title)">
-              <div class="previous-image retina-image"
+              <div class="previous-image retina-image" v-if="article.image"
                 :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
-              <div class="previous-image simple-image"
+              <div class="previous-image simple-image" v-if="article.image"
                 :style="{background: `url(http://${article.image.fields.file.url.slice(2)}?w=1280&h=800) no-repeat center / cover `}"  />
               <div :class="{'previous-date': article.column === 'right', 'date': article.column === 'left'}">
                 {{ article.date }}
