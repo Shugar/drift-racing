@@ -65,8 +65,8 @@
             animateClass="animated"
             :begin="true"
           >
-            <div class='article-image-retina' :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover`}" />
-            <div class="article-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}?w=1280&h=800) no-repeat center / cover`}" />
+            <div class='article-image-retina' v-if="article.image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover`}" />
+            <div class="article-image" v-if="article.image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}?w=1280&h=800) no-repeat center / cover`}" />
           </u-animate>
         </div>
       </div>
@@ -93,8 +93,8 @@
               animateClass="animated"
               :begin="true"
             >
-              <div class="previous-image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}?w=1280&h=800) no-repeat center / cover`}" />
-              <div class="previous-image-retina" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover`}" />
+              <div class="previous-image" v-if="article.image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}?w=1280&h=800) no-repeat center / cover`}" />
+              <div class="previous-image-retina" v-if="article.image" :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover`}" />
               <div class="previous-date"> {{ item.date }} </div>
               <div class="previous-subtitle"> {{ item.title }} </div>
             </u-animate>

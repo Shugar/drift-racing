@@ -121,7 +121,7 @@
             :begin="true"
           >
             <nuxt-link class="hui" :to="'/news/' + findItemByTitle(article.title)">
-              <div class="previous-image retina-image" v-if="article.image"
+              <div v-if="article.image" class="previous-image retina-image" v-if="article.image"
                 :style="{background: `url(http://${article.image.fields.file.url.slice(2)}) no-repeat center / cover `}" />
               <div class="previous-image simple-image" v-if="article.image"
                 :style="{background: `url(http://${article.image.fields.file.url.slice(2)}?w=1280&h=800) no-repeat center / cover `}"  />
