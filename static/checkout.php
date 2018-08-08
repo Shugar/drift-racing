@@ -8,6 +8,13 @@ $phone = $_POST['phone'];
 $email = $_POST['email'];
 $address = $_POST['address'];
 $zip = $_POST['zip'];
+$products = $_POST['products'];
+
+foreach($products as $product) {
+
+ echo $product;
+
+}
 
 // Настройки
 $mail = new PHPMailer;
@@ -19,12 +26,12 @@ $mail->Password = 'racing'; // Ваш пароль
 $mail->SMTPSecure = 'ssl';
 $mail->Port = 587;
 $mail->setFrom('alexdracing@yandex.ru'); // Ваш Email
-$mail->addAddress('shugar348@gmail.com'); // Email получателя
+$mail->addAddress('valeraerohin97@mail.ru'); // Email получателя
 
 // Письмо
 $mail->isHTML(true);
 $mail->Subject = "Заголовок"; // Заголовок письма
-$mail->Body = "Имя $name . Телефон $phone . Почта $email Адрес $address . ZIP $zip ."; // Текст письма
+$mail->Body = "Имя $name . Телефон $phone . Почта $email Адрес $address . ZIP $zip . products $products ."; // Текст письма
 
 // Результат
 if(!$mail->send()) {
