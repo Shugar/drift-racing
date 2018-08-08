@@ -8,7 +8,7 @@ $phone = $_POST['phone'];
 $email = $_POST['email'];
 $address = $_POST['address'];
 $zip = $_POST['zip'];
-$products = $_POST['products'];
+$products = json_decode($_POST['products']);
 
 foreach($products as $product) {
 

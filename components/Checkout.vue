@@ -88,7 +88,7 @@ import axios from 'axios'
       postFormData () {
         axios.post('/checkout.php', {
           ...this.customer,
-          products: this.checkoutList
+          products: JSON.stringify(this.checkoutList)
         })
         .then(function (response) {
           // eslint-disable-next-line
