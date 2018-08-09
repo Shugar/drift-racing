@@ -12,13 +12,13 @@ $products = json_decode($requestPayload['products']);
 // $productListing = return "${listing}\n{$product['title']}: {$product['price']}";
 // $requestPayload['products']
 $data = '';
-foreach ($array as $key=>$value){
+foreach ($products as $key => $value){
       $data .= $key.'-------'.$value;
-      $data.= "\n";
+      $data .= "\n";
 }
 
-if (mail("shugar348@gmail.com", "заголовок", "Имя $name \r\n Телефон $phone \r\n Почта $email \r\n Адрес $address \r\n ZIP $zip \r\n Product Listing $data"))
-      echo is_string($data);
+if (mail("sasu11@yandex.ru", "заголовок", "Имя: ".$name."\r\nТелефон: ".$phone."\r\nПочта: ".$email."\r\nАдрес: ".$address."\r\nZIP: ".$zip."\r\nProduct Listing: ".$data))
+      echo "Сообщение успешно отправлено";
 else
       print("Не отправлено\r\n");
 
