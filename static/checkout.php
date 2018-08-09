@@ -14,7 +14,7 @@ $productListing = array_reduce($requestPayload['products'], function($listing, $
 }, "Ваш заказ: ");
 
 if (mail("shugar348@gmail.com", "заголовок", "Имя $name \r\n Телефон $phone \r\n Почта $email \r\n Адрес $address \r\n ZIP $zip \r\n Product Listing"))
-      echo $products[0]['title'];
+      echo $products;
 else
       print("Не отправлен");
 
