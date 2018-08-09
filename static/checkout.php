@@ -17,8 +17,8 @@ foreach ($array as $key=>$value){
       $data.= "\n";
 }
 
-if (mail("valeraerohin97@mail.ru", "заголовок", "Имя $name \r\n Телефон $phone \r\n Почта $email \r\n Адрес $address \r\n ZIP $zip \r\n Product Listing $data"))
-      echo is_string($productListing);
+if (mail("shugar348@gmail.com", "заголовок", "Имя $name \r\n Телефон $phone \r\n Почта $email \r\n Адрес $address \r\n ZIP $zip \r\n Product Listing $data"))
+      echo is_string($data);
 else
       print("Не отправлено\r\n");
 
