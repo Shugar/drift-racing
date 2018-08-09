@@ -12,15 +12,15 @@ $products = $requestPayload['products'];
 $test = "Ваш заказ: ";
 
 // $getProducts = function($arr) {
-  
+//   foreach($arr as $product) {
+//     print($product['title'] . " \r\n " . $product['price'] . " \r\n ");
+//   }
 // }
 
-foreach($product as $products) {
- $test .= $product['title'] . " \r\n " . $product['price'];
-}
+// $string = $getProducts($products)
 
-if (mail("valeraerohin97@mail.ru", "заголовок", "Имя $name \r\n Телефон $phone \r\n Почта $email \r\n Адрес $address \r\n ZIP $zip \r\n $test"))
-      echo $products;
+if (mail("valeraerohin97@mail.ru", "заголовок", "Имя $name \r\n Телефон $phone \r\n Почта $email \r\n Адрес $address \r\n ZIP $zip \r\n"))
+      echo typeof($products);
 else
       print("Не отправлено\r\n");
 
