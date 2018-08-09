@@ -1,17 +1,21 @@
 
 <?
-$_POST = json_decode(file_get_contents('php://input'), true);
+$requestPayload = json_decode(file_get_contents('php://input'), true);
 
-$name = $_POST['name'];
-$phone = $_POST['phone'];
-$email = $_POST['email'];
-$address = $_POST['address'];
-$zip = $_POST['zip'];
-$products = $_POST['products'];
+$name = $requestPayload['name'];
+$phone = $requestPayload['phone'];
+$email = $requestPayload['email'];
+$address = $requestPayload['address'];
+$zip = $requestPayload['zip'];
+$products = $requestPayload['products'];
 
-$test = "Ваш заказ: "; 
+$test = "Ваш заказ: ";
 
-foreach($products as $product) {
+// $getProducts = function($arr) {
+  
+// }
+
+foreach($product as $products) {
  $test .= $product['title'] . " \r\n " . $product['price'];
 }
 
