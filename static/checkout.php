@@ -19,7 +19,11 @@ $test = "Ваш заказ: ";
 
 // $string = $getProducts($products)
 
-if (mail("valeraerohin97@mail.ru", "заголовок", "Имя $name \r\n Телефон $phone \r\n Почта $email \r\n Адрес $address \r\n ZIP $zip \r\n"))
+$productListing = array_reduce($requestPayload['products'], function($listing, $product) {
+  return "${listing}\n{$product['title']}: {$product['price']}";
+}, "Ваш заказ: ");
+
+if (mail("valeraerohin97@mail.ru", "заголовок", "Имя $name \r\n Телефон $phone \r\n Почта $email \r\n Адрес $address \r\n ZIP $zip \r\n $productListing"))
       echo is_string($products);
 else
       print("Не отправлено\r\n");
