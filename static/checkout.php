@@ -7,7 +7,7 @@ $phone = $requestPayload['phone'];
 $email = $requestPayload['email'];
 $address = $requestPayload['address'];
 $zip = $requestPayload['zip'];
-$products = $requestPayload['products'];
+$products = json_decode($requestPayload['products']);
 
 $productListing = array_reduce($requestPayload['products'], function($listing, $product) {
   return "${listing}\n{$product['title']}: {$product['price']}";
