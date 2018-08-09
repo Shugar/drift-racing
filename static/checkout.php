@@ -9,13 +9,13 @@ $address = $_POST['address'];
 $zip = $_POST['zip'];
 $products = $_POST['products'];
 
-$test = "";
+$test = "Ваш заказ: "; 
 
 foreach($products as $product) {
- $test = $product;
+ $test .= $product['title'] . " \r\n " . $product['price'];
 }
 
-if (mail("valeraerohin97@mail.ru", "заголовок", "Имя $name \r\n Телефон $phone \r\n Почта $email \r\n Адрес $address \r\n ZIP $zip \r\n Ваш заказ $product"))
+if (mail("valeraerohin97@mail.ru", "заголовок", "Имя $name \r\n Телефон $phone \r\n Почта $email \r\n Адрес $address \r\n ZIP $zip \r\n $test"))
       echo $products;
 else
       print("Не отправлено\r\n");
