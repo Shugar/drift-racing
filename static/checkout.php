@@ -9,7 +9,13 @@ $address = $_POST['address'];
 $zip = $_POST['zip'];
 $products = $_POST['products'];
 
-if (mail("valeraerohin97@mail.ru", "заголовок", "Имя $name \r\n Телефон $phone \r\n Почта $email \r\n Адрес $address \r\n ZIP $zip \r\n Products $products"))
+$test = "";
+
+foreach($products as $product) {
+ $test = $product;
+}
+
+if (mail("valeraerohin97@mail.ru", "заголовок", "Имя $name \r\n Телефон $phone \r\n Почта $email \r\n Адрес $address \r\n ZIP $zip \r\n Ваш заказ $product"))
       echo $products;
 else
       print("Не отправлено\r\n");
