@@ -86,12 +86,14 @@ import axios from 'axios'
 
     methods: {
       postFormData () {
-        axios.post('/checkout.php', {
+        axios.post('/checkout.php', { 
           ...this.customer,
           products: JSON.stringify(this.checkoutList)
         },
         {
-          'Content-Type': 'application/x-www-form-urlencoded'
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
         }
         )
         .then(function (response) {
