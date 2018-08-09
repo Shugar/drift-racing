@@ -9,14 +9,6 @@ $address = $requestPayload['address'];
 $zip = $requestPayload['zip'];
 $products = $requestPayload['products'];
 
-// $getProducts = function($arr) {
-//   foreach($arr as $product) {
-//     print($product['title'] . " \r\n " . $product['price'] . " \r\n ");
-//   }
-// }
-
-// $string = $getProducts($products)
-
 $productListing = array_reduce($requestPayload['products'], function($listing, $product) {
   return "${listing}\n{$product['title']}: {$product['price']}";
 }, "Ваш заказ: ");
