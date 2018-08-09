@@ -89,7 +89,11 @@ import axios from 'axios'
         axios.post('/checkout.php', {
           ...this.customer,
           products: JSON.stringify(this.checkoutList)
-        })
+        },
+        {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+        )
         .then(function (response) {
           // eslint-disable-next-line
           console.log(response)
