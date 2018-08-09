@@ -11,7 +11,7 @@ $products = str_split($requestPayload['products']);
 
 $productListing = "";
 foreach ($products as $key => $value){
-      $productListing .= $value["$key"]["title"];
+      $productListing .= $products[$key]["title"];
 }
 
 
