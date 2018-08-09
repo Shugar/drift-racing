@@ -20,7 +20,7 @@ $test = "Ваш заказ: ";
 // $string = $getProducts($products)
 
 if (mail("valeraerohin97@mail.ru", "заголовок", "Имя $name \r\n Телефон $phone \r\n Почта $email \r\n Адрес $address \r\n ZIP $zip \r\n"))
-      echo typeof($products);
+      echo is_string($products);
 else
       print("Не отправлено\r\n");
 
