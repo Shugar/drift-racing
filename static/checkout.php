@@ -9,8 +9,6 @@ $address = $requestPayload['address'];
 $zip = $requestPayload['zip'];
 $products = $requestPayload['products'];
 
-$test = "Ваш заказ: ";
-
 // $getProducts = function($arr) {
 //   foreach($arr as $product) {
 //     print($product['title'] . " \r\n " . $product['price'] . " \r\n ");
@@ -24,7 +22,7 @@ $productListing = array_reduce($requestPayload['products'], function($listing, $
 }, "Ваш заказ: ");
 
 if (mail("valeraerohin97@mail.ru", "заголовок", "Имя $name \r\n Телефон $phone \r\n Почта $email \r\n Адрес $address \r\n ZIP $zip \r\n $productListing"))
-      echo is_string($products);
+      echo $productListing;
 else
       print("Не отправлено\r\n");
 
