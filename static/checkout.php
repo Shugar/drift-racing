@@ -7,7 +7,8 @@ $phone = $requestPayload['phone'];
 $email = $requestPayload['email'];
 $address = $requestPayload['address'];
 $zip = $requestPayload['zip'];
-$products = str_split($requestPayload['products']);
+// $products = str_split($requestPayload['products']);
+$products = $requestPayload['products'];
 
 $productListing = "";
 // foreach ($products as $key => $value){
