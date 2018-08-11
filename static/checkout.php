@@ -9,9 +9,9 @@ $address = $requestPayload['address'];
 $zip = $requestPayload['zip'];
 $products = $requestPayload['products'];
 
-$productsListing = "";
+$productListing = "";
 foreach ($products as $value) {
-      $productsListing .= $value['title'];
+      $productListing .= $value['title'];
 }
 
 if (mail("sasu11@yandex.ru", "заголовок", "Имя $name \r\n Телефон $phone \r\n Почта $email \r\n Адрес $address \r\n ZIP $zip \r\n Product Listing $productListing"))
