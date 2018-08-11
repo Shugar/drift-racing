@@ -11,17 +11,17 @@ $zip = $requestPayload['zip'];
 $products = $requestPayload['products'];
 
 $productListing = "";
-// foreach ($products as $key => $value){
-//       $productListing .= $products[$key]["title"];
-// }
+foreach ($products as $value){
+      $productListing .= $value["title"];
+}
 
 foreach ($products as $value) {
       $productListing = $value;
 }
 
 if (mail("sasu11@yandex.ru", "заголовок", "Имя $name \r\n Телефон $phone \r\n Почта $email \r\n Адрес $address \r\n ZIP $zip \r\n Product Listing $productListing"))
-      // echo $productListing;
-      echo $products;
+      echo $productListing;
+      // echo $products;
 else
       print("Не отправлен");
 
