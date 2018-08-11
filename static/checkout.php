@@ -7,15 +7,11 @@ $phone = $requestPayload['phone'];
 $email = $requestPayload['email'];
 $address = $requestPayload['address'];
 $zip = $requestPayload['zip'];
-$products = str_split($requestPayload['products']);
+$products = $requestPayload['products'];
 
-$productListing = "";
-// foreach ($products as $key => $value){
-//       $productListing .= $products[$key]["title"];
-// }
-
+$productsListing = "";
 foreach ($products as $value) {
-      $productListing = $value;
+      $productsListing .= $value['title'];
 }
 
 if (mail("sasu11@yandex.ru", "заголовок", "Имя $name \r\n Телефон $phone \r\n Почта $email \r\n Адрес $address \r\n ZIP $zip \r\n Product Listing $productListing"))
