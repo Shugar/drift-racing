@@ -25,8 +25,11 @@ if(count($_products))
 foreach ($_products as $i => $product) {
       list($type, $loc, $title, $gender, $category, $style, $price) = array_values($product);
       $pos = $i + 1;
-      $body .= "<p><b>Позиция</b>: #{$pos}</p>";
       $body .= "<p><b>Название</b>: {$title}</p>";
+      $body .= "<p><b>Категория</b>: #{$category}</p>";
+      $body .= "<p><b>Стиль (цвет)</b>: #{$style}</p>";
+      $body .= "<p><b>Пол</b>: #{$gender}</p>";
+      $body .= "<p><b>Позиция</b>: #{$pos}</p>";
       $body .= "<p><b>Цена</b>: {$price}</p>";
 }
 

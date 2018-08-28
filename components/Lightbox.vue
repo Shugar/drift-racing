@@ -1,5 +1,5 @@
 <template>
-  <div class="wapper">
+  <div class="wrapper">
     <div
       v-touch:swipe.left="next"
       v-touch:swipe.right="prev"

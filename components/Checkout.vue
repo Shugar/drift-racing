@@ -96,13 +96,14 @@ import axios from 'axios'
           }
         }
         )
-        .then(function (response) {
+        .then((response) => {
           // eslint-disable-next-line
           console.log(response)
+          this.$store.commit('toggleCheckout')
         })
-        .catch(function (error) {
+        .catch((error) => {
           // eslint-disable-next-line
-          console.log(error)
+          alert(this.locale === 'en' ? 'Please, try again' : 'Что-то пошло не так. Попробуйте снова' + error)
         })
       }
     }

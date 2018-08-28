@@ -1,5 +1,5 @@
 <template>
-  <section class="calendar" >
+  <section class="store-item" >
     <div class="background" :class="{active: isBackgroundAnimation}" :style="{ background: 'url(http://' + store.full.fields.file.url.slice(2) + ') no-repeat center / cover'}"></div>
     <div class="container" >
       <u-animate
@@ -187,12 +187,11 @@
       }
     }
   }
-  .calendar {
-    background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
-    // padding: 200px 0 80px;
+
+  .store-item {
     position: relative;
-    height: 100%;
-    min-height: 700px;
+    min-height: 100vh;
+    background: linear-gradient(216.25deg, #565656 0%, #000000 100%), #683FFF;
   }
 
   a {
@@ -209,15 +208,12 @@
     align-items: center;
   }
 
-
   .background {
     position: fixed;
     height: 100%;
     width: 100%;
     top: 0;
     left: 0;
-    background: url('/store/store-background.png') center / cover no-repeat;
-
     transform: translateY(40%);
     opacity: 0;
     transition: transform .4s ease, opacity .4s ease;
@@ -398,7 +394,7 @@
   }
 
   @media (max-width: 768px) {
-    .calendar {
+    .store-item {
       min-height: 100vh;
     }
   }
@@ -410,7 +406,7 @@
       background-size: cover;
     }
 
-    .calendar {
+    .store-item {
       overflow: hidden;
       height: 100vh;
     }
