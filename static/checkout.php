@@ -27,11 +27,14 @@ foreach ($_products as $i => $product) {
       $pos = $i + 1;
       $body .= "<p><b>Позиция</b>: #{$pos}</p>";
       $body .= "<p><b>Название</b>: {$title}</p>";
+      $body .= "<p><b>Стиль (цвет)</b>: {$style}</p>";
+      $body .= "<p><b>Категория</b>: {$category}</p>";
+      $body .= "<p><b>Пол</b>: {$gender}</p>";
       $body .= "<p><b>Цена</b>: {$price}</p>";
 }
 
 $timestamp = date("d.m.Y H:i:s", strtotime("now"));
-$to = "sasu11@yandex.ru";
+$to = "alex.dracing@yandex.ru";
 $subject = "Новая заявка из магазина от {$timestamp}";
 $headers = "From: noreply@alexdracing.com\r\n";
 $headers .= "Reply-To: noreply@alexdracing.com\r\n";
