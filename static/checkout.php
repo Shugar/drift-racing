@@ -34,7 +34,7 @@ foreach ($_products as $i => $product) {
 }
 
 $timestamp = date("d.m.Y H:i:s", strtotime("now"));
-$to = "alex.dracing@yandex.ru";
+$to = "shugar348@gmail.com";
 $subject = "Новая заявка из магазина от {$timestamp}";
 $headers = "From: noreply@alexdracing.com\r\n";
 $headers .= "Reply-To: noreply@alexdracing.com\r\n";
